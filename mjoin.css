@@ -1,0 +1,196 @@
+body {
+    background-color: #444444;
+    color: #aaaaaa;
+}
+
+.join{
+  background-color: #fc9c00; 
+  border: none;
+  color: white;
+  padding: 8px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 150px;
+}
+
+.inactiveagree{
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.5;
+  height: 140px;    
+  width: 200px;  
+}
+
+.inactivequestion{
+  background-color: #aa0000; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.5;
+  height: 140px;      
+  width: 200px;  
+}
+
+.inactiveconfused{
+  background-color: #ddaa00; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.5;
+  height: 140px;      
+  width: 200px;  
+}
+
+.inactiveabsent{
+  background-color: #999999; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.5;
+  height: 140px;      
+  width: 200px;  
+}
+
+.inactiveproblem{
+  background-color: #111111; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.5;
+  width: 200px;
+  height: 140px;      
+}
+
+.agree{
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 200px;
+  height: 140px;      
+}
+
+.question{
+  background-color: #aa0000; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 200px;
+  height: 140px;      
+}
+
+.confused{
+  background-color: #ddaa00; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 200px;
+  height: 140px;      
+}
+
+.absent{
+  background-color: #999999; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 200px;
+  height: 140px;      
+}
+
+.problem{
+  background-color: #111111; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 200px;
+  height: 140px;      
+}
+
+.remove {
+  background-color: #2222aa; 
+  border: none;
+  color: white;
+  padding: 32px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  opacity: 0.9;
+  width: 200px;
+  height: 140px;      
+}
+

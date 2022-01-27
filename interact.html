@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <LINK rel="stylesheet" type="text/css" href="join.css"> 
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 415px)" href="mjoin.css" />
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 1024px)" href="mjoin.css" />
+    <link rel="stylesheet" type="text/css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" href="mjoin.css" />
+
+    <title>Interact</title>
+  </head>
+  <body>
+    <div>
+      <button class="remove" name="remove" onclick="remove()">&#128032;</button>            
+      <button class="agree" name="green" onclick="green()">&#128578;</button>
+      <button class="confused" name="yellow" onclick="yellow()">&#128533;</button>
+      <button class="question" name="red" onclick="red()">&#9995;</button>
+      <button class="absent" name="gray" onclick="gray()">&#128164;</button>
+      <button class="problem" name="black" onclick="black()">&#128721;</button>
+    </div>    
+    <p style="clear:both">
+      <span id="latest">This is where your latest vote will be displayed.</span>
+    </p>
+    Response: <input type="text" name="words" id="words" size="50"/>
+    <p>
+    <input class="join" type="button" id="send" value="Send" onclick="send()"/>
+    <input class="join" type="button" id="clear" value="Clear" onclick="erase()"/>
+    </p>
+    <p style="clear:both">
+      <span id="response">This is where your latest response will be displayed.</span>
+    </p>    
+    <hr noshade>
+    <p>
+      E-mail: <input type="email" id="mail" name="mail" size="30" autocomplete="on" required/>
+    </p>
+    <input class="join" type="button" id="join" value="Join" onclick="start()"/>
+    <span id="login"></span>
+    <p>
+      <small>
+	The e-mail is used to create a unique user ID. This ID is
+	computed locally on your device (with JS using MD5, in case you
+	are keen to know), so the e-mail address is not even sent
+	anywhere. Nobody will spam you because of this, no worries.
+      </small>
+    </p>
+    <p>
+      Unsure how to vote? There's a videotutorial.
+    </p>
+    <iframe width="420" height="315"
+	    src="https://youtube.com/embed/i92Eb0CjPPU">
+    </iframe>
+  </body>
+  <script src="https://elisa.dyndns-web.com/scripts/md5.js"></script>
+  <script src="join.js"></script>
+</html>
