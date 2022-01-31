@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medici&oacute;n de desempe&ntilde;o en Python &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="../paralelo.css">
+
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shAutoloader.js'></script>
+
+  </head>
+
+    <body>
+    <p align="right">
+      <a href="../index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+    <h2><a name="perf">Medici&oacute;n de desempe&ntilde;o
+    computacional en Python</a></h2>
+<p>
+  Para estudiar qu&eacute; tan eficiente es alg&uacute;n
+  c&oacute;digo, conviene saber evaluar cu&aacute;nta memoria RAM
+  requiere y cu&aacute;nto tarda su ejecuci&oacute;n.
+</p>
+    <h3>Tiempo de ejecuci&oacute;n</h3>
+    <p>
+<code>
+  &gt;&gt;&gt; <span style="color:green">n = 2**15</span><br>
+  &gt;&gt;&gt; <span style="color:green">import numpy as np</span><br>
+  &gt;&gt;&gt; <span style="color:green">from time import time</span><br>  
+  &gt;&gt;&gt; <span style="color:green">before, M, after = time(), np.random.rand(n, n), time()</span><br>
+  &gt;&gt;&gt; <span style="color:green">after - before</span><br>
+  11.19525694847107<br>
+  &gt;&gt;&gt; <span style="color:green">from timeit import timeit</span><br>
+  &gt;&gt;&gt; <span style="color:green">def prueba():</span><br>
+  ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return np.min(M)</span><br>
+  ... <br>      
+  &gt;&gt;&gt; <span style="color:green">timeit('prueba()', 'from __main__ import prueba', number = 3)</span><br>  
+1.4250516089998655
+</code>
+</p>
+<h3>Memoria utilizada</h3>
+    <p>
+La librer&iacute;a <code>sys</code> contiene una rutina que mide el tama&ntilde;o de
+un objeto.</p>
+<p>      
+<code>
+&gt;&gt;&gt; <span style="color:green">n = 2**15</span><br>
+&gt;&gt;&gt; <span style="color:green">from sys import getsizeof</span><br>
+&gt;&gt;&gt; <span style="color:green">import numpy as np</span><br>
+&gt;&gt;&gt; <span style="color:green">M = np.random.rand(n, n)</span><br>
+&gt;&gt;&gt; <span style="color:green">getsizeof(M)</span> <span style="color:gray"># bytes</span><br> 
+8589934704<br> 
+&gt;&gt;&gt; <span style="color:green">getsizeof(M) / 1024</span> <span style="color:gray"># kilobytes</span><br>
+8388608.109375<br> 
+&gt;&gt;&gt; <span style="color:green">getsizeof(M)</span> <span style="color:gray"># megabytes</span><br>
+8192.000106811523<br> 
+&gt;&gt;&gt; <span style="color:green">getsizeof(M)</span> <span style="color:gray"># gigabytes</span><br> 
+8.000000104308128<br> 
+</code>
+</p>
+    <p>
+       Sin embargo, si ese objeto refiere a subobjetos, su
+tama&ntilde;o <em>no</em> se toma en cuenta, pero para esos casos ya existe
+un <a href="https://goshippo.com/blog/measure-real-size-any-python-object/">script
+	&uacute;til</a>.
+    <p><script src="https://gist.github.com/bosswissam/a369b7a31d9dcab46b4a034be7d263b2.js"></script></p>
+      </p>
+    <p>
+      <code>
+&gt;&gt;&gt; <span style="color:green">n = 2**15</span><br>
+&gt;&gt;&gt; <span style="color:green">from sys import getsizeof</span><br>
+&gt;&gt;&gt; <span style="color:green">import numpy as np</span><br>
+&gt;&gt;&gt; <span style="color:green">M = np.random.rand(n, n)</span><br>
+&gt;&gt;&gt; <span style="color:green">a = [1, M, 'hola']</span><br>
+&gt;&gt;&gt; <span style="color:green">getsizeof(a)</span><br>
+88<br>
+&gt;&gt;&gt; <span style="color:green">get_size(a)</span> <span style="color:gray"># usando el script de arriba</span><br> 
+8589935129
+      </code>
+      </p>
+<p>
+Una vez que un objeto pesado ya no se requiere, se puede marcar para
+una <em>eliminaci&oacute;n</em> futura con <code>del</code> operaciones
+futuras. No hay forma para <strong>forzar</strong> la
+liberaci&oacute;n de memoria que ya cuenta con referencias desde
+variables existentes, pero t&eacute;cnicamente se puede solicitar la
+ejecuci&oacute;n del <em>recolector de basura</em>
+con <code>gc.collect()</code> de la librer&iacute;a <code>gc</code>.
+</p>
+
+  <div>
+    <center>
+      Actualizado el 11 de agosto del 2021.<br>
+      <code>https://elisa.dyndns-web.com/teaching/comp/par/medicion/Python.html</code>
+    </center>
+  </div>
+  </body>
+</html>

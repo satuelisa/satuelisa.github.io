@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medici&oacute;n de desempe&ntilde;o en R &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="../paralelo.css">
+
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shAutoloader.js'></script>
+
+  </head>
+
+    <body>
+    <p align="right">
+      <a href="../index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+    <h2><a name="perf">Medici&oacute;n de desempe&ntilde;o computacional en R</a></h2>
+<p>
+  Para estudiar qu&eacute; tan eficiente es alg&uacute;n
+  c&oacute;digo, conviene saber evaluar cu&aacute;nta memoria RAM
+  requiere y cu&aacute;nto tarda su ejecuci&oacute;n.
+</p>
+    <h3>Tiempo de ejecuci&oacute;n</h3>
+    <p>
+<code>
+&gt; <span style="color:green">n &lt;- 2^15</span><br>
+&gt; <span style="color:green">M &lt;- matrix(runif(n * n), ncol=n, nrow=n)</span><br>
+&gt; <span style="color:green">system.time(min(M))</span><br>
+   user  system elapsed<br>
+  0.982   0.001   0.984 
+</code>
+</p>
+<h3>Memoria utilizada</h3>
+<p>
+<code>
+&gt; <span style="color:green">install.packages("pryr")</span><br>
+also installing the dependencies ‘stringi’, ‘stringr’, ‘Rcpp’<br>
+<br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/stringi_1.1.5.tgz'<br>
+Content type 'application/x-gzip' length 12650570 bytes (12.1 MB)<br>
+==================================================<br>
+downloaded 12.1 MB<br>
+<br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/stringr_1.2.0.tgz'<br>
+Content type 'application/x-gzip' length 139879 bytes (136 KB)<br>
+==================================================<br>
+downloaded 136 KB<br>
+<br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/Rcpp_0.12.11.tgz'<br>
+Content type 'application/x-gzip' length 3114233 bytes (3.0 MB)<br>
+==================================================<br>
+downloaded 3.0 MB<br>
+<br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/pryr_0.1.2.tgz'<br>
+Content type 'application/x-gzip' length 501137 bytes (489 KB)<br>
+==================================================<br>
+downloaded 489 KB<br>
+<br>
+<br>
+The downloaded binary packages are in<br>
+/var/folders/qj/1gw209fx1qb31lz61njz69k00000gn/T//RtmphnuSlq/downloaded_packages<br>
+<br>
+&gt; <span style="color:green">library(pryr)</span><br>
+&gt; <span style="color:green">n &lt;- 2^15</span><br>
+&gt; <span style="color:green">M &lt;- matrix(runif(n * n), ncol=n, nrow=n)</span><br>
+&gt; <span style="color:green">object_size(M)</span><br>
+8.59 GB
+</code>
+</p>
+<p>
+Una vez que un objeto pesado ya no se requiere, se
+puede <em>eliminar</em> con la instrucci&oacute;n <code>rm()</code> y
+as&iacute; liberar memoria para agilizar la ejecuci&oacute;n de
+operaciones futuras. Para <strong>forzar</strong> la liberaci&oacute;n
+de memoria que ya cuenta con referencias desde variables existentes,
+se puede solicitar la ejecuci&oacute;n del <em>recolector de
+basura</em> con <code>gc()</code>.
+</p>
+
+  <div>
+    <center>
+      Actualizado el 12 de julio del 2019.<br>
+      <code>https://elisa.dyndns-web.com/teaching/comp/par/medicion/R.html</code>
+    </center>
+  </div>
+  </body>
+</html>

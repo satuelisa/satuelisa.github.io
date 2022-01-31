@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>P12 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+<h2><a name="p12">Pr&aacute;ctica 12: red neuronal</a></h2>
+<p>
+La &uacute;ltima pr&aacute;ctica es una demostraci&oacute;n
+    b&aacute;sica de <em>aprendizaje a m&aacute;quina</em>: vamos a
+    reconocer d&iacute;gitos de im&aacute;ganes peque&ntilde;as en
+    blanco y negro con una red neuronal. El elemento b&aacute;sico de
+    una red neuronal es un <strong>perceptr&oacute;n</strong> que
+    esencialmente es un h&iacute;perplano (una l&iacute;nea si nos
+    limitamos a dos dimensiones) que busca colocarse en la frontera
+    que separa las entradas verdaderas y las entradas falsas. La
+    dimensi&oacute;n $d$ del perceptr&oacute;n es el largo del vector
+    $\textbf{x}$ que toma como entrada, y su estado interno se
+    representa con otro vector $\textbf{w}$ que contiene
+    sus <em>pesos</em>. Para responder a una salida proporcionada a
+    ello, el perceptr&oacute;n calcula el producto interno de
+    $\textbf{x} \cdot \textbf{w}$, es decir $\sum_{i = 1}^d x_i w_i$,
+    y si esta suma es positiva, la salida del perceptr&oacute;n es
+    verdad, en otro caso es falso [<a href="index.html#ann">12</a>].
+  Para agarrar la onda con los perceptr&oacute;nes, haremos primero
+  uno m&aacute;s sencillo cuyo jale es identificar si $x > y$ para
+  puntos en dos dimensiones, ya que as&iacute; es f&aacute;cil para
+  nosotros visualizar lo que le pasa al perceptr&oacute;n durante el
+  entrenamiento.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/perceptron.R">Perceptron 2D en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/perceptron.py">Perceptron 2D en Python</a></li>
+  </ul>
+<p>
+<code>
+$ Rscript perceptron.R<br>
+[1] "Bien"<br>
+[1] "27 18"<br>
+[1] "Mal"<br>
+[1] "0 0"
+</code>
+</p>
+<p>
+<code>
+$ python3 perceptron.py<br>
+  Bien<br>
+  19 24<br>
+  Mal<br>
+  0 0
+</code>
+</p>
+<img height="370" src="p12.gif">
+<img height="370" src="p12p.gif">
+<p>
+  Cada error causa un movimiento en el perceptr&oacute;n mientras los
+  resultados correctos no le mueven. Las correcciones se hacen
+  gradualmente m&aacute;s peque&ntilde;as por la reducci&oacute;n de
+  la tasa de aprendizaje. Terminando el entrenamiento, la l&iacute;nea
+  divisora ya no se mueve. En la fase de prueba, simplemente se
+  clasifican las coordenadas recibidas como verdaderas ($x > y$) o
+  falsas (en otro caso).
+</p>
+ <p>
+  Usamos quince pixeles por d&iacute;gito, tres de ancho y cinco de
+  altura. Queremos que el perceptr&oacute;n diga <code>FALSE</code>
+  cuando se la proporciona una im&aacute;gen que es un cero
+  y <code>TRUE</code> cuando la imagen contiene un uno, pero
+  necesitamos extender esta idea a los diez d&iacute;gitos 0, 1, 2, 3,
+  4, 5, 6, 7, 8, 9.  Esto significa que ocupamos asociar los
+  n&uacute;meros a vectores de largo fijo (una posici&oacute;n por
+  perceptr&oacute;n) de verdades y falsos, lo que se logra
+  f&aacute;cilmente con sus <strong>representaciones en base
+  dos</strong> que se conocen como <em>n&uacute;meros binarios</em>.
+</p>
+<p>
+Cada entero positivo se puede representar como una suma &uacute;nica
+de potencias de dos. Por ejemplo, siete es lo mismo que uno m&aacute;s
+dos m&aacute;s cuatro, 20 es 16 + 4 y 100 = 64 + 32 + 4.
+</p>
+<p>
+  Esto se extiende a otras bases: por ejemplo, el sistema octal
+representa n&uacute;meros como sumas de m&uacute;ltiples (mod 8) de
+potencias de ocho. De hecho, as&iacute; funciona el sistema decimal
+tambi&eacute;n: 123 es una vez diez al cuadrado m&aacute;s dos veces
+diez (elevado a uno) m&aacute;s tres veces uno (diez elevado a cero).
+</p>
+<p>
+  Para convertir un entero en una secuencia de <strong>bits</strong>
+  que indican cu&aacute;les potencias est&aacute;n presentes (1 o
+  verdad) y cu&aacute;les est&aacute;n ausentes (0 o falso) de la suma
+  (no teniendo m&aacute;s opciones ya que los posibles residuos en
+  divisi&oacute;n entre dos son solamente cero y uno), simplemente
+  probamos cu&aacute;les potencias le caben:
+</p>
+<pre class="brush: r">
+binario <- function(d, l) {
+    b <-  rep(FALSE, l)
+    while (l > 0 | d > 0) {
+        b[l] <- (d %% 2 == 1)
+        l <- l - 1
+        d <- bitwShiftR(d, 1)
+    }
+    return(b)
+}
+
+decimal <- function(bits, l) {
+    valor <- 0
+    for (pos in 1:l) {
+        valor <- valor + 2^(l - pos) * bits[pos]
+    }
+    return(valor)
+}
+
+library(testit)
+l <- 4
+for (i in 0:9) {
+    print(i)
+    b <- binario(i, l)
+    print(b)
+    assert(i == decimal(b, l))
+}
+</pre>
+<p>
+<code>
+$ Rscript binario.R<br>
+[1] 0<br>
+[1] FALSE FALSE FALSE FALSE<br>
+[1] 1<br>
+[1] FALSE FALSE FALSE  TRUE<br>
+[1] 2<br>
+[1] FALSE FALSE  TRUE FALSE<br>
+[1] 3<br>
+[1] FALSE FALSE  TRUE  TRUE<br>
+[1] 4<br>
+[1] FALSE  TRUE FALSE FALSE<br>
+[1] 5<br>
+[1] FALSE  TRUE FALSE  TRUE<br>
+[1] 6<br>
+[1] FALSE  TRUE  TRUE FALSE<br>
+[1] 7<br>
+[1] FALSE  TRUE  TRUE  TRUE<br>
+[1] 8<br>
+[1]  TRUE FALSE FALSE FALSE<br>
+[1] 9<br>
+[1]  TRUE FALSE FALSE  TRUE
+</code>
+</p>
+<p>
+  Python obviamante ya cuenta con rutinas para todo esto.
+</p>
+<pre class="brush: python">
+  l = 4
+  for i in range(9):
+      print('{0:04b}'.format(i))
+  assert i == int(bin(i), 2)
+</pre>
+<p>
+  <code>
+    $ python3 binario.py<br>
+    0000<br>
+    0001<br>
+    0010<br>
+    0011<br>
+    0100<br>
+    0101<br>
+    0110<br>
+    0111<br>
+    1000
+</code>
+</p>
+<p>
+  Adem&aacute;s de codificar las respuestas deseadas, necesitamos poder
+  generar entradas que no sean todas id&eacute;nticas para que haya algo de
+  reto en obtener la respuesta correcta. Por simplicidad, vamos a
+  crear im&aacute;genes de d&iacute;gitos de una manera probabilisista a partir de
+  plantillas. Los pixeles que son negros en la plantilla ser&aacute;n puestas
+  casi siempre, mientras los grises ocasionalmente, y los blancos
+  solamente como ruido aleatorio de poca frecuencia.
+</p>
+<img src="p12d.png" width="300">
+<p>
+Codificamos esto en un <a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/digits.txt">archivo de texto</a> usando las iniciales de los
+colores para indicar cu&aacute;l pixel es cu&aacute;l, yendo por renglones.
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/digits.R">Generaci&oacute;n de im&aacute;genes aleatorias de d&iacute;gitos en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/digits.py">Generaci&oacute;n de im&aacute;genes aleatorias de d&iacute;gitos en Python</a></li>
+  </ul>
+</p>
+<img height="650" src="p12g.png">
+<img height="650" src="p12pg.png">
+<p>
+Ya que necesitamos cuatro bits de salida, ya no podemos con un s&oacute;lo
+perceptr&oacute;n, sino vamos a ocupar cuatro: cada uno recibe la misma
+entrada y produce su salida de forma independiente.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/ann.R">Red neuronal simple en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/NeuralNetwork/ann.py">Red neuronal simple en Python</a></li>
+</ul>
+
+<p>
+<code>
+$&nbsp;Rscript&nbsp;ann.R<br>
+&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;7&nbsp;&nbsp;8&nbsp;&nbsp;9&nbsp;&lt;NA&gt;<br>
+0&nbsp;36&nbsp;&nbsp;0&nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+1&nbsp;&nbsp;0&nbsp;23&nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+2&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;27&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;4<br>
+3&nbsp;&nbsp;0&nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;29&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+4&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;27&nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;2<br>
+5&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;24&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+6&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;2&nbsp;&nbsp;1&nbsp;32&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+7&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;1&nbsp;&nbsp;0&nbsp;24&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+8&nbsp;&nbsp;4&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;30&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+9&nbsp;&nbsp;0&nbsp;&nbsp;2&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;1&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;0
+</code>
+</p>
+<p>
+<code>
+  $ python3 ann.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;9&nbsp;&nbsp;NA<br>
+&nbsp;&nbsp;0&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1<br>
+&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;38&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;6<br>
+&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;25&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;7<br>
+&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1<br>
+&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;6<br>
+&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;6<br>
+&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;24&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;2<br>
+&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;1
+</code>
+</p>
+<p>
+  En R, viendo los ceros, por ejemplo, uno fue interpretado como un
+  dos y los dem&aacute;s fueron correctamente identificados como
+  ceros; para los seis, dos se interpretaron como cuatros, uno como un
+  cinco, y adem&aacute;s hubo una cadena binaria correspondiendo a
+  valores entre 10 y 15. En general, la red sencilla de una sola capa
+  est&aacute; clasificando la gran mayor&iacute;a de los
+  d&iacute;gitos correctamente. En Python, la situaci&oacute;n es similar:
+  solamente un cero fue un inv&aacute;lido, todos los unos se interpretaron
+  bien, pero hubo broncas con cuatro de los dos, etc.
+</p>
+
+<h3>Tarea 12</h3>
+<p>
+  Estudia de manera sistem&aacute;tica el desempe&ntilde;o de la red
+  neuronal en t&eacute;rminos de su puntaje F (<m>F-score</em> en
+  ingl&eacute;s) para los diez d&iacute;gitos en funci&oacute;n de las
+  tres probabilidades asignadas a la generaci&oacute;n de los
+  d&iacute;gitos (<code>ngb</code>), variando a las tres en
+  un <a href="http://www.r-tutor.com/elementary-statistics/analysis-variance/factorial-design">experimento
+  factorial</a> adecuado.
+</p>
+<p>
+  Como un primer reto, extiende y entrena la red neuronal para que
+  reconozca adem&aacute;s por lo menos doce s&iacute;mbolos ASCII
+  <em>adicionales</em>, aumentando la resoluci&oacute;n de las
+  im&aacute;genes a $5 \times 7$ de lo original de $3 \times 5$
+  (modificando las plantillas de los d&iacute;gitos acorde a este
+  cambio).
+</p>
+<p>
+  En el segundo reto, agrega <em>ruido sal-y-pimienta</em> en las
+  entradas para una combinaci&oacute;n <code>ngb</code> con la cual la red
+  desempe&ntilde;a bien; este tipo de ruido se genera cambiando con una
+  probabilidad $p_r$ los pixeles a blanco o negro (uniformemente al
+  azar entre las dos opciones). Estudia el efecto de $p_r$ en el
+  desempe&ntilde;o de la red (no importa si se hace esto con la red de la
+  tarea base o la red extendida del primer reto).
+  </p>
+    <div>
+      <center>
+	Actualizado el 2 de diciembre del 2020.<br>
+	<code>https://satuelisa.github.io/p12.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+</body>
+</html>

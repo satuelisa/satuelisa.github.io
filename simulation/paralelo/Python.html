@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>C&oacute;mputo paralelo en Python &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="../paralelo.css">
+
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shAutoloader.js'></script>
+
+  </head>
+
+    <body>
+    <p align="right">
+      <a href="../index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+
+<h2><a name="par">C&oacute;mputo paralelo en Python</a></h2>
+
+<p>
+Cualquier operaci&oacute;n donde no todos los pasos dependen de los
+resultados de los pasos anteriores es un candidato para ser
+paralelizado.
+</r>
+<p>
+Un <em>pool</em> es un grupo de dos o m&aacute;s procesos que ejecutan
+sus tareas de manera simult&aacute;nea.
+</p>
+
+
+
+<h3>Aplicaci&oacute;n de funciones a iterables de forma paralela</h3>
+<p>
+<code>
+&gt;&gt;&gt; <span style="color:green">from multiprocessing import Pool</span><br>
+&gt;&gt;&gt; <span style="color:green">def f(x):</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return 2**x</span><br>
+...<br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>  
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">with Pool(3) as p:</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">print(p.map(f, range(1, 11)))</span><br>
+[2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+</code>
+</p>
+
+<p>
+El paquete <code>multiprocessing</code> facilita la ejecuci&oacute;n
+paralela en Python. Se instala con <code>pip3</code> y se carga para
+su uso con la
+instrucci&oacute;n <code><span style="color:green">import</span></code>. Es
+importante incluir su uso dentro de <code>main</code> por la forma en
+que accede las variables. 
+</p>
+<p>
+Se puede determinar el n&uacute;mero de n&uacute;cleos disponibles en
+un sistema con la llamada
+</p>
+<p>
+<code>
+  &gt;&gt;&gt; <span style="color:green">from multiprocessing import cpu_count</span><br>
+&gt;&gt;&gt; <span style="color:green">cpu_count()</span><br>  
+8
+</code>
+</p>
+y se puede proceder a paralelizar cuando haya por lo menos dos. Si se
+quiere excluir los n&uacute;cleos virtuales (en el caso que
+est&eacute;n presentes):
+<p>
+<code>
+  &gt;&gt;&gt; <span style="color:green">import psutil</span><br>
+  &gt;&gt;&gt; <span style="color:green">psutil.cpu_count(logical = False)</span><br>
+  4<br>
+  &gt;&gt;&gt; <span style="color:green">psutil.cpu_count(logical = True)</span><br>
+  8
+</code>
+</p>
+<p>
+No conviene utilizar todos los n&uacute;cleos en las tareas de Python,
+ya que el sistema operativo y su interfaz de usuario suelen requerir
+mantenerse responsivos durante los c&aacute;lculos realizados, por lo
+cual es recomendable crear un cluster con un n&uacute;mero menor de
+n&uacute;cleos, por ejemplo
+<code><span style="color:green">with Pool(cpu_count() - 1) as
+    p:</span></code>.</p>
+<p>
+El <em>pool</em> &uacute;nicamente existe dentro del bloque
+de <code>with</code> en el cual se ha creado y se libera
+autom&aacute;ticamente al concluir el bloque.
+</p>
+<p>
+Lo valores de las variables presentes en el
+ambiente de trabajo de cargan al <code>Pool</code> al momento de
+crearlo; si cambian y ese cambio ocupa reflejarse en los procesos en
+paralelo, hay que volver a crear el <em>pool</em>.
+</p>
+<p>
+  <code>
+    &gt;&gt;&gt; <span style="color:green">desde = 3</span><br>
+&gt;&gt;&gt; <span style="color:green">hasta = 8</span><br>
+&gt;&gt;&gt; <span style="color:green">base = 2</span><br>
+&gt;&gt;&gt; <span style="color:green">def f(x):</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return base**x</span><br>
+...<br>
+&gt;&gt;&gt; <span style="color:green">from multiprocessing import Pool</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">base = 3</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
+...<br>
+[8, 16, 32, 64, 128, 256]<br>
+[8, 16, 32, 64, 128, 256]<br>
+&gt;&gt;&gt; <span style="color:green">base = 3</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
+[27, 81, 243, 729, 2187, 6561]
+    </code>
+</p>
+<p>
+  Otra opci&oacute;n es crear funciones que toman m&aacute;s de un par&aacute;metro y usar la rutina <code>starmap</code>:
+</p>
+<p>
+  <code>
+&gt;&gt;&gt; <span style="color:green">desde = 3</span><br>
+&gt;&gt;&gt; <span style="color:green">hasta = 8</span><br>
+&gt;&gt;&gt; <span style="color:green">def f(x, b):</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return b**x</span><br>
+...<br>
+&gt;&gt;&gt; <span style="color:green">from multiprocessing import Pool</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, zip([2] * 10, range(desde, hasta + 1))))</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, zip([3] * 10, range(desde, hasta + 1))))</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, zip([4] * 10, range(desde, hasta + 1))))</span><br>
+...<br>
+[9, 16, 25, 36, 49, 64]<br>
+[27, 64, 125, 216, 343, 512]<br>
+[81, 256, 625, 1296, 2401, 4096]<br>
+&gt;&gt;&gt; <span style="color:green">def f(x, b, c):</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return b**x - c</span><br>
+...<br>
+&gt;&gt;&gt; <span style="color:green">c = [7 * i for i in range(10)]</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">for b in range(2, 5):</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">base = [b] * 10</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">vars = [j for j in range(desde, hasta + 1)]
+</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">params = zip(base, vars, c)</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, params))</span><br>
+[9, 9, 11, 15, 21, 29]<br>
+[27, 57, 111, 195, 315, 477]<br>
+[81, 249, 611, 1275, 2373, 4061]
+  </code>
+</p>
+<h3>C&oacute;mputo con GPU</h3>
+<p>
+  Tarjetas gr&aacute;ficas contemporaneas contienen procesdaores
+  gr&aacute;ficos con bastante n&uacute;cleos. El
+  paquete <code>pyopencl</code> permite aprovechar esos n&uacute;cleos
+  para c&aacute;lculos. Su instalaci&oacute;n requiere la
+  herramienta <code>pybind11</code> con <code>pip3</code> y la presencia
+  a las librer&iacute;as de OpenCL (no todas las computadoras tienen chips o
+  drivers compatibles). Finalizando la instalaci&oacute;n del paquete,
+  igual como al cargarlo al uso, se detectan GPUs presentes en la
+  computadora en cuesti&oacute;n.
+</p>
+<P>
+  Algunas versiones de <code>pip</code> requieren un ligero hack en
+  <code>/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/pip/req.py</code>
+  (ajustar seg&uacute;n su sistema) para que no marquen error al
+  agregar <code>pybind11</code>:
+  </p>
+<pre class="brush: python">
+class Hack: # agregado para compatibilidad
+    def __init__(self, text):
+        self.req = text
+
+def parse_requirements(filename, session=None): # otro hack para que haya session
+    return [Hack(line) for line in (line.strip() for line in open(filename)) if line and not line.startswith("#")]
+  
+</pre>
+<P>En una iMac con una GPU de Radeon dice</p>
+<p>
+  <code>
+    &gt;&gt;&gt; <span style="color:green">import pyopencl</span><br>
+    &gt;&gt;&gt; <span style="color:green">from pyopencl.tools import get_test_platforms_and_devices</span><br>
+    &gt;&gt;&gt; <span style="color:green">get_test_platforms_and_devices()</span><br>
+    [(&lt;pyopencl.Platform 'Apple' at 0x7fff0000&gt;, [&lt;pyopencl.Device 'Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz' on 'Apple' at 0xffffffff&gt;, &lt;pyopencl.Device 'ATI Radeon R9 M395X Compute Engine' on 'Apple' at 0x1021c00&gt;])]
+</code>
+</p>  
+<P>En una MacBook con una GPU de Intel dice</p>
+<p>
+  <code>
+    &gt;&gt;&gt; <span style="color:green">import pyopencl</span><br>
+    &gt;&gt;&gt; <span style="color:green">from pyopencl.tools import get_test_platforms_and_devices</span><br>
+    &gt;&gt;&gt; <span style="color:green">get_test_platforms_and_devices()</span><br>
+[(&lt;pyopencl.Platform 'Apple' at 0x7fff0000&gt;, [&lt;pyopencl.Device 'Intel(R) Core(TM) M-5Y71 CPU @ 1.20GHz' on 'Apple' at 0xffffffff&gt;, &lt;pyopencl.Device 'Intel(R) HD Graphics 5300' on 'Apple' at 0x1024500&gt;])]
+</code>
+</p>  
+<p>
+  Por ejemplo, el producto de matrices que suele ser la prueba
+  est&aacute;ndar para ver si la GPU est&aacute; haciendo lo que debe
+  (v&eacute;ase <a href="http://homepages.math.uic.edu/~jan/mcs572/mcs572notes/lec29.html">
+  las notas de Jan Verschelde</a> hace lo siguiente con el GPU de
+  Radeon. Nota que el c&oacute;digo para el GPU viene escrito en el
+  lenguaje C.
+</p>
+<pre class="brush: python">
+# adaptado de http://homepages.math.uic.edu/~jan/mcs572/mcs572notes/lec29.html
+import pyopencl as cl
+import numpy as np
+import os
+os.environ['PYOPENCL_COMPILER_OUTPUT'] = '1'
+os.environ['PYOPENCL_CTX'] = '1'
+n = 7000
+M1 = np.random.rand(n, n).astype(np.float32)
+M2 = np.random.rand(n, n).astype(np.float32)
+M3 = np.zeros((n, n), dtype=np.float32)
+platforms = cl.get_platforms()
+ctx = cl.Context(dev_type=cl.device_type.ALL, 
+                 properties=[(cl.context_properties.PLATFORM, platforms[0])])
+queue = cl.CommandQueue(ctx)
+mf = cl.mem_flags
+# memoria para procesar en GPU
+b1 = cl.Buffer(ctx, mf.READ_ONLY | mf.COPY_HOST_PTR, hostbuf=M1)
+b2 = cl.Buffer(ctx, mf.READ_ONLY | mf.COPY_HOST_PTR, hostbuf=M2)
+b3 = cl.Buffer(ctx, mf.WRITE_ONLY, M3.nbytes)
+# lo que se hace en GPU
+cCode = '''PONER AQUI LO QUE VIENE EN C ABAJO'''
+prg = cl.Program(ctx, cCode).build()
+from time import time
+antes = time()
+prg.multiply(queue, M3.shape, None, np.uint16(n), b1, b2, b3)
+cl.enqueue_copy(queue, np.empty_like(M3), b3)
+print(time() - antes)
+antes = time()
+np.matmul(M1, M2)
+print(time() - antes)
+</pre>
+Esto se pone en el string que debe contener la implementaci&oacute;n en C:
+<pre class="brush: c">
+__kernel void multiply(ushort n, __global float *a, __global float *b, __global float *c) {
+  int gid = get_global_id(0);
+  c[gid] = 0.0f;
+  int rowC = gid / n;
+  int colC = gid % n;
+  __global float *pA = &a[rowC * n];
+  __global float *pB = &b[colC];
+  for (int k = 0; k < n; k++) {
+    pB = &amp;b[colC + k * n];
+    c[gid] += (*(pA++)) * (*pB); 
+  }
+}
+</pre>
+<p>
+  Lo chistoso es que las rutinas de <code>numpy</code> son tan
+  eficientes que no se logra ganarlos en este caso particular. Abajo
+  están las salidas con la iMac y la MacBook, respectivamente. En la
+  laptop que tiene un procesador más modesto, es casi lo mismo, pero
+  en la iMac que tiene un procesador potente, el GPU pierde por el
+  setup overhead.
+</p>
+<p>
+  <code>
+    $ python3 gpu.py<br>
+    10.52643609046936<br>
+    1.9072740077972412
+    </code>
+</p>
+
+<p>
+  <code>
+    $ python3 gpu.py<br>
+    8.462943077087402<br>
+    8.137696027755737
+    </code>
+</p>
+
+  <div>
+    <center>
+      Actualizado el 12 de julio del 2019.<br>
+      <code>https://elisa.dyndns-web.com/teaching/comp/par/paralelo/Python.html</code>
+    </center>
+  </div>
+<script type="text/javascript">
+  SyntaxHighlighter.autoloader(
+  "python  https://elisa.dyndns-web.com/scripts/syntax/scripts/shBrushPython.js",
+  "c  https://elisa.dyndns-web.com/scripts/syntax/scripts/shBrushCpp.js",
+  );
+  SyntaxHighlighter.defaults["toolbar"] = false;
+  SyntaxHighlighter.all();
+</script>
+    </body>
+</html>

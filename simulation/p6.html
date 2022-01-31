@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>P6 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+    
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+    
+<h2><a name="p6">Pr&aacute;ctica 6: sistema multiagente</a></h2>
+<p>
+Un sistema multiagente es un poco como un aut&oacute;mata celular: hay
+un conjunto de entidades con estados internos que pueden observar
+estados de los otros y reaccionar cambiando su propio estado. La
+diferencia es que un sistema multiagente es un concepto m&aacute;s
+general y permite que estos agentes se muevan y varien su vecindad,
+entre otras cosas. En la sexta pr&aacute;ctica vamos a implementar un
+sistema multiagente con una aplicaci&oacute;n en
+epidemiolog&iacute;a. Los agentes podr&aacute;n estar en uno de tres
+estados: <strong>s</strong>usceptibles, <strong>i</strong>nfectados
+o <strong>r</strong>ecuperados &mdash; esto se conoce como el modelo
+SIR.
+</p>
+<p>
+  Los par&aacute;metros ser&aacute;n el n&uacute;mero de agentes $n$ y
+  la probabilidad de infecci&oacute;n al inicio $p_i$. Vamos a
+  suponer, por simplicidad, que la infecci&oacute;n produce inmunidad
+  en los recuperados, por lo cual solamente los susceptibles
+  podr&aacute;n ser infectados. La probabilidad de contagio
+  ser&aacute; en nuestro caso proporcional a la distancia euclideana
+  entre dos agentes $d(i, j)$ de la siguiente manera:
+</p>
+<p>
+  $p_c = \left \{ \begin{array}{ll}
+  0, & \text{ si } d(i, j) \geq r, \\
+  \displaystyle\frac{r - d}{r}, & \text{ en otro caso,} \end{array}
+  \right.$
+</p>
+<p>
+donde $r$ es un umbral.
+</p>
+<p>
+Nuestros agentes tendr&aacute;n coordenadas $x$ y $y$, una
+direcci&oacute;n y una velocidad (expresadas las dos &uacute;ltimas
+simplemente en t&eacute;rminos de $\Delta x$ y $\Delta y$). Vamos a
+posicionar los agentes, por ahora, uniformemente al azar en un torus
+formado por doblar un rect&aacute;ngulo de $\ell \times \ell$,
+visualizando en todo momento el rect&aacute;ngulo en dos dimensiones
+(lo de torus simplemente significa que arriba y abajo se juntan, igual
+como izquierda y derecha, as&iacute; como en Pacman).
+</p>
+<pre class="brush: r">
+l <- 1
+n <- 30
+pi <- 0.05
+v <- l / 20
+agentes <- data.frame(x = double(), y = double(),
+               	      dx = double(), dy = double(),
+                      estado  = character())
+for (i in 1:n) {
+    e <- "S"
+    if (runif(1) < pi) {
+        e <- "I"
+    }
+    agentes <- rbind(agentes, data.frame(x = runif(1, 0, l),
+                                         y = runif(1, 0, l),
+                                         dx = runif(1, -v, v),
+                                         dy = runif(1, -v, v),
+                                         estado = e))
+}
+</pre>
+<pre class="brush: python">
+l = 1
+n = 30
+pi = 0.05
+v = l / 20
+from random import random, uniform
+import pandas as pd # instalar con pip3
+agentes =  pd.DataFrame()
+agentes['x'] = [uniform(0, l) for i in range(n)]
+agentes['y'] = [uniform(0, l) for i in range(n)]
+agentes['dx'] = [uniform(-v, v) for i in range(n)]
+agentes['dy'] = [uniform(-v, v) for i in range(n)]
+agentes['estado'] = ["S" if random() > pi else "I" for i in range(n)]
+</pre>
+    <p>
+  Lo que se ocupa agregar es el c&aacute;lculo de
+  los <strong>contagios</strong> y el <strong>movimiento</strong> de los agentes.
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/MultiAgent/movement.R">C&oacute;digo en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/MultiAgent/movement.py">C&oacute;digo en Python</a></li>
+    </ul>
+  
+    <p>
+  Para seleccionar colores en R, conviene revisar
+  un <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">cat&aacute;logo
+    de los nombres disponibles</a>.
+  </p>
+<p>
+En esos c&oacute;digos, nadie se est&aacute; recuperando a&uacute;n. Agregamos que
+en cada paso, con probabilidad $p_r$, un agente infectado puede
+recuperarse y ya no volverse a infectar.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/MultiAgent/SIR.R">C&oacute;digo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/MultiAgent/SIR.py">C&oacute;digo en Python</a></li>
+  </ul>
+<p>
+<code>
+$ rm -f p6_t*.png # por si hay versiones anteriores<br>
+$ Rscript SIR.R<br>
+$ convert -delay 20 -size 300x300 p6_t*.png -loop 0 p6.gif
+</code>
+</p>
+<p>
+<code>
+$ rm -f p6p_t*.png # por si hay versiones anteriores<br>
+$ python3 SIR.py<br>
+$ convert -delay 20 -size 300x300 p6p_t*.png -loop 0 p6p.gif
+</code>
+      </p>
+<img height="350" src="p6.gif">
+<img height="350" src="p6p.gif">
+<br><br>
+<img width="700" src="p6e.png">
+<br>
+<img width="700" src="p6pe.png">
+<h3>Tarea 6</h3>
+<p>
+  <em>Vacuna</em> con probabilidad $p_v$ a los agentes al momento de
+  crearlos de tal forma que est&aacute;n desde el inicio en el estado
+  R y ya no podr&aacute;n contagiarse ni propagar la
+  infecci&oacute;n. Estudia el efecto estad&iacute;stico del valor de
+  $p_v$ en (de cero a uno en pasos de 0.1) el porcentaje m&aacute;ximo
+  de infectados durante la simulaci&oacute;n y el momento (iteración)
+  en el cual se alcanza ese máximo.
+</p>
+<p>
+  El primer reto es cambiar los patrones de movimiento a que no tengan
+  una trayectoria fija los agentes a que utilize el <em>modelo de
+  punto intermedio aleatorio</em> (ingl&eacute;s: random waypoint model):
+  cada agente tiene una posici&oacute;n meta $(x, y)$ hacia al cual se mueve
+  con una velocidad $v$; al alcanzar (o superar) su meta, elige al
+  azar una nueva meta uniformemente al azar. La velocidad de cada
+  agente es una constante, normalmente distribuido sobre la poblaci&oacute;n
+  de agentes. Examina si surgieron cambios en el efecto de $p_v$ por
+  esta modificaci&oacute;n.
+</p>
+    <p>
+      En el segundo reto, los agentes tienen <em>amistades</em>: si se
+      encuentran una distancia euclideana no mayor a $r_a$ de un amigo
+      suyo, se disminuyen su velocidad a la mitad por $k_a$
+      iteraciones (para saludar a su amigo). Cada par de agentes tiene
+      una amistad con una probabilidad $p_a$. Examina nuevamente si
+      surgieron cambios en el efecto de $p_v$ por esta modificaci&oacute;n,
+      con valores $0 < r_a < 1$, $k_a > 1$ y $0 < p_a \ll 1$ de tu elecci&oacute;n.
+</p>
+    
+
+    <div>
+      <center>
+	Actualizado el 18 de marzo del 2021.<br>
+<code>https://satuelisa.github.io/</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

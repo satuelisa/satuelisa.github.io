@@ -1,0 +1,696 @@
+<!doctype HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de Python &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="../paralelo.css">
+
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shAutoloader.js'></script>
+  </head>
+
+    <body>
+    <p align="right">
+      <a href="../index.html">Simulaci&oacute;n</a>
+    </p>
+
+  
+    <h2><a name="R">Uso b&aacute;sico de Python</a></h2>
+    <p>
+      Esta secci&oacute;n sirve como repaso o introducci&oacute;n, por
+      lo cual participantes que ya tienen familiaridad en Python y lo
+      han utilizado recientemente no necesitan revisar esta parte sino
+      pueden proceder directamente a la secci&oacute;n
+      de <a href="#par">paralelismo</a>.
+    </p>
+    <h3>Instalaci&oacute;n</h3>
+    <p>
+      Python es una herramienta muy &uacute;til y vers&aacute;til para
+      el c&oacute;mputo cient&iacute;fico. Funciona en Windows, Linux
+      & Mac OS. Est&aacute; disponible en l&iacute;nea de forma
+      gratuita
+      en <a href="https://www.python.org/downloads/">www.python.org/downloads</a>.
+    </p>
+    <p>
+      El material de estudio en esta p&aacute;gina incluye las
+      instrucciones requeridas para diferentes operaciones necesarias.
+      Conviene hacer esta ventana de navegador delgada para que ocupe
+      la mitad de la pantalla por m&aacute;ximo y colocar a su lado
+      otra ventana que tenga Python ejecut&aacute;ndose.
+    </p>
+    <p> Cada c&oacute;digo de Python (que se muestra en esta
+      p&aacute;gina en letra azul) conviene copiarlo al int&eacute;rprete
+      interactivo de Python y probarlo uno mismo, modificando y
+      explorando hasta que quede claro qu&eacute; y por qu&eacute;
+      est&aacute; sucediendo en la herramienta.
+    </p>
+    <p>
+      Para salir de Python usa la instrucci&oacute;n <code>quit()</code>.
+    </p>
+    <p>
+      La asignaci&oacute;n de <em>valores</em>
+      a <strong>variables</strong> en Python (interactivo) y la
+      consulta de ellas se realiza de la siguiente forma:
+    </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">X = 3</span><br>
+	&gt;&gt;&gt; <span style="color:green">X</span><br>
+	3<br>
+	&gt;&gt;&gt; <span style="color:green">X = 4</span><br>
+	&gt;&gt;&gt; <span style="color:green">X</span><br>
+	4
+      </code>
+    </p>
+    <p>
+      El texto de arriba incluye la <em>salida</em> de Python, por lo
+      cual incluye los s&iacute;mbolos "&gt;&gt;&gt;" que marcan los inicios de
+      instrucciones en Python interactivo en consola. <strong>No se
+      teclean esos s&iacute;mbolos.</strong> El usuario escribe lo
+      de <code>X = 3</code> mientras Python ya produjo el "&gt;&gt;&gt;" para
+      indicar que est&aacute; listo para recibir
+      instrucciones. Solamente se ocupa escribir la parte en letra
+      azul.
+    </p>
+    <p>
+      La creaci&oacute;n de una <em>lista</em> en Python y la consulta de
+      ello se realiza de la siguiente forma:
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">datos = [4, 2, 4, 5]</span><br>
+	&gt;&gt;&gt; <span style="color:green">n = len(datos)</span><br>
+	&gt;&gt;&gt; <span style="color:green">datos</span><br>
+	[4, 2, 4, 5]<br>
+	&gt;&gt;&gt; <span style="color:green">n</span><br>
+	4<br>
+	&gt;&gt;&gt; <span style="color:green">min(datos)</span><br>
+	2<br>
+	&gt;&gt;&gt; <span style="color:green">max(datos)</span><br>
+	5<br>
+	&gt;&gt;&gt; <span style="color:green">sum(datos)</span><br>
+	15<br>
+	&gt;&gt;&gt; <span style="color:green">ord = sorted(datos)</span><br>
+	&gt;&gt;&gt; <span style="color:green">ord[0]</span><br>
+	2<br>
+	&gt;&gt;&gt; <span style="color:green">ord[-1]</span><br>
+	5
+      </code>
+    </p>
+    <p>
+      Otras rutinas &uacute;tiles para analizar listas son las
+      siguientes y requieren
+      los <strong>paquetes</strong> <code>numpy</code> y <code>scipy</code>
+      (v&eacute;ase <a href="#inst">instalaci&oacute;n de paquetes</a>):
+    </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">data = [1, 4, 2, 4, 2, 5, 6, 7, 4, 76, 3, 2, 5, 6, 7]</span><br>
+	&gt;&gt;&gt; <span style="color:green">import numpy as np</span><br>	
+	&gt;&gt;&gt; <span style="color:green">np.mean(data)</span><br>
+	8.933333<br>
+	&gt;&gt;&gt; <span style="color:green">np.median(data)</span><br>
+	4<br>
+	&gt;&gt;&gt; <span style="color:green">from scipy.stats import describe</span><br>	
+	&gt;&gt;&gt; <span style="color:green">describe(data)</span><br>
+DescribeResult(nobs=15, minmax=(1, 76), mean=8.933333333333334, variance=347.78095238095233, skewness=3.4131591099307736, kurtosis=9.810409945242618)<br>
+	&gt;&gt;&gt; <span style="color:green">np.quantile(data, 0.9)</span><br>
+	7.0<br>
+	&gt;&gt;&gt; <span style="color:green">np.unique(data, return_counts = True)</span><br>
+(array([ 1,  2,  3,  4,  5,  6,  7, 76]), array([1, 3, 1, 3, 2, 2, 2, 1]))<br>
+	&gt;&gt;&gt; <span style="color:green">np.var(data, ddof=1)</span><br>
+347.78095238095233<br>
+	&gt;&gt;&gt; <span style="color:green">np.std(data, ddof=1)</span><br>
+18.648886089548412<br>
+	&gt;&gt;&gt; <span style="color:green">otra = [1, 5, 3, 5, 3, 65, 4, 6, 3, 6, 3, 56, 4]</span><br>
+	&gt;&gt;&gt; <span style="color:green">len(otra)</span><br>
+	13<br>
+	&gt;&gt;&gt; <span style="color:green">len(data)</span><br>
+	15<br>
+	&gt;&gt;&gt; <span style="color:green">otra += [2, 4]</span><br>
+	&gt;&gt;&gt; <span style="color:green">np.corrcoef(data, [1, 5, 3, 5, 3, 65, 4, 6, 3, 6, 3, 56, 4, 2, 4])[0,1]</span><br>
+-0.08119100801154079
+	</code>
+      </p>
+    <p>
+      Para crear una <strong>matr&iacute;z</strong> con puros ceros,
+      se ocupa la rutina <code>zeros</code>. Toma como argumentos la
+      cantidad de filas y columnas. Por ejemplo, <code>M =
+      np.zeros((3, 3))</code> produce una matriz tres
+      por tres con puros ceros:
+    </p>
+    <p>
+      <code>
+&gt;&gt;&gt; <span style="color:green">M = np.zeros((3, 3))</span><br>
+&gt;&gt;&gt; <span style="color:green">M</span><br>
+array([[0., 0., 0.],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.,&nbsp;0.,&nbsp;0.],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.,&nbsp;0.,&nbsp;0.]])
+      </code>
+    </p>
+    <p>
+      Para comparaciones entre listas, las
+      subrutinas <code>all</code> y <code>any</code> sirven para
+      determinar si todos o algunos de los elementos son iguales:
+    </p>
+    <p>
+      <code>
+&gt;&gt;&gt; <span style="color:green">a = [1, 2, 3]</span><br>
+&gt;&gt;&gt; <span style="color:green">b = [1, 2, 4]</span><br>
+&gt;&gt;&gt; <span style="color:green">c = [x == y for (x, y) in zip(a, b)]</span><br>
+&gt;&gt;&gt; <span style="color:green">c</span><br>
+[True, True, False]<br>
+&gt;&gt;&gt; <span style="color:green">all(c)</span><br>
+False<br>
+&gt;&gt;&gt; <span style="color:green">any(c)</span><br>
+True
+</p>
+    </code>
+    </p>
+    <p>
+La aritm&eacute;tica funciona en grandes rasgos como uno esperar&iacute;a, con el
+detalle que las operaciones vectoriales y matriciales de &aacute;lgebra
+lineal no se hacen con listas sino arreglos de <code>numpy</code>:
+  </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">a = 3</span><br>
+	&gt;&gt;&gt; <span style="color:green">b = 4</span><br>
+	&gt;&gt;&gt; <span style="color:green">c = np.array([5, 6, 7])</span><br>
+	&gt;&gt;&gt; <span style="color:green">d = np.array([8, 10, 12])</span><br>
+	&gt;&gt;&gt; <span style="color:green">a + b</span><br>
+	7<br>
+	&gt;&gt;&gt; <span style="color:green">a - b</span><br>
+	-1<br>
+	&gt;&gt;&gt; <span style="color:green">a * b</span><br>
+	12<br>
+	&gt;&gt;&gt; <span style="color:green">a / b</span><br>
+	0.75<br>
+	&gt;&gt;&gt; <span style="color:green">a**b</span><br>
+	81<br>
+	&gt;&gt;&gt; <span style="color:green">b**a</span><br>
+	64<br>
+	&gt;&gt;&gt; <span style="color:green">a + c</span><br>
+array([ 8,  9, 10])<br>
+	&gt;&gt;&gt; <span style="color:green">c + d</span><br>
+array([13, 16, 19])<br>
+	&gt;&gt;&gt; <span style="color:green">c * d</span><br>
+array([40, 60, 84])<br>
+	&gt;&gt;&gt; <span style="color:green">np.inner(c, d)</span><br>
+	184<br>
+	&gt;&gt;&gt; <span style="color:green">e = np.matrix([[1, 3], [2, 4]])</span><br>
+	&gt;&gt;&gt; <span style="color:green">e</span><br>
+	matrix([[1, 3],<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2,&nbsp;4]])<br>
+	&gt;&gt;&gt; <span style="color:green">f = np.matrix([[2, 6], [4, 8]])
+	</span><br>
+	&gt;&gt;&gt; <span style="color:green">f</span><br>
+	matrix([[2, 6],<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4,&nbsp;8]])<br>
+	&gt;&gt;&gt; <span style="color:green">e + f</span><br>
+	matrix([[3, &nbsp;9],<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6,&nbsp;12]])<br>
+	&gt;&gt;&gt; <span style="color:green">e - f</span><br>
+	matrix([[-1, -3],<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-2,&nbsp;-4]])<br>
+	&gt;&gt;&gt; <span style="color:green">np.multiply(e, f)</span><br>
+	matrix([[&nbsp;2, 18],<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;8,&nbsp;32]])<br>
+	&gt;&gt;&gt; <span style="color:green">e * f</span><br>
+	matrix([[14, 30],<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[20,&nbsp;44]])<br>
+	</code>
+      </p>
+    <p>
+      El redondeo de enteros a decimales se hace con las tres reglas:
+      hacia abajo con la funci&oacute;n piso <code>floor</code>, hacia
+      arriba con la funci&oacute;n techo <code>ceil</code> y al entero
+      m&aacute;s cercano con <code>round</code> &mdash; los primeros
+      dos provienen de la librer&iacute;a est&aacute;ndar <code>math</code>. La
+      divisi&oacute;n entera se logra con <code>/</code>, la divisi&oacute;n
+      entera con <code>//</code> y el residuo (tambi&eacute;n
+      llamado <em>modulo</em> con <code>%</code> que en Python
+      funciona hasta con decimales:
+    </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">d = 7.3</span><br>
+	&gt;&gt;&gt; <span style="color:green">from math import floor, ceil</span><br>	
+	&gt;&gt;&gt; <span style="color:green">floor(d)</span><br>
+	7<br>
+	&gt;&gt;&gt; <span style="color:green">ceil(d)</span><br>
+	8<br>
+	&gt;&gt;&gt; <span style="color:green">round(d)</span><br>
+	7<br>
+	&gt;&gt;&gt; <span style="color:green">d / 2</span><br>
+	3.65<br>
+	&gt;&gt;&gt; <span style="color:green">d // 2</span><br>
+	3.0<br>
+	&gt;&gt;&gt; <span style="color:green">d % 2</span><br>
+	1.2999999999999998<br>
+	&gt;&gt;&gt; <span style="color:green">round(d) % 2</span><br>
+	1
+      </code>
+    </p>
+    <p>
+      Las funciones matem&aacute;ticas tienen sus nombres
+      t&iacute;picos y est&aacute;n disponibles en la librer&iacute;a <code>math</code>:
+    </p>
+        <p>
+	  <code>
+	    &gt;&gt;&gt; <span style="color:green">from math import sqrt, exp, sin, cos, tan, tanh, log</span><br>	    
+	    &gt;&gt;&gt; <span style="color:green">x = 123.4</span><br>
+	    &gt;&gt;&gt; <span style="color:green">sqrt(x)</span><br>
+	    11.108555261599053<br>
+	    &gt;&gt;&gt; <span style="color:green">exp(x)</span><br>
+	    3.9078606320089135e+53<br>
+	    &gt;&gt;&gt; <span style="color:green">sin(x)</span><br>
+	    -0.7693905459455221<br>
+	    &gt;&gt;&gt; <span style="color:green">cos(x)</span><br>
+	    -0.6387786688749486<br>
+	    &gt;&gt;&gt; <span style="color:green">tan(x)</span><br>
+	    1.2044712565318034<br>
+	    &gt;&gt;&gt; <span style="color:green">tanh(2.5)</span><br>
+	    0.9866142981514303<br>
+	    &gt;&gt;&gt; <span style="color:green">log(x)</span><br>
+	    4.8154311114712876<br>
+	    &gt;&gt;&gt; <span style="color:green">log(x, 10)</span><br>
+	    2.091315159697223<br>
+	    &gt;&gt;&gt; <span style="color:green">log(x, 2)</span><br>
+	    6.947198584262056
+      </code>
+    </p>
+    <p>
+      Para permutaciones y combinaciones, existen subrutinas para el
+      factorial y la coeficiente binomial:
+    </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">from math import factorial</span><br>	
+	&gt;&gt;&gt; <span style="color:green">factorial(5)</span><br>
+	120<br>
+	&gt;&gt;&gt; <span style="color:green">from scipy.special import binom</span><br>		
+	&gt;&gt;&gt; <span style="color:green">binom(9, 3)</span><br>
+	84.0<br>
+	&gt;&gt;&gt; <span style="color:green">factorial(9) / (factorial(6) * factorial(3))</span><br>
+	84.0
+      </code>
+    </p>
+    Para manipular secuencias, existen los siguientes trucos pr&aacute;cticos:
+    <p>
+      <code>
+&gt;&gt;&gt; <span style="color:green">s = np.arange(4, 100, 2)</span><br>
+&gt;&gt;&gt; <span style="color:green">s</span><br>
+array([&nbsp;4,&nbsp;&nbsp;6,&nbsp;&nbsp;8,&nbsp;10,&nbsp;12,&nbsp;14,&nbsp;16,&nbsp;18,&nbsp;20,&nbsp;22,&nbsp;24,&nbsp;26,&nbsp;28,&nbsp;30,&nbsp;32,&nbsp;34,&nbsp;36,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;38,&nbsp;40,&nbsp;42,&nbsp;44,&nbsp;46,&nbsp;48,&nbsp;50,&nbsp;52,&nbsp;54,&nbsp;56,&nbsp;58,&nbsp;60,&nbsp;62,&nbsp;64,&nbsp;66,&nbsp;68,&nbsp;70,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;72,&nbsp;74,&nbsp;76,&nbsp;78,&nbsp;80,&nbsp;82,&nbsp;84,&nbsp;86,&nbsp;88,&nbsp;90,&nbsp;92,&nbsp;94,&nbsp;96,&nbsp;98])<br>
+&gt;&gt;&gt; <span style="color:green">r = [13] * 20</span><br>
+&gt;&gt;&gt; <span style="color:green">r</span><br>
+[13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13]<br>
+&gt;&gt;&gt; <span style="color:green"> i = [j for j in range(2, 13)]</span><br>
+&gt;&gt;&gt; <span style="color:green">i</span><br>
+[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]<br>
+&gt;&gt;&gt; <span style="color:green">c = np.histogram(s, bins = 4)</span><br>
+&gt;&gt;&gt; <span style="color:green">c</span><br>
+(array([12, 12, 12, 12]), array([ 4. , 27.5, 51. , 74.5, 98. ]))<br>
+&gt;&gt;&gt; <span style="color:green">s[-5:]</span><br>
+array([90, 92, 94, 96, 98])<br>
+&gt;&gt;&gt; <span style="color:green">s[-10:]</span><br>
+array([80, 82, 84, 86, 88, 90, 92, 94, 96, 98])<br>
+&gt;&gt;&gt; <span style="color:green">s[:5]</span><br>
+array([ 4,  6,  8, 10, 12])<br>
+&gt;&gt;&gt; <span style="color:green">s[:8]</span><br>
+array([ 4,  6,  8, 10, 12, 14, 16, 18])<br>
+</code>
+</p>
+    <p>
+      Para expresiones condicionales, repeticiones, y l&oacute;gica, sirve lo siguiente:
+    </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">x = 3</span><br>
+	&gt;&gt;&gt; <span style="color:green">y = None</span><br>
+	&gt;&gt;&gt; <span style="color:green">y = x * 3 if x &gt; 5 else 6 - x</span><br>
+	&gt;&gt;&gt; <span style="color:green">y</span><br>
+	3<br>
+	&gt;&gt;&gt; <span style="color:green">z = None</span><br>
+	&gt;&gt;&gt; <span style="color:green">z = 2 if x % 2 == 1 and y % 2 == 1 else 3</span><br>
+	&gt;&gt;&gt; <span style="color:green">z</span><br>
+	2<br>
+	&gt;&gt;&gt; <span style="color:green">if z != 1:</span><br>
+	  ... <span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;print('no es uno')</span><br>
+	... <br>
+	no es uno<br>
+	&gt;&gt;&gt; <span style="color:green">print('hay un dos' if x == 2 or y == 2 or z == 2 else 'no hay un dos')</span><br>
+	hay un dos<br>
+	&gt;&gt;&gt; <span style="color:green">for i in range(1, 6):</span><br>
+	   ... <span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;print(2**i)</span><br>
+	... <br>	
+	2<br>
+	4<br>
+	8<br>
+	16<br>
+	32<br>
+&gt;&gt;&gt; <span style="color:green">while x &gt; 0:</span><br>
+... <span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;print('quito uno')</span><br>
+... <span style="color:green">&nbsp;&nbsp;&nbsp;&nbsp;  x -= 1</span><br>
+... <br>
+	quito uno<br>
+	quito uno<br>
+	quito uno<br>
+	&gt;&gt;&gt; <span style="color:green">x</span><br>
+	0
+      </code>
+</p>
+    
+    <h3>Subrutinas</h3>
+    <p>
+      Cuando alg&uacute;n c&aacute;lculo ocupa ser reutilizado en m&uacute;ltiples
+      ocasiones, posiblemente con algunas variaciones, conviene
+      encapsularlo en una subrutina como una <em>funci&oacute;n</em>:
+    </p>
+    <p>
+      <code>def nombre(p1, p2, ... ):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;	...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;      return resultado</code>
+    </p>
+
+       <p>
+      Conviene probar la creaci&oacute;n y llamadas
+      a subrutinas propias.
+       </p>
+       <code>
+	 &gt;&gt;&gt; <span style="color:green">def potdos(x):</span><br>
+	 ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return 2**x</span><br>
+...<br>
+	 &gt;&gt;&gt; <span style="color:green">potdos(3)</span><br>
+	 8<br>
+&gt;&gt;&gt; 	 <span style="color:green">from math import sqrt</span><br>	 
+&gt;&gt;&gt; <span style="color:green">def eucl(x1, y1, x2, y2):</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">dx = x1 - x2</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">dy = y1 - y2</span><br>
+	 ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return sqrt(dx**2 + dy**2)</span><br>
+	 ....<br>
+	 &gt;&gt;&gt; <span style="color:green">eucl(1, 2, 3, 4)</span><br>
+2.8284271247461903
+       </code>
+</p>
+      <h3>N&uacute;meros pseudoaleatorios</h3>
+        <p>
+	  <em>Generaci&oacute;n pseudoaleatoria</em> refiere a la
+	  creaci&oacute;n de datos que parecen ser al azar.  Verdaderamente no
+	  lo son si se generan de forma mec&aacute;nica/aritm&eacute;tica.  El
+	  sitio web <a href="http://random.org">random.org</a> proporciona datos
+	  que est&aacute;n basados en bits generados por ruido
+	  atmosf&eacute;rico que son "m&aacute;s aleatorios" que cualquier cosa
+	  que se genere de forma mec&aacute;nica.
+	</p>
+      <p>
+	Para n&uacute;meros pseudoaleatorios uniformemente distribuidos, se
+	usa <code>runif</code>, con par&aacute;metros opciones en el caso que
+	no se quiera que sean entre cero y uno sino de otro rango de
+	valores.  Para crear valores de verdad o falso, 50&ndash;50,
+	por ejemplo, se puede condicionar al valor uniforme. La
+	subrutina <code>sample</code> sirve para muestreo y
+	permutaciones.
+      <p>
+	<code>
+&gt;&gt;&gt; <span style="color:green">from random import random</span><br>	  
+&gt;&gt;&gt; <span style="color:green">random()</span><br>
+0.4542473300983174<br>
+&gt;&gt;&gt; <span style="color:green">from numpy.random import rand</span><br>	  
+&gt;&gt;&gt; <span style="color:green">rand(5)</span><br>
+array([0.56381609, 0.74918022, 0.57375601, 0.12773787, 0.41589151])<br>
+&gt;&gt;&gt; <span style="color:green">from numpy.random import uniform</span><br>	  
+&gt;&gt;&gt; <span style="color:green">uniform(4, 10, size = 2)</span><br>
+array([7.27280135, 7.5751913 ])<br>
+&gt;&gt;&gt; <span style="color:green">random() &lt; 0.5</span><br>
+True<br>
+&gt;&gt;&gt; <span style="color:green">random() &lt; 0.5</span><br>
+False<br>
+&gt;&gt;&gt; <span style="color:green">random() &lt; 0.5</span><br>
+True<br>
+&gt;&gt;&gt; <span style="color:green">rand(5) &lt; 0.5</span><br>
+array([False, False,  True, False, False])<br>
+&gt;&gt;&gt; <span style="color:green">from random import sample</span><br>
+&gt;&gt;&gt; <span style="color:green">sample([i for i in range(1, 11)], 3)</span><br>
+[2, 6, 9]<br>
+&gt;&gt;&gt; <span style="color:green">sample([i for i in range(1, 11)], 3)</span><br>
+[7, 1, 4]<br>
+&gt;&gt;&gt; <span style="color:green">from random import shuffle</span><br>						
+&gt;&gt;&gt; <span style="color:green">a = [i for i in range(1, 11)]</span><br>
+&gt;&gt;&gt; <span style="color:green">a</span><br>
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]<br>
+&gt;&gt;&gt; <span style="color:green">shuffle(a)</span><br>						
+&gt;&gt;&gt; <span style="color:green">a</span><br>
+[3, 5, 2, 10, 4, 9, 6, 8, 1, 7]<br>
+&gt;&gt;&gt; <span style="color:green">from numpy.random import choice</span><br>						
+&gt;&gt;&gt; <span style="color:green">choice([2, 4, 6], size = 10, replace = True, p = [0.1, 0.2, 0.7])</span><br>
+array([2, 6, 6, 6, 6, 6, 6, 6, 6, 2])
+</code>
+      </p>
+<p>Python es capaz de producir n&uacute;meros pseudoaleatorios en una
+varias distributiones
+(c.f. <a href="https://docs.python.org/3/library/random.html">documentaci&oacute;n</a>),
+adem&aacute;s de contar con las funciones de densidad y cumulativas de
+las distribuciones
+(c.f. <a href="https://docs.scipy.org/doc/scipy/reference/stats.html">documentaci&oacute;n</a>). Ejemplos
+&uacute;tiles incluyen las distribuci&oacute;n normal (gaussiana) y
+exponencial.
+</p>
+<p>
+  <code>
+&gt;&gt;&gt; <span style="color:green">from numpy.random import normal, exponential</span><br>
+&gt;&gt;&gt; <span style="color:green">normal(size = 10)</span> <span style="color:gray"># media cero, desv. est. 1</span><br>
+array([-3.62250207,&nbsp;-0.85582587,&nbsp;-0.77536386,&nbsp;&nbsp;0.07319879,&nbsp;-0.7018473&nbsp;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.17808432,&nbsp;-0.19535574,&nbsp;&nbsp;0.80870695,&nbsp;&nbsp;0.44887121,&nbsp;&nbsp;1.58750338])<br>
+&gt;&gt;&gt; <span style="color:green">normal(loc = 5, scale = 1.3, size = 10)</span><br>
+array([5.08377992,&nbsp;4.63262477,&nbsp;4.29651358,&nbsp;3.85644244,&nbsp;4.41892421,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.42060481,&nbsp;4.02797161,&nbsp;6.83631189,&nbsp;4.73899607,&nbsp;6.94469645])<br>
+&gt;&gt;&gt; <span style="color:green">exponential(size = 2)</span><br>
+array([0.42913609, 4.47809099])<br>
+&gt;&gt;&gt; <span style="color:green">exponential(scale = 1 / 3, size = 2)</span><br>
+array([0.00398857, 0.12845763])
+</code>
+</p>
+    <h3>Conjuntos de datos</h3>
+<p>
+  Para traer datos a Python, lo m&aacute;s conveniente es utilizar
+  archivos de texto, o importar desde hojas de c&aacute;lculo en el
+  formato CSV (comma separated values), aunque en Python se puede
+  utilizar cualquier separador. Se ocupa instalar y cargar el
+  paquete <code>pandas</code>.
+</p>
+<p>
+  Para probar, colocamos los siguientes datos en un archivo
+  llamado <code>ejemplo.csv</code> con un editor de texto b&aacute;sico tipo
+  notepad o emacs:
+</p>
+<p>
+  <code>
+<span style="color:green">Nombre Estatura Gatos Perros<br>
+Elisa 184 2 0<br>
+Gonzalo 177 0 1<br>
+Jorge 180 1 1<br>
+Mariana 158 0 0<br>
+Carlos 164 1 0</span>
+</code>
+</p>
+<p>
+  <code>
+&gt;&gt;&gt; <span style="color:green">import pandas as pd</span><br>    
+&gt;&gt;&gt; <span style="color:green">datos = pd.read_csv('ejemplo.csv', sep=' ')</span><br>
+&gt;&gt;&gt; <span style="color:green">datos</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nombre&nbsp;&nbsp;Estatura&nbsp;&nbsp;Gatos&nbsp;&nbsp;Perros<br>
+0&nbsp;&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+1&nbsp;&nbsp;Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+4&nbsp;&nbsp;&nbsp;Carlos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&gt;&gt;&gt; <span style="color:green">datos.Estatura</span><br>
+0&nbsp;&nbsp;&nbsp;&nbsp;184<br>
+1&nbsp;&nbsp;&nbsp;&nbsp;177<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;180<br>
+3&nbsp;&nbsp;&nbsp;&nbsp;158<br>
+4&nbsp;&nbsp;&nbsp;&nbsp;164<br>
+Name:&nbsp;Estatura,&nbsp;dtype:&nbsp;int64<br>
+&gt;&gt;&gt; <span style="color:green">sum(datos.Gatos)</span><br>
+4<br>
+&gt;&gt;&gt; <span style="color:green">sum(datos.Gatos) > sum(datos.Perros)</span><br>
+True<br>
+&gt;&gt;&gt; <span style="color:green">datos.Gatos == datos.Perros</span><br>
+0&nbsp;&nbsp;&nbsp;&nbsp;False<br>
+1&nbsp;&nbsp;&nbsp;&nbsp;False<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+4&nbsp;&nbsp;&nbsp;&nbsp;False<br>
+dtype:&nbsp;bool<br>
+&gt;&gt;&gt; <span style="color:green">datos.loc[datos['Nombre'] == 'Elisa']</span><br>
+&nbsp;&nbsp;Nombre&nbsp;&nbsp;Estatura&nbsp;&nbsp;Gatos&nbsp;&nbsp;Perros<br>
+0&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&gt;&gt;&gt; <span style="color:green">prom = np.mean(datos.Estatura)</span><br>
+&gt;&gt;&gt; <span style="color:green">datos.loc[datos['Estatura'] > prom]</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nombre&nbsp;&nbsp;Estatura&nbsp;&nbsp;Gatos&nbsp;&nbsp;Perros<br>
+0&nbsp;&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+1&nbsp;&nbsp;Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+&gt;&gt;&gt; <span style="color:green">datos[datos$Estatura > prom,]$Gatos</span><br>
+2 0 1<br>
+&gt;&gt;&gt; <span style="color:green">datos = datos.append({'Nombre': 'Tania', 'Estatura': 175, 'Gatos': 0, 'Perros': 2}, ignore_index = True)</span><br>
+&gt;&gt;&gt; <span style="color:green">datos</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nombre&nbsp;&nbsp;Estatura&nbsp;&nbsp;Gatos&nbsp;&nbsp;Perros<br>
+0&nbsp;&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+1&nbsp;&nbsp;Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+4&nbsp;&nbsp;&nbsp;Carlos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+5&nbsp;&nbsp;&nbsp;&nbsp;Tania&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br>
+&gt;&gt;&gt; <span style="color:green">datos['Estudiante'] = [False, True, True, True, False, False]</span><br>
+&gt;&gt;&gt; <span style="color:green">datos</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nombre&nbsp;&nbsp;Estatura&nbsp;&nbsp;Gatos&nbsp;&nbsp;Perros&nbsp;&nbsp;Estudiante<br>
+0&nbsp;&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False<br>
+1&nbsp;&nbsp;Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+3&nbsp;&nbsp;Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+4&nbsp;&nbsp;&nbsp;Carlos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False<br>
+5&nbsp;&nbsp;&nbsp;&nbsp;Tania&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False<br>
+&gt;&gt;&gt; <span style="color:green">datos.loc[2,]</span><br>
+Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jorge<br>
+Estatura&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180<br>
+Gatos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+Perros&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+Estudiante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+Name:&nbsp;2,&nbsp;dtype:&nbsp;object<br>
+&gt;&gt;&gt; <span style="color:green">datos.loc[1:3,]</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Nombre&nbsp;&nbsp;Estatura&nbsp;&nbsp;Gatos&nbsp;&nbsp;Perros&nbsp;&nbsp;Estudiante<br>
+1&nbsp;&nbsp;Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+3&nbsp;&nbsp;Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True<br>
+&gt;&gt;&gt; <span style="color:green">datos.loc[1:3].Gatos</span><br>
+1&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+Name:&nbsp;Gatos,&nbsp;dtype:&nbsp;int64<br>
+</code>
+</p>  
+    <h3>Gr&aacute;ficas sencillas</h3>
+<p>
+  Python contiene bastantes funcionalidades para graficar
+  informaci&oacute;n en el paquete <code>matplotlib</code> (hay que
+  instalarla una vez y cargarla antes de cada uso).  La
+  subrutina <code>plot</code> crea una gr&aacute;fica (ser&aacute; de
+  puntos si no se solicita que sea de l&iacute;neas
+  con <code>-</code>). Se le pueden agregar cosas en ese mismo dibujo
+  si no se cierra con <code>close()</code>. El t&iacute;tulo se coloca
+  con la rutina <code>title()</code>:
+</p>
+<p>
+<code>
+&gt;&gt;&gt; <span style="color:green">x = np.arange(1, 21)</span><br>
+&gt;&gt;&gt; <span style="color:green">y = np.sin(x)</span><br>
+&gt;&gt;&gt; <span style="color:green">import matplotlib.pyplot as plt</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x, y)</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.close()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x, y, 'o')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.close()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x, y, '-o')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x, np.cos(x), color ='red')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.axhline(y = 0, color = 'lime')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.close()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x, y)</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x + 1, np.cos(x + 1), marker = 's', color = 'green')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.close()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.plot(x, y)</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.title('Texto arriba')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.xlabel('Etiqueta')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.ylabel('Otra etiqueta')</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+&gt;&gt;&gt; <span style="color:green">plt.close()</span>
+</code>
+</p>
+<p>
+  Se puede guardar gr&aacute;ficas a archivos,
+  por ejemplo para compartirlos o cuando uno no est&aacute; trabajando en un
+  ambiente gr&aacute;fico que pueda abrir ventanas:
+  </p>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">plt.plot(x, y, marker = '^')</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.savefig('salida.png')</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.close()</span>
+      </code>
+    </p>
+    
+    <h4>Diagramas caja-bigote</h4>
+    <p>
+      <code>
+	&gt;&gt;&gt; <span style="color:green">d1 = [10, 32, 34, 24, 49, 42, 89]</span><br>
+	&gt;&gt;&gt; <span style="color:green">d2 = [30, 23, 45, 24, 75, 34, 12, 56, 33]</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.boxplot(d1)</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.close()</span><br>	
+	&gt;&gt;&gt; <span style="color:green">plt.boxplot(d2)</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.close()</span><br>	
+	&gt;&gt;&gt; <span style="color:green">plt.boxplot([d1, d2])</span><br>		
+	&gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+	&gt;&gt;&gt; <span style="color:green">plt.close()</span>
+      </code>
+    </p>
+    <h4>Histogramas</h4>
+        <p>
+	  Existe una rutina en <code>matplotlib</code> que se
+	  llama <code>hist</code> para dibujar histogramas.  Se le
+	  puede indicar a la rutina a cu&aacute;ntas cubetas realizar
+	  la divisi&oacute;n: <code>hist(datos, bins = 5)</code>, lo
+	  que produce cinco barras.
+	</p>
+	<p>
+	  <code>
+	    &gt;&gt;&gt; <span style="color:green">datos = [1.6, 4.6, 2.6, 3.6, 5.6, 6.6, 3.5, 2.2, 4.4, 5.2, 5.4, 7.6, 5.8, 4.4, 6.4]</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.hist(datos)</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.close()</span><br>	
+	    &gt;&gt;&gt; <span style="color:green">plt.hist(datos, bins = 2)</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.close()</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.hist(datos, bins = 4, normed = True)</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.show()</span><br>
+	    &gt;&gt;&gt; <span style="color:green">plt.close()</span><br>		    
+	    &gt;&gt;&gt; <span style="color:green">histograma = np.histogramhisto(datos)</span><br>
+	    &gt;&gt;&gt; <span style="color:green">histograma</span><br>
+	    (array([1, 2, 0, 2, 2, 1, 4, 0, 2, 1]), array([1.6, 2.2, 2.8, 3.4, 4. , 4.6, 5.2, 5.8, 6.4, 7. , 7.6]))<br>
+	    &gt;&gt;&gt; <span style="color:green">densidad = histograma[0] / len(datos)</span><br>
+	    &gt;&gt;&gt; <span style="color:green">densidad</span><br>
+array([0.06666667,&nbsp;0.13333333,&nbsp;0.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;0.13333333,&nbsp;0.13333333,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.06666667,&nbsp;0.26666667,&nbsp;0.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;0.13333333,&nbsp;0.06666667])<br>
+	     &gt;&gt;&gt; <span style="color:green">sum(densidad)</span><br>
+	    1.0
+	  </code>
+	</p>
+	<h3><a name="inst">Instalaci&oacute;n de paquetes adicionales</a></h3>
+<p>
+  Se utiliza la herramienta <code>pip3</code> <em>en la l&iacute;nea
+  de instrucciones del sistema operativo</em> (<strong>no</strong>
+  dentro del mismo Python) para incorporar una nueva funcionalidad a
+  Python. Ya viene incluido en la instalaci&oacute;n
+  b&aacute;sica. Abriendo la l&iacute;nea de instrucciones, si Python
+  no est&aacute; en la variable ambiental PATH, primero se navega a la
+  carpeta de instalaci&oacute;n y de ah&iacute; se ejecuta.
+</p>
+  <div>
+    <center>
+      Actualizado el 19 de enero del 2022.<br>
+      <code>https://elisa.dyndns-web.com/teaching/comp/par/tutorial.html</code>
+    </center>
+  </div>
+  </body>
+</html>

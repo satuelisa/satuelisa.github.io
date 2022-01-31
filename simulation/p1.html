@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P1 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+    <h2><a name="p1">Pr&aacute;ctica 1: movimiento Browniano</a></h2>
+    <p>
+      Movimiento Browniano refiere a una part&iacute;cula cambiando su
+      posici&oacute;n uniformemente al azar. Los movimientos pueden
+      ser de muchos tipos distintos, pero en esta pr&aacute;ctica nos
+      limitamos a un caso sencillo donde la part&iacute;cula mueve en
+      pasos <em>discretos</em>, es decir, cada paso mide lo mismo, y
+      las &uacute;nicas posibles direcciones de movimiento son las
+      direcciones paralelas a los ejes cardinales del sistema de
+      coordenadas en el cual se realiza el movimiento. Vamos a
+      utilizar pasos unitarios (es decir, el paso mide uno), teniendo
+      como la posici&oacute;n inicial de la part&iacute;cula el
+      origen.
+    </p>
+    <p>
+      En <strong>una</strong> dimensi&oacute;n, la posici&oacute;n
+      inicial de la part&iacute;cula ser&iacute;a entonces <code>pos
+      &lt;- 0</code> y en cada paso, con probabilidad 0.5
+      se <em>incrementa</em> y en el otro caso de <em>decrementa</em>
+      su posici&oacute;n. En R, esto es
+      sencillo. Usaremos <code>runif(1)</code> para generar un
+      n&uacute;mero pseudoaleatorio entre cero y uno (ya que esos son
+      los l&iacute;mites por omisi&oacute;n para la rutina en
+      cuesti&oacute;n) y un ciclo <code>for</code> para realizar una
+      cantidad deseada de pasos. La variable <code>pos</code> contiene
+      la posici&oacute;n de la part&iacute;cula, la
+      variable <code>dur</code> indica la duraci&oacute;n total de la
+      simulaci&oacute;n (es decir, el n&uacute;mero de pasos a
+      realizar) y la variable <code>t</code> (por "tiempo") es un
+      simple contador. Se ocupa una
+      condici&oacute;n <code>if-else</code> para elegir entre
+      incremento y decremento de la posici&oacute;n.
+    </p>
+    <p>
+      Vamos a colocar el c&oacute;digo en un archivo para mayor
+      facilidad de modificaci&oacute;n y reuso posterior; el modo
+      gr&aacute;fico de R permite crear y editar archivos de texto y
+      colocamos lo siguiente en un archivo <code>p1.R</code>:
+    </p>
+    <pre class="brush: r">
+pos &lt;- 0
+runif(1)
+dur &lt;- 10
+for (t in 1:dur) { 
+  if (runif(1) < 0.5) {
+    pos &lt;- pos + 1
+  } else {
+    pos &lt;- pos - 1 
+  }
+  print(pos)
+}
+</pre>
+    El archivo se puede ejecutar o desde la interfaz gr&aacute;fica de R o en la
+    l&iacute;nea de instrucciones del sistema operativo con <code>Rscript
+      p1.R</code>. La ejecuci&oacute;n produce una salida impresa (con valores
+    diferentes en cada ejecuci&oacute;n ya que es un movimiento pseudoaleatorio):
+    <p>
+      <code>
+	[1] -1<br>
+	[1] -2<br>
+	[1] -1<br>
+	[1] -2<br>
+	[1] -1<br>
+	[1] 0<br>
+	[1] -1<br>
+	[1] -2<br>
+	[1] -3<br>
+	[1] -2
+      </code>
+    </p>
+    <p>En Python, es a&uacute;n m&aacute;s sencillo:</p>
+    <pre class="brush: python">
+from random import random
+random() # probar en interactivo
+pos = 0
+dur = 10
+for t in range(dur):
+    if random() < 0.5:
+        pos += 1
+    else:
+        pos -=1
+    print(pos)		    
+</pre>
+    <p>
+      Lo que queremos estudiar en esta pr&aacute;ctica es qu&eacute; tan lejos una
+      part&iacute;cula llega, por m&aacute;ximo, desde el origen, en funci&oacute;n del n&uacute;mero de
+      pasos y adem&aacute;s en funci&oacute;n del n&uacute;mero de dimensiones en el sistema de
+      coordenadas. Para una dimensi&oacute;n, la distancia es simplemente el valor
+      absoluto de la coordenada, y la distancia m&aacute;xima es el mayor valor
+      absoluto que se alcanza durante la caminata. Modificamos el
+      archivo <code>p1.R</code> para que haga eso nuestra versi&oacute;n en R
+    </p>
+    <p>
+<pre class="brush: r">
+pos &lt;- 0
+mayor &lt;- 0
+dur &lt;- 100
+for (t in 1:dur) {
+  if (runif(1) < 0.5) {
+    pos &lt;- pos + 1
+  } else {
+    pos &lt;- pos - 1
+  }
+  dist &lt;- abs(pos)
+  if (dist > mayor) {
+    mayor &lt;- dist
+  }
+}
+print(mayor)
+</pre>
+o bien el
+archivo <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/p1.py"><code>p1.py</code></a>
+para que haga eso nuestra versi&oacute;n en Python: la salida indica
+la distancia m&aacute;xima, pero sale diferente en distintas
+ejecuciones por la naturaleza pseudoaleatoria de la caminata:
+    </p>
+    <p>
+      <code>
+	 Rscript p1.R <br>
+	[1] 10<br>
+	 Rscript p1.R <br>
+	[1] 11<br>
+	 Rscript p1.R <br>
+	[1] 6<br>
+	 Rscript p1.R <br>
+	[1] 6<br>
+	 Rscript p1.R <br>
+	[1] 12<br>
+	 Rscript p1.R <br>
+	[1] 5<br>
+	 Rscript p1.R <br>
+	[1] 11<br>
+	 python3 p1.py<br>
+	8<br>
+	 python3 p1.py<br>
+	19<br>
+	 python3 p1.py<br>
+	16<br>
+	 python3 p1.py<br>
+	15<br>
+	 python3 p1.py<br>
+	20<br>
+	 python3 p1.py<br>
+	6
+      </code>
+    </p>
+    <p>
+      Ahora extendemos el concepto en dos dimensiones: la part&iacute;cula
+      inicia en el origen que ahora es un vector de dos
+      posiciones, <code>pos = rep(0, 2)</code> (para repetir el valor
+      cero dos veces). El movimiento se realiza en una de las dos
+      dimensiones, seleccionada uniformemente al azar, y puede ser
+      incremento o decremento como antes. Para ilustrar el
+      fen&oacute;meno, la siguiente animaci&oacute;n realiza una
+      caminata de este tipo desde el centro del cuadro, terminando
+      cuando toca el borde o cuando se pone en pausa.
+    </p>
+    <canvas id="p1_canvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+    <p>
+      <button id="p1_play" onclick="javascript:play()">&#9658;</button>
+      <button id="p1_pause" onclick="javascript:pause()" disabled>&#10074;&#10074;</button>
+    </p>
+    <p>
+      Ahora lo interesante es la definici&oacute;n
+      de <em>distancia</em> de una posici&oacute;n $(x, y)$ desde el
+      origen. Las dos opciones comunes son la
+      distancia <strong>Manhattan</strong> que mide la suma de los
+      valores absolutos de las coordenadas, $|x| + |y|$, y la
+      distancia <strong>Euclideana</strong> que lo mide como el largo
+      del segmento de l&iacute;nea que conecta el origen al punto en
+      cuesti&oacute;n, $\sqrt(x^2 + y^2)$.
+    </p>
+    <table border="0">
+      <tr>
+	<th>Manhattan</th>
+	<th>Euclideana</th>
+      </tr>
+      <tr>
+	<td><img width="200" src="p1m.png"></img></td>
+	<td><img width="200" src="p1e.png"></img></td>
+      </tr>
+    </table>
+    <p>
+      Para poder comparar si el tipo de distancia utilizado tiene
+      efecto, mejor creamos funciones para los dos casos, y que
+      funcionen de una vez con cualquier dimensi&oacute;n, incluyendo
+      el uno.  M&aacute;s a&uacute;n, que funcionen entre un punto y
+      el origen o entre dos puntos arbitrarios. As&iacute;
+      ser&aacute;n m&aacute;s vers&aacute;tiles para usos futuros.  Lo
+      colocamos en un archivo
+      aparte, <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/distance.R"><code>distance.R</code></a>
+      o <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/distance.py"><code>distance.py</code></a>,
+      tipo librer&iacute;a para pr&aacute;cticas futuras o proyectos
+      m&aacute;s adelante.
+    </p>
+    <p>
+      Teniendo esto, procedemos a adecuar el c&oacute;digo 
+ para que, en primer lugar,
+      <ul>
+	<li>permita cambiar la dimensi&oacute;n del sistema de coordenadas</li>
+	<li>permita cambiar el n&uacute;mero de pasos por realizar durante la caminata</li>
+	<li>permita cambiar cu&aacute;l definici&oacute;n de distancia
+	se utilizar&aacute; en los c&aacute;lculos;</li>
+      </ul>
+    </p>
+</pre>
+<p>
+  lo que colocamos en un archivo aparte, <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/caminata.R"><code>caminata.R</code></a> o <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/caminata.py"><code>caminata.py</code></a> y luego podemos probarlo en R
+</p>
+<pre class="brush: r">
+source("distance.R")
+source("caminata.R")
+caminata(2, 50, ed.orig)
+caminata(2, 50, md.orig)
+</pre>
+o en Python
+<pre class="brush: python">
+from distance import ed_orig, md_orig
+from caminata import caminata
+print(caminata(2, 50, ed_orig))
+print(caminata(2, 50, md_orig))
+</pre>
+    </p>
+    <p>
+Adem&aacute;s, se ocupa asegurar que
+      <ul>
+	<li>se repita el experimento una cantidad solicitada de veces
+	de manera paralela</li>
+	<li>se guardan todas las distancias m&aacute;ximas obtenidas
+	durante cada una de las caminatas realizadas</li>
+	<li>se produzca como salida los cuartiles del conjunto de
+	datos as&iacute; obtenido</li>
+	<li>se mida el tiempo de ejecuci&oacute;n de las caminatas</li>
+      </ul>
+    <p>
+      Para evitar complicaciones de llamadas a rutinas que provienen
+      de ambientes externos al cluster, concentramos toda la
+      funcionalidad dentro de la llamada a <code>parSapply</code> en
+      <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/parallel.R">una
+      versi&oacute;n paralelizada con R</a>.
+    En Python, se
+    logra <a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/parallel.py">lo
+      mismo con <code>multiprocessing</code></a>.
+    </p>
+<p>
+  Para poder visualizar lo que sucede, se puede utilizar diagramas
+  de caja-bigote para comparar caminatas de un mismo largo en
+  dimensiones distintas con la distancia Manhattan.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/brownian.R">C&oacute;digo completo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/BrownianMotion/brownian.py">C&oacute;digo completo en Python</a></li>
+</ul>
+    <p>
+      Para colocar caracteres no-ASCII en las etiquetas en R, se debe utilizar
+      su <a href="http://www.unicode.org/charts/PDF/U0080.pdf">c&oacute;digo
+	Unicode</a>, mientras en Python conviene declarar la codificaci&oacute;n al inicio del archivo.
+    </p>
+    <img width="380" src="p1mr.png">&nbsp;<img width="380" src="p1er.png">
+    <img width="380" src="p1mp.png">&nbsp;<img width="380" src="p1ep.png">    
+    
+    <h3>Tarea 1</h3>
+    <p>
+      Examina de manera sistem&aacute;tica los efectos de la
+      dimensi&oacute;n en <strong>la distancia Manhattan m&aacute;xima
+      del origen</strong> del movimiento Browniano para varias
+      dimensiones (en incrementos aditivos o multiplicativos),
+      variando el n&uacute;mero de pasos de la caminata (con por lo
+      menos tres niveles), con varias repeticiones del experimento
+      para cada combinaci&oacute;n. Grafica los resultados en una sola
+      figura con diagramas de caja-bigote. 
+    </p>
+    <p>
+      El primer reto es estudiar de forma sistem&aacute;tica y
+      automatizada el <em>tiempo de ejecuci&oacute;n de una
+      caminata</em> (en milisegundos) en t&eacute;rminos del largo de
+      la caminata (en pasos) y la dimensi&oacute;n. Para medir el
+      tiempo de una r&eacute;plica, ejec&uacute;tala m&uacute;ltiples
+      veces y normaliza con la cantidad de repeticiones para obtener
+      un promedio del tiempo de una r&eacute;plica individual.
+    </p>
+    <p>
+      El segundo reto es realizar una comparaci&oacute;n entre una
+      implementaci&oacute;n paralela y otra versi&oacute;n que no
+      aproveche paralelismo en t&eacute;rminos del tiempo de
+      ejecuci&oacute;n, aplicando alguna <em>prueba
+      estad&iacute;stica</em> adecuada para determinar si la
+      diferencia es significativa.
+    </p>
+    <div>
+      <center>
+	Actualizado el 31 de enero del 2022.<br>
+	<code>https://satuelisa.github.io/p1.html</code>
+      </center>
+    </div>
+    
+    <script src="p1.js"></script>
+    
+    
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

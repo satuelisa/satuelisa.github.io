@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <title>P2 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+    
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>    
+  </head>
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+    <h2><a name="p2">Pr&aacute;ctica 2: aut&oacute;mata celular</a></h2>
+    <p>
+      En la segunda pr&aacute;ctica trabajamos con aut&oacute;matas
+      celulares [<a href="biblio.html#refac">6</a>] en dos dimensiones,
+      particularmente el famoso <em>juego de la vida</em>
+      [<a href="biblio.html#refgl">7</a>]. El estado del
+      aut&oacute;mata se representa con una matr&iacute;z booleana (es
+      decir, contiene ceros y unos). Cada celda es o viva (uno) o
+      muerta (cero). En cada paso, la supervivencia de cada celda
+      (verde) se determina a partir de los valores de sus ocho vecinos
+      (amarillos):
+    </p>
+    <img width="200" src="p2v.png">
+    <p>
+      En los extremos de la matr&iacute;z, las celdas simplemente
+      tienen menos vecinos. (Otra alternativa ser&iacute;a considerar
+      el espacio como un torus &mdash; pareciendo una dona &mdash;
+      donde el extremo de abajo se reune con el extremo de arriba
+      igual como los lados izquiero y derecho uno con otro.
+    </p>
+    <p>
+      La regla de supervivencia es sencilla: una celda est&aacute;
+      viva si exactamente tres vecinos suyos est&aacute;n vivos. Para
+      comenzar, usamos n&uacute;meros pseudoaleatorios como el estado
+      inicial. En R se necesita el paquete <code>sna</code> para
+      visualizar matrices de este tipo con facilidad, mientras en
+      Python se necesita el paquete <code>numpy</code> adem&aacute;s
+      del <code>matplotlib</code> de la pr&aacute;ctica anterior (requerda
+      instalar una vez y cargar antes de cada uso).
+    </p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/CellularAutomata/gameOfLife.R">C&oacute;digo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/CellularAutomata/gameOfLife.py">C&oacute;digo en Python</a></li>
+</ul>
+    <img src="p2r.gif" height="300">
+    <img src="p2p.gif" height="300">
+    <h3>Tarea 2</h3>
+    <p>
+      Dise&ntilde;a y ejecuta un experimento con por lo menos 30
+      r&eacute;plicas para determinar la probabilidad de
+      creaci&oacute;n de vida en una malla de dimensi&oacute;n mayor o
+      igual a diez, usando como l&iacute;mite de vida la supervivencia
+      de 50 o m&aacute;s iteraciones en funci&oacute;n de la
+      probabilidad inicial de vida por lo menos tres niveles en $(0,
+      1)$. Grafica y tabula los hallazgos.
+    </p> 
+    <p>
+      El primer reto es modificar la simulaci&oacute;n para que modele
+      alg&uacute;n tipo de <strong>crecimiento</strong> (o
+      cristalizaci&oacute;n) en la microestructura de un material.
+      N&uacute;cleos aparecen al azar en celdas desocupadas y expanden
+      con una tasa constante a celdas vecinas hasta agotar el espacio
+      disponible. Examina la distribuci&oacute;n de los tama&ntilde;os
+      de los n&uacute;cleos que <em>no toquen el borde</em> al
+      finalizar la simulaci&oacute;n, elegiendo el tama&ntilde;o de la
+      zona y el n&uacute;mero de semillas de tal forma que sean por lo
+      menos la mitad. Codifica las identidades de los n&uacute;cleos
+      como enteros y normaliza antes de dibujar la matr&iacute;z para
+      que los niveles de gris est&eacute;n entre cero y uno como espera la
+      rutina que los visualiza; tambi&eacute;n puedes utilizar
+      palettes de colores, con que se distingan bien.
+    </p>
+    <p>
+      El segundo reto es ejecutar el un aut&oacute;mata celular en un modelo
+ tri-dimensional, por ejemplo
+      <a href="https://reprap.org/forum/read.php?88,6830">
+estos modelos</a>; se puede visualizar archivos STL en
+      <a href="https://www.viewstl.com/">en un servicio web</a>.  Si
+el modelo que quieres usar est&aacute; en formato binario (es decir, no
+contiene texto), se convierte en formato ASCII
+usando <a href="http://www.thingiverse.com/thing:39655/#files"> un
+script de ruby</a> con <code>ruby convertSTL.rb modelo.stl</code> donde el
+segundo argumento es el nombre del archivo del modelo STL por
+convertir, lo que produce un <code>modelo-ascii.stl</code> como
+resultado.
+    </p>
+    <p>
+      De la versi&oacute;n ASCII del modelo STL, se extrae un CSV con los
+      normales y las tres esquinas con
+      <code>python3 <a href="tools/ascii2csv.py">ascii2csv.py</a> Star.stl > Star.csv</code>
+		 en el siguiente formato:
+		 <ul>
+		   <li>las columnas  1,  2 y  3 representan el normal del tri&aacute;ngulo,</li>
+		   <li>las columnas  4,  5 y  6 son la primera esquina,</li>
+		   <li>las columnas  7,  8 y  9 son las segunda esquina,</li>
+		   <li>las columnas 10, 11 y 12 con la tercera esquina.</li>
+		 </ul>
+</p>
+<p>
+En el reto, procesa a ese CSV en un <code>data.frame</code> de R o
+con <code>pandas</code> en Python: dos tri&aacute;ngulos son vecinos
+si comparten dos esquinas, dando a cada tri&aacute;ngulo un total de
+tres vecinos. Al inicio, cada celda est&aacute; o prendida
+(<code>TRUE</code>) o apagada (<code>FALSE</code>), uniformemente al
+azar.  Cada celda tomar&aacute; el estado en el que se encuentra
+la <em>mayor&iacute;a</em> de sus vecinos (sin contar a si mismo). Se
+proporciona una plantilla del esquema general en R:
+</p>
+<pre class="brush: r">
+input = "modelo.csv"
+m = read.csv(input, header = FALSE) # modelo 3D
+n = dim(m)[1] # cuantas celdas hay
+init = runif(n) > 0.5 # estados iniciales, mitad prendidos
+state = init
+require("parallel")
+cluster <- makeCluster(detectCores() - 1)
+clusterExport(cluster, "m")
+clusterExport(cluster, "n")
+dur <- 5 # cuantos pasos
+for (iter in 1:dur) {
+    clusterExport(cluster, "state")
+    state <- parSapply(cluster, 1:n, step) # el reto es implementar la rutina step
+    print(".") # indicador de avance rudimentario
+}
+stopCluster(cluster)
+m$state = state
+write.table(m, "resultado.csv", sep=',', col.names = FALSE, row.names = FALSE) 
+</pre>
+<p>
+  Agrega los estados de la &uacute;ltima iteraci&oacute;n como una nueva columna (la
+  &uacute;ltima) en el <code>data.frame</code> y guarda los datos en formato CSV como
+  salida (la rutina agrega un contador en la primera columna), digamos <code>resultado.csv</code>. A este
+  CSV se convierte de regreso a formato ASCII OBJ con
+<code>python3 <a href="tools/csv2obj.py">csv2obj.py</a> resultado.csv
+> resultado.obj</code> lo que se puede visualizar
+en <a href="https://3dviewer.net/">otro servicio web</a>. El ejemplo abajo muestra el estado inicial y la primera iteraci&oacute;n para una esfera.
+	   </p>
+<img width=410 src="p2r2ini.png" />
+<img width=410 src="p2r2pri.png" />
+
+    <div>
+      <center>
+	Actualizado el 1 de septiembre del 2021.<br>
+	<code>https://satuelisa.github.io/p2.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

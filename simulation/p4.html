@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>P4 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+
+
+<h2><a name="p4">Pr&aacute;ctica 4: diagramas de Voronoi</a></h2>
+<p>
+El tema de la cuarta pr&aacute;ctica tiene importancia ambos en las
+matem&aacute;ticas puras y en ciencias aplicadas como por ejemplo la ciencia
+de materiales. Tomamos de un espacio bidimensional una zona con
+medidas conocidas que contiene $k$ <em>puntos semilla</em> $p_i$,
+representados por sus coordenadas $(x_i, y_i)$. Lo que se busca es
+dividir esa zona en regiones llamadas <em>celdas de Voronoi</em> de
+tal forma que todos los puntos que pertenecen a la regi&oacute;n de $p_i$
+est&eacute;n m&aacute;s cerca de esa semilla que a cualquier otra.
+</p>
+<p>
+El modelo matem&aacute;tico en s&iacute; es cont&iacute;nuo, es decir, las coordenadas son
+n&uacute;meros reales, pero nosotros lo vamos a discretizar en esta pr&aacute;ctica.
+Vamos a representar la zona por una matriz $n \times n$ y las
+coordenadas ser&aacute;n entonces n&uacute;meros enteros en $[1, n]$. Por el
+momento, vamos a colocar uniformemente al azar las $k$ semillas,
+representadas por los n&uacute;meros $1$ a $k$ dentro de la matriz,
+procurando que ocupen una posici&oacute;n distinta dentro de la matr&iacute;z cada
+una de las semillas. Tambi&eacute;n vamos a visualizar c&oacute;mo se ve la zona con
+las semillas puestas.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/VoronoiDiagrams/seeds.R">C&oacute;digo para colocar semillas en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/VoronoiDiagrams/seeds.py">C&oacute;digo para colocar semillas en Python</a></li>
+  </ul>
+<img src="p4s.png" width="300">
+<img src="p4p.png" width="300">
+<p>
+Lo que ahora falta para recuperar las celdas de Voronoi es determinar
+para todos aquellos elementos que siguen valiendo cero a cu&aacute;l
+semilla se van a asociar. Para no entrar en detalle a algoritmos
+elegantes, vamos a simplemente paralelizar para cada elemento un
+c&oacute;mputo sencillo: para cada posici&oacute;n que vale cero,
+calcula para cada semilla la distancia euclideana entre las
+coordenadas de la semilla y las de la posici&oacute;n en
+cuesti&oacute;n; regresa como resultado la semilla que result&oacute;
+ser la m&aacute;s cercana. De esta forma podemos calcular a partir de
+la matriz de las semillas una que representa la celdas.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/VoronoiDiagrams/cells.R">C&oacute;digo para calcular celdas en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/VoronoiDiagrams/cells.py">C&oacute;digo para calcular celdas en Python</a></li>
+  </ul>
+<img src="p4c.png" width="300">
+<img src="p4pc.png" width="300">
+<p>
+ Ahora, supongamos que las celdas representan n&uacute;cleos en alg&uacute;n proceso
+ de cristalizaci&oacute;n en un material y vamos a provocar una grieta en ese
+ material. Supongamos tambi&eacute;n que una grieta propaga con mayor
+ facilidad a lo largo de una frontera de una celda y con mayor
+ dificultad en el interior de una celda. Denotemos con $p_f$ la
+ probabilidad de propagaci&oacute;n a lo largo de una frontera y con $p_i$ la
+ propagaci&oacute;n en el interior. Vamos a tambi&eacute;n suponer que la grieta
+ siempre propagar&aacute; por una frontera cuando esta posibilidad existe.
+ Vamos a suponer, por simplicidad, que la propagaci&oacute;n no tiene ninguna
+ direcci&oacute;n preferencial, aunque el asunto no es as&iacute; de simple en el
+ mundo verdadero. Vamos a seleccionar una posici&oacute;n inicial para la
+ grieta $(x, y)$ al azar y estudiar su propagaci&oacute;n. Vamos a suponer
+ que siempre al proceder al interior de una celda, la propagaci&oacute;n se
+ va dificultando gradualmente si no se logra a regresar a una
+ frontera.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/VoronoiDiagrams/fracture.R">C&oacute;digo para propagaci&oacute;n de fractura en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/VoronoiDiagrams/fracture.py">C&oacute;digo para propagaci&oacute;n de fractura en Python</a></li>
+  </ul>
+<p>
+<code>
+$&nbsp;Rscript&nbsp;fracture.R<br>
+Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
+2.00&nbsp;&nbsp;&nbsp;11.00&nbsp;&nbsp;&nbsp;19.00&nbsp;&nbsp;&nbsp;28.26&nbsp;&nbsp;&nbsp;38.00&nbsp;&nbsp;188.00 
+</code>
+</p>
+<p>
+<code>
+$ python3 fracture.py<br>
+DescribeResult(nobs=200, minmax=(4, 520), mean=103.44, variance=7542.669748743719, skewness=1.4435942087025952, kurtosis=2.622393753248889)
+</code>
+</p>
+<p>
+Algunos ejemplos de grietas resultantes:
+</p>
+<img src="p4g_149.png" width="120">
+<img src="p4g_182.png" width="120">
+<img src="p4g_88.png" width="120">
+<img src="p4g_161.png" width="120">
+<img src="p4g_190.png" width="120">
+<img src="p4g_83.png" width="120">
+<br>
+<img src="p4pg_10.png" width="120">
+<img src="p4pg_11.png" width="120">
+<img src="p4pg_17.png" width="120">
+<img src="p4pg_104.png" width="120">
+<img src="p4pg_105.png" width="120">
+<img src="p4pg_109.png" width="120">
+
+<h3>Tarea 4</h3>
+<p>
+Examina el efecto del n&uacute;mero de semillas $k$, manteniendo
+constante el tama&ntilde;o de la zona $n$, en la penetraci&oacute;n de
+las grietas que se forman en t&eacute;rminos de la mayor distancia
+Manhattan entre la grieta y el exterior de la pieza, visualizando los
+resultados con diagramas caja-bijote o similar sobre las
+r&eacute;plicas y aplicando m&eacute;todos estad&iacute;sticos para
+establecer el efecto tiene, si es que tenga, $k$ en ello.
+</p>
+<p>
+El primer reto es crecer las celdas din&aacute;micamente alrededor de
+semillas de tal forma que las semillas aparecen al azar en distintas
+iteraciones y crecen con una tasa exponencialmente distribuida
+(variable entre n&uacute;cleos pero constante para un n&uacute;cleo
+espec&iacute;fico) hasta toparse con las dem&aacute;s celdas,
+as&iacute; como se muestra en la animaci&oacute;n. Examina los cambios
+producidos en el fen&oacute;meno de propagaci&oacute;n de grietas que
+esta nueva forma de crear las celdas provoca, ya que las semillas
+resultan en celdas de tama&ntilde;os distintos seg&uacute;n su edad y
+su tasa, adem&aacute;s del efecto de la posici&oacute;n relativa a las
+demas semillas.
+</p>
+<img src="p4r1.gif" width="200">
+<p>
+En el segundo reto, el crecimiento ya no es determinista sino
+probabilista, como para modelar fen&oacute;menos como c&aacute;ncer: un n&uacute;cleo
+propaga a vecinos desocupados con una probabilidad $p_v$. Si un
+n&uacute;cleo no logra crecer, se muere con una probabilidad $p_m$.
+</p>
+<p>
+En el ejemplo abajo, $p_v = 0.1$ y $p_m = 1.0$ &mdash; investiga
+la probabilidad que los n&uacute;cleos (los tumores) ocupen el espacio
+completo (&oacute;rgano) en funci&oacute;n de $p_v$ y $p_m$.
+</p>
+<img src="p4r2.gif" width="200">
+<div>
+<center>
+Actualizado el 15 de septiembre del 2021.<br>
+<code>https://satuelisa.github.io/p4.html</code>
+</center>
+</div>
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+    "r syntax/scripts/shBrushR.js",
+    "python syntax/scripts/shBrushPython.js",
+);
+SyntaxHighlighter.defaults["toolbar"] = false;
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

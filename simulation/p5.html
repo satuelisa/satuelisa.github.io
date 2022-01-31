@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P5 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+
+<h2><a name="p5">Pr&aacute;ctica 5: m&eacute;todo Monte-Carlo</a></h2>
+<p>
+El m&eacute;todo Monte Carlo es id&oacute;neo para situaciones en las cuales alg&uacute;n
+valor o alguna distribuci&oacute;n no se conoce y resulta complicado de
+determinar de manera anal&iacute;tica. Siguiendo los ejemplos de Kurt
+[<a href="biblio.html#mce">8</a>], paralelizamos algunos casos
+sencillos en esta pr&aacute;ctica. Es importante tomar en cuenta que el
+m&eacute;todo Monte Carlo es mucho m&aacute;s que estos peque&ntilde;os ejemplos; el lector
+interesado puede profundizar con los libros de texto
+[<a href="biblio.html#mcb">9</a>, <a href="biblio.html#mco">10</a>]
+recomendados en la bibliograf&iacute;a.
+</p>
+<p>
+  Supongamos que se ocupa conocer el valor de un integral que no se
+  nos antoja resolver para nada, como por ejemplo
+  $\int_3^7 f(x) \text{d}x$ para 
+</p>
+<p>
+$f(x) = \displaystyle\frac{1}{\exp(x) + \exp(-x)}$.
+</p>
+<p>
+  Por suerte, $2f(x)/\pi$ es una funci&oacute;n de distribuci&oacute;n v&aacute;lida, ya
+  que
+</p>
+<p>
+  $\displaystyle\int_{-\infty}^{\infty}
+  \frac{2}{\pi} f(x) \text{d}x = 1$
+</p>
+<p>
+(para los de poca fe;
+  existe <a href="https://www.wolframalpha.com/input/?i=integrate+(2%2Fpi)+*+(1%2F(exp(x)%2Bexp(-x)))+from+-infty+to+infty">Wolfram
+  Alpha).</a>
+</p>
+<pre class="brush: r">
+inicio <- -6
+final <- -inicio
+paso <- 0.25
+x <- seq(inicio, final, paso)
+f <- function(x) { return(1 / (exp(x) + exp(-x))) }
+png("p5f.png") # dibujamos f(x) para ver como es
+plot(x,  (2/pi) * (1/(exp(x)+exp(-x))))
+lines(x,  (2/pi) * (1/(exp(x)+exp(-x))), type="l")
+graphics.off()
+     </pre>
+<pre class="brush: python">
+inicio = -6.0
+final = -inicio
+paso = 0.25
+X = [inicio]
+while X[-1] + paso <= final:
+    X.append(X[-1] + paso)
+
+from math import exp, pi
+def f(x):
+    return 1 / (exp(x) + exp(-x))
+
+from matplotlib import rc
+import matplotlib.pyplot as plt
+Y = [(2 / pi) * f(x) for x in X]
+plt.rc('text', usetex=True) # requiere LaTeX
+plt.rc('font', family='serif')
+plt.scatter(X, Y)
+plt.plot(X, Y)
+plt.xlabel(r'$x$')
+plt.ylabel(r'$\frac{2}{\pi} (\exp(x) + \exp(-x))^{-1}$')
+plt.savefig('p5pf.png')
+plt.show() # opcional
+</pre>
+<img src="p5f.png" height="350">
+<img src="p5pf.png" height="350">
+    <p>
+Este hecho nos permite generar n&uacute;meros pseudoaleatorios con la
+  distribuci&oacute;n $g(x) = 2f(x) / \pi$, as&iacute; estimar
+  $\int_3^7 g(x) \text{d}x$, y de ah&iacute; normalizar el estimado
+para que sea $\int_3^7 f(x) \text{d}x$.
+</p>
+    <ul>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/MonteCarlo/rng.R">C&oacute;digo
+en R</a> que usa un paquete para generar n&uacute;meros
+pseudoaleatorios seg&uacute;n una distribuci&oacute;n
+arbitraria llamada <code>distr</code> (recuerden
+llamar <code>install.packages</code> antes de intentar a utilizar el
+nuevo paquete) &mdash; <a href="https://stackoverflow.com/questions/23570952/simulate-from-an-arbitrary-continuous-probability-distribution">discusi&oacute;n
+relacionada en stack overflow</a></li>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/MonteCarlo/rng.py">C&oacute;digo
+en Python</a> que usa la
+clase <a href="https://github.com/satuelisa/Simulation/blob/master/MonteCarlo/GeneralRandom.py"><code>GeneralRandom</code></a>
+proveniente de
+una <a href="http://code.activestate.com/recipes/576556-generating-random-numbers-with-arbitrary-distribut/">receta</a>
+con unos cambios para adecuarlo a Python3, ya que viene escrito en
+Python2 (fue necesario cambiar <code>xrange</code> por <code>range</code>) &mdash; se debe colocar en la misma carpeta con el
+c&oacute;digo propio para que se pueda incluir</li>
+</ul>
+<img src="p5m.png" height="350">
+<img src="p5pm.png" height="350">
+    <p>Teniendo eso, se puede proceder a estimar la integral deseada:
+      <ul>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/MonteCarlo/integral.R">C&oacute;digo en R</a></li>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/MonteCarlo/integral.py">C&oacute;digo en Python</a></li>
+      </ul>
+      </p>
+<p>
+  <code>
+$&nbsp;Rscript&nbsp;integral.R<br>
+[1]&nbsp;0.04883505
+    </code>
+</p>
+  <p>
+  <code>
+    $ python3 integral.py<br>
+0.04670913674171997
+    </code>
+</p>
+<p>
+  Podemos comparar con el resultado aproximado de Wolfram Alpha,
+  $0.048834$, para llegar a una satisfacci&oacute;n de que no estemos
+  completamente mal. Nota que cada ejecuci&oacute;n dar&aacute; un
+  resultado distinto ya que es una muestra pseudoaleatoria. Parece que
+  la rutina de generar valores pseudoaleatorias de una distribuci&oacute;n
+  arbitraria de R est&aacute; un poco m&aacute;s refinado que la rutina de la receta
+  en Python.
+</p>
+<h3>Tarea 5</h3>
+<p>
+  Estudia estad&iacute;sticamente la convergencia de la precisi&oacute;n del
+  estimado del integral con en m&eacute;todo Monte Carlo, comparando con el
+  valor producido por Wolfram Alpha, en t&eacute;rminos del n&uacute;mero de
+  decimales correctos, aumentando el tama&ntilde;o de muestra.
+</p>
+    <p>
+      El primer reto es realizar lo mismo para la estimaci&oacute;n
+      del valor de $\pi$ de Kurt [<a href="index.html#mcr">8</a>].
+    </p>
+    <p>
+      Como un segundo reto, aplica un m&eacute;todo Monte Carlo para
+      estimar la cantidad de pintura necesaria en un mural, comparando
+      conteos exactos de pixeles de distintos colores (recomiendo
+      discretizar a un palette de pocos colores) con conteos estimados
+      con muestreo aleatorio.
+    </p>
+</p>
+    
+
+    <div>
+      <center>
+	Actualizado el 21 de septiembre del 2021.<br>
+	<code>https://satuelisa.github.io/p5.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

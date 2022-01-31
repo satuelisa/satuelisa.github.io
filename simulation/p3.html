@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script src='syntax/scripts/shCore.js'></script>
+    <script src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+<h2><a name="p3">Pr&aacute;ctica 3: teor&iacute;a de colas</a></h2>
+<p>
+La <em>teor&iacute;a de colas</em> es un &aacute;rea de las matem&aacute;ticas que estudia
+el comportamiento de l&iacute;neas de espera. Los trabajos que est&aacute;n
+esperando ejecuci&oacute;n en un cluster esencialmente forman una l&iacute;nea de
+espera. Medidas de inter&eacute;s que ayudan caracterizar el comportamiento
+de una l&iacute;nea de espera incluyen, por ejemplo, el tiempo total de
+ejecuci&oacute;n. En esta pr&aacute;ctica vamos a estudiar el efecto del orden de
+ejecuci&oacute;n de trabajos y el n&uacute;mero de n&uacute;cleos utilizados en esta
+medida.
+</p>
+<p>
+Como trabajos ejemplo, f&aacute;ciles de entender y con tiempos de
+ejecuci&oacute;n diversos para diferentes entradas, vamos a utilizar
+la examinaci&oacute;n de s&iacute; o no un n&uacute;mero entero dado
+es un <strong>n&uacute;mero primo</strong>, queriendo decir que no sea
+divisible entre ning&uacute;n entero mayor a uno o menor a si
+mismo. Para no batallar, utilizaremos el algoritmo m&aacute;s sencillo
+imaginable: dado $n$, lo intentamos dividir entre los enteros desde 2
+hasta $n - 1$. Si no hallamos ninguna divisi&oacute;n exacta, es
+decir, el residuo de la divisi&oacute;n nunca vale cero, entonces $n$
+es primo. A su versi&oacute;n m&aacute;s burra, el algoritmo es
+&eacute;ste:
+</p>
+<pre class="brush: r">
+primo <- function(n) {
+    if (n < 3) {
+        return(TRUE)
+    }
+    for (i in 2:(n-1)) {
+        if (n %% i == 0) { # residuo es cero
+            return(FALSE)
+        }
+    }
+    return(TRUE)
+}
+resultados <- numeric() # un vector vacio
+for (n in 1:100) {
+    resultados <- c(resultados, primo(n)) # combinar vectores
+}
+cat(resultados, "\n")
+</pre>
+<pre class="brush: python">
+def primo(n):
+    if n < 3:
+        return True
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+resultados = [primo(n) for n in range(1, 101)]
+print(resultados)
+</pre>
+<p>
+  Aqu&iacute; hay algunas redundancias obvias. Si $n$ ni era divisible
+  entre $2$, tampoco ser&aacute; divisible entre ning&uacute;n otro
+  n&uacute;mero par. Por otro lado a veces se quiere incluir uno como
+  un n&uacute;mero primo, aunque algunos matem&aacute;ticos no
+  est&aacute;n de acuerdo. Solamente hay que cuidar que en la llamada
+  a <code>seq</code> el final no est&eacute; menor que el inicio.
+  Cambiamos adem&aacute;s a que est&eacute; guardando solamente
+  aquellos n&uacute;meros que s&iacute; fueron primos.
+</p>
+<pre class="brush: r">
+primo <- function(n) {
+    if (n < 4) {
+        return(TRUE)
+    }
+    if (n %% 2 == 0) { # par
+        return(FALSE)
+    }
+    for (i in seq(3, max(3, n - 1), 2)) {
+        if (n %% i == 0) {
+            return(FALSE)
+        }
+    }
+    return(TRUE)
+}
+
+primos <- numeric()
+for (n in 1:100) {
+    if (primo(n)) {
+        primos <-  c(primos, n)
+    }
+}
+cat(primos, "\n")
+</pre>
+<pre class="brush: python">
+def primo(n):
+    if n < 4:
+        return True
+    if n % 2 == 0:
+       return False
+    for i in range(3, n - 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+primos = []
+for n in range(1, 101):
+    if primo(n):
+         primos.append(n)
+print(primos)
+</pre>  
+<p>
+Adem&aacute;s, si $n$ tiene factores, es decir $n = p \times q$,
+entonces el menor de los factores $p$ y $q$ no puede ser mayor que
+$\sqrt{n}$, lo que nos proporciona otra mejora. Paralelizamos de una
+vez, pero para variar, con la rutina <code>foreach</code> del
+paquete <code>doParellel</code>:
+</p>
+<pre class="brush: r">
+primo <- function(n) {
+    if (n < 4) {
+        return(TRUE)
+    }
+    if (n %% 2 == 0) {
+        return(FALSE)
+    }
+    for (i in seq(3, max(3, ceiling(sqrt(n))), 2)) {
+        if (n %% i == 0) {
+            return(FALSE)
+        }
+    }
+    return(TRUE)
+}
+
+suppressMessages(library(doParallel))
+registerDoParallel(makeCluster(detectCores() - 1))
+primos <- foreach(n = 1:300, .combine=c) %dopar% primo(n)
+stopImplicitCluster()
+print(paste(sum(primos), "primos encontrados"))
+</pre>
+<pre class="brush: python">
+from math import ceil, sqrt
+def primo(n):
+    if n < 4:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(ceil(sqrt(n))), 2):
+        if n % i == 0:
+             return False
+    return True
+
+import multiprocessing
+if __name__ == "__main__":
+    with multiprocessing.Pool() as pool:
+        primos = pool.map(primo, range(1, 3001))
+</pre>  
+<p>
+  Ahora, medimos cu&aacute;nto tiempo esto toma, promediando la medici&oacute;n
+  sobre unas 30 repeticiones.
+</p>
+<pre class="brush: r">
+primo <- function(n) {
+    if (n < 4) {
+        return(TRUE)
+    }
+    if (n %% 2 == 0) {
+        return(FALSE)
+    }
+    for (i in seq(3, max(3, ceiling(sqrt(n))), 2)) {
+        if (n %% i == 0) {
+            return(FALSE)
+        }
+    }
+    return(TRUE)
+}
+
+d <- 10000 # desde
+h <-  20000 # hasta
+replicas <- 30
+suppressMessages(library(doParallel))
+registerDoParallel(makeCluster(detectCores() - 1))
+tiempos <-  numeric()
+for (r in 1:replicas) {
+    # tomamos el "elapsed" de la salida de system.time, es el tercer dato
+    t <- system.time(foreach(n = d:h, .combine=c) %dopar% primo(n))[3]
+    tiempos <- c(tiempos, t)
+}
+stopImplicitCluster()
+summary(tiempos)
+</pre>
+    <p>
+      <code>
+$&nbsp;Rscript&nbsp;p3.R&nbsp;<br>
+Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
+&nbsp;&nbsp;1.657&nbsp;&nbsp;&nbsp;1.694&nbsp;&nbsp;&nbsp;1.717&nbsp;&nbsp;&nbsp;1.735&nbsp;&nbsp;&nbsp;1.753&nbsp;&nbsp;&nbsp;1.948
+</code>
+</p>
+<pre class="brush: python">
+from math import ceil, sqrt
+def primo(n):
+    if n < 4:
+        return True
+     if n % 2 == 0:
+        return False
+     for i in range(3, int(ceil(sqrt(n))), 2):
+         if n % i == 0:
+             return False
+      return True
+
+import multiprocessing
+from time import time
+from scipy.stats import describe # instalar con pip3
+
+if __name__ == "__main__":
+    d = 10000
+    h = 20000
+    replicas = 30
+    tiempos = []
+    with multiprocessing.Pool() as pool:
+        for r in range(replicas):
+            antes = time()
+            primos = pool.map(primo, range(d, h + 1))
+            despues = time()
+            tiempos.append(despues - antes)	   
+	 print(describe(tiempos))
+</pre>
+    <p>
+      <code>
+	$ python3 p3.py<br>
+	DescribeResult(nobs=30, minmax=(0.002601146697998047, 0.004113912582397461), mean=0.002804263432820638, variance=7.623356338428139e-08, skewness=3.736981141295009, kurtosis=15.176218040916307)
+      </code>
+      </p>
+    <p>
+Probamos diferencias entre tres posibles formas de ordenar los
+n&uacute;meros candidato.
+
+
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/ordering.R">C&oacute;digo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/ordering.py">C&oacute;digo en Python</a></li>
+  </ul>
+
+</p>
+    <p>
+      <code>
+$&nbsp;Rscript&nbsp;ordering.R&nbsp;<br>
+&nbsp;&nbsp;&nbsp;Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
+&nbsp;0.3090&nbsp;&nbsp;0.3145&nbsp;&nbsp;0.3170&nbsp;&nbsp;0.3188&nbsp;&nbsp;0.3207&nbsp;&nbsp;0.3370&nbsp;<br>
+&nbsp;&nbsp;&nbsp;Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
+&nbsp;0.3080&nbsp;&nbsp;0.3140&nbsp;&nbsp;0.3165&nbsp;&nbsp;0.3158&nbsp;&nbsp;0.3178&nbsp;&nbsp;0.3220&nbsp;<br>
+&nbsp;&nbsp;&nbsp;Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
+&nbsp;0.3120&nbsp;&nbsp;0.3137&nbsp;&nbsp;0.3165&nbsp;&nbsp;0.3192&nbsp;&nbsp;0.3178&nbsp;&nbsp;0.3510&nbsp;<br>
+      </code>
+    </p>
+    <p>
+      <code>
+$ python3 p3.py<br>
+DescribeResult(nobs=10, minmax=(0.0009708404541015625, 0.0022687911987304688), mean=0.0011686563491821289, variance=1.5326116340474982e-07, skewness=2.5445349876374963, kurtosis=4.724180952045165)<br>
+DescribeResult(nobs=10, minmax=(0.0009329319000244141, 0.0011661052703857422), mean=0.00101776123046875, variance=5.300911551684192e-09, skewness=0.7390071514127607, kurtosis=-0.32873181417875097)<br>
+DescribeResult(nobs=10, minmax=(0.0009510517120361328, 0.001111745834350586), mean=0.0009946107864379882, variance=2.175221425204654e-09, skewness=1.7138768839750793, kurtosis=2.0835544483893766)
+      </code>
+      </p>
+    <p>
+Se ven ligeras variaciones. La tarea es sobre la examinaci&oacute;n
+sistem&aacute;tica de &eacute;stas.  El problema de ordenamiento de
+trabajos con la finalidad de minimizar el tiempo total de
+ejecuci&oacute;n se llama <em>calendarizaci&oacute;n</em> (ingl&eacute;s:
+scheduling) de tareas. En la siguiente ilustraci&oacute;n, cada grupo
+de bloques de un mismo color es una tarea y cada rengl&oacute;n
+representa un n&uacute;cleo. Las tareas se asignan a los n&uacute;cleos una por una
+y tienen una duraci&oacute;n pre-establecida. El rengl&oacute;n que se
+llena m&aacute;s que los dem&aacute;s determina el tiempo total de
+ejecuci&oacute;n de esas tareas. Asignando las tareas diferentemente
+entre los n&uacute;cleos produce variaciones en &eacute;sta.
+</p>
+<img width="500" src="p3.png">
+<p>
+    </p>
+    <h3>Tarea 3</h3>
+<p>
+Examina c&oacute;mo <em>las diferencias en los tiempos de ejecuci&oacute;n</em>
+de los <em>diferentes ordenamientos</em> cambian cuando se var&iacute;a el
+<strong>n&uacute;mero de n&uacute;cleos asignados</strong> al cluster,
+utilizando como datos de entrada un vector que contiene primos grandes
+y no-primos chicos, aplicando pruebas estad&iacute;sticas adecuadas y
+visualizaci&oacute;n cient&iacute;fica clara e informativa.
+</p>
+<p>
+  El primer reto es modificar la tarea por realizar a que se
+  encuentren todos los <em>divisores</em> del n&uacute;mero (es decir, todos
+  los enteros mayores a uno y menores al n&uacute;mero mismo que lo dividen
+  exactamente y examinar si las conclusiones cambian.
+</p>
+<p>
+  El segundo reto es modificar el primer reto a que encuentre
+  solamente los <em>factores</em> y sus multiplicidades, es decir, que
+  encuentre para $n$ aquellos n&uacute;meros primos $1 < p \leq n$ y sus
+  potencias para que el producto de los factores con esas potencias de
+  $n$. Nuevamente hay que examinar si este cambio afect&oacute; las
+  conclusiones del experimento de la tarea.
+</p>
+    
+
+    <div>
+      <center>
+	Actualizado el 8 de septiembre del 2021.<br>
+	<code>https://satuelisa.github.io/p3.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

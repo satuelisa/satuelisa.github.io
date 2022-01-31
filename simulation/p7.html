@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P7 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+    
+<h2><a name="p7">Pr&aacute;ctica 7: b&uacute;squeda local</a></h2>
+<p>
+En la s&eacute;ptima pr&aacute;ctica implementamos una
+optimizaci&oacute;n heur&iacute;stica sencilla para encontrar
+m&aacute;ximos locales de funciones, los ejemplos siendo de Womersley
+[<a href="index.html#opt">11</a>] &mdash; los matem&aacute;ticamente
+inclinados pueden consultar su trabajo por m&eacute;todos de
+b&uacute;squeda m&aacute;s sofisticados, guiados por m&eacute;todos
+matem&aacute;ticos de mayor rigor.
+</p>
+<pre class="brush: r">
+f <- function(x) {
+    return(cos(14.5*x - 0.3) + x * (x + 0.2) + 1.01)
+}
+x <- seq(-3, 3, 0.05)
+png("p7_1d.png", width=500, height=400)
+plot(x, f(x), type="l")
+graphics.off()
+</pre>
+<pre class="brush: python">
+import matplotlib.pyplot as plt
+from math import cos
+import numpy as np
+
+def f(x):
+    return cos(14.5*x - 0.3) + x * (x + 0.2) + 1.01
+vf = np.vectorize(f)
+x = np.arange(-3, 3, 0.05)
+plt.figure(figsize=(8, 3), dpi=300)
+plt.plot(x, vf(x))
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.savefig('p7p_1d.png', bbox_inches='tight')
+plt.close()
+</pre>
+<img height="300" src="p7_1d.png">
+<img height="300" src="p7p_1d.png">
+<p>
+Buscamos <strong>minimizar</strong> la funci&oacute;n unidimensional,
+a partir de un punto seleccionado al azar, realizando movimientos
+locales. Estando en $x$, seleccionar&aacute; al azar un $\Delta x > 0$
+peque&ntilde;o, calcular&aacute; los valores $f(x \pm \Delta x)$ y
+seleccionar&aacute; el menor de los dos como el siguiente valor de
+$x$. Esto se repite $k$ veces y aquel $x$ que produjo el menor valor
+de $f(x)$ se regresa como el resultado. Se realizar&aacute;n $n$
+r&eacute;plicas, y el menor de ellos es el resultado de la
+b&uacute;squeda en s&iacute;.  La primera versi&oacute;n es sencilla,
+ineficiente y con una sola r&eacute;plica para poder entender el
+comportamiento de la b&uacute;squeda y visualizarla.
+     </p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/LocalSearch/minimize1D.R">C&oacute;digo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/LocalSearch/minimize1D.py">C&oacute;digo en Python</a></li>
+  </ul>
+<img height="300" src="p7.gif">
+<img height="300" src="p7p.gif">
+<p>
+  R&eacute;plicas para ejecuci&oacute;n paralela:
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/LocalSearch/replicas.R">en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/LocalSearch/replicas.py">en Python</a></li>
+    </ul>
+</p>
+<p>
+  Con pocos pasos, todas las cien r&eacute;plicas se acercan a la
+  soluci&oacute;n &oacute;ptima:
+  </p>
+<img width="550" src="p7_100.png"><br>
+<img width="550" src="p7p_2.png">
+<p>
+  Con mil pasos, ya est&aacute;n cerca para R y todos juntos con
+  Python (ojo, cambia con cada corrida):
+  </p>
+<img  width="550" src="p7_1000.png"><br>
+<img  width="550" src="p7p_3.png">
+<p>
+  Con diez mil pasos, todos dan el mismo resultado en ambos casos:
+  </p>
+<img  width="550" src="p7_10000.png"><br>
+<img  width="550" src="p7p_4.png">
+<h3>Tarea 7</h3>
+<p>
+La tarea se trata de <strong>maximizar</strong> alg&uacute;n variante de la
+funci&oacute;n bidimensional ejemplo, $g(x, y)$ (ver abajo),
+con <em>restricciones</em> tipo $-3 \leq x, y \leq 3$, con la misma
+t&eacute;cnica del ejemplo unidimensional. La posici&oacute;n actual
+es un par $x, y$ y se ocupan dos movimientos aleatorios, $\Delta x$ y
+$\Delta y$, cuyas combinaciones posibles proveen <em>ocho</em>
+posiciones vecino, de los cuales aquella que logra el mayor valor para
+$g$ es seleccionado.  Dibujado en tres dimensiones, $g(x, y)$ se ve
+as&iacute;:
+  </p>
+<img height="350" src="p7_2d.png">
+<img height="350" src="p7p_2d.png">
+<pre class="brush: r">
+g <- function(x, y) {
+    return(((x + 0.5)^4 - 30 * x^2 - 20 * x + (y + 0.5)^4 - 30 * y^2 - 20 * y)/100)
+}
+x <- seq(-6, 5, 0.25)
+y <-  x
+z <- outer(x, y, g)
+png("p7_2d.png", width=700, height=700)
+persp(x, y, z, shade=0.2, col='orange', theta=40, phi=30)
+graphics.off()
+</pre>
+<pre class="brush: python">
+import numpy as np
+from matplotlib import cm
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+low = -6
+high = 5
+step = 0.25
+x = np.arange(low, high, step)
+y = np.arange(low, high, step)
+x, y = np.meshgrid(x, y)
+z = ((x + 0.5)**4 - 30 * x**2 - 20 * x + (y + 0.5)**4 - 30 * y**2 - 20 * y)/100
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+s = ax.plot_surface(x, y, z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+ax.zaxis.set_major_locator(LinearLocator(10))
+ax.zaxis.set_major_formatter(FormatStrFormatter('%.01f'))
+fig.colorbar(s, shrink=0.5, aspect=5)
+plt.savefig("p7p_2d.png")
+</pre>
+<p>
+  Es m&aacute;s f&aacute;cil visualizar el proceso de la
+  b&uacute;squeda en una proyecci&oacute;n en el plano $xy$ donde el
+  valor $z = g(x, y)$ se representa con un color. El mecanismo
+  m&aacute;s sencillo produce lo siguiente:
+</p>
+<pre class="brush: r">
+g <- function(x, y) {
+    return(((x + 0.5)^4 - 30 * x^2 - 20 * x + (y + 0.5)^4 - 30 * y^2 - 20 * y)/100)
+}
+x <- seq(-6, 5, 0.25)
+y <-  x
+z <- outer(x, y, g)
+png("p7_flat_1.png", width=500, height=500)
+image(z)
+graphics.off()
+</pre>
+<pre class="brush: python">
+from scipy.misc import toimage
+import numpy as np
+
+def g(x, y):
+    return ((x + 0.5)**4 - 30 * x**2 - 20 * x + (y + 0.5)**4 - 30 * y**2 - 20 * y)/100
+
+p = np.arange(-6, 5, 0.25)
+n = len(p)
+z = np.zeros((n, n), dtype=float)
+for i in range(n):
+    x =p[i]
+    for j in range(n):
+        y = p[j]
+        z[i, j] = g(x, y)
+
+img = toimage(z)
+visual = img.resize((10 * n,  10 * n))
+visual.save('p7p_flat_1.png')
+</pre>
+<img height="300" src="p7_flat_1.png">
+<img height="300" src="p7p_flat_1.png">
+<p>
+  Los inconvenientes con estas gr&aacute;ficas son la falta de una
+  escala para los valores $z$ &mdash; adem&aacute;s, en R los ejes son
+  siempre de cero a uno y en Python no hay ejes. En R, el
+  paquete <code>lattice</code> ofrece algo de mejora y en Python se
+  puede moverle al <code>matplotlib</code>, manteniendo presente que
+  el origen matem&aacute;tico est&aacute; en la esquina izquierda inferior mientras
+  para im&aacute;genes origen est&aacute; en la esquina izquierda superior, por lo
+  cual habr&aacute; que voltear el eje vertical (aunque no se nota en la
+  figura sim&eacute;trica).
+  </p>
+<pre class="brush: r">
+g <- function(x, y) {
+    return(((x + 0.5)^4 - 30 * x^2 - 20 * x + (y + 0.5)^4 - 30 * y^2 - 20 * y)/100)
+}
+png("p7_2d.png", width=700, height=700)
+x <- seq(-6, 5, 0.25)
+y <-  x
+z <- outer(x, y, g)
+dimnames(z) <- list(x, y)
+library(reshape2) # recuerda instalar paquetes antes de intentar su uso
+d <- melt(z)
+names(d) <- c("x", "y", "z")
+library(lattice) # lo mismo aplica con este paquete
+png("p7_flat_2.png", width=500, height=500)
+levelplot(z ~ x * y, data = d)
+graphics.off()
+</pre>
+<pre class="brush: python">
+import matplotlib.colorbar as colorbar
+import matplotlib.pyplot as plt
+import numpy as np
+
+def g(x, y):
+    return ((x + 0.5)**4 - 30 * x**2 - 20 * x + (y + 0.5)**4 - 30 * y**2 - 20 * y)/100
+
+low = -6
+high = 5
+step = 0.25
+p = np.arange(low, high, step)
+n = len(p)
+z = np.zeros((n, n), dtype=float)
+for i in range(n):
+    x = p[i]
+    for j in range(n): 
+        y = p[n - j - 1] # voltear
+        z[i, j] = g(x, y)
+
+t = range(0, n, 5)
+l = ['{:.1f}'.format(low + i * step) for i in t]
+fig, ax = plt.subplots(figsize=(6, 5), ncols=1)
+pos = ax.imshow(z) 
+plt.xticks(t, l)
+plt.yticks(t, l[::-1]) # arriba-abajo
+fig.colorbar(pos, ax=ax)
+plt.savefig('p7p_flat_2.png')
+</pre>
+<img  height="300" src="p7_flat_2.png">
+<img  height="300" src="p7p_flat_2.png">
+<p>
+  Crea una visualizaci&oacute;n (animada) de c&oacute;mo proceden por
+  lo menos $5$ r&eacute;plicas simult&aacute;neas de la
+  b&uacute;squeda encima de una gr&aacute;fica de proyecci&oacute;n
+  plana. Estudia estad&iacute;sticamente el efecto que tiene el largo
+  de paso m&aacute;ximo en la cantidad de iteraciones que se requiere
+  para llegar por la primera vez al &oacute;ptimo del la zona de
+  estudio.
+</p>
+<p>
+  El primer reto es cambiar la regla del movimiento de una
+  soluci&oacute;n $\mathbf{x}$ (un vector de dimensi&oacute;n
+  arbitraria) a la siguiente a la de <strong>recocido
+  simulado</strong>: para optimizar una funci&oacute;n
+  $f(\mathbf{x})$, se genera para la soluci&oacute;n actual
+  $\mathbf{x}$ un s&oacute;lo vecino $\mathbf{x}' = \mathbf{x} +
+  \Delta \mathbf{x}$ (alg&uacute;n desplazamiento local). Se calcula
+  $\delta = f(\mathbf{x}') - f(\mathbf{x})$ (para minimizar;
+  maximizando la resta se hace al rev&eacute;s). Si $\delta > 0$,
+  siempre se <em>acepta</em> al vecino $\mathbf{x}'$ como la
+  soluci&oacute;n actual ya que representa una mejora. Si $\delta <
+  0$, se acepta a $\mathbf{x}'$ con probabilidad $\exp(\delta / T)$ y
+  rechaza en otro caso. Aqu&iacute; $T$ es una temperatura que decrece
+  en aquellos pasos donde se acepta una empeora; la reducci&oacute;n
+  se logra multiplicando el valor actual de $T$ con $\xi < 1$, como
+  por ejemplo $0.995$. Examina los efectos estad&iacute;sticos del
+  valor inicial de $T$ y el valor de $\xi$ en la calidad de la
+  soluci&oacute;n, es decir, qu&eacute; tan bajo (para minimizar; alto
+  para maximizar) el mejor valor termina siendo.
+</p>
+<p>
+  <code>
+> exp(-1.0)<br>
+[1] 0.3678794<br>
+> exp(-2.0)<br>
+[1] 0.1353353<br>
+> exp(-9.0)<br>
+[1] 0.0001234098<br>
+> exp(-10.0)<br>
+[1] 4.539993e-05<br>
+> exp(-0.000001)<br>
+[1] 0.999999
+     </code>
+</p>
+<p>
+El segundo reto es comparar s&iacute; o no hay diferencia estad&iacute;sticamente
+significativa entre el m&eacute;todo de la tarea base y el m&eacute;todo del primer
+reto en t&eacute;rminos de la precisi&oacute;n del resultado obtenido (es decir, la
+diferencia entre el resultado reportado y el &oacute;ptimo global) en funci&oacute;n
+del n&uacute;mero de iteraciones y el n&uacute;mero de r&eacute;plicas.
+</p>
+
+
+    <div>
+      <center>
+	Actualizado el 6 de octubre del 2021.<br>
+	<code>https://satuelisa.github.io/p7.html</code>
+	</center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+</body>
+</html>

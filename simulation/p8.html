@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>P8 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+    <script>
+      MathJax = {
+	  tex: {
+	      inlineMath: [['$', '$'], ['\\(', '\\)']]
+	  }
+      };
+    </script>
+    <script id="MathJax-script" async
+	    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+  </head>
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+    <h2><a name="p8">Pr&aacute;ctica 8: modelo de urnas</a></h2>
+    <p>
+      La octava pr&aacute;ctica es sobre fen&oacute;menos de coalescencia y
+      fragmentaci&oacute;n, donde part&iacute;culas se unen para formar
+      c&uacute;mulos y estos c&uacute;mulos se pueden volver a descomponer
+      en fragmentos menores. Esto es relevante en muchos campos de
+      qu&iacute;mica, como por ejemplo en el filtrado de aguas residuales,
+      donde solamente los c&uacute;mulos de suficiente tama&ntilde;o
+      ser&aacute;n capturados por el filtro y hay que buscar formas para
+      facilitar que crezcan los c&uacute;mulos de residuos para lograr su
+      filtrado adecuado.
+    </p>
+    <p>
+      Vamos a suponer que tenemos una cantidad total de $n$
+      part&iacute;culas y que al inicio el tama&ntilde;o de los $k$
+      c&uacute;mulos existentes sigue la distribuci&oacute;n normal. Para
+      lograr esto, vamos a crear $k$ valores de la distribuci&oacute;n
+      normal est&aacute;ndar (media cero, desviaci&oacute;n
+      est&aacute;ndar uno) y luego normalizarlos para convertirlos en
+      enteros positivos que sumen a $n$.
+    </p>
+    <ul>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/clusters.R">Creaci&oacute;n de c&uacute;mulos en R</a></li>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/clusters.py">Creaci&oacute;n de c&uacute;mulos en Python</a></li>
+    </ul>
+    <img src="p8_init.png" height="300">
+    <img src="p8p_init.png" height="300">
+    <p>
+      Se ve decente el histograma, pero vamos a examinar de manera
+      estad&iacute;stica si estos trucos arruinaron la normalidad de los
+      datos.
+    </p>
+    <ul>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/normality.R">Prueba de normalidad en R</a></li>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/normality.py">Prueba de normalidad en Python</a></li>
+  </ul>
+    <p>
+      <code>
+	$&nbsp;Rscript&nbsp;normality.R&nbsp;<br>
+	<br>
+	Shapiro-Wilk&nbsp;normality&nbsp;test<br>
+	<br>
+	data:&nbsp;&nbsp;originales<br>
+	W&nbsp;=&nbsp;0.99858,&nbsp;p-value&nbsp;=&nbsp;0.6106<br>
+	<br>
+	<br>
+	Shapiro-Wilk&nbsp;normality&nbsp;test<br>
+	<br>
+	data:&nbsp;&nbsp;cumulos<br>
+	W&nbsp;=&nbsp;0.99843,&nbsp;p-value&nbsp;=&nbsp;0.5068
+      </code>
+    </p>
+    <p>
+      <code>
+	$ python3 normality.py<br>
+	(0.9983153939247131, 0.4403773248195648)<br>
+	(0.9982017278671265, 0.3776090443134308)
+      </code>
+    </p>
+    <img src="p8_norm.png" height="400">
+    <img src="p8p_norm.png" height="400">
+    <p>
+      No estamos nada mal, lo nuestro es casi igual de cerca a normalidad
+      que los datos originalmente generados.  Supongamos que la mediana de
+      los tama&ntilde;os iniciales corresponde al <em>tama&ntilde;o
+	cr&iacute;tico</em> $c$: c&uacute;mulos menores a $c$ solamente
+      pueden pegarse uno al otro y quedarse como son, pero tama&ntilde;os
+      $\geq c$ pueden adem&aacute;s fragmentarse. La fragmentaci&oacute;n
+      la vamos a discretizar de tal forma que si un c&uacute;mulo se
+      rompe, siempre resulta en dos pedazos no vac&iacute;os, cuyos
+      tama&ntilde;os se determinan uniformemente al azar.
+    </p>
+    <p>
+      Para mayor realismo, no vamos a tratar a $c$ como un l&iacute;mite
+      fijo, sino m&aacute;s bien una frontera difusa donde el
+      comportamiento cambia.  Modelamos la probabilidad que un
+      c&uacute;mulo de tama&ntilde;o $\geq c$ tenga una probabilidad de
+      rotura que depende de la cantidad de part&iacute;culas presentes con
+      una curva sigmoidal: queremos que la probabilidad sea casi cero para
+      c&uacute;mulos peque&ntilde;os, pero casi uno a c&uacute;mulos
+      grandes.
+    </p>
+    <ul>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/fragmentation.R">Fragmentaci&oacute;n en R</a></li>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/fragmentation.py">Fragmentaci&oacute;n en Python</a></li>
+    </ul>
+    <img src="p8_sigmoid.png" height="350">
+    <img src="p8p_sigmoid.png" height="350">
+    <p>
+      Para la probabilidad de que un c&uacute;mulo con menos de $c$ part&iacute;culas
+      quiere unirse con otro, vamos a tambi&eacute;n usar una curva, pero esta
+      vez de la distribuci&oacute;n exponencial, para que c&uacute;mulos muy peque&ntilde;os
+      quieran juntarse con muchas ganas, pero que les de m&aacute;s hueva cuando
+      son de tama&ntilde;os mayores. Para lograr esto, jugamos con una distribuci&oacute;n
+      exponencial en el mismo esp&iacute;ritu que le obligamos a la funci&oacute;n
+      sigmoidal a nuestra forma deseada.
+    </p>
+    <ul>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/aggregation.R">Agregaci&oacute;n en R</a></li>
+      <li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/aggregation.py">Agregaci&oacute;n en Python</a></li>
+    </ul>
+    <img src="p8_expvar.png" height="350">
+    <img src="p8p_expvar.png" height="350">
+    <p>
+      Ahora vamos a convertir nuestra poblaci&oacute;n de c&uacute;mulos
+      en una tabla de frecuencias para saber cu&aacute;ntos hay de cada
+      tama&ntilde;o. Esto nos libera de tener que lidiar con los
+      c&uacute;mulos individuales, ya que pueden llegar a ser muchos de un
+      mismo tama&ntilde;o. Esto es t&iacute;pico en los
+      llamados <em>modelos de urnas</em>, donde nos importa cu&aacute;ntos
+      hay de algo, pero no su trato a nivel individual.
+    </p>
+    <p>
+      Nuestra simulaci&oacute;n avanzar&aacute; por dos fases en cada iteraci&oacute;n. Primero
+      todos aquellos c&uacute;mulos que quieren fragmentarse, hacen
+      eso. Implementamos esto primero sin preocuparnos del resto.
+      <ul>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/onlyFrag.R">C&oacute;digo en R</a></li>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/onlyFrag.py">C&oacute;digo en Python</a></li>
+      </ul>
+    </p>
+    <img height="300" src="p8r.gif">
+    <img height="300" src="p8pr.gif">
+    <p>
+      Luego, con los c&uacute;mulos existentes despu&eacute;s de esta
+      primera fase, los que quieran unirse, se apuntan para uniones. Luego
+      se forman pares uniformemente al azar entre los que se
+      quer&iacute;an unir; es como suponer que estos c&uacute;mulos no
+      vivan en ning&uacute;n espacio f&iacute;sico sino son igual de
+      probables de unirse con todos los dem&aacute;s. Mejor implementamos
+      primero las uniones sin las roturas para poder verificar que todo
+      est&eacute; funcionando como queremos.
+      <ul>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/onlyAggr.R">C&oacute;digo en R</a></li>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/onlyAggr.py">C&oacute;digo en Python</a></li>
+      </ul>
+    </p>  
+    <img height="300" src="p8u.gif">
+    <img height="300" src="p8pu.gif">
+    <p>
+      Pinta que van creciendo como deben. Vamos a juntarlo todo ahora y
+      hacer un poco m&aacute;s eficiente lo de urnas y adem&aacute;s
+      agregar validaciones para estar seguros que no haya algo raro como
+      ganancia o p&eacute;rdida de part&iacute;culas o hasta
+      c&uacute;mulos vac&iacute;os.
+      <ul>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/aggrFrag.R">Combinaci&oacute;n de los fen&oacute;menos en R</a></li>
+	<li><a href="https://github.com/satuelisa/Simulation/blob/master/UrnModel/aggrFrag.py">Combinaci&oacute;n de los fen&oacute;menos en Python</a></li>
+      </ul>
+    </p>
+    <img height="350" src="p8.gif">
+    <img height="350" src="p8p.gif">
+    <h3>Tarea 8</h3>
+    <p>
+      Supongamos que c&uacute;mulos con $c$ o m&aacute;s
+      part&iacute;culas (haciendo referencia al tama&ntilde;o
+      cr&iacute;tico <code>c</code>) son suficientemente grandes para
+      filtrar. Grafica para $n = 100000$ con $k \in \{100, 200, 400\}$
+      en cada iteraci&oacute;n $t$ el porcentaje de las
+      part&iacute;culas que se lograr&iacute;a filtrar si el filtrado
+      se realize finalizando esa iteraci&oacute;n.
+    </p>
+    <p>
+      Como el primer reto, determina si alg&uacute;n intervalo de iteraciones
+      en el que el filtrado alcance un &oacute;ptimo. Realiza r&eacute;plicas para
+      determinar si el momento en el cual se alcanza el m&aacute;ximo tiene
+      un comportamiento sistem&aacute;tico. Incluye visualizaciones para
+      justificar las conclusiones.
+    </p>
+    <p>
+      Como un segundo reto, determina c&oacute;mo los resultados de la
+      tarea y del primer reto dependen del valor de
+      $c$. &iquest;Qu&eacute; todo cambia y c&oacute;mo si $c$ ya no
+      se asigna como la mediana inicial sino a un valor menor o mayor?
+    </p>
+    <div>
+      <center>
+	Actualizado el 13 de octubre del 2021.<br>
+	<code>https://satuelisa.github.io/p8.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

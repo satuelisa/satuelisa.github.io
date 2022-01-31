@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>P10 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+    
+<h2><a name="p10">Pr&aacute;ctica 10: algoritmo gen&eacute;tico</a></h2>
+<p>
+El <en>problema de la mochila</em> (ingl&eacute;s: knapsack) es un problema
+cl&aacute;sico de optimizaci&oacute;n, particularmente de programaci&oacute;n entera, donde
+la tarea consiste en seleccionar un subconjunto de objetos de tal
+forma que (i) no se exceda la <strong>capacidad</strong> de la mochila
+en t&eacute;rminos de la suma de los pesos de los objetos incluidos, y que
+(ii) el valor total de los objetos incluidos sea lo m&aacute;ximo
+posible.
+  Este problema es pseudo-polinomial ya que existe un algoritmo de
+  tabulaci&oacute;n que determina la combinaci&oacute;n &oacute;ptima.
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/knapsack.R">C&oacute;digo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/knapsack.py">C&oacute;digo en Python</a></li>
+  </ul>
+</p>
+<p>
+Aunque el algoritmo pseudo-polinomial sirve solamente para pesos
+enteros, nos servir&aacute; para esta d&eacute;cima pr&aacute;ctica, donde probamos la
+implementaci&oacute;n de un <em>algoritmo gen&eacute;tico</em> en R de manera
+paralela. Los algoritmos gen&eacute;ticos se suelen utilizar en casos donde
+no existe ning&uacute;n algoritmo exacto eficiente, pero para fines de
+aprendizaje, nos conviene comparar qu&eacute; tan cerca a la soluci&oacute;n &oacute;ptima
+(que nos da el algoritmo pseudo-polinomial) logramos llegar con un
+algoritmo gen&eacute;tico.
+</p>
+<p>
+  Un algoritmo gen&eacute;tico representa posibles soluciones a un problema
+  en t&eacute;rminos de un <em>genoma</em> que en nuestro caso va a ser un
+  vector de verdades y falsos, indicando cu&aacute;les objetos vamos a
+  incluir en la mochila (<code>TRUE</code> o 1 significa que llevamos el
+  objeto, <code>FALSE</code> o 0 que lo descartamos de la
+  selecci&oacute;n).
+</p>
+<p>
+  Preparamos algunas subrutinas necesarias:
+  <ul>
+    <li>verificar si una selecci&oacute;n particular respeta la capacidad de
+      la mochila o no;</li>
+    <li>calcular el valor total de los objetos incluidos;</li>
+    <li>generar una selecci&oacute;n uniformemente al azar;</li>
+    <li>generar pesos enteros y ordenados al azar (normalmente distribuidos);</li>
+    <li>asignar a cada objeto un valor al azar (normalmente distribuidos alrededor
+      de los pesos pero con desviaci&oacute;n est&aacute;ndar uniformemente
+      distribuidos).</li>
+  </ul>
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/routines.R">Rutinas auxiliares en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/routines.py">Rutinas auxiliares en Python</a></li>
+    </ul>
+</p>
+  <p>
+  <code>
+    $  Rscript routines.R<br>
+    [1] 15 23 27 29 36 40 41 44 44 45 46 48 49 49 59 64 65 66 70 80<br>
+    [1] 500.0000 565.8155 595.6039 606.7578 653.5830 689.4366 688.2500 718.8454<br>
+    [9] 716.3356 725.7387 732.0330 755.0191 761.7387 754.5578 833.7630 864.7008<br>
+    [17] 878.2229 879.4487 911.7800 990.0000<br>
+    [1] 10421.14<br>
+    [1] "TRUE 5827.05816804217"<br>
+    [1] "TRUE 7287.2880398718"<br>
+    [1] "TRUE 6129.96921164227"<br>
+    [1] "TRUE 7947.4056911994"<br>
+    [1] "TRUE 8010.91391823523"<br>
+    [1] "TRUE 7864.56460228148"<br>
+    [1] "TRUE 7108.3066366507"<br>
+    [1] "TRUE 4847.18861936242"<br>
+    [1] "TRUE 8424.87208116003"<br>
+    [1] "TRUE 6940.32805759327"
+  </code>
+  </p>
+<p>
+  <code>
+    $ python3 routines.py<br>
+    [50. 49. 47. 49. 49. 16. 22. 15. 15. 52. 37. 32. 66. 22. 32. 44. 37. 52.<br>
+    31. 80.]<br>
+    [281.11257821 270.85437302 255.80133135 270.33844709 267.63121476<br>
+    21.28334711  67.87594539  10.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20.12644991 285.71796637<br>
+    180.87846785 147.38710607 391.84604387  66.61630247 146.15596017<br>
+    233.74112386 184.05576428 289.31222177 136.57993965 500.        ]<br>
+    2908.0244399910753<br>
+    (True, 2672.3932514349176)<br>
+    (True, 1608.6502651494477)<br>
+    (True, 1650.2502962183528)<br>
+    (True, 2079.6330478001755)<br>
+    (True, 1206.6401150257211)<br>
+    (True, 2702.6407059951953)<br>
+    (True, 861.5166211722008)<br>
+    (True, 2175.155026453038)<br>
+    (False, 2640.910694636594)<br>
+    (True, 1409.797104280716)<br>
+  </code>
+  </p>
+<p>
+  Es f&aacute;cil de ver que las soluciones generadas al azar no son tan
+  buenas como la soluci&oacute;n &oacute;ptima. Algoritmos gen&eacute;ticos buscan imitar
+  la evoluci&oacute;n permitiendo que las soluciones aleatorias de la
+  poblaci&oacute;n inicial puedan crear nuevas soluciones con dos mecanismos
+  (1) <strong>reproducci&oacute;n</strong> donde dos soluciones $x$ y $y$
+  intercambian pedazos uno con otro, creando dos nuevas soluciones,
+  una con el inicio de $x$ y el final de $y$ y la otra siendo vice
+  versa, el punto de corte siendo seleccionado uniformemente al azar;
+  (2) <strong>mutaci&oacute;n</strong> donde una soluci&oacute;n crea una r&eacute;plica de
+  s&iacute; misma, cambiando uno de sus valores. Agregamos rutinas para la
+  creaci&oacute;n de una poblaci&oacute;n inicial y estos dos pasos evolutivos.
+</p>
+<p>
+  El algoritmo va a ejecutar una cantidad predeterminada de
+  generaciones, primero mutando, luego reproduciendo, y al final
+  cortando el tama&ntilde;o de la poblaci&oacute;n a la misma que
+  estuvo al inicio de la iteraci&oacute;n, dando preferencia a las
+  soluciones factibles. La mejor soluci&oacute;n factible presente en
+  la poblaci&oacute;n final es la salida del algoritmo.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/basicGA.R">C&oacute;digo en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/basicGA.py">C&oacute;digo en Python</a></li>
+  </ul>
+<p>
+  <code>
+    $ Rscript basicGA.R<br>
+    [1] "9590.98364387775 0.0402634096132616"
+  </code>
+</p>
+<p>
+  <code>
+    $ python3 basicGA.py<br>
+    2869.5397841013387 0.017817446566145305
+  </code>
+</p>
+    
+<p>
+  Pinta bien; probemos con una instancia m&aacute;s grande y
+  visualizamos las mejoras que se logran en la funci&oacute;n
+  objetivo.
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/perfGA.R">Versi&oacute;n mejorada en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/GeneticAlgorithm/perfGA.py">Versi&oacute;n mejorada en Python</a></li>
+    </ul>
+  </p>
+<img width="600" src="p10.png"><br>
+<img width="600" src="p10p.png">
+<p>
+  <code>
+    $  Rscript perfGA.R<br>
+    [1] "25425.7647065177 0.0308751048077125"
+   </code>
+</p>
+<p>
+  <code>
+$ python3 perfGA.py<br>
+7472.26778118496 0.013695701895394378
+      </code>
+</p>
+<p>
+Ah&iacute; va, pero no le alcanza al &oacute;ptimo. Adem&aacute;s tarda bastante en
+ejecutarse. Estas broncas se atender&aacute;n en la tarea.
+</p>  
+<h3>Tarea 10</h3>
+<p>
+  Genere tres instancias con tres distintas reglas (nueve en total):
+  <ul>
+    <li>el peso y el valor de cada objeto se generan
+      <em>independientemente</em> con una distribuci&oacute;n
+      uniforme,</li>
+    <li>el valor de cada objeto se generan independientemente con una
+      distribuci&oacute;n exponencial y su peso es
+      <em>inversamente correlacionado</em> con el valor,</li>
+    <li>el peso de cada objeto se generan independientemente con una
+      distribuci&oacute;n normal y su valor es (positivamente)
+      correlacionado con el <em>cuadrado</em> del peso, con un ruido
+      normalmente distribuido de baja magnitud.</li>
+  </ul>
+  Determina para cada uno de los tres casos si variar la probabilidad
+  de mutaci&oacute;n, la cantidad de cruzamientos y el tama&ntilde;o
+  de la poblaci&oacute;n (dos o tres niveles basta) tienen un efecto
+  (solo o en combinaci&oacute;n) estad&iacute;sticamente significativo
+  (usando por lo menos tres r&eacute;plicas por instancia) en la
+  calidad de resultado, manteniendo el <strong>tiempo de
+  ejecuci&oacute;n</strong> fijo.
+</p>
+<p>
+  <p>
+  Como un primer reto, cambia la selecci&oacute;n de mutaci&oacute;n y
+  de los padres para reproducci&oacute;n a que use <em>seleccion de
+  ruleta</em>: cada soluci&oacute;n se selecciona como padre con una
+  probabilidad que es linealmente proporcional a su valor de
+  funci&oacute;n objetivo y a su factibilidad, combinando los dos a
+  alguna funci&oacute;n que parezca conveniente e inversamente
+  proporcional a alguna combinaci&oacute;n de factibilidad y objectivo
+  para la mutaci&oacute;n (recomiendo aprovechar el
+  par&aacute;metro <code>prob</code> en <code>sample</code>).
+</p>
+  Aplicar la selecci&oacute;n de ruleta a las fases
+  de cruzamiento y de supervivencia: en vez de quedarnos con las
+  mejores soluciones, cada soluci&oacute;n tiene una probabolidad de
+  entrar a la siguiente generaci&oacute;n que es proporcional a su
+  valor de la funci&oacute;n objetivo, incorporando el s&iacute; o no
+  es factible la soluci&oacute;n en cuesti&oacute;n, permitiendo que
+  los $k$ mejores entre las factibles entren siempre (donde $k$ es un
+  par&aacute;metro). Estudia nuevamente el efecto de este cambio en la
+  calidad de la soluci&oacute;n en los tres casos.
+</p>
+<p>
+  Como un segundo reto, paraleliza el algoritmo gen&eacute;tico y estudia los efectos en su
+  tiempo de ejecuci&oacute;n con pruebas estad&iacute;sticas y
+  visualizaciones, variando el n&uacute;mero de objetos en la
+  instancia.
+</p>
+    <div>
+      <center>
+	Actualizado el 27 de octubre del 2021.<br>
+	<code>https://satuelisa.github.io/p10.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

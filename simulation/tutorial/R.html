@@ -1,0 +1,724 @@
+<!doctype HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de R &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="../paralelo.css">
+
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shAutoloader.js'></script>
+  </head>
+
+    <body>
+    <p align="right">
+      <a href="../index.html">Simulaci&oacute;n</a>
+    </p>
+
+  
+    <h2><a name="R">Uso b&aacute;sico de R</a></h2>
+    <p>
+      Esta secci&oacute;n sirve como repaso o introducci&oacute;n,
+      por lo cual participantes que ya tienen familiaridad en R y lo
+      han utilizado recientemente no necesitan revisar esta parte sino
+      pueden proceder directamente a la secci&oacute;n
+      de <a href="#par">paralelismo</a>.
+    </p>
+    <h3>Instalaci&oacute;n</h3>
+    <p>
+      R es una herramienta muy &uacute;til y vers&aacute;til para el
+      c&oacute;mputo cient&iacute;fico, en especial todo lo relacionado a
+      probabilidad y estad&iacute;stica. Funciona en Windows, Linux & Mac
+      OS. Est&aacute; disponible en l&iacute;nea de forma gratuita
+      en <a href="http://www.r-project.org/">www.r-project.org</a>.
+    </p>
+    <p>
+      El material de estudio en esta p&aacute;gina incluye las
+      instrucciones requeridas para diferentes operaciones necesarias.
+      Conviene hacer esta ventana de navegador delgada para que ocupe
+      la mitad de la pantalla por m&aacute;ximo y colocar a su lado
+      otra ventana que tenga R ejecut&aacute;ndose.
+    </p>
+    <p> Cada c&oacute;digo de R (que se muestra en esta p&aacute;gina
+      en letra azul) conviene copiarlo a R y probarlo uno mismo,
+      modificando y explorando hasta que quede claro qu&eacute; y por
+      qu&eacute; est&aacute; sucediendo en la herramienta.
+    </p>
+    <p>
+      Al salir de R (con la instrucci&oacute;n <code>quit()</code>, la
+      herramienta pregunta si se desea guardar la sesi&oacute;n
+      (dice <code>Save workspace image?  [y/n/c]:</code>. Si se guarda
+      (presionando la tecla "y" por "yes"), las mismas variables ya
+      definidas seguir&aacute;n disponibles la pr&oacute;xima vez que
+      R se inicia desde esa misma carpeta (mientras "c" significa
+      "cancelar y no salir" y "n" significa "salir sin guardar"). Lo
+      de guardar datos de sesiones es pr&aacute;ctico durante el curso
+      ya que algunos datos se usan en m&uacute;ltiples apartados y
+      as&iacute; no se tendr&aacute;n que redefinir entre sesiones de trabajo.
+    </p>
+
+    <p>
+      La asignaci&oacute;n de <em>valores</em>
+      a <strong>variables</strong> en R y la consulta de ellas se
+      realiza de la siguiente forma:
+    </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">X &lt;- 3</span><br>
+	&gt; <span style="color:green">X</span><br>
+	[1] 3<br>
+	&gt; <span style="color:green">X = 4</span><br>
+	&gt; X<br>
+	[1] 4<br>
+	&gt; <span style="color:green">3 -&gt; X</span><br>
+	&gt; <span style="color:green">X</span><br>
+	[1] 3<br>
+      </code>
+    </p>
+    <p>
+      El texto de arriba incluye la <em>salida</em> de R, por lo cual
+      incluye los s&iacute;mbolos ">" que marcan los inicios de
+      instrucciones en R. <strong>No se teclean esos
+      s&iacute;mbolos.</strong> El usuario escribe lo de <code>X &lt;-
+      3</code> mientras R ya produjo el ">" para indicar que
+      est&aacute; listo para recibir instrucciones. Solamente se ocupa
+      escribir la parte en letra azul.
+    </p>
+    <p>
+      La creaci&oacute;n de un <em>vector</em> en R y la consulta de
+      ello se realiza de la siguiente forma:
+    <p>
+      <code>
+	&gt; <span style="color:green">datos &lt;- c(4, 2, 4, 5)</span><br>
+	&gt; <span style="color:green">n &lt;- length(datos)</span><br>
+	&gt; <span style="color:green">datos</span><br>
+	[1] 4 2 4 5<br>
+	&gt; <span style="color:green">n</span><br>
+	[1] 4<br>
+	&gt; <span style="color:green">min(datos)</span><br>
+	[1] 2<br>
+	&gt; <span style="color:green">max(datos)</span><br>
+	[1] 5<br>
+	&gt; <span style="color:green">sum(datos)</span><br>
+	[1] 15<br>
+	&gt; <span style="color:green">ord &lt;- sort(datos)</span><br>
+	&gt; <span style="color:green">ord[1]</span><br>
+	[1] 2<br>
+	&gt; <span style="color:green">ord[n]</span><br>
+	[1] 5
+      </code>
+    </p>
+    <p>
+      Otras rutinas &uacute;tiles para analizar vectores son las siguientes:
+    </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">data &lt;- c(1, 4, 2, 4, 2, 5, 6, 7, 4, 76, 3, 2, 5, 6, 7)</span><br>
+	&gt; <span style="color:green">mean(data)</span><br>
+	[1] 8.933333<br>
+	&gt; <span style="color:green">median(data)</span><br>
+	[1] 4<br>
+	&gt; <span style="color:green">summary(data)</span><br>
+	Min. 1st Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean 3rd Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.<br>
+	1.000&nbsp;&nbsp;&nbsp;2.500&nbsp;&nbsp;&nbsp;4.000&nbsp;&nbsp;&nbsp;8.933&nbsp;&nbsp;&nbsp;6.000&nbsp;&nbsp;76.000<br>
+	&gt; <span style="color:green">quantile(data, 0.9)</span><br>
+	90%<br>
+	7<br>
+	&gt; <span style="color:green">table(data)</span><br>
+	data<br>
+	 1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;7 76<br>
+	 1&nbsp;&nbsp;3&nbsp;&nbsp;1&nbsp;&nbsp;3&nbsp;&nbsp;2&nbsp;&nbsp;2&nbsp;&nbsp;2&nbsp;&nbsp;1<br>
+	&gt; <span style="color:green">var(data)</span><br>
+	[1] 347.781<br>
+	&gt; <span style="color:green">sd(data)</span><br>
+	[1] 18.64889<br>
+	&gt; <span style="color:green">otra &lt;- c(1, 5, 3, 5, 3, 65, 4, 6, 3, 6, 3, 56, 4)</span><br>
+	&gt; <span style="color:green">length(otra)</span><br>
+	[1] 13<br>
+	&gt; <span style="color:green">length(data)</span><br>
+	[1] 15<br>
+	&gt; <span style="color:green">otra &lt;- c(otra, 2, 4)</span><br>
+	> <span style="color:green">cor(data, otra)</span><br>
+	[1] -0.08119101
+	</code>
+      </p>
+    <p>
+      Para crear una <strong>matr&iacute;z</strong>, se ocupa la
+      rutina <code>matrix</code>. Toma como argumentos los elementos
+      por acomodar por columnas (la opci&oacute;n <code>byrow=TRUE</code>
+      cambia el orden de llenado) y las dimensiones. Por
+      ejemplo, <code>M &lt;- matrix(rep(0, 9), nrow=3, ncol=3)</code>
+      produce una matriz tres por tres con puros ceros:
+    </p>
+    <p>
+      <code>
+&gt; <span style="color:green">M &lt;- matrix(rep(0, 9), nrow=3, ncol=3)</span><br>
+&gt; <span style="color:green">M</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[,1] [,2] [,3]<br>
+[1,]&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+[2,]&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+[3,]&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0
+      </code>
+    </p>
+    <p>
+      Para comparaciones entre vectores, las
+      subrutinas <code>all</code> y <code>any</code> sirven para
+      determinar si todos o algunos de los elementos son iguales:
+    </p>
+    <p>
+      <code>
+&gt; <span style="color:green">a &lt;- c(1, 2, 3)</span><br>
+&gt; <span style="color:green">b &lt;- c(1, 2, 4)</span><br>
+&gt; <span style="color:green">a == b</span><br>
+[1]  TRUE  TRUE FALSE<br>
+&gt; <span style="color:green">all(a == b)</span><br>
+[1] FALSE<br>
+&gt; <span style="color:green">any(a == b)</span><br>
+[1] TRUE
+</p>
+
+      </code>
+    </p>
+<p>
+La aritm&eacute;tica funciona en grandes rasgos como uno esperar&iacute;a, con el
+detalle que las operaciones vectoriales y matriciales de &aacute;lgebra
+lineal contienen s&iacute;mbolos de porcentaje mientras los que operan por
+elementos tienen la notaci&oacute;n est&aacute;ndar:
+  </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">a &lt;- 3</span><br>
+	&gt; <span style="color:green">b &lt;- 4</span><br>
+	&gt; <span style="color:green">c &lt;- c(5, 6, 7)</span><br>
+	&gt; <span style="color:green">d &lt;- c(8, 10, 12)</span><br>
+	&gt; <span style="color:green">a + b</span><br>
+	[1] 7<br>
+	&gt; <span style="color:green">a - b</span><br>
+	[1] -1<br>
+	&gt; <span style="color:green">a * b</span><br>
+	[1] 12<br>
+	&gt; <span style="color:green">a / b</span><br>
+	[1] 0.75<br>
+	&gt; <span style="color:green">a^b</span><br>
+	[1] 81<br>
+	&gt; <span style="color:green">b^a</span><br>
+	[1] 64<br>
+	&gt; <span style="color:green">a**b</span><br>
+	[1] 81<br>
+	&gt; <span style="color:green">a + c</span><br>
+	[1]&nbsp;&nbsp;8&nbsp;&nbsp;9 10<br>
+	&gt; <span style="color:green">c + d</span><br>
+	[1] 13 16 19<br>
+	&gt; <span style="color:green">c * d</span><br>
+	[1] 40 60 84<br>
+	&gt; <span style="color:green">c %*% d</span><br>
+	[,1]<br>
+	[1,]&nbsp;&nbsp;184<br>
+	&gt; <span style="color:green">e &lt;- matrix(c(1, 2, 3, 4), nrow=2)</span><br>
+	&gt; <span style="color:green">e</span><br>
+	[,1] [,2]<br>
+	[1,]&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;3<br>
+	[2,]&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;4<br>
+	&gt; <span style="color:green">f &lt;- matrix(c(2, 4, 6, 8), nrow=2)</span><br>
+	&gt; <span style="color:green">f</span><br>
+	[,1] [,2]<br>
+	[1,]&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;6<br>
+	[2,]&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;8<br>
+	&gt; <span style="color:green">e + f</span><br>
+	[,1] [,2]<br>
+	[1,]&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;9<br>
+	[2,]&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;12<br>
+	&gt; <span style="color:green">e - f</span><br>
+	[,1] [,2]<br>
+	[1,]&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;-3<br>
+	[2,]&nbsp;&nbsp;&nbsp;-2&nbsp;&nbsp;&nbsp;-4<br>
+	&gt; <span style="color:green">e * f</span><br>
+	[,1] [,2]<br>
+	[1,]&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;18<br>
+	[2,]&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;32<br>
+	&gt; <span style="color:green">e %*% f</span><br>
+	[,1] [,2]<br>
+	[1,]&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;30<br>
+	[2,]&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;44
+	</code>
+      </p>
+    <p>
+      El redondeo de enteros a decimales se hace con las tres reglas:
+      hacia abajo con la funci&oacute;n piso <code>floor</code>, hacia arriba
+      con la funci&oacute;n techo <code>ceiling</code> y al entero m&aacute;s
+      cercano con <code>round</code>. La divisi&oacute;n entera se logra
+      con <code>%/%</code> y el residuo (tambi&eacute;n
+      llamado <em>modulo</em>, que en R funciona hasta con valores
+      decimales) con <code>%%</code>:
+    </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">d &lt;- 7.3</span><br>
+	&gt; <span style="color:green">floor(d)</span><br>
+	[1] 7<br>
+	&gt; <span style="color:green">ceiling(d)</span><br>
+	[1] 8<br>
+	&gt; <span style="color:green">round(d)</span><br>
+	[1] 7<br>
+	&gt; <span style="color:green">d / 2</span><br>
+	[1] 3.65<br>
+	&gt; <span style="color:green">d %/% 2</span><br>
+	[1] 3<br>
+	&gt; <span style="color:green">d %% 2</span><br>
+	[1] 1.3
+      </code>
+    </p>
+    <p>
+      Las funciones matem&aacute;ticas tienen sus nombres
+      t&iacute;picos y est&aacute;n disponibles en R b&aacute;sico sin
+      cargar paquetes adicionales:
+    </p>
+        <p>
+	  <code>
+	    &gt; <span style="color:green">x &lt;- 123.4</span><br>
+	    &gt; <span style="color:green">sqrt(x)</span><br>
+	    [1] 11.10856<br>
+	    &gt; <span style="color:green">exp(x)</span><br>
+	    [1] 3.907861e+53<br>
+	    &gt; <span style="color:green">sin(x)</span><br>
+	    [1] -0.7693905<br>
+	    &gt; <span style="color:green">cos(x)</span><br>
+	    [1] -0.6387787<br>
+	    &gt; <span style="color:green">tan(x)</span><br>
+	    [1] 1.204471<br>
+	    &gt; <span style="color:green">tanh(2.5)</span><br>
+	    [1] 0.9866143<br>
+	    &gt; <span style="color:green">log(x)</span><br>
+	    [1] 4.815431<br>
+	    &gt; <span style="color:green">log(x, 10)</span><br>
+	    [1] 2.091315<br>
+	    &gt; <span style="color:green">log(x, 2)</span><br>
+	    [1] 6.947199
+      </code>
+    </p>
+    <p>
+      Para permutaciones y combinaciones, existen subrutinas para el
+      factorial y la coeficiente binomial:
+    </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">factorial(5)</span><br>
+	[1] 120<br>
+	&gt; <span style="color:green">choose(9, 3)</span><br>
+	[1] 84<br>
+	&gt; <span style="color:green">factorial(9) / (factorial(6) * factorial(3))</span><br>
+	[1] 84
+      </code>
+    </p>
+    Para manipular secuencias, existen las siguientes subrutinas pr&aacute;cticas:
+    <p>
+      <code>
+&gt; <span style="color:green">s &lt;- seq(4, 100, 2)</span><br>
+&gt; <span style="color:green">s</span><br>
+[1]&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;10&nbsp;&nbsp;12&nbsp;&nbsp;14&nbsp;&nbsp;16&nbsp;&nbsp;18&nbsp;&nbsp;20&nbsp;&nbsp;22&nbsp;&nbsp;24&nbsp;&nbsp;26&nbsp;&nbsp;28&nbsp;&nbsp;30&nbsp;&nbsp;32&nbsp;&nbsp;34&nbsp;&nbsp;36&nbsp;&nbsp;38&nbsp;&nbsp;40<br>
+[20]&nbsp;&nbsp;42&nbsp;&nbsp;44&nbsp;&nbsp;46&nbsp;&nbsp;48&nbsp;&nbsp;50&nbsp;&nbsp;52&nbsp;&nbsp;54&nbsp;&nbsp;56&nbsp;&nbsp;58&nbsp;&nbsp;60&nbsp;&nbsp;62&nbsp;&nbsp;64&nbsp;&nbsp;66&nbsp;&nbsp;68&nbsp;&nbsp;70&nbsp;&nbsp;72&nbsp;&nbsp;74&nbsp;&nbsp;76&nbsp;&nbsp;78<br>
+[39]&nbsp;&nbsp;80&nbsp;&nbsp;82&nbsp;&nbsp;84&nbsp;&nbsp;86&nbsp;&nbsp;88&nbsp;&nbsp;90&nbsp;&nbsp;92&nbsp;&nbsp;94&nbsp;&nbsp;96&nbsp;&nbsp;98 100<br>
+&gt; <span style="color:green">r &lt;- rep(13, 20)</span><br>
+&gt; <span style="color:green">r</span><br>
+[1] 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13<br>
+&gt; <span style="color:green">i &lt;- 2:12</span><br>
+&gt; <span style="color:green">i</span><br>
+[1]&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;7&nbsp;&nbsp;8&nbsp;&nbsp;9 10 11 12<br>
+&gt; <span style="color:green">c &lt;- cut(s, breaks=4)</span><br>
+&gt; <span style="color:green">table(c)</span><br>
+c<br>
+(3.9,28]&nbsp;&nbsp;(28,52]&nbsp;&nbsp;(52,76] (76,100]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12<br>
+&gt; <span style="color:green">tail(s)</span><br>
+[1]&nbsp;&nbsp;90&nbsp;&nbsp;92&nbsp;&nbsp;94&nbsp;&nbsp;96&nbsp;&nbsp;98 100<br>
+&gt; <span style="color:green">tail(s, 10)</span><br>
+[1]&nbsp;&nbsp;82&nbsp;&nbsp;84&nbsp;&nbsp;86&nbsp;&nbsp;88&nbsp;&nbsp;90&nbsp;&nbsp;92&nbsp;&nbsp;94&nbsp;&nbsp;96&nbsp;&nbsp;98 100<br>
+&gt; <span style="color:green">head(s)</span><br>
+[1]&nbsp;&nbsp;4&nbsp;&nbsp;6&nbsp;&nbsp;8 10 12 14<br>
+&gt; <span style="color:green">head(s, 8)</span><br>
+[1]&nbsp;&nbsp;4&nbsp;&nbsp;6&nbsp;&nbsp;8 10 12 14 16 18
+</code>
+</p>
+    <p>
+      Para expresiones condicionales, repeticiones, y l&oacute;gica, sirve lo siguiente:
+    </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">x &lt;- 3</span><br>
+	&gt; <span style="color:green">y &lt;- NULL</span><br>
+	&gt; <span style="color:green">if (x &gt; 5) { y &lt;- x * 3 } else { y &lt;- 6 - x }</span><br>
+	&gt; <span style="color:green">y</span><br>
+	[1] 3<br>
+	&gt; <span style="color:green">z &lt;- NULL</span><br>
+	&gt; <span style="color:green">if (x %% 2 == 1 & y %% 2 == 1) { z &lt;- 2 } else { z &lt;- 3 }</span><br>
+	&gt; <span style="color:green">z</span><br>
+	[1] 2<br>
+	&gt; <span style="color:green">if (z != 1) { print("no es uno") }</span><br>
+	[1] "no es uno"<br>
+	&gt; <span style="color:green">if (x == 2 | y == 2 | z == 2) { print("hay un dos") } else { print("no hay un dos") }</span><br>
+	[1] "hay un dos"<br>
+	&gt; <span style="color:green">for (i in 1:5) { print(2**i) }</span><br>
+	[1] 2<br>
+	[1] 4<br>
+	[1] 8<br>
+	[1] 16<br>
+	[1] 32<br>
+	&gt; <span style="color:green">while (x &gt; 0) { print("quito uno"); x &lt;- x - 1 }</span><br>
+	[1] "quito uno"<br>
+	[1] "quito uno"<br>
+	[1] "quito uno"<br>
+	&gt; <span style="color:green">x</span><br>
+	[1] 0
+      </code>
+</p>
+    
+    <h3>Subrutinas</h3>
+    <p>
+      Cuando alg&uacute;n c&aacute;lculo ocupa ser reutilizado en m&uacute;ltiples
+      ocasiones, posiblemente con algunas variaciones, conviene
+      encapsularlo en una subrutina como una <em>funci&oacute;n</em>:
+    </p>
+    <p>
+    <code>nombre &lt;- function(p1, p2, ... ){...;
+      return(resultado)}</code>
+    </p>
+
+       <p>
+      Conviene probar la creaci&oacute;n y llamadas
+      a subrutinas propias &mdash; hay un <a href="">buen tutorial en
+	ingl&eacute;s</a> [<a href="biblio.html#refquick">1</a>].
+       </p>
+       <code>
+	 > <span style="color:green">potdos &lt;- function(x) 2**x</span><br>
+	 > <span style="color:green">potdos(3)</span><br>
+	 [1] 8<br>
+	 > <span style="color:green">eucl &lt;- function(x1, y1, x2, y2) { dx &lt;- x1 - x2; dy &lt;- y1 - y2; return(sqrt(dx^2 + dy^2)) }</span><br>
+	 > <span style="color:green">eucl(1, 2, 3, 4)</span><br>
+	 [1] 2.828427
+       </code>
+</p>
+<p>
+  Adem&aacute;s del <code>;</code> se puede utilizar un salto de l&iacute;nea para
+  dividir el contenido de un bloque de instrucciones en una subrutina
+  o dentro de una expresi&oacute;n condicional tipo <code>if</code> o un
+  ciclo <code>for</code> o <code>while</code>.</p>
+      <h3>N&uacute;meros pseudoaleatorios</h3>
+        <p>
+	  <em>Generaci&oacute;n pseudoaleatoria</em> refiere a la
+	  creaci&oacute;n de datos que parecen ser al azar.  Verdaderamente no
+	  lo son si se generan de forma mec&aacute;nica/aritm&eacute;tica.  El
+	  sitio web <a href="http://random.org">random.org</a> proporciona datos
+	  que est&aacute;n basados en bits generados por ruido
+	  atmosf&eacute;rico que son "m&aacute;s aleatorios" que cualquier cosa
+	  que se genere de forma mec&aacute;nica.
+	</p>
+      <p>
+	Para n&uacute;meros pseudoaleatorios uniformemente distribuidos, se
+	usa <code>runif</code>, con par&aacute;metros opciones en el caso que
+	no se quiera que sean entre cero y uno sino de otro rango de
+	valores.  Para crear valores de verdad o falso, 50&ndash;50,
+	por ejemplo, se puede condicionar al valor uniforme. La
+	subrutina <code>sample</code> sirve para muestreo y
+	permutaciones.
+      <p>
+<code>
+&gt; <span style="color:green">runif(1)</span><br>
+[1] 0.8386876<br>
+&gt; <span style="color:green">runif(5)</span><br>
+[1] 0.7410066 0.5553238 0.8469588 0.4764683 0.7612842<br>
+&gt; <span style="color:green">runif(2, 4, 10)</span><br>
+[1] 8.608724 7.326382<br>
+&gt; <span style="color:green">runif(1) < 0.5</span><br>
+[1] TRUE<br>
+&gt; <span style="color:green">runif(1) < 0.5</span><br>
+[1] FALSE<br>
+&gt; <span style="color:green">runif(1) < 0.5</span><br>
+[1] TRUE<br>
+&gt; <span style="color:green">runif(5) < 0.5</span><br>
+[1]  TRUE  TRUE FALSE FALSE  TRUE<br>
+&gt; <span style="color:green">sample(1:10, 3)</span><br>
+[1] 7 4 3<br>
+&gt; <span style="color:green">sample(1:10, 3)</span><br>
+[1] 3 6 1<br>
+&gt; <span style="color:green">sample(1:10)</span><br>
+[1]  5  4  3  1  9  6 10  2  8  7<br>
+&gt; <span style="color:green">sample(c(2, 4, 6), 10, prob=c(0.1, 0.2, 0.7), replace=TRUE)</span><br>
+[1] 6 6 6 6 2 2 6 2 4 6
+</code>
+      </p>
+<p>R es capaz de producir n&uacute;meros pseudoaleatorios en una gran gama de
+distributiones
+(c.f. <a href="https://cran.r-project.org/web/views/Distributions.html">cat&aacute;logo</a>),
+adem&aacute;s de contar con las funciones de densidad y cumulativas de las
+distribuciones. Ejemplos &uacute;tiles incluyen las distribuci&oacute;n normal y
+  exponencial.
+</p>
+<p>
+<code>
+&gt; <span style="color:green">rnorm(10)</span> <span style="color:gray"># media cero, desv. est. 1</span><br>
+[1] -0.82017580 -0.17005184  0.19908914  0.53885462 -0.13823311  0.08619352<br>
+[7] -0.55169478  0.43233720  1.64800753 -1.30523199<br>
+&gt; <span style="color:green">rnorm(10, mean=5, sd=1.3)</span><br>
+[1] 3.463890 3.637588 3.634250 6.278641 6.297803 5.133415 6.750187 4.553651<br>
+[9] 4.419553 3.758398<br>
+&gt; <span style="color:green">rexp(2)</span><br>
+[1] 2.1036209 0.3027257<br>
+&gt; <span style="color:green">rexp(2, rate=3)</span><br>
+[1] 0.1174889 0.3573015
+</code>
+</p>
+    <h3>Conjuntos de datos</h3>
+<p>
+  Para traer datos a R, lo m&aacute;s conveniente es utilizar archivos de
+  texto, o importar desde hojas de c&aacute;lculo en el formato CSV (comma
+  separated values), aunque en R se puede utilizar cualquier
+  separador.
+</p>
+<p>
+  Para probar, colocamos los siguientes datos en un archivo
+  llamado <code>ejemplo.csv</code> con un editor de texto b&aacute;sico tipo
+  notepad o emacs:
+</p>
+<p>
+  <code>
+<span style="color:green">Nombre Estatura Gatos Perros<br>
+Elisa 184 2 0<br>
+Gonzalo 177 0 1<br>
+Jorge 180 1 1<br>
+Mariana 158 0 0<br>
+Carlos 164 1 0</span>
+</code>
+</p>
+<p>
+<code>
+&gt; <span style="color:green">datos &lt;- read.csv("ejemplo.csv", header=TRUE, sep=" ", stringsAsFactors=FALSE)</span><br>
+&gt; <span style="color:green">datos</span><br>
+&nbsp;&nbsp;&nbsp;Nombre Estatura Gatos Perros<br>
+1&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+2 Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+4 Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+5&nbsp;&nbsp;Carlos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&gt; <span style="color:green">datos$Estatura &lt;- as.numeric(datos$Estatura)</span><br>
+&gt; <span style="color:green">datos$Gatos &lt;- as.numeric(datos$Gatos)</span><br>
+&gt; <span style="color:green">datos$Perros &lt;- as.numeric(datos$Perros)</span><br>
+&gt; <span style="color:green">sum(datos$Gatos)</span><br>
+[1] 4<br>
+&gt; <span style="color:green">sum(datos$Gatos) > sum(datos$Perros)</span><br>
+[1] TRUE<br>
+&gt; <span style="color:green">datos$Gatos == datos$Perros</span><br>
+[1] FALSE FALSE&nbsp;&nbsp;TRUE&nbsp;&nbsp;TRUE FALSE<br>
+&gt; <span style="color:green">datos[datos$Nombre == "Elisa",]</span><br>
+&nbsp;&nbsp;Nombre Estatura Gatos Perros<br>
+1&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&gt; <span style="color:green">prom &lt;- mean(datos$Estatura)</span><br>
+&gt; <span style="color:green">datos[datos$Estatura > prom,]</span><br>
+&nbsp;&nbsp;&nbsp;Nombre Estatura Gatos Perros<br>
+1&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+2 Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+&gt; <span style="color:green">datos[datos$Estatura > prom,]$Gatos</span><br>
+[1] 2 0 1<br>
+&gt; <span style="color:green">datos &lt;- rbind(datos, c("Tania", 175, 0, 2))</span><br>
+&gt; <span style="color:green">datos</span><br>
+&nbsp;&nbsp;&nbsp;Nombre Estatura Gatos Perros<br>
+1&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+2 Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+4 Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+5&nbsp;&nbsp;Carlos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+6&nbsp;&nbsp;&nbsp;Tania&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br>
+&gt; <span style="color:green">datos$Estudiante &lt;- c(FALSE, TRUE, TRUE, TRUE, FALSE, FALSE)</span><br>
+&gt; <span style="color:green">datos</span><br>
+&nbsp;&nbsp;&nbsp;Nombre Estatura Gatos Perros Estudiante<br>
+1&nbsp;&nbsp;&nbsp;Elisa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;184&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FALSE<br>
+2 Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+3&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+4 Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+5&nbsp;&nbsp;Carlos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FALSE<br>
+6&nbsp;&nbsp;&nbsp;Tania&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FALSE<br>
+&gt; <span style="color:green">datos[3,]</span><br>
+&nbsp;&nbsp;Nombre Estatura Gatos Perros Estudiante<br>
+3&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+&gt; <span style="color:green">datos[2:4,]</span><br>
+&nbsp;&nbsp;&nbsp;Nombre Estatura Gatos Perros Estudiante<br>
+2 Gonzalo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+3&nbsp;&nbsp;&nbsp;Jorge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+4 Mariana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE<br>
+&gt; <span style="color:green">datos[2:4,3]</span><br>
+[1] 0 1 0<br>
+&gt; <span style="color:green">datos$Estudiante &lt;- as.factor(datos$Estudiante)</span><br>
+&gt; <span style="color:green">datos$Estudiante</span><br>
+[1] FALSE TRUE&nbsp;&nbsp;TRUE&nbsp;&nbsp;TRUE&nbsp;&nbsp;FALSE FALSE<br>
+Levels: FALSE TRUE
+</code>
+</p>  
+    <h3>Gr&aacute;ficas sencillas</h3>
+<p>
+  R contiene bastantes funcionalidades ya en su forma b&aacute;sica para
+  graficar informaci&oacute;n.  La subrutina <code>plot</code> crea una
+  gr&aacute;fica (ser&aacute; de puntos si no se solicita que sea de l&iacute;neas
+  con <code>type="l"</code>). Se le pueden agregar cosas en ese mismo
+  dibujo llamando a <code>points</code> (para agregar
+  puntos), <code>lines</code> (para l&iacute;neas entre puntos definidos)
+  o <code>abline</code> para rectas. El t&iacute;tulo se coloca con el
+  argumento <code>main</code>:
+</p>
+<p>
+<code>
+&gt; <span style="color:green">x &lt;- 1:20</span><br>
+&gt; <span style="color:green">y &lt;- sin(x)</span><br>
+&gt; <span style="color:green">plot(x, y)</span><br>
+&gt; <span style="color:green">plot(x, y, type="l")</span><br>
+&gt; <span style="color:green">lines(x, cos(x), col="red")</span><br>
+&gt; <span style="color:green">abline(h=0, lwd=5, col="green")</span><br>
+&gt; <span style="color:green">plot(x, y)</span><br>
+&gt; <span style="color:green">points(x + 1, cos(x + 1), pch=15, col="green")</span><br>
+&gt; <span style="color:green">plot(x, y, main="Texto arriba", xlab="Etiqueta", ylab="Otra etiqueta")
+</code>
+</p>
+<p>
+  Se puede realizar la redirecci&oacute;n de gr&aacute;ficas a archivos,
+  por ejemplo para compartirlos o cuando uno no est&aacute; trabajando en un
+  ambiente gr&aacute;fico que pueda abrir ventanas:
+  </p>
+    <p>
+      <code>
+	&gt; <span style="color:green">png(filename="salida.png")</span><br>
+	&gt; <span style="color:green">plot(x, y, pch=16)</span><br>
+	&gt; <span style="color:green">graphics.off()</span>
+      </code>
+    </p>
+    <p>
+      Si no se define un archivo de salida para la gr&aacute;fica y R no est&aacute;
+      ejecut&aacute;ndose en un ambiente gr&aacute;fico, se crea por autom&aacute;tico un archivo
+      llamado <code>Rplots.pdf</code> con las gr&aacute;ficas generadas.
+    </p>
+    
+    <h4>Diagramas caja-bigote</h4>
+    <p>
+      <code>
+	&gt; <span style="color:green">d1 &lt;- c(10, 32, 34, 24, 49, 42, 89)</span><br>
+	&gt; <span style="color:green">d2 &lt;- c(30, 23, 45, 24, 75, 34, 12, 56, 33)</span><br>
+	&gt; <span style="color:green">boxplot(d1)</span><br>
+	&gt; <span style="color:green">boxplot(d2)</span><br>
+	&gt; <span style="color:green">boxplot(d1, d2)</span>
+      </code>
+    </p>
+    <h4>Histogramas</h4>
+        <p>
+	  Existe una rutina en R que se
+	  llama <code>hist</code>. Llamando
+	  a <code>hist(datos)</code>, R produce lo que se le hace un
+	  histograma y lo dibuja.  Se le puede indicar a la rutina a
+	  cu&aacute;ntas cubetas realizar la
+	  divisi&oacute;n: <code>hist(datos, breaks=5)</code>, lo que
+	  produce cinco divisiones dentro del intervalo y por ende
+	  seis barras.
+	</p>
+	<p>
+	  <code>
+	    &gt; <span style="color:green">datos &lt;- c(1.6, 4.6, 2.6, 3.6, 5.6, 6.6, 3.5, 2.2, 4.4, 5.2, 5.4, 7.6, 5.8, 4.4, 6.4)</span><br>
+	    &gt; <span style="color:green">hist(datos)</span><br>
+	    &gt; <span style="color:green">hist(datos, breaks=2)</span><br>
+	    &gt; <span style="color:green">histograma &lt;- hist(datos)</span><br>
+	    &gt; <span style="color:green">histograma</span><br>
+	      $breaks<br>
+	      [1] 1 2 3 4 5 6 7 8<br>
+	      <br>
+	      $counts<br>
+	      [1] 1 2 2 3 4 2 1<br>
+	      <br>
+	      $density<br>
+	      [1] 0.06666667 0.13333333 0.13333333 0.20000000 0.26666667 0.13333333 0.06666667<br>
+	      <br>
+	      $mids<br>
+	      [1] 1.5 2.5 3.5 4.5 5.5 6.5 7.5<br>
+	      <br>
+	      $xname<br>
+	      [1] "datos"<br>
+	      <br>
+	      $equidist<br>
+	      [1] TRUE<br>
+	      <br>
+	      attr(,"class")<br>
+	      [1] "histogram"<br>
+	      &gt; <span style="color:green">histograma$density</span><br>
+	      [1] 0.06666667 0.13333333 0.13333333 0.20000000 0.26666667 0.13333333 0.06666667<br>
+	      &gt; <span style="color:green">sum(histograma$density)</span><br>
+	      [1] 1<br>
+	      &gt; <span style="color:green">plot(histograma, freq=FALSE)</span>
+	  </code>
+	</p>
+	<h3>Instalaci&oacute;n de paquetes adicionales</h3>
+<p>
+  Al utilizar la herramienta <code>install.packages</code> para
+  incorporar una nueva funcionalidad a R, es necesario determinar de d&oacute;nde
+  se van a descargar:
+</p>
+<p>
+      <code>
+	--- Please select a CRAN mirror for use in this session ---<br>
+	HTTPS CRAN mirror <br>
+	<br>
+	 1: 0-Cloud [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: Algeria [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	 3: Australia (Canberra) [https]&nbsp;&nbsp;&nbsp;&nbsp;4: Australia (Melbourne) [https]<br>
+	 5: Australia (Perth) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6: Austria [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	 7: Belgium (Ghent) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8: Brazil (PR) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	 9: Brazil (RJ) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10: Brazil (SP 1) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	11: Bulgaria [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12: Canada (MB) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	13: Chile 1 [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14: Chile 2 [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	15: China (Beijing) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16: China (Hefei) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	17: China (Lanzhou) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18: Colombia (Cali) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	19: Czech Republic [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20: Denmark [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	21: Estonia [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22: France (Lyon 1) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	23: France (Lyon 2) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24: France (Marseille) [https]&nbsp;&nbsp;&nbsp;<br>
+	25: France (Montpellier) [https]&nbsp;&nbsp;&nbsp;26: France (Paris 2) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	27: Germany (Göttingen) [https]&nbsp;&nbsp;&nbsp;&nbsp;28: Germany (Münster) [https]&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	29: Greece [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30: Iceland [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	31: India [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32: Indonesia (Jakarta) [https]&nbsp;&nbsp;<br>
+	33: Ireland [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;34: Italy (Padua) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	35: Japan (Tokyo) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36: Malaysia [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	<span style="color:orange">37: Mexico (Mexico City)</span> [https]&nbsp;&nbsp;&nbsp;38: New Zealand [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	39: Norway [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40: Philippines [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	41: Russia (Moscow) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42: Serbia [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	43: Spain (A Coru&ntilde;a) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44: Spain (Madrid) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	45: Sweden [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;46: Switzerland [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	47: Taiwan (Chungli) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;48: Turkey (Denizli) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	49: Turkey (Mersin) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50: UK (Bristol) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	51: UK (Cambridge) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;52: UK (London 1) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	53: USA (CA 1) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;54: USA (IA) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	55: USA (IN) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;56: USA (KS) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	57: USA (MI 1) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;58: USA (OR) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	59: USA (TN) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60: USA (TX 1) [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	61: Vietnam [https]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;62: (HTTP mirrors)               <br>
+	<br>
+	<br>
+	<span style="color:orange">Selection:</span> <span style="color:green">37</span><br>
+      </code>
+</p>
+    <p>
+      Si el sistema operativo suele abrir una ventana para la
+      selecci&oacute;n aunque el usuario prefiere utilizar el terminal, se
+      puede forzar esto
+      con <code>chooseCRANmirror(graphics=FALSE)</code>.
+</p>
+    <p> 
+      Al instalar m&aacute;s paquetes, una vez que ya se haya pasado por este paso, R ya
+      recordar&aacute; la selecci&oacute;n del servidor (hasta que se cierre
+      la sesi&oacute;n).
+    </p>
+
+  
+  <div>
+    <center>
+      Actualizado el 11 de julio del 2019.<br>
+      <code>https://elisa.dyndns-web.com/teaching/comp/par/tutorial.html</code>
+    </center>
+  </div>
+  </body>
+</html>

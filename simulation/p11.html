@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P11 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+<h2><a name="p11">Pr&aacute;ctica 11: frentes de Pareto</a></h2>
+<p>
+  En optimizaci&oacute;n <em>multicriterio</em>, a un mismo conjunto de
+  variables ocupa asignarse valores de tal forma que se optimizen dos o
+  m&aacute;s funciones objetivo, que pueden contradecir una a otra &mdash; una
+  mejora en una puede corresponder en una empeora en otra. Adem&aacute;s hay
+  que respetar potenciales restricciones, si es que haya.
+</p> 
+<p>
+  Para estudiar este problema, vamos a primero implementar un
+  generador de polinomios aleatorios. Estos polinomios los
+  utilizaremos como funciones objetivo. Vamos a permitir solamente una
+  variable por t&eacute;rmino y un t&eacute;rmino por grado por
+  variable.
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/poligen.R">Generaci&oacute;n de polinomios aleatorios en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/poligen.py">Generaci&oacute;n de polinomios aleatorios en Python</a></li>
+    </ul>
+</p>
+    <p>
+  <code>
+$ Rscript poligen.R<br>
+&nbsp;&nbsp;variable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coef&nbsp;degree<br>
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;0.8021905&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;0.1391537&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br>
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;0.5558222&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4<br>
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;0.6568303&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3<br>
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;0.6306559&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+[1]&nbsp;1.904372
+</code>
+    </p>
+    <p>
+      <code>
+$ python3 poligen.py<br>
+coef&nbsp;&nbsp;deg&nbsp;&nbsp;var<br>
+0&nbsp;&nbsp;0.970670&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+1&nbsp;&nbsp;0.246830&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+2&nbsp;&nbsp;0.001301&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+3&nbsp;&nbsp;0.495901&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;3<br>
+4&nbsp;&nbsp;0.793710&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;2<br>
+2.0729168916571723
+</code>
+    </p>    
+<p>
+  Para simplicidad de visualizaci&oacute;n, vamos a concentrarnos en
+  el caso de dos funciones objetivo, hasta la tarea. Vamos a generar
+  muchas soluciones al azar, tambi&eacute;n por simplicidad &mdash;
+  los retos de la tarea permitir&aacute;n mejorar este aspecto &mdash;
+  y calculamos los valores de los objetivos para cada
+  soluci&oacute;n. Por simplicidad, vamos a suponer que no tenemos
+  restricciones.
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/solset.R">Generaci&oacute;n y evaluaci&oacute;n de soluciones aleatorias en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/solset.py">Generaci&oacute;n y evaluaci&oacute;n de soluciones aleatorias en Python</a></li>
+    </ul>
+</p>
+<img height="370" src="p11_init.png">
+<img height="370" src="p11p_init.png">
+<p>
+  Para cada objetivo, vamos a determinar si se va a <em>minimizar</em>
+  (los marcamos con <em>verdad</em>) o <en>maximizar</em> (los
+  marcamos con <em>false</em>). Marcamos con colores distintos las
+mejores soluciones de cada objetivo.
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/opt.R">Identificaci&oacute;n de las mejores soluciones en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/opt.py">Identificaci&oacute;n de las mejores soluciones en Python</a></li>
+</ul>
+</p>
+<img height="370" src="p11_mejores.png">
+<img height="370" src="p11p_mejores.png">
+<p>
+Como los dos mejores rara vez logran a coincidir y a veces son
+bastante opuestos, se ocupa una definici&oacute;n para qu&eacute; en s&iacute; es una buena
+soluci&oacute;n. Para eso usaremos la <strong>dominancia de Pareto</strong>:
+una soluci&oacute;n <em>domina</em> a otra si no empeora ninguno de los
+objetivos y mejora a por lo menos uno. Vamos a calcular la dominancia en
+paralelo entre todas las soluciones y marcar aquellas que no son
+dominadas por ninguna otra soluci&oacute;n.
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/front.R">Frente de Pareto en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/front.py">Frente de Pareto en Python</a></li>
+  </ul>
+</p>
+<img height="370" src="p11_frente.png">
+<img height="370" src="p11p_frente.png">
+<p>
+  A las soluciones no dominadas se les conoce como un <strong>frente
+  de Pareto</strong>.
+</p>
+<p>
+  Vamos a adem&aacute;s graficar la distribuci&oacute;n de las
+  cantidades de soluciones dominantes sobre el conjunto de
+  soluciones. Para R, sirve la subrutina <code>geom_violin</code> del
+  paquete <code>ggplot2</code>
+  (c.f. un <a href="http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization">tutorial</a>).
+  En Python, viene ya en <code>matplotlib</code>
+  (c.f. la <a href="https://matplotlib.org/3.1.0/gallery/statistics/customized_violin.html">documentaci&oacute;n</a>).
+  <ul>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/violin.R">Gr&aacute;fica de violin de soluciones dominantes en R</a></li>
+    <li><a href="https://github.com/satuelisa/Simulation/blob/master/ParetoFronts/violin.py">Gr&aacute;fica de violin de soluciones dominantes en Python</a></li>
+  </ul>
+  
+</p>
+<img height="420" src="p11_violin.png">
+<img height="420" src="p11p_violin.png">
+
+<h3>Tarea 11</h3>
+<p>
+  
+  Grafica el porcentaje de soluciones de Pareto (ojo, no es lo mismo
+  que se grafica en el c&oacute;digo ejemplo) como funci&oacute;n
+  del <em>n&uacute;mero de funciones objetivo</em> para $k \in [2, 3,
+  4, 5]$ con diagramas de viol&iacute;n combinados con diagramas de
+  caja-bigote, verificando que diferencias observadas, cuando las
+  haya, sean estad&iacute;sticamente significativas. Razona en escrito
+  a qu&eacute; se debe el comportamiento observado.
+</p>
+<p>
+  El primer reto es seleccionar un subconjunto (cuyo tama&ntilde;o
+  como un porcentaje del frente original se proporciona como un
+  par&aacute;metro) del frente de Pareto de tal forma que la
+  selecci&oacute;n est&eacute; <em>diversificada</em>, es decir, que
+  no est&eacute;n agrupados juntos en una sola zona del frente las
+  soluciones seleccionadas. Graficar los resultados de la
+  selecci&oacute;n, indicando con un color cu&aacute;les se incluyen
+  en el subconjunto diverso.
+</p>
+<p>
+  El segundo reto es adaptar el algoritmo gen&eacute;tico de la tarea
+  anterior para que vaya buscando mejora a un frente; la poblaci&oacute;n
+  inicial es el frente generado en la tarea y se aplica la
+  diversificaci&oacute;n del primer reto a cada generaci&oacute;n despu&eacute;s de los
+  cruzamientos y las mutaciones. Visualiza con un GIF animado
+  c&oacute;mo avanza la frente de una generaci&oacute;n a otra.
+</p>
+    
+
+<div>
+  <center>
+    Actualizado el 3 de noviembre del 2021.<br>
+    <code>https://satuelisa.github.io/p11.html</code>
+  </center>
+</div>
+<script type="text/javascript">
+  SyntaxHighlighter.autoloader(
+  "r  syntax/scripts/shBrushR.js",
+  "python  syntax/scripts/shBrushPython.js",
+  );
+  SyntaxHighlighter.defaults["toolbar"] = false;
+  SyntaxHighlighter.all();
+</script>
+</body>
+</html>

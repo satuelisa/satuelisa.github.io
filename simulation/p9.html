@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P9 &mdash; Simulaci&oacute;n &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="paralelo.css">
+
+    <link rel="stylesheet" href="syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='syntax/scripts/shAutoloader.js'></script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+  </head>
+
+  
+  <body>
+    <p align="right">
+      <a href="index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+    
+<h2><a name="p9">Pr&aacute;ctica 9: interacciones entre part&iacute;culas</a></h2>
+<p>
+En la novena pr&aacute;ctica trabajamos con un modelo simplificado para los
+fen&oacute;menos de atracci&oacute;n y repulsi&oacute;n de f&iacute;sica (o qu&iacute;mica, de
+hecho). Supongamos que contemos con $n$ part&iacute;culas que habitan un
+cuadro unitario bidimensional y que cada part&iacute;cula tiene una <em>carga
+el&eacute;ctrica</em>, distribuida independientemente e normalmente al azar
+entre $[-1, 1]$. Cargas de un mismo signo producir&aacute;n
+una <em>repulsi&oacute;n</em> mientras cargas opuestas resultan en
+una <em>atracci&oacute;n</em> &mdash; la magnitud de la fuerza estar&aacute;
+proporcional a la diferencia de magnitud de las cargas (mayores
+diferencias resultando en fuerzas mayores), y adem&aacute;s la fuerza ser&aacute;
+inversamente proporcional a la distancia euclideana entre las
+part&iacute;culas (&eacute;stas son reglas inventadas de interacci&oacute;n para efectos de
+demostraci&oacute;n).  Vamos a comenzar creando y posicionando las
+part&iacute;culas, usando la distribuci&oacute;n normal (posteriormente normalizada
+al cuadro unitario) para las coordenadas $x$ y $y$.
+</p>
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/Particles/creation.R">Creaci&oacute;n de part&iacute;culas en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/Particles/creation.py">Creaci&oacute;n de part&iacute;culas en Python</a></li>
+</ul>
+<img height="350" src="p9i.png">
+<img height="350" src="p9pi.png">
+<p>
+  Ahora, cada part&iacute;cula va a ejercer una fuerza sobre cada otra
+  part&iacute;cula. Vamos a implementar la atracci&oacute;n entre cargas con signos
+  opuestos y la repulsi&oacute;n entre signos iguales. Habr&aacute; que sumar los
+  efectos de todas las fuerzas individuales para determinar la fuerza
+  total sobre una part&iacute;cula en espec&iacute;fico. Luego debemos normalizar el
+  efecto de esa fuerza con un factor de descuento $\delta$ antes de
+  poder trasladar la part&iacute;cula con desplazamientos $\Delta x$ y
+  $\Delta y$ que dependen de los componentes horizontal y vertical de
+  la fuerza total.
+</p>  
+<ul>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/Particles/interaction.R">Atracci&oacute;n y repulsi&oacute;n en R</a></li>
+  <li><a href="https://github.com/satuelisa/Simulation/blob/master/Particles/interaction.py">Atracci&oacute;n y repulsi&oacute;n en Python</a></li>
+  </ul>
+<img height="350" src="p9.gif">
+<img height="350" src="p9p.gif">
+<p>
+La automatizaci&oacute;n del borrado de viejas im&aacute;genes
+con <code>rm</code> funciona en Linux y Mac OS, pero no en Windows si
+no se le ha instalado un bash que la instalaci&oacute;n de Python sea capaz
+de alcanzar. La automatizaci&oacute;n de la creaci&oacute;n de una
+animaci&oacute;n funciona en Linux y Mac OS con que est&eacute;
+correctamente instalado ImageMagick.
+</p>
+<h3>Tarea 9</h3>
+    <p>
+      Agrega a cada part&iacute;cula una <strong>masa</strong> y haz que la
+      masa cause fuerzas gravitacionales (atracciones) adem&aacute;s de las
+      fuerzas causadas por las cargas. Estudia la distribuci&oacute;n de
+      velocidades de las part&iacute;culas y verifica gr&aacute;ficamente
+      que est&eacute; presente una relaci&oacute;n entre los tres factores:
+      la velocidad, la magnitud de la carga, y la masa de las
+      part&iacute;culas. Toma en cuenta que la velocidad tambi&eacute;n es
+      afectada por las posiciones.
+    </p>
+    <p>
+      El primer reto es simular dos diferentes tipos de objetos:
+      bolitas duras grandes y part&iacute;culas fr&aacute;giles &mdash; cuando una
+      part&iacute;cula es atrapada entre dos bolas, se modifica: si est&aacute;
+      sola, se fragmenta, pero si hay otras part&iacute;culas en esa misma
+      traslape de dos bolas, se pegan todos juntos. Haz que ambas las
+      bolitas y las part&iacute;culas reboten de los bordes de la zona.
+    </P>
+    <pre class="brush: r">
+m <- 7
+xv = (2 * (runif(m) < 0.5) - 1) * runif(m, 0.01, 0.04)
+yv = (2 * (runif(m) < 0.5) - 1) * runif(m, 0.01, 0.04)
+bolas <- data.frame(x = runif(m, 0, 1), y = runif(m, 0, 1), dx = xv, dy = yv, r = runif(m, 0.05, 0.1))
+n <- 50
+xv = (2 * (runif(n) < 0.5) - 1) * runif(n, 0.02, 0.05)
+yv = (2 * (runif(n) < 0.5) - 1) * runif(n, 0.02, 0.05)
+particulas <- data.frame(x = runif(n, 0, 1), y = runif(n, 0, 1), dx = xv, dy = yv, r = runif(n, 0.01, 0.03), v = rep(1, n), a = rep(1, n))
+for (t in 1:25) {
+    # agregar aqui el codigo para que se interactuen segun las reglas establecidas
+    write.table(bolas, paste("bola_", t, ".dat", sep=""), sep=" ", col.names = FALSE, row.names = FALSE)
+    particulas = particulas[particulas$v > 0,] # se eliminan las que ya no existen
+    n = dim(particulas)[1]
+    write.table(particulas, paste("part_", t, ".dat", sep=""), sep=" ", col.names = FALSE, row.names = FALSE)
+    # agregar aqui el codigo para que se muevan las bolas y las particulas		      
+}
+</pre>
+<pre class="brush: python">
+# -*- coding: utf-8 -*
+import numpy as np
+import pandas as pd
+from math import sqrt
+from random import random, choice
+
+m = 7
+vx = (2 * (np.random.uniform(size = m) < 0.5) - 1) * np.random.uniform(low = 0.01, high = 0.04, size = m)
+vy = (2 * (np.random.uniform(size = m) < 0.5) - 1) * np.random.uniform(low = 0.01, high = 0.04, size = m)
+x = np.random.uniform(size = m)
+y = np.random.uniform(size = m)
+r = np.random.uniform(low = 0.05, high = 0.1, size = m)
+bolas = pd.DataFrame({'x': x, 'y': y, 'dx': vx, 'dy': vy, 'r': r})
+n = 50
+vx = (2 * (np.random.uniform(size = n) < 0.5) - 1) * np.random.uniform(low = 0.02, high = 0.05, size = n)
+vy = (2 * (np.random.uniform(size = n) < 0.5) - 1) * np.random.uniform(low = 0.02, high = 0.05, size = n)
+x = np.random.uniform(size = n)
+y = np.random.uniform(size = n)
+r = np.random.uniform(low = 0.01, high = 0.03, size = n)
+particulas = pd.DataFrame({'x': x, 'y': y, 'dx': vx, 'dy': vy, 'r': r, 'v': [1] * n, 'a': [1] * n})
+for t in range(25):
+    # falta implementar las reglas establecidas
+    particulas = particulas.loc[particulas['v'] > 0] # se eliminan las que no existen
+    n = particulas.shape[0]
+    particulas.to_csv('p_part_{:d}.dat'.format(t), header = False, index = False)
+    bolas.to_csv('p_bola_{:d}.dat'.format(t), header = False, index = False)
+    # falta implementar movimientos
+</pre>      
+<img height="300" src="p9r.gif">
+<img height="300" src="p9pr.gif">
+    <p>
+      El tama&ntilde;o de la bolita o de la part&iacute;cula se
+      refleja en la visualizaci&oacute;n, lo que se logra f&aacute;cilmente
+      usando
+      <code><a href="http://www.gnuplot.info/">gnuplot</a></code>,
+      usando la opci&oacute;n <code>with circles</code>, exportando en
+      formato CSV los atributos necesarios para crear la
+      visualizaci&oacute;n. As&iacute; dem&aacute;s se practica exportar valores
+      creados por un programa a que otro los lea.
+    </p>
+    <code>
+      set term gif animate delay 50<br>
+      set key off<br>
+      set size square<br>
+      set xrange [ -0.02 : 1.02] noreverse nowriteback<br>
+      set yrange [ -0.02 : 1.02 ] noreverse nowriteback<br>
+      set output 'p6r.gif'<br>
+      do for [i=1:25] { # para R<br> 
+      &nbsp;&nbsp;set title 'Paso '.i<br>
+      &nbsp;&nbsp;plot 'bola_'.i.'.dat' u 1:2:5 w circles lc rgb "blue" fs solid noborder, \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'part_'.i.'.dat' u 1:2:5 w circles lc rgb "red" fs solid noborder<br>
+      }<br>
+      </code>
+    </p>
+    <p>
+      <code>
+set term gif animate delay 50<br> 
+set key off<br> 
+set datafile separator ","<br> 
+set size square<br> 
+set xrange [ -0.02 : 1.02] noreverse nowriteback<br> 
+set yrange [ -0.02 : 1.02 ] noreverse nowriteback<br> 
+set output 'p9pr.gif'<br> 
+do for [i=0:24] { # para Python<br>
+&nbsp;&nbsp;set title 'Paso '.(i + 1)<br> 
+&nbsp;&nbsp;plot 'p_bola_'.i.'.dat' u 1:2:5 w circles lc rgb "blue" fs solid noborder, \<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'p_part_'.i.'.dat' u 1:2:5 w circles lc rgb "red" fs solid noborder<br> 
+}
+</code>
+    </p>  
+
+    <p>
+      Para el segundo reto, modifica el primer reto de tal forma que
+      las bolitas <strong>no se sobrepongan</strong> sino que se
+      reboten cuando tocan una a otra. Ahora la regla con las
+      part&iacute;culas necesariamete cambia ya que no se sobrepondr&aacute;n
+      nunca: si una part&iacute;cula toca a dos bolas, se rompe, salvo
+      que si adem&aacute;s se empalma con otras part&iacute;culas
+      (esas si se pueden sobreponer), en cual caso se unen.
+    </p>
+    <div>
+      <center>
+	Actualizado el 28 de noviembre del 2019.<br>
+	<code>https://satuelisa.github.io/p9.html</code>
+      </center>
+    </div>
+    <script type="text/javascript">
+      SyntaxHighlighter.autoloader(
+      "r  syntax/scripts/shBrushR.js",
+      "python  syntax/scripts/shBrushPython.js",
+      );
+      SyntaxHighlighter.defaults["toolbar"] = false;
+      SyntaxHighlighter.all();
+    </script>
+  </body>
+</html>

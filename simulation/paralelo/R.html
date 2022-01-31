@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<HTML lang="es">
+  <HEAD>
+    <META HTTP-EQUIV="Content-Type" content="text/html;
+					     charset=UTF-8">
+    <title>C&oacute;mputo paralelo en R &mdash; Simulación &mdash; Schaeffer</title>
+    
+    <LINK rel="stylesheet" type="text/css" href="../paralelo.css">
+
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shCore.css" type="text/css" />
+    <link rel="stylesheet" href="https://elisa.dyndns-web.com/scripts/syntax/styles/shThemeRDark.css" type="text/css" />
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shCore.js'></script>
+    <script type='text/javascript' src='https://elisa.dyndns-web.com/scripts/syntax/scripts/shAutoloader.js'></script>
+
+  </head>
+
+    <body>
+    <p align="right">
+      <a href="../index.html">Simulaci&oacute;n</a>
+    </p>
+
+
+
+<h2><a name="par">C&oacute;mputo paralelo en R</a></h2>
+
+<p>
+Cualquier operaci&oacute;n donde no todos los pasos dependen de los
+resultados de los pasos anteriores es un candidato para ser
+paralelizado.
+</r>
+<p>
+Un <em>cluster</em> es un grupo de dos o m&aacute;s n&uacute;cleos que
+llevan a cabo tareas de forma conjunta en paralelo.
+</p>
+
+
+
+<h3>Aplicaci&oacute;n de funciones a vectores de forma paralela</h3>
+<p>
+<code>
+&gt; <span style="color:green">sapply(1:10, function(x) 2^x)</span><br>
+ [1]    2    4    8   16   32   64  128  256  512 1024
+</code>
+</p>
+
+<p>
+El paquete <code>parallel</code> <a href="biblio.html#refpar">[2]</a> facilita la
+ejecuci&oacute;n paralela en R. No requiere instalaci&oacute;n manual
+ya que forma parte de la instalaci&oacute;n base de R. Se carga para
+su uso con la
+instrucci&oacute;n <code><span style="color:green">library(parallel)</span></code>
+que no produce ninguna salida en el caso de que haya sido exitosa su
+carga al sistema.
+</p>
+<p>
+Se puede determinar el n&uacute;mero de n&uacute;cleos disponibles en
+un sistema con la llamada
+</p>
+<p>
+<code>
+&gt; <span style="color:green">detectCores()</span><br>
+[1] 8
+</code>
+</p>
+y se puede proceder a paralelizar cuando haya por lo menos dos. Si se
+quiere excluir los n&uacute;cleos virtuales (en el caso que
+est&eacute;n presentes), se llama con
+<span style="color:green">detectCores(logical=FALSE)</span>:
+<p>
+<code>
+&gt; <span style="color:green">detectCores(logical=FALSE)</span><br>
+[1] 4
+</code>
+</p>
+<p>
+No conviene utilizar todos los n&uacute;cleos en las tareas de R, ya
+que el sistema operativo y su interfaz de usuario suelen requerir
+mantenerse responsivos durante los c&aacute;lculos realizados, por lo
+cual es recomendable crear un cluster con un n&uacute;mero menor de
+n&uacute;cleos, por ejemplo
+<code><span style="color:green">cluster &lt;- makeCluster(detectCores() -
+1)</span></code>. Teniendo el cluster, se puede realizar llamadas que
+lo aprevechen, como por ejemplo</p>
+<p>
+<code>
+&gt; <span style="color:green">parSapply(cluster, 1:10, function(x) 2^x)</spam><br>
+ [1]    2    4    8   16   32   64  128  256  512 1024
+</code>
+</p>
+<p>
+Una vez que ya no se requiera el cluster, se le libera con la
+instrucci&oacute;n <code><span style="color:green">stopCluster(cluster)</spam></code>.
+</p>
+<p>
+Cuando se ocupa utilizar una variable o una
+librer&iacute;a <em>dentro</em> de lo que
+se <strong>eval&uacute;a</strong> en el cluster, es necesario
+exportarlo de manera expl&iacute;cita al cluster:
+</p>
+<p>
+  <code>
+&gt; <span style="color:green">cluster &lt;- makeCluster(detectCores() - 1)</span><br>
+&gt; <span style="color:green">desde &lt;- 3</span><br>
+&gt; <span style="color:green">hasta &lt;- 8</span><br>
+&gt; <span style="color:green">parSapply(cluster, desde:hasta, function(x) 2^x)</span><br>
+[1]   8  16  32  64 128 256<br>
+&gt; <span style="color:green">base &lt;- 3</span><br>
+&gt; <span style="color:green">parSapply(cluster, desde:hasta, function(x) base^x)</span><br>
+<span style="color:red">Error in checkForRemoteErrors(val) : <br>
+  6 nodes produced errors; first error: object 'base' not found</span><br>
+&gt; <span style="color:green">clusterExport(cluster, "base")</span><br>
+&gt; <span style="color:green">parSapply(cluster, desde:hasta, function(x) base^x)</span><br>
+[1]   27   81  243  729 2187 6561<br>
+&gt; <span style="color:green">stopCluster(cluster)</span>
+</code>
+</p>
+<h3>Procesamiento de sequencias en paralelo</h3>
+
+<p>
+Otra forma de realizar c&aacute;lculos paralelizados es con el
+paquete <code>foreach</code> que <strong>no</strong> viene instalado
+por omisi&oacute;n sino requiere instalaci&oacute;n manual:
+</p>
+<p>
+<code>
+&gt; <span style="color:green">library(foreach)</span><br>
+<span style="color:red">Error in library(foreach) : there is no package called ‘foreach’</span><br>
+&gt; <span style="color:green">install.packages("foreach")</span><br>
+also installing the dependency ‘iterators’<br>
+<br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/iterators_1.0.8.tgz'<br>
+Content type 'application/x-gzip' length 310135 bytes (302 KB)<br>
+==================================================<br>
+downloaded 302 KB<br>
+<br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/foreach_1.4.3.tgz'<br>
+Content type 'application/x-gzip' length 382270 bytes (373 KB)<br>
+==================================================<br>
+downloaded 373 KB<br>
+<br>
+<br>
+The downloaded binary packages are in<br>
+/var/folders/qj/1gw209fx1qb31lz61njz69k00000gn/T//RtmphnuSlq/downloaded_packages<br>
+</code>
+</p>
+<p>
+Es importante tomar en cuenta que los n&uacute;meros de los servidores
+de descarga no siempre son los mismos cuando uno instala poquetes en
+computoradoras diferentes o en momentos diferentes: siempre busco el
+m&aacute;s cercano a mi y tecleo la selecci&oacute;n. Al utilizar R en
+un ambiente de interfaz gr&aacute;fica, t&iacute;picamente se abre una
+ventana para realizar la selecci&oacute;n del servidor.
+</p>
+<p>
+Tambi&eacute;n se requiere un segundo paquete:
+</p>
+<p>
+<code>
+&gt; <span style="color:green">install.packages("doParallel")</span><br>
+trying URL 'https://cran.itam.mx/bin/macosx/mavericks/contrib/3.3/doParallel_1.0.10.tgz'<br>
+Content type 'application/x-gzip' length 181113 bytes (176 KB)<br>
+==================================================<br>
+downloaded 176 KB<br>
+<br>
+The downloaded binary packages are in<br>
+/var/folders/qj/1gw209fx1qb31lz61njz69k00000gn/T//RtmphnuSlq/downloaded_packages
+</code>
+</p>
+<p>
+Con el paquete <code>foreach</code>, la creaci&oacute;n y
+liberaci&oacute;n de un cluster es ligeramente diferente:
+</p>
+<p>
+<code>
+&gt; <span style="color:green">library(doParallel)</span><br>
+Loading required package: foreach<br>
+foreach: simple, scalable parallel programming from Revolution Analytics<br>
+Use Revolution R for scalability, fault tolerance and more.<br>
+http://www.revolutionanalytics.com<br>
+Loading required package: iterators<br>
+&gt; <span style="color:green">registerDoParallel(makeCluster(detectCores() - 1))</span><br>
+&gt; <span style="color:green">foreach(potencia = desde:hasta, .combine=c) %dopar% base^potencia</span><br>
+[1]   27   81  243  729 2187 6561<br>
+&gt; <span style="color:green">stopImplicitCluster()</span>
+</code>
+</p>
+<p>
+En las llamadas a <code>foreach</code>, se puede proprocionar
+opciones <code>.export</code> y <code>.packages</code> para
+proporcionarle variables externas y librer&iacute;as adicionales.
+</p>
+<h3>C&oacute;mputo con GPU</h3>
+<p>
+  Tarjetas gr&aacute;ficas contemporaneas contienen procesdaores gr&aacute;ficos con
+  bastante n&uacute;cleos. El paquete <code>gpuR</code> permite aprovechar
+  esos n&uacute;cleos para c&aacute;lculos. Los tipos de dato para realizar c&aacute;lculos
+  con un GPU son especiales y provienen de ese paquete. Finalizando la
+  instalaci&oacute;n del paquete, igual como al cargarlo al uso, se detectan
+  GPUs presentes en la computadora en cuesti&oacute;n, por ejemplo, en una
+  computadora de escritorio iMac detecta
+</p>
+<p>
+<code>
+Number&nbsp;of&nbsp;platforms:&nbsp;1<br>
+-&nbsp;platform:&nbsp;Apple:&nbsp;OpenCL&nbsp;1.2&nbsp;(Apr&nbsp;&nbsp;4&nbsp;2017&nbsp;19:07:42)<br>
+-&nbsp;gpu&nbsp;index:&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;AMD&nbsp;Radeon&nbsp;R9&nbsp;M395X&nbsp;Compute&nbsp;Engine<br>
+</code>
+</p>  
+o en una laptop Macbook detecta
+<p>
+<code>
+Number&nbsp;of&nbsp;platforms:&nbsp;1<br>
+-&nbsp;platform:&nbsp;Apple:&nbsp;OpenCL&nbsp;1.2&nbsp;(Apr&nbsp;&nbsp;4&nbsp;2017&nbsp;19:07:42)<br>
+&nbsp;&nbsp;-&nbsp;gpu&nbsp;index:&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Intel(R)&nbsp;HD&nbsp;Graphics&nbsp;5300
+</code>
+</p>  
+<p>
+  Por ejemplo, el producto de matrices que usa de prueba Charles
+  Determan (el autor del paquete) en
+  su <a href="http://www.parallelr.com/r-gpu-programming-for-all-with-gpur/">blog
+  post</a> hace lo siguiente con el GPU de Radeon:
+  </p>
+<p>
+<code>
+&gt; <span style="color:green">suppressMessages(library(gpuR))</span><br>
+&gt; <span style="color:green">n &lt;- 2000</span><br>
+&gt; <span style="color:green">M1 &lt;- matrix(runif(n * n), nrow=n, ncol=n)</span><br>
+&gt; <span style="color:green">M2 &lt;- matrix(rnorm(n * n), nrow=n, ncol=n)</span><br>
+&gt;&nbsp;<span style="color:green">system.time(M1&nbsp;%*%&nbsp;M2)</span><br>
+&nbsp;&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;4.587&nbsp;&nbsp;&nbsp;0.002&nbsp;&nbsp;&nbsp;4.591<br>
+&gt;&nbsp;<span style="color:green">G1&nbsp;&lt;-&nbsp;gpuMatrix(M1,&nbsp;type="double")</span><br>
+&gt;&nbsp;<span style="color:green">G2&nbsp;&lt;-&nbsp;gpuMatrix(M2,&nbsp;type="double")</span><br>
+&gt;&nbsp;<span style="color:green">system.time(G1&nbsp;%*%&nbsp;G2)</span><br>
+&nbsp;&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;0.082&nbsp;&nbsp;&nbsp;0.027&nbsp;&nbsp;&nbsp;0.224
+</code>
+</p>  
+<P>
+  y esto con el GPU de Intel (hay que cambiar el <code>double</code>
+  por <code>float</code> ya que es un GPU m&aacute;s modesto:
+  </p>
+<p>
+  <code>
+&gt; <span style="color:green">suppressMessages(library(gpuR))</span><br>
+&gt; <span style="color:green">n &lt;- 2000</span><br>
+&gt; <span style="color:green">M1 &lt;- matrix(runif(n * n), nrow=n, ncol=n)</span><br>
+&gt; <span style="color:green">M2 &lt;- matrix(rnorm(n * n), nrow=n, ncol=n)</span><br>
+&gt; <span style="color:green">system.time(M1 %*% M2)</span><br>
+&nbsp;&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;7.016&nbsp;&nbsp;&nbsp;0.033&nbsp;&nbsp;&nbsp;7.092<br>
+&gt; <span style="color:green">G1 &lt;- gpuMatrix(M1, type="float")</span><br>
+&gt; <span style="color:green">G2 &lt;- gpuMatrix(M2, type="float")</span><br>
+&gt; <span style="color:green">system.time(G1 %*% G2)</span><br>
+&nbsp;&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;0.079&nbsp;&nbsp;&nbsp;0.042&nbsp;&nbsp;&nbsp;1.970&nbsp;
+</code>
+</p>
+<p>
+En otras computadoras con GPUs de NVIDIA se obtiene lo siguiente:
+</p>
+<p>
+<code>
+> <span style="color:green">library(gpuR)</span><br>
+Number&nbsp;of&nbsp;platforms:&nbsp;1<br>
+-&nbsp;platform:&nbsp;NVIDIA&nbsp;Corporation:&nbsp;OpenCL&nbsp;1.2&nbsp;CUDA&nbsp;8.0.0<br>
+&nbsp;&nbsp;-&nbsp;gpu&nbsp;index:&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;GeForce&nbsp;GT&nbsp;720<br>
+checked&nbsp;all&nbsp;devices<br>
+completed&nbsp;initialization<br>
+gpuR&nbsp;1.2.1<br>
+>&nbsp;<span style="color:green">n&nbsp;&lt;-&nbsp;2000</span><br>
+>&nbsp;<span style="color:green">M1&nbsp;&lt;-&nbsp;matrix(runif(n&nbsp;*&nbsp;n),&nbsp;nrow=n,&nbsp;ncol=n)</span><br>
+>&nbsp;<span style="color:green">M2&nbsp;&lt;-&nbsp;matrix(rnorm(n&nbsp;*&nbsp;n),&nbsp;nrow=n,&nbsp;ncol=n)</span><br>
+>&nbsp;<span style="color:green">system.time(M1&nbsp;%*%&nbsp;M2)</span><br>
+&nbsp;&nbsp;&nbsp;user&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;&nbsp;4.09&nbsp;&nbsp;&nbsp;0.02&nbsp;&nbsp;&nbsp;&nbsp;4.11<br>
+>&nbsp;<span style="color:green">G1&nbsp;&lt;-&nbsp;gpuMatrix(M1,&nbsp;type="double")</span><br>
+>&nbsp;<span style="color:green">G2&nbsp;&lt;-&nbsp;gpuMatrix(M2,&nbsp;type="double")</span><br>
+>&nbsp;<span style="color:green">system.time(G1&nbsp;%*%&nbsp;G2)</span><br>
+&nbsp;&nbsp;&nbsp;user&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;&nbsp;0.41&nbsp;&nbsp;&nbsp;1.31&nbsp;&nbsp;&nbsp;&nbsp;1.72
+</code>
+</p>
+<p>
+  <code>
+> <span style="color:green">library(gpuR)</span><br>
+Number of platforms: 1<br>
+- platform: NVIDIA Corporation: OpenCL 1.2 CUDA 8.0.0<br>
+&nbsp;&nbsp;- gpu index: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Tesla K80<br>
+checked all devices<br>
+completed initialization<br>
+gpuR 1.2.1<br>
+> <span style="color:green">n &lt;- 2000</span><br>
+> <span style="color:green">M1 &lt;- matrix(runif(n * n), nrow=n, ncol=n)</span><br>
+> <span style="color:green">M2 &lt;- matrix(rnorm(n * n), nrow=n, ncol=n)</span><br>
+> <span style="color:green">system.time(M1 %*% M2)</span><br>
+&nbsp;&nbsp;user&nbsp;&nbsp;system elapsed<br>
+ 5.424&nbsp;&nbsp;&nbsp;0.000&nbsp;&nbsp;&nbsp;5.424<br>
+> <span style="color:green">G1 &lt;- gpuMatrix(M1, type="double")</span><br>
+> <span style="color:green">G2 &lt;- gpuMatrix(M2, type="double")</span><br>
+> <span style="color:green">system.time(G1 %*% G2)</span><br>
+&nbsp;&nbsp;user&nbsp;&nbsp;system elapsed<br>
+&nbsp;1.348&nbsp;&nbsp;&nbsp;0.052&nbsp;&nbsp;&nbsp;1.672
+  </code>
+</p>
+<p>
+<code>
+> <span style="color:green">library(gpuR)</span><br>
+Number of platforms: 1<br>
+-&nbsp;platform:&nbsp;NVIDIA&nbsp;Corporation:&nbsp;OpenCL&nbsp;1.2&nbsp;CUDA&nbsp;11.1.102<br>
+&nbsp;&nbsp;-&nbsp;context&nbsp;device&nbsp;index:&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;GeForce&nbsp;GTX&nbsp;1650<br>
+checked&nbsp;all&nbsp;devices<br>
+completed&nbsp;initialization<br>
+gpuR&nbsp;2.0.3<br>
+>&nbsp;<span style="color:green">n &lt;- 2000</span><br>
+> <span style="color:green">M1 &lt;- matrix(runif(n * n), nrow=n, ncol=n)</span><br>
+> <span style="color:green">M2 &lt;- matrix(rnorm(n * n), nrow=n, ncol=n)</span><br>
+> <span style="color:green">system.time(M1 %*% M2)</span><br>
+&nbsp;&nbsp;user&nbsp;&nbsp;system elapsed<br>
+&nbsp;&nbsp;4.577&nbsp;&nbsp;&nbsp;0.000&nbsp;&nbsp;&nbsp;4.582<br>
+> <span style="color:green">G1 &lt;- gpuMatrix(M1, type="double")</span><br>
+> <span style="color:green">G2 &lt;- gpuMatrix(M2, type="double")</span><br>
+> <span style="color:green">system.time(G1 %*% G2)</span><br>
+&nbsp;&nbsp;user&nbsp;&nbsp;system elapsed<br>
+&nbsp;&nbsp;0.920&nbsp;&nbsp;&nbsp;0.029&nbsp;&nbsp;&nbsp;1.060 
+</code>
+</p>
+<p>
+<code>
+> <span style="color:green">library(gpuR)</span><br>
+library(gpuR)<br>
+Number of platforms: 1<br>
+- platform: NVIDIA Corporation: OpenCL 1.2 CUDA 11.1.102<br>
+&nbsp;&nbsp;- context device index: 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- GeForce RTX 3090<br>
+checked all devices<br>
+completed initialization<br>
+gpuR 2.0.3<br>
+> <span style="color:green">n &lt;- 2000</span><br>
+> <span style="color:green">M1 &lt;- matrix(runif(n * n), nrow=n, ncol=n)</span><br>
+> <span style="color:green">M2 &lt;- matrix(rnorm(n * n), nrow=n, ncol=n)</span><br>
+> <span style="color:green">system.time(M1 %*% M2)</span><br>
+&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;4.770&nbsp;&nbsp;&nbsp;0.000&nbsp;&nbsp;&nbsp;4.771<br> 
+> <span style="color:green">G1 &lt;- gpuMatrix(M1, type="double")</span><br>
+> <span style="color:green">G2 &lt;- gpuMatrix(M2, type="double")</span><br>
+> <span style="color:green">system.time(G1 %*% G2)</span><br>
+&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed<br>
+&nbsp;&nbsp;0.121&nbsp;&nbsp;&nbsp;0.041&nbsp;&nbsp;&nbsp;0.191<br>
+</code>
+</p>
+<p>
+  Participantes que cuentan con acceso a un GPU pueden consultar
+  la <a href="https://cran.r-project.org/web/packages/gpuR/gpuR.pdf">documentaci&oacute;n
+  del paquete</a> para mayor detalle en cu&aacute;les operaciones con
+  matr&iacute;ces y vectores est&aacute;n disponibles para realizarse en el GPU. En
+  todas las tareas, se aprecia el uso adecuado de c&aacute;lculos GPU y son
+  una alternativa v&aacute;lida a paralelismo en el CPU &mdash; tambi&eacute;n
+  conviene incluir comparasiones del desempe&ntilde;o cuando ambas opciones
+  est&aacute;n disponibles.
+</p>
+    
+  <div>
+    <center>
+      Actualizado el 29 de junio del 2021.<br>
+      <code>https://elisa.dyndns-web.com/teaching/comp/par/paralelo/R.html</code>
+    </center>
+  </div>
+  </body>
+</html>
