@@ -50,10 +50,10 @@ sus tareas de manera simult&aacute;nea.
 
 <p>
 El paquete <code>multiprocessing</code> facilita la ejecuci&oacute;n
-paralela en Python; forma parte de la instalaci&oacute;n b&aacute;sica por lo cual no es necesario instalarlo &mdash; se carga para su uso con la
-instrucci&oacute;n <code><span style="color:green">import</span></code>. Es
-importante incluir su uso dentro de <code>main</code> por la forma en
-que accede las variables. 
+paralela en Python; forma parte de la instalaci&oacute;n b&aacute;sica
+por lo cual no es necesario instalarlo &mdash; se carga para su uso
+con la
+instrucci&oacute;n <code><span style="color:green">import</span></code>.
 </p>
 <p>
 Se puede determinar el n&uacute;mero de n&uacute;cleos disponibles en
@@ -130,8 +130,7 @@ paralelo, hay que volver a crear el <em>pool</em>.
 ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return b**x</span><br>
 ...<br>
 &gt;&gt;&gt; <span style="color:green">from multiprocessing import Pool</span><br>
-&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+>>> <span style="color:green">with Pool(3) as p:</span><br>
 ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, zip([2] * 10, range(desde, hasta + 1))))</span><br>
 ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, zip([3] * 10, range(desde, hasta + 1))))</span><br>
 ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, zip([4] * 10, range(desde, hasta + 1))))</span><br>
