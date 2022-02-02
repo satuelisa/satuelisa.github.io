@@ -42,8 +42,9 @@ sus tareas de manera simult&aacute;nea.
 &gt;&gt;&gt; <span style="color:green">def f(x):</span><br>
 ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return 2**x</span><br>
 ...<br>
->>> <span style="color:green">with Pool(3) as p:</span><br>
-... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">print(p.map(f, range(1, 11)))</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>  
+... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">with Pool(3) as p:</span><br>
+... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">print(p.map(f, range(1, 11)))</span><br>
 [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
 </code>
 </p>
@@ -106,16 +107,18 @@ paralelo, hay que volver a crear el <em>pool</em>.
 ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return base**x</span><br>
 ...<br>
 &gt;&gt;&gt; <span style="color:green">from multiprocessing import Pool</span><br>
->>> <span style="color:green">with Pool(3) as p:</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">base = 3</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">base = 3</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
 ...<br>
 [8, 16, 32, 64, 128, 256]<br>
 [8, 16, 32, 64, 128, 256]<br>
 &gt;&gt;&gt; <span style="color:green">base = 3</span><br>
->>> <span style="color:green">with Pool(3) as p:</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.map(f, range(desde, hasta + 1)))</span><br>
 [27, 81, 243, 729, 2187, 6561]
     </code>
 </p>
@@ -143,13 +146,14 @@ paralelo, hay que volver a crear el <em>pool</em>.
 ... &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">return b**x - c</span><br>
 ...<br>
 &gt;&gt;&gt; <span style="color:green">c = [7 * i for i in range(10)]</span><br>
->>> <span style="color:green">with Pool(3) as p:</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">for b in range(2, 5):</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">base = [b] * 10</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">vars = [j for j in range(desde, hasta + 1)]
+&gt;&gt;&gt; <span style="color:green">if __name__ == '__main__':</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">with Pool(3) as p:</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">for b in range(2, 5):</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">base = [b] * 10</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">vars = [j for j in range(desde, hasta + 1)]
 </span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">params = zip(base, vars, c)</span><br>
-...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, params))</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">params = zip(base, vars, c)</span><br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:green">print(p.starmap(f, params))</span><br>
 [9, 9, 11, 15, 21, 29]<br>
 [27, 57, 111, 195, 315, 477]<br>
 [81, 249, 611, 1275, 2373, 4061]
