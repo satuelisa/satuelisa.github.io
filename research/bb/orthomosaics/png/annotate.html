@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <title>Annotator</title>
+  </head>
+  <body>
+    <p>
+    <label for="flight">Choose a flight:</label>
+    <select id="flight" name="flight" onchange="orthomosaic()">
+      <option value="default">Select one</option>      
+      <option value="jun60">June 60 m</option>
+      <option value="jul90">July 90 m</option>
+      <option value="jul100">July 100 m</option>
+      <option value="aug90">August 90 m</option>
+      <option value="aug100">August 100 m</option>
+    </select>
+    </p>
+    <p>
+      Select a class:<br>
+
+      <input type="radio" id="green" name="label" value="green">
+      <label for="green">Green</label><br>
+
+      <input type="radio" id="yellow" name="label" value="yellow">
+      <label for="yellow">Yellow</label><br>
+      
+      <input type="radio" id="red" name="label" value="red">
+      <label for="red">Red</label><br>
+      
+      <input type="radio" id="leafless" name="label" value="leafless">
+      <label for="leafless">Leafless</label><br>
+
+      <input type="radio" id="ground" name="label" value="ground">
+      <label for="ground">Ground</label><br>
+      
+      </p>
+    <div id="viewport" style="max-height: 600px; max-width:800px;overflow: scroll;">
+    <canvas id="canvas" name="canvas" width="800" height="600"></canvas>
+    </div> 
+    <p>
+      <label for="output"><strong>Annotations</strong></label>
+      <button onclick="dump()">Download</button>
+      <br/>
+      You can manually edit the text in case of errors (the circles, however, will not reflect the changes).
+    </p>      
+    <textarea id="output" name="output" rows="30" cols="45"></textarea>
+    <script src="annotate.js"></script>
+  </body>
+</html>
