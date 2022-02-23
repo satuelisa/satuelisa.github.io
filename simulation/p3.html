@@ -177,58 +177,16 @@ if __name__ == "__main__":
         primos = pool.map(primo, range(1, 3001))
 </pre>  
 <p>
-  Ahora, medimos cu&aacute;nto tiempo esto toma, promediando la medici&oacute;n
-  sobre unas 30 repeticiones.
-</p>
-<pre class="brush: r">
-primo <- function(n) {
-    if (n < 4) {
-        return(TRUE)
-    }
-    if (n %% 2 == 0) {
-        return(FALSE)
-    }
-    for (i in seq(3, max(3, ceiling(sqrt(n))), 2)) {
-        if (n %% i == 0) {
-            return(FALSE)
-        }
-    }
-    return(TRUE)
-}
-
-d <- 10000 # desde
-h <-  20000 # hasta
-replicas <- 30
-suppressMessages(library(doParallel))
-registerDoParallel(makeCluster(detectCores() - 1))
-tiempos <-  numeric()
-for (r in 1:replicas) {
-    # tomamos el "elapsed" de la salida de system.time, es el tercer dato
-    t <- system.time(foreach(n = d:h, .combine=c) %dopar% primo(n))[3]
-    tiempos <- c(tiempos, t)
-}
-stopImplicitCluster()
-summary(tiempos)
-</pre>
+  Ahora, medimos cu&aacute;nto tiempo esto toma, promediando la
+  medici&oacute;n sobre unas 30 repeticiones.  En R, está en el
+  repositorio
+  como <a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/prueba.R">prueba.R</a>.
+  En Python, está en el repositorio
+  como <a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/prueba.py">prueba.py</a>.
+  </p>
     <p>
-      <code>
-$&nbsp;Rscript&nbsp;p3.R&nbsp;<br>
-Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
-&nbsp;&nbsp;1.657&nbsp;&nbsp;&nbsp;1.694&nbsp;&nbsp;&nbsp;1.717&nbsp;&nbsp;&nbsp;1.735&nbsp;&nbsp;&nbsp;1.753&nbsp;&nbsp;&nbsp;1.948
-</code>
-    </p>
-    En Python, está en el repositorio como <a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/prueba.py">prueba.py</a>.
-    <p>
-      <code>
-	$ python3 prueba.py<br>
-	DescribeResult(nobs=30, minmax=(0.002601146697998047, 0.004113912582397461), mean=0.002804263432820638, variance=7.623356338428139e-08, skewness=3.736981141295009, kurtosis=15.176218040916307)
-      </code>
-      </p>
-    <p>
-Probamos diferencias entre tres posibles formas de ordenar los
+Luego, probamos diferencias entre tres posibles formas de ordenar los
 n&uacute;meros candidato.
-
-
 <ul>
   <li><a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/ordering.R">C&oacute;digo en R</a></li>
   <li><a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/ordering.py">C&oacute;digo en Python</a></li>
