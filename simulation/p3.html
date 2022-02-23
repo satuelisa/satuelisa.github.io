@@ -216,39 +216,11 @@ $&nbsp;Rscript&nbsp;p3.R&nbsp;<br>
 Min.&nbsp;1st&nbsp;Qu.&nbsp;&nbsp;Median&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;3rd&nbsp;Qu.&nbsp;&nbsp;&nbsp;&nbsp;Max.&nbsp;<br>
 &nbsp;&nbsp;1.657&nbsp;&nbsp;&nbsp;1.694&nbsp;&nbsp;&nbsp;1.717&nbsp;&nbsp;&nbsp;1.735&nbsp;&nbsp;&nbsp;1.753&nbsp;&nbsp;&nbsp;1.948
 </code>
-</p>
-<pre class="brush: python">
-from math import ceil, sqrt
-def primo(n):
-    if n < 4:
-        return True
-     if n % 2 == 0:
-        return False
-     for i in range(3, int(ceil(sqrt(n))), 2):
-         if n % i == 0:
-             return False
-      return True
-
-import multiprocessing
-from time import time
-from scipy.stats import describe # instalar con pip3
-
-if __name__ == "__main__":
-    d = 10000
-    h = 20000
-    replicas = 30
-    tiempos = []
-    with multiprocessing.Pool() as pool:
-        for r in range(replicas):
-            antes = time()
-            primos = pool.map(primo, range(d, h + 1))
-            despues = time()
-            tiempos.append(despues - antes)	   
-	 print(describe(tiempos))
-</pre>
+    </p>
+    En Python, está en el repositorio como <a href="https://github.com/satuelisa/Simulation/blob/master/QueuingTheory/prueba.py">prueba.py</a>.
     <p>
       <code>
-	$ python3 p3.py<br>
+	$ python3 prueba.py<br>
 	DescribeResult(nobs=30, minmax=(0.002601146697998047, 0.004113912582397461), mean=0.002804263432820638, variance=7.623356338428139e-08, skewness=3.736981141295009, kurtosis=15.176218040916307)
       </code>
       </p>
@@ -325,7 +297,7 @@ visualizaci&oacute;n cient&iacute;fica clara e informativa.
 
     <div>
       <center>
-	Actualizado el 8 de septiembre del 2021.<br>
+	Actualizado el 23 de febrero del 2022.<br>
 	<code>https://satuelisa.github.io/simulation/p3.html</code>
       </center>
     </div>
