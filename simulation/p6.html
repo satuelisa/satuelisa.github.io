@@ -150,25 +150,24 @@ $ convert -delay 20 -size 300x300 p6p_t*.png -loop 0 p6p.gif
 <br>
 <img width="700" src="p6pe.png">
 <h3>Tarea 6</h3>
+    <p>
+      Estudia el efecto de "contenci&oacute;n" en el sentido de que agentes
+      infectados reduzcan su velocidad de movimiento a la mitad
+      durante su infecci&oacute;n. Determina con pruebas estad&iacute;sticas
+      adecuadas si este cambio produce un efecto significativo en la
+      magnitud de la epidemia (la altura del pico en la curva del
+      porcentaje de infectados por iteraci&oacute;n) y en la velocidad de
+      ella (la iteraci&oacute;n en la cual se llega por la primera vez al
+      valor pico).
+      </p>
 <p>
-  <em>Vacuna</em> con probabilidad $p_v$ a los agentes al momento de
-  crearlos de tal forma que est&aacute;n desde el inicio en el estado
-  R y ya no podr&aacute;n contagiarse ni propagar la
-  infecci&oacute;n. Estudia el efecto estad&iacute;stico del valor de
-  $p_v$ en (de cero a uno en pasos de 0.1) el porcentaje m&aacute;ximo
-  de infectados durante la simulaci&oacute;n y el momento (iteración)
-  en el cual se alcanza ese máximo.
-</p>
-<p>
-  El primer reto es cambiar los patrones de movimiento a que no tengan
-  una trayectoria fija los agentes a que utilize el <em>modelo de
-  punto intermedio aleatorio</em> (ingl&eacute;s: random waypoint model):
-  cada agente tiene una posici&oacute;n meta $(x, y)$ hacia al cual se mueve
-  con una velocidad $v$; al alcanzar (o superar) su meta, elige al
-  azar una nueva meta uniformemente al azar. La velocidad de cada
-  agente es una constante, normalmente distribuido sobre la poblaci&oacute;n
-  de agentes. Examina si surgieron cambios en el efecto de $p_v$ por
-  esta modificaci&oacute;n.
+  En el primer reto, <em>vacuna</em> con probabilidad $p_v$ a los
+  agentes al momento de crearlos de tal forma que est&aacute;n desde
+  el inicio en el estado R y ya no podr&aacute;n contagiarse ni
+  propagar la infecci&oacute;n. Estudia el efecto estad&iacute;stico
+  del valor de $p_v$ en (de cero a uno en pasos de 0.1) el porcentaje
+  m&aacute;ximo de infectados durante la simulaci&oacute;n y el
+  momento (iteraci&oacute;n) en el cual se alcanza ese m&aacute;ximo.
 </p>
     <p>
       En el segundo reto, los agentes tienen <em>amistades</em>: si se
@@ -176,11 +175,10 @@ $ convert -delay 20 -size 300x300 p6p_t*.png -loop 0 p6p.gif
       suyo, se disminuyen su velocidad a la mitad por $k_a$
       iteraciones (para saludar a su amigo). Cada par de agentes tiene
       una amistad con una probabilidad $p_a$. Examina nuevamente si
-      surgieron cambios en el efecto de $p_v$ por esta modificaci&oacute;n,
-      con valores $0 < r_a < 1$, $k_a > 1$ y $0 < p_a \ll 1$ de tu elecci&oacute;n.
-</p>
-    
-
+      surgieron cambios en el efecto de $p_v$ por esta
+      modificaci&oacute;n, con valores $0 < r_a < 1$, $k_a > 1$ y $0 <
+      p_a \ll 1$ de tu elecci&oacute;n.
+								       </p>
     <div>
       <center>
 	Actualizado el 18 de marzo del 2021.<br>
