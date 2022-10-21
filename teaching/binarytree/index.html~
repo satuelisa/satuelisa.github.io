@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" charset="UTF-8" href="arboles.css"></link>
+    <title>Binary trees (simplified)</title>
+  </head>
+  <body>
+    <div id="elementos">
+      <div ID="contenido">
+	<h1>Binary trees</h1>
+	Key: <input type="number" min="0" step="1" id="clave"/> <small>(integers from 1 to 99 in this example)</small>
+	<p>
+	  <button id="ins" onclick="insert()">Insert</button>
+	</p>
+	<p>
+	  <canvas id="draw" width="10" height="10"/>
+	</p>
+	<div id="msg"></div>
+      </div>
+      <div id="pie">
+	Updated on October 21st, 2012.
+	<br>
+	URL: https://satuelisa.github.io/teaching/binarytree.html
+      </div>
+    </div>
+  </body>
+  <script src="arboles.js"></script>
+</html>
