@@ -6,23 +6,23 @@ document.getElementById('clave').focus();
 
 function place(curr, key) {
     if (curr.key == key) {
-	document.getElementById("msg").innerHTML += key + ' ya se encuentra incluido<br/>';
+	document.getElementById("msg").innerHTML += key + ' is already included<br/>';
 	return;
     } else {
 	if (key < curr.key) {
 	    if (curr.left == null) {
 		curr.left = {'height': 1, 'width': 1, 'key': key, 'left': null, 'right': null};
-		document.getElementById("msg").innerHTML += key + ' incluido en un ramo izquierdo de ' + curr.key + '<br/>';
+		document.getElementById("msg").innerHTML += key + ' included on the left branch of ' + curr.key + '<br/>';
 	    } else {
-		document.getElementById("msg").innerHTML += 'Buscando lugar para ' + key + ' en el ramo izquierdo de ' + curr.key + '<br/>';				
+		document.getElementById("msg").innerHTML += 'Finfing a spot for ' + key + ' in the left branch of ' + curr.key + '<br/>';				
 		place(curr.left, key);
 	    }	    
 	} else if (key > curr.key) {
 	    if (curr.right == null) {
 		curr.right = {'height': 1, 'width': 1, 'key': key, 'left': null, 'right': null};
-		document.getElementById("msg").innerHTML += key + ' incluido en un ramo derecho de ' + curr.key + '<br/>';
+		document.getElementById("msg").innerHTML += key + ' included on the right branch of ' + curr.key + '<br/>';
 	    } else {
-		document.getElementById("msg").innerHTML += 'Buscando lugar para ' + key + ' en el ramo derecho de ' + curr.key + '<br/>';						
+		document.getElementById("msg").innerHTML += 'Finding a spot for ' + key + ' in the right branch of ' + curr.key + '<br/>';						
 		place(curr.right, key);
 	    }	    
 	}
@@ -126,18 +126,18 @@ function draw(root) {
 function insert() {
     var entry = document.getElementById("clave").value;
     if (entry.indexOf('.') > -1) {
-	document.getElementById("msg").innerHTML += "Ignorando clave " + entry + ' por no ser un entero<br/>';
+	document.getElementById("msg").innerHTML += "Ignoring key " + entry + ' that is not an integer<br/>';
 	return;
     }
     var key = parseInt(entry);
     if (key < 1 || key > 99) {
-	document.getElementById("msg").innerHTML += "Ignorando clave " + key + ' por no respetar el rango<br/>';
+	document.getElementById("msg").innerHTML += "Ignoring a key " + key + ' that is out of the permitted range<br/>';
 	return;
     }    
-    document.getElementById("msg").innerHTML += "Insertando clave " + key + '<br/>';
+    document.getElementById("msg").innerHTML += "Inserting key " + key + '<br/>';
     document.getElementById("clave").value = '';
     if (root == null) {
-	document.getElementById("msg").innerHTML += "Creando una ra&iacute;z para colocar " + key + '<br/>';	
+	document.getElementById("msg").innerHTML += "Creating a root to place " + key + '<br/>';	
 	root = {'height': -1, 'key': key, 'left': null, 'right': null}; 
     } else {
 	place(root, key);
