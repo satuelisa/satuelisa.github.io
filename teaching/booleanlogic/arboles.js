@@ -389,7 +389,7 @@ function process() {
 		    document.getElementById("msg").innerHTML += "&not; 0 = 1<br/>";
 		    stack.push("1");
 		} else {
-		    document.getElementById("msg").innerHTML = v + "no es binario y no se puede proceder<br/>";
+		    document.getElementById("msg").innerHTML = v + "is not binary, unable to proceed<br/>";
 		    return null;
 		}
 	    } else {
@@ -415,7 +415,7 @@ function process() {
 	}
     }
     var res = stack.pop();
-    document.getElementById("msg").innerHTML += "La expresi&oacute;n " + expression.innerHTML + " vale " + res + ".<br/>";
+    document.getElementById("msg").innerHTML += "The expression " + expression.innerHTML + " evaluates to " + res + ".<br/>";
     draw(tree(res));
 }
 
@@ -472,7 +472,7 @@ function tree(latest) {
     }
     var node = stack.pop();
     if (node.value !== latest) {
-	document.getElementById("debug").innerHTML += "Hay bronca con el &aacute;rbol que vale" + node.value + "<br/>";
+	document.getElementById("debug").innerHTML += "There is a problem with the node " + node.value + "<br/>";
     }
     return nodes;
 }
