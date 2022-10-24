@@ -14,7 +14,7 @@ function place(curr, key) {
 		curr.left = {'height': 1, 'width': 1, 'key': key, 'left': null, 'right': null};
 		document.getElementById("msg").innerHTML += key + ' included on the left branch of ' + curr.key + '<br/>';
 	    } else {
-		document.getElementById("msg").innerHTML += 'Finfing a spot for ' + key + ' in the left branch of ' + curr.key + '<br/>';				
+		document.getElementById("msg").innerHTML += 'Finding a spot for ' + key + ' in the left branch of ' + curr.key + '<br/>';				
 		place(curr.left, key);
 	    }	    
 	} else if (key > curr.key) {
