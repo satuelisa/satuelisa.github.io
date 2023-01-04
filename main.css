@@ -7,7 +7,7 @@ body {
 }
 
 #elementos {
-  max-width: 1280px;
+  max-width: 98%;
 }
 		
 #navibar
@@ -16,14 +16,14 @@ body {
     vertical-align: bottom;
     background-color: #dddddd;
     background-image: url(./banner.jpg); 
-    background-repeat: no-repeat;
+    background-repeat: x-repeat;
     clear: both;
     float: left;
     margin-left: 0px;
     margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 0px;
-    max-width: 1280px;
+    max-width: 100%;
     height: 120px;
     width: 100%;
 }
@@ -68,6 +68,7 @@ body {
 #contenido {
     float: left;
     width: 80%;
+    max-width: 80%;
     padding-top: 10px;
     padding-left: 15px;
     background-color: #dddddd;
