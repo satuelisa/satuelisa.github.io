@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://scs-technology-and-innovation.github.io/courses/all.min.css">
+    <link rel="stylesheet" href="https://scs-technology-and-innovation.github.io/courses/styles.min.css">
+    <link rel="stylesheet" href="https://scs-technology-and-innovation.github.io/courses/custom.css">
+    <link rel="stylesheet" href="https://scs-technology-and-innovation.github.io/courses/style-2022.css">
+    <title>Exploring the World of STEM</title>
+    <style>
+      canvas {
+          background-color: black;
+      }      
+      #number {
+	  width: 3em;
+      }      
+      table,
+      td {
+          border: 1px;
+          padding: 1px;
+	  text-align: right;
+      }
+      th {
+          border: 1px;
+          padding: 1px;
+	  text-align: center;	  
+          }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4TPHQ59P8"></script>    
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+	  dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag('config', 'G-T4TPHQ59P8');      
+    </script>
+  </head>
+  <body class="content" role="document">
+    <section class="bg-">
+      <div class="container-fluid">
+	<h1>Who's typing?</h1>
+	<p>
+	  Please work in groups of two to four people per computer.
+	</p>
+	<p>
+	  <label for="stage">Stage:</label>
+	  <select name="stage" id="stage" onchange="status()">
+	    <option value="train">Provide training data by typing text samples</option>
+	    <option value="test">Compare to learned model to detect who typed</option>
+	  </select>
+	  &nbsp;
+	  <button onclick="erase()">Erase training data</button>     
+	</p>
+	<p>
+	  <label for="who">Who is typing?</label>
+	  <input type="who" id="who" />	  
+	</p>
+	<!--
+	<p>	
+	  <label for="book">Which book?</label>	
+	  <select name="book" id="book"></select>
+	</p>
+	-->
+	<p>		
+	<label for="length">How many words?</label>		
+	<input type="number" name="length" id="length" min="10" max="50" step="5" value="20"/>
+	&nbsp;
+	<button onclick="textSample()">Get text to type</button>
+	</p>
+	<span id="what" style="color:blue"></span>
+	<p>
+	  <textarea id="input" rows="12" cols="80">Type the above blue text here. No need to type perfectly.</textarea>
+	</p>
+	<p>
+	  <button onclick="reset()">Clear typed text</button>
+	</p>	  
+	<p>
+	  <button id="ab" onclick="analyze()">Analyze</button>      
+	</p>
+	<p>
+	  <span id="veredict"></span>
+	</p>
+	<p>
+	<button onclick="dump()">Reset analysis</button>      
+	</p>
+	<script src="features.js"></script>
+    </section>
+    <script src="https://scs-technology-and-innovation.github.io/courses/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://scs-technology-and-innovation.github.io/courses/popper.min.js"></script>
+    <script src="https://scs-technology-and-innovation.github.io/courses/bootstrap.min.js"></script>
+    <script src="https://scs-technology-and-innovation.github.io/courses/scripts.min.js "></script>
+  </body>
+</html>
