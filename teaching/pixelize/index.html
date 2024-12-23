@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" charset="UTF-8" href="pixelize.css"></link>
+    <title>Pixelize</title>
+  </head>
+  <body>
+    <div id="elements">
+      <div ID="content">
+	<h1>Pixelize</h1>
+	<p>
+	  Image: <input type="file" id="image" />
+	</p>	  
+	<p>	  
+	  Width: <input type="number" min="4" step="4" id="width" value="16"/>
+	</p>	  
+	<p>	  
+	  Height: <input type="number" min="4" step="4" id="height" value="16"/>
+	</p>
+	<p>	  
+	  Button size: <input type="number" min="10" step="10" id="size" value="50"/>
+	</p>
+	<p>	  
+	  Background color: <input type="color" id="bg" value="#ffffff"/>
+	</p>	  
+	<p>
+	  <button id="proc" onclick="process()">Process</button>
+	</p>
+	<div id="grid">	</div>
+      </div>
+      <canvas id="draw" width="0" height="0"/>
+      <img id="upload" />
+      <div id="footer">
+	Updated on December 23rd, 2024.
+	<br>
+	URL: https://satuelisa.github.io/teaching/pixelize/
+      </div>
+    </div>
+  </body>
+  <script src="pixelize.js"></script>
+</html>
