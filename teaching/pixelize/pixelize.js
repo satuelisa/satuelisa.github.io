@@ -42,8 +42,8 @@ function process() {
     let g = document.getElementById("grid");
     g.innerHTML = ''; // erase
     
-    let dw = Math.round(iw / gw);
-    let dh = Math.round(ih / gh);
+    let dw = Math.floor(iw / gw);
+    let dh = Math.floor(ih / gh);
     console.log(dw, dh);
 
     const background = document.getElementById("bg").value;

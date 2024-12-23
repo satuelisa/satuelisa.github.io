@@ -7,9 +7,10 @@ body {
     background-color: #ffffff;
 }
 
-
 #elements {
-    max-width: 1600px;
+    padding-top: 10px;
+    padding-left: 10px;
+    white-space: nowrap;
 }
 
 
@@ -17,11 +18,9 @@ body {
     padding-top: 7px;
     padding-bottom: 7px;        
     float: left;
-    width: 85%;
-    padding-top: 10px;
-    padding-left: 15px;
     background-color: #ffffff;
     clear: right;
+    white-space: nowrap;
 }
 
 
@@ -47,12 +46,14 @@ body {
     padding: 0px 0px;
     margin: 1px 1px;
     cursor: pointer;
+    display: inline-block;
 }
 
 #grid br {
   margin-bottom: 0px;
   font-size: 0px;
   line-height: 0px;
+  white-space: nowrap;
 }
 
 #footer {
