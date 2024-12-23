@@ -51,6 +51,12 @@ function process() {
     for (let j = 0; j < gh; j++) {
 	for (let i = 0; i < gw; i++) {
 	    var b = document.createElement("button");
+	    // from https://stackoverflow.com/questions/6238314/any-way-to-keep-an-html-button-pressed
+	    b.onclick = function(e) {
+		this.style.borderStyle =
+		    (this.style.borderStyle!=='inset' ? 'inset' : 'outset'); 
+	    }
+	    
 	    let pixels = ctx.getImageData(i * dw, j * dh, dw, dh); // x (row) y (column) w h
 	    // averaging based on https://stackoverflow.com/questions/44556692/javascript-get-average-color-from-a-certain-area-of-an-image
 	    const values = pixels.data;
