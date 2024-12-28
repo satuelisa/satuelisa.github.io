@@ -41,8 +41,6 @@ body {
 
 #grid button {
     border-width: thick;
-    background-color: #666666; 
-    color: #000000;
     padding: 0px 0px;
     margin: 1px 1px;
     cursor: pointer;

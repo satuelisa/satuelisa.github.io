@@ -47,6 +47,7 @@ function process() {
     console.log(dw, dh);
 
     const background = document.getElementById("bg").value;
+    const border = document.getElementById("bc").value;
     
     for (let j = 0; j < gh; j++) {
 	for (let i = 0; i < gw; i++) {
@@ -90,6 +91,8 @@ function process() {
 	    b.style.width = s;
 	    b.style.height = s;
 	    b.style.background = color;
+	    b.style.borderColor = border;	    
+	    b.style.borderStyle = 'outset';
 	    g.appendChild(b);
 	}
 	g.appendChild(document.createElement("br"));
