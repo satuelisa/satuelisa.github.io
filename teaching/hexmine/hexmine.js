@@ -10,11 +10,21 @@ ctx.lineWidth = 3;
 
 // COLOR PALETTE
 
+const MINE = 7;
 const BORDER = "#000000"; // black
+const LABEL = "#ffffff"; // white
 const DEBUG = "#ff0000"; // red
-const EMPTY = "#990099"; // purple
-const UNOPENED = "#888888"; // light gray
-const MINE = "#222222"; // dark gray
+// colors from https://www.learnui.design/tools/data-color-picker.html
+const COLOR = [ "#999999", 
+		"#003f5c",
+		"#444e86",
+		"#955196",
+		"#dd5182",
+		"#ff6e54",
+		"#ffa600",
+		"#222222" // 7 will mean MINE
+	      ];
+const UNOPENED = "#666666"; // light gray
 
 // DEBUG STUFF
 
@@ -33,7 +43,6 @@ function d2r(d) { // degrees to radians
 class Hexagon {
     constructor(x, y, l, r, c) {
 	this.hidden = true;
-	this.content = EMPTY;
 	this.counter = 0;
 	this.x = x;
 	this.y = y;
@@ -47,8 +56,8 @@ class Hexagon {
     }
 
     attempt() {
-	if (this.content == EMPTY) {
-	    this.content = MINE;
+	if (this.counter != MINE) {
+	    this.counter = MINE;
 	    // this.status();
 	    return true;
 	}
@@ -64,13 +73,6 @@ class Hexagon {
 	    ctx.closePath();
 	    ctx.stroke();	    
 	}
-	
-	ctx.strokeStyle = BORDER;
-/*	if (this.hidden) {
-	    ctx.fillStyle = UNOPENED;
-	} else { */
-	ctx.fillStyle = this.content; // reveal content	
-	//}
 	let as = -d2r(180 - ANGLE); // complement angle as the step (spin around the center counterclockwise)
 	let sx = this.x + this.l; // start mid right
 	let sy = this.y;
@@ -86,11 +88,18 @@ class Hexagon {
 	    sy = ey;
 	}
 	ctx.closePath();
+	ctx.strokeStyle = BORDER;	
 	ctx.stroke();
+
+	/*	if (this.hidden) {
+	    ctx.fillStyle = UNOPENED;
+	} else { */
+	//}
+	
+	ctx.fillStyle = COLOR[this.counter]; // reveal content	
 	ctx.fill();
-	if (!this.hidden && this.content == EMPTY) {
-	    ctx.strokeText(this.counter, this.x, this.y);
-	}
+	ctx.strokeStyle = LABEL;
+	ctx.strokeText(this.counter, this.x, this.y);
     }
 
     
@@ -129,18 +138,41 @@ function randint(high) {
     return Math.floor(high * Math.random());
 }
 
-function increment(c, r) {
-
+function increment(c, r, w, h, span) {
+    let c1 = grid[c][r];
+    let x1 = c1.x;
+    let y1 = c1.y;
+    for (let i = c - 1; i <= c + 1; i++) {
+	if (i < 0 || i == w) {
+	    continue;
+	}
+	for (let j = r - 1; j <= r + 1; j++) {
+	    if (j < 0 || j == h) {
+		continue;
+	    }
+	    let c2 = grid[i][j];
+	    let x2 = c2.x;
+	    let y2 = c2.y;
+	    let dx = (x1 - x2);
+	    let dy = (y1 - y2);
+	    let sep = Math.sqrt(dx * dx + dy * dy);
+	    if (sep < span) {
+		if (c2.counter < MINE) { // not a mine itself
+		    c2.counter++;
+		}
+	    }
+	}    
+    }
 }
-
-function place(mines, width, height) {
+    
+function place(mines, width, height, span) {
     let placed = 0;
     let debugcount = 20;
     while (placed < mines) {
 	let r = randint(height);
 	let c = randint(width);
 	if (grid[c][r].attempt()) {
-	    increment(c, r);
+	    increment(c, r, width, height, span);
 	    placed++;
 	} 
 	debugcount--;
@@ -168,8 +200,9 @@ function create() {
     let s = 1 * document.getElementById("size").value;
     let m = 1 * document.getElementById("mines").value;    
 
+    var grid = []; // reset    
     setup(w, h, s);
-    place(m, w, h);
+    place(m, w, h, 2.5 * s); // leave some margin for the span for floating point arithmetic
     display(w, h, true);
 }
 
