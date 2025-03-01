@@ -1,3 +1,9 @@
+// FIELD
+
+var grid = [];
+
+// CANVAS
+
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");    
 ctx.lineWidth = 3;
@@ -6,8 +12,9 @@ ctx.lineWidth = 3;
 
 const BORDER = "#000000"; // black
 const DEBUG = "#ff0000"; // red
-const UNOPENED = "#888888"; // gray
-
+const EMPTY = "#990099"; // purple
+const UNOPENED = "#888888"; // light gray
+const MINE = "#222222"; // dark gray
 
 // DEBUG STUFF
 
@@ -24,14 +31,30 @@ function d2r(d) { // degrees to radians
 }
 
 class Hexagon {
-    constructor(x, y, l) {
-	this.state = UNOPENED;
+    constructor(x, y, l, r, c) {
+	this.hidden = true;
+	this.content = EMPTY;
+	this.counter = 0;
 	this.x = x;
 	this.y = y;
 	this.l = l;
-	console.log(x, y);
+	this.row = r;
+	this.column = c;
     }
 
+    status() {
+	console.log(this.row, this.column, this.content);
+    }
+
+    attempt() {
+	if (this.content == EMPTY) {
+	    this.content = MINE;
+	    // this.status();
+	    return true;
+	}
+	return false;
+    }
+    
     draw() {
 
 	if (circles) {
@@ -43,7 +66,11 @@ class Hexagon {
 	}
 	
 	ctx.strokeStyle = BORDER;
-	ctx.fillStyle = this.state;
+/*	if (this.hidden) {
+	    ctx.fillStyle = UNOPENED;
+	} else { */
+	ctx.fillStyle = this.content; // reveal content	
+	//}
 	let as = -d2r(180 - ANGLE); // complement angle as the step (spin around the center counterclockwise)
 	let sx = this.x + this.l; // start mid right
 	let sy = this.y;
@@ -60,10 +87,78 @@ class Hexagon {
 	}
 	ctx.closePath();
 	ctx.stroke();
-	ctx.fill();	    	
+	ctx.fill();
+	if (!this.hidden && this.content == EMPTY) {
+	    ctx.strokeText(this.counter, this.x, this.y);
+	}
     }
 
     
+}
+
+function setup(w, h, s) {
+    // hexagon height
+    let hh = s * Math.sqrt(3);
+
+    ctx.font = Math.floor(s / 2) + "px Arial"; // label font
+    
+    // adjust the canvas to fit the grid
+    let ch = hh * (h + 1); // canvas height     
+    let cw = 2 * s * w;
+    ctx.canvas.width = cw;
+    ctx.canvas.height = ch    
+
+    let x = s;
+    for (let j = 0; j < w; j++) {
+	grid.push([]);
+	let y = hh / 2; // starting one is touching the top
+	if (j % 2 == 1) {
+	    y *= 2; // twice that on odd columns
+	}
+	for (let i = 0; i < h; i++) {
+	    var cell = new Hexagon(x, y, s, j, i);
+	    cell.draw();
+	    grid[j].push(cell);
+	    y += hh;
+	}
+	x += 1.5 * s;
+    }
+}
+
+function randint(high) {
+    return Math.floor(high * Math.random());
+}
+
+function increment(c, r) {
+
+}
+
+function place(mines, width, height) {
+    let placed = 0;
+    let debugcount = 20;
+    while (placed < mines) {
+	let r = randint(height);
+	let c = randint(width);
+	if (grid[c][r].attempt()) {
+	    increment(c, r);
+	    placed++;
+	} 
+	debugcount--;
+	if (debugcount == 0) {
+	    console.log('PROBLEM: forcing exit from mine placement');
+	    return;
+	}
+    }
+}
+
+function display(w, h, reveal) {
+    console.log('redrawing');
+    for (let r = 0; r < h; r++) {
+	for (let c = 0; c < w; c++) {
+	    grid[c][r].draw(reveal);
+	}
+    }
+
 }
 
 function create() {
@@ -71,27 +166,11 @@ function create() {
     let w = 1 * document.getElementById("width").value;
     let h = 1 * document.getElementById("height").value;
     let s = 1 * document.getElementById("size").value;
-    console.log(w, h, s);
-    
-    let cw = 2 * s * w;
-    let hh = s * Math.sqrt(3);
+    let m = 1 * document.getElementById("mines").value;    
 
-    // hexagon height
-    let ch = hh * (h + 1); // canvas height 
-    
-    ctx.canvas.width = cw;
-    ctx.canvas.height = ch
-
-    let x = s;
-    for (let j = 0; j < w; j++) {
-	let y = hh / 2; // starting one is touching the top
-	if (j % 2 == 1) {
-	    y *= 2; // twice that on odd columns
-	}
-	for (let i = 0; i < h; i++) {
-	    new Hexagon(x, y, s).draw();
-	    y += hh;
-	}
-	x += 1.5 * s;
-    }
+    setup(w, h, s);
+    place(m, w, h);
+    display(w, h, true);
 }
+
+
