@@ -1,19 +1,22 @@
 // FIELD
 
 var grid = [];
+var identified = 0;
+var revealed = 0;
 
 // CANVAS
 
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");    
-ctx.lineWidth = 3;
 
 // COLOR PALETTE
 
 const MINE = 7;
 const BORDER = "#000000"; // black
+const LOCKED = "#990000"; // dark red
 const LABEL = "#ffffff"; // white
 const DEBUG = "#ff0000"; // red
+
 // colors from https://www.learnui.design/tools/data-color-picker.html
 const COLOR = [ "#999999", 
 		"#003f5c",
@@ -22,14 +25,19 @@ const COLOR = [ "#999999",
 		"#dd5182",
 		"#ff6e54",
 		"#ffa600",
-		"#222222" // 7 will mean MINE
+		"#663333" // 7 will mean MINE
 	      ];
 const UNOPENED = "#666666"; // light gray
+const MARKED = "#333333"; // dakj gray
+const BOMB = "#";
+
+ctx.lineWidth = 1;	    	    
+
 
 // DEBUG STUFF
 
 var circles = false;
-var showpos = true;
+var showpos = false;
 
 
 // HEXAGONS
@@ -41,9 +49,19 @@ function d2r(d) { // degrees to radians
     return FC * (d / 360.0);
 }
 
+function progress(added) {
+    if (added) {
+	identified++;
+    } else {
+	identified--;
+    }
+    document.getElementById("remaining").textContent = (mines - identified) + " left to mark";
+}
+
 class Hexagon {
     constructor(x, y, l, r, c) {
 	this.hidden = true;
+	this.flagged = false;
 	this.counter = 0;
 	this.x = x;
 	this.y = y;
@@ -53,20 +71,33 @@ class Hexagon {
     }
 
     status() {
-	console.log('cell', this.row, this.column, 'contains', this.counter, 'at', this.x, this.y);
+	console.log('cell', this.row, this.column, 'contains', this.counter, 'at', this.x, this.y, 'tha flag is', this.flagged);
     }
 
     activate() {
-	this.hidden = false;
-	this.draw();
-	if (this.counter == MINE) {
-	    gameover();
+	if (document.getElementById("flag").checked) {
+	    this.flagged = !this.flagged; // toggle
+	    progress(this.flagged);
+	    this.status();
+	} else { // opening mode
+	    if (!this.flagged) { // not protected
+		this.hidden = false;
+		if (this.counter == MINE) {
+		    gameover(false); // everything gets revealed
+		    return;
+		}
+	    }
+	    revealed++;
+	    if (revealed == (width * height) - mines) {
+		gameover(true); // everything gets revealed
+	    }
 	}
+	this.draw(); 
     }
 
     attempt() {
 	if (this.counter != MINE) {
-	    this.couuter = MINE;
+	    this.counter = MINE;
 	    // this.status();
 	    return true;
 	}
@@ -97,11 +128,19 @@ class Hexagon {
 	    sy = ey;
 	}
 	ctx.closePath();
-	ctx.strokeStyle = BORDER;	
+	if (!this.flagged) {
+	    ctx.strokeStyle = BORDER;
+	} else {
+	    ctx.strokeStyle = LOCKED;
+	}
 	ctx.stroke();
 
 	if (this.hidden) {
-	    ctx.fillStyle = UNOPENED;
+	    if (this.flagged) {
+		ctx.fillStyle = MARKED;		
+	    } else {
+		ctx.fillStyle = UNOPENED;
+	    }
 	    ctx.fill();
 	    if (showpos) {
 		ctx.strokeStyle = LABEL;
@@ -112,7 +151,11 @@ class Hexagon {
 	    ctx.fillStyle = COLOR[this.counter]; // reveal content	
 	    ctx.fill();
 	    ctx.strokeStyle = LABEL;
-	    ctx.strokeText(this.counter, this.x, this.y);
+	    if (this.counter != MINE) {
+		ctx.strokeText(this.counter, this.x, this.y);
+	    } else {
+		ctx.strokeText(BOMB, this.x, this.y);
+	    }
 	}
     }
 
@@ -124,6 +167,7 @@ let width = 0;
 let height = 0;
 let hexheight = 0;
 let unit = 0;
+let mines = 0;
 
 function setup() {
     ctx.font = Math.floor(size / 2) + "px Arial"; // label font
@@ -182,7 +226,7 @@ function increment(c, r, span) {
     }
 }
     
-function place(mines, span) {
+function place(span) {
     let placed = 0;
     let debugcount = 20;
     while (placed < mines) {
@@ -221,12 +265,12 @@ function create() {
     unit = 1.5 * size; // a unit for rounding the event positions
     hexheight = size * Math.sqrt(3); // hexagon height
 
-    let m = 1 * document.getElementById("mines").value;    
+    mines = 1 * document.getElementById("mines").value;    
     document.getElementById("create").disabled = true;    
     
     setup();
     active = true;
-    place(m, 2.5 * size); // leave some margin for the span for floating point arithmetic
+    place(2.5 * size); // leave some margin for the span for floating point arithmetic
     display(true);
 }
 
@@ -256,7 +300,7 @@ function click(src, e) {
 		let dx = cell.x - x;
 		let dy = cell.y - y;
 		if (Math.sqrt(dx * dx + dy * dy) < size) {
-		    cell.status();
+		    // cell.status();
 		    cell.activate(); // found it
 		    return;
 		}
@@ -267,13 +311,17 @@ function click(src, e) {
 
 canvas.addEventListener("mousedown", click);
 
-function gameover() {
-    alert("You lost");
+function gameover(won) {
     active = false;
-    for (let j = 0; j < w; j++) {
-	for (let i = 0; i < h; i++) {
+    for (let j = 0; j < width; j++) {
+	for (let i = 0; i < height; i++) {
 	    grid[j][i].hidden = false;
 	}
     }
     display(); // reveal
+    if (won) {
+	alert("You won");
+    } else {
+	alert("You lost");
+    }
 }
