@@ -1,17 +1,17 @@
 var canvas = document.getElementById("field");
 var ctx = canvas.getContext("2d");    
-ctx.lineWidth = 2;
+ctx.lineWidth = 3;
 
 // COLOR PALETTE
 
 const BORDER = "#000000"; // black
 const DEBUG = "#ff0000"; // red
-const UNOPENED = "#444444"; // gray
+const UNOPENED = "#888888"; // gray
 
 
 // DEBUG STUFF
 
-var circles = true;
+var circles = false;
 
 
 // HEXAGONS
@@ -26,10 +26,10 @@ function d2r(d) { // degrees to radians
 class Hexagon {
     constructor(x, y, l) {
 	this.state = UNOPENED;
-	// make sure these are numbers
-	this.x = 1 * x;
-	this.y = 1 * y;
-	this.l = 1 * l;
+	this.x = x;
+	this.y = y;
+	this.l = l;
+	console.log(x, y);
     }
 
     draw() {
@@ -67,20 +67,31 @@ class Hexagon {
 }
 
 function create() {
-    let w = document.getElementById("width").value;
-    let h = document.getElementById("height").value;
-    let s = document.getElementById("size").value;
+    // make sure these are numbers
+    let w = 1 * document.getElementById("width").value;
+    let h = 1 * document.getElementById("height").value;
+    let s = 1 * document.getElementById("size").value;
+    console.log(w, h, s);
+    
+    let cw = 2 * s * w;
+    let hh = s * Math.sqrt(3);
 
-    let cw = s * w;
-    let ch = s * h;
+    // hexagon height
+    let ch = hh * (h + 1); // canvas height 
     
     ctx.canvas.width = cw;
     ctx.canvas.height = ch
 
-    let x = cw / 2;
-    let y = ch / 2;
-    
-    h = new Hexagon(x, y, s);
-    h.draw()
-    
+    let x = s;
+    for (let j = 0; j < w; j++) {
+	let y = hh / 2; // starting one is touching the top
+	if (j % 2 == 1) {
+	    y *= 2; // twice that on odd columns
+	}
+	for (let i = 0; i < h; i++) {
+	    new Hexagon(x, y, s).draw();
+	    y += hh;
+	}
+	x += 1.5 * s;
+    }
 }
