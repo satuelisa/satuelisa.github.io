@@ -158,3 +158,116 @@
       letter-spacing: 0.05em;
       font-weight: 400;
     }
+
+    /* ── Dark mode ─────────────────────────────────────────── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-blue-500:     #3a9abf;
+        --color-blue-600:     #2d7a99;
+        --color-cream-500:    #111a1e;
+        --color-cream-600:    #1c282e;
+        --color-charcoal-900: #e8eef0;
+        --color-charcoal-600: #b0bec2;
+        --color-charcoal-300: #6d8a93;
+        --color-cobalt-500:   #8b83f8;
+        --color-cobalt-600:   #a89ef9;
+        --color-cobalt-100:   #3a3480;
+        --color-white:        #e8eef0;
+      }
+
+      body {
+        background: #111a1e;
+        color: #e8eef0;
+      }
+
+      /* Sidebar */
+      #menubar {
+        background: #0d1f27;
+        border-right-color: var(--color-cobalt-500);
+      }
+
+      #menubar tr:first-child td {
+        color: #ffffff;
+        border-bottom-color: rgba(255,255,255,0.12);
+      }
+
+      #menubar-photo {
+        border-bottom-color: rgba(255,255,255,0.12);
+      }
+
+      #menubar a {
+        color: #d0dde0;
+      }
+
+      #menubar a:hover {
+        color: #ffffff;
+      }
+
+      /* Language bar */
+      #navibar {
+        background: #071318;
+      }
+
+      .lang-btn {
+        color: rgba(255,255,255,0.6);
+        border-color: rgba(255,255,255,0.2);
+      }
+
+      .lang-btn:hover {
+        color: #ffffff;
+        background: rgba(255,255,255,0.1);
+      }
+
+      .lang-btn.active {
+        background: var(--color-cobalt-500);
+        border-color: var(--color-cobalt-500);
+        color: #ffffff;
+      }
+
+      /* Data tables */
+      .data-table th {
+        background: #0a1215;
+        color: #e8eef0;
+        border-color: #2d4048;
+      }
+      .data-table td {
+        border-color: #1c282e;
+        color: #b0bec2;
+      }
+      .data-table tr:hover td {
+        background: rgba(139, 131, 248, 0.07);
+      }
+
+      /* Contact table */
+      .contact-table td {
+        border-bottom-color: #1c282e;
+        color: #b0bec2;
+      }
+      .contact-table td:first-child {
+        color: #6d8a93;
+      }
+      .contact-table strong {
+        color: #e8eef0;
+      }
+
+      /* Footer */
+      #pie {
+        border-top-color: #1c282e;
+      }
+
+      /* h2 divider */
+      h2 {
+        border-top-color: #1c282e;
+      }
+
+      /* Top gradient bar — slightly more visible */
+      body::before {
+        background: linear-gradient(90deg, #3a9abf, #8b83f8);
+      }
+
+      /* Active page indicator in nav */
+      #menubar a.active-page {
+        border-left-color: var(--color-cobalt-500);
+        color: var(--color-cobalt-500);
+      }
+    }
