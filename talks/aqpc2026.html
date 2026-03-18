@@ -44,7 +44,7 @@
   <button class="nav-tab" onclick="showSec('redesign')" id="nav-redesign"><span class="tab-num">6</span><span id="ntab-redesign">Remanier</span></button>
   <button class="nav-tab" onclick="showSec('data')" id="nav-data"><span class="tab-num">7</span><span id="ntab-data">Données</span></button>
   <button class="nav-tab" onclick="showSec('active')" id="nav-active"><span class="tab-num">8</span><span id="ntab-active">Apprentissage actif</span></button>
-<button class="nav-tab" onclick="showSec('discussion')" id="nav-discussion"><span class="tab-num">9</span><span id="ntab-discussion">Discussion</span></button>
+  <button class="nav-tab" onclick="showSec('discussion')" id="nav-discussion"><span class="tab-num">9</span><span id="ntab-discussion">Discussion</span></button>
 </nav>
 
 <section id="intro" class="sec active">
@@ -64,7 +64,14 @@
   <div class="sec-inner">
     <div class="async-banner">
       <div class="async-icon">🔗</div>
-      <div class="async-text"><h4 id="async-h4">Cette page est autonome</h4><p id="async-p">Toutes les activités fonctionnent en dehors de l'atelier. Partagez l'URL avec vos collègues pour qu'ils explorent les exemples à leur propre rythme, dans leur discipline.</p></div>
+      <div class="async-text">
+        <h4 id="async-h4">Cette page est autonome</h4>
+        <p id="async-p">Toutes les activités fonctionnent en dehors de l'atelier. Partagez l'URL avec vos collègues pour qu'ils explorent les exemples à leur propre rythme, dans leur discipline.</p>
+      </div>
+      <div style="flex-shrink:0;text-align:center;">
+        <img src="aqpc2026.png" alt="QR code" style="width:9.6rem;height:9.6rem;border-radius:6px;display:block;">
+        <p id="async-qr-cap" style="font-size:1.1rem;color:var(--ch-300);margin-top:.4rem;">Scannez pour ouvrir la page sur votre appareil</p>
+      </div>
     </div>
     <div class="crit-callout" id="env-disclaimer" style="margin-bottom:2.4rem;"></div>
     <div class="sec-header">
@@ -97,7 +104,6 @@
     </div>
   </div>
 </section>
-
 
 <section id="scale" class="sec">
   <div class="sec-inner">
@@ -183,15 +189,12 @@
         <p id="data-async-p">Le visualiseur complet permet de filtrer par programme, par session et par source de données (niveau de cours ou niveau des évaluations). Survolez un segment pour voir les titres de cours.</p>
       </div>
     </div>
-
-    <!-- ── INLINE AI SCALE VISUALISER ── -->
     <div id="viz-tooltip">
       <div class="vtt-lv" id="vtt-lv"></div>
       <div class="vtt-prog" id="vtt-prog"></div>
       <div class="vtt-sess" id="vtt-sess"></div>
       <div class="vtt-courses" id="vtt-courses"></div>
     </div>
-
     <div class="viz-wrap">
       <div class="viz-ctrl">
         <span class="viz-ctrl-label">Granularité</span>
@@ -217,7 +220,6 @@
     </div>
   </div>
 </section>
-
 
 <section id="active" class="sec">
   <div class="sec-inner">
