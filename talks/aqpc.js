@@ -903,7 +903,7 @@ const STR = {
     'data-p':        "Un premier regard sur la façon dont quatre équipes ont positionné leurs cours et évaluations sur l\'échelle. À explorer en détail après l\'atelier.",
     'data-async-h4': 'Visualisation interactive disponible en ligne',
     'data-async-p':  'Le visualiseur complet permet de filtrer par programme, par session et par source de données. Survolez un segment pour voir les titres de cours.',
-    'data-callout':  '<strong>Ce que vous voyez ici :</strong> quatre programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à l\'ensemble de leur grille de cours. Les programmes 420.BR, 420.BP et 420.BX (Technique de l'informatique) sont des formations techniques traditionnelles ; le programme 574.CX (Design UI/UX) est conçu comme une approche de prototypage assisté par IA et de création en faible code.',
+    'data-callout':  '<strong>Ce que vous voyez ici :</strong> quatre programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à l\'ensemble de leur grille de cours. Les programmes 420.BR, 420.BP et 420.BX (Technique de l\'informatique) sont des formations techniques traditionnelles ; le programme 574.CX (Design UI/UX) est conçu comme une approche de prototypage assisté par IA et de création en faible code.',
     'data-next-btn': 'Apprentissage actif →',
     'ntab-data':     'Données',
         'active-tag': 'Activité 4 ~ 10 minutes',
