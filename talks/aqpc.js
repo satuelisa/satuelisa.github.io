@@ -1225,6 +1225,10 @@ function showSec(id) {
   document.getElementById('nav-' + id).classList.add('active');
   renderTimerPhases();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'overview' && !_overviewMapDone && typeof LCIMap !== 'undefined') {
+    _overviewMapDone = true;
+    LCIMap.init('lci-map-root', OVERVIEW_DATA);
+  }
 }
 
 // ── LANGUAGE ─────────────────────────────────────────────────────────────────
@@ -1553,9 +1557,9 @@ function updateHtmlFields() {
     'scale-h2','scale-p','scale-next-btn',
     'sort-tag','sort-h2','sort-p','pool-label','sort-check-btn','sort-reset-btn','sort-next-btn',
     'sc-tag','sc-h2','sc-p','sc-prev','sc-next',
-    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','data-async-h4','data-async-p','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
+    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
     'disc-tag','disc-h2','disc-p',
-    'ntab-intro','ntab-lessons','ntab-scale','ntab-sort','ntab-scenario','ntab-redesign','ntab-data','ntab-active','ntab-discussion'
+    'ntab-intro','ntab-overview','ntab-lessons','ntab-scale','ntab-sort','ntab-scenario','ntab-redesign','ntab-data','ntab-active','ntab-discussion'
   ];
   textIds.forEach(id => {
     const el = document.getElementById(id);
@@ -1773,7 +1777,124 @@ function renderLessons() {
     ).join('');
 }
 
+
+// ── SURVEY SECTION ───────────────────────────────────────────────────────────
+const OVERVIEW_STR = {
+  fr: {
+    tag: 'LCI Éducation · Printemps 2026',
+    h2: "L'IA dans notre réseau — état des lieux",
+    p: '136 réponses dans 11 institutions et 13 campus, couvrant 340 programmes — collectées au printemps 2026.',
+    ah4: 'Section à explorer en autonomie',
+    ap:  "Aperçu en 2 minutes. Le détail par institution et la carte mondiale sont disponibles après l'atelier.",
+    stat1lbl: 'répondant.e.s', stat1sub: 'dans 11 institutions',
+    stat2lbl: "voient l'IA comme partenaire créatif ou accélérateur",
+    stat3lbl: 'programmes', stat3sub: 'contenu IA généré en 4 langues',
+    stat4lbl: "mentionnent l'employabilité hybride",
+    maptag: 'Carte mondiale', maph2: "LCI Éducation — l'IA autour du monde",
+    mapp:   "Cliquez sur un campus pour explorer son profil d'intégration IA.",
+    nextbtn: 'Leçons tirées →',
+    stancelbl: ['Outil complémentaire','Accélérateur de productivité','Partenaire créatif'],
+    toolslbl: 'outils IA moy. / répondant.e', hybridlbl: 'employabilité hybride',
+    appliedlbl: "Où l'IA est appliquée",
+  },
+  en: {
+    tag: 'LCI Education · Spring 2026',
+    h2: 'AI in our network — where do we stand?',
+    p: '136 survey responses across 11 institutions and 13 campuses, covering 340 programmes — collected in Spring 2026.',
+    ah4: 'Section for asynchronous exploration',
+    ap:  '2-minute overview. Full institution profiles and world map available after the workshop.',
+    stat1lbl: 'respondents', stat1sub: 'across 11 institutions',
+    stat2lbl: 'see AI as creative partner or accelerator',
+    stat3lbl: 'programmes', stat3sub: 'AI content generated in 4 languages',
+    stat4lbl: 'cite hybrid-role employability',
+    maptag: 'World map', maph2: 'LCI Education — AI around the world',
+    mapp:   'Click any campus pin to explore its AI integration profile.',
+    nextbtn: 'Lessons learned →',
+    stancelbl: ['Complementary tool','Productivity accelerator','Creative partner'],
+    toolslbl: 'avg. AI tools / respondent', hybridlbl: 'hybrid-role signal',
+    appliedlbl: 'Where AI is applied',
+  },
+  es: {
+    tag: 'LCI Education · Primavera 2026',
+    h2: 'La IA en nuestra red — panorama actual',
+    p: '136 respuestas en 11 instituciones y 13 campus, cubriendo 340 programas — recopiladas en primavera 2026.',
+    ah4: 'Sección para exploración asíncrona',
+    ap:  'Resumen en 2 minutos. Perfiles por institución y mapa mundial disponibles después del taller.',
+    stat1lbl: 'respondentes', stat1sub: 'en 11 instituciones',
+    stat2lbl: 'ven la IA como socio creativo o acelerador',
+    stat3lbl: 'programas', stat3sub: 'contenido IA generado en 4 idiomas',
+    stat4lbl: 'mencionan empleabilidad híbrida',
+    maptag: 'Mapa mundial', maph2: 'LCI Education — IA alrededor del mundo',
+    mapp:   'Haga clic en un campus para explorar su perfil de integración de IA.',
+    nextbtn: 'Lecciones aprendidas →',
+    stancelbl: ['Herramienta complementaria','Acelerador de productividad','Socio creativo'],
+    toolslbl: 'herramientas IA prom. / respondente', hybridlbl: 'señal de empleabilidad híbrida',
+    appliedlbl: 'Dónde se aplica la IA',
+  },
+};
+
+const OVERVIEW_DATA = {
+  TUN: { label:'LaSalle Tunis',            n:22, stances:{Complementary:2,Accelerator:6,'Creative partner':14}, dominant:'Creative partner', hybrid_pct:41,  avg_tools:2.1,  top_b1:['In course content','As a creation/production tool','As a subject of study/analysis'], color:'#337996' },
+  LAS: { label:'Collège LaSalle Montréal', n:30, stances:{Complementary:4,Accelerator:7,'Creative partner':19}, dominant:'Creative partner', hybrid_pct:60,  avg_tools:4.3,  top_b1:['In assessments and projects','In course content','As a creation/production tool'], color:'#00587c' },
+  LCH: { label:'HEM (Maroc)',              n:1,  stances:{'Creative partner':1},                                 dominant:'Creative partner', hybrid_pct:100, avg_tools:3.0,  top_b1:['In assessments and projects','In course content','As a creation/production tool'], color:'#cc9f11' },
+  MCA: { label:'LCI Maroc',               n:4,  stances:{'Creative partner':4},                                 dominant:'Creative partner', hybrid_pct:50,  avg_tools:4.0,  top_b1:['As a creation/production tool','In professional internships','In course content'], color:'#cc9f11' },
+  LCB: { label:'LCI Barcelona',           n:27, stances:{Complementary:1,Accelerator:1,'Creative partner':25}, dominant:'Creative partner', hybrid_pct:74,  avg_tools:4.9,  top_b1:['As a creation/production tool','In course content','In assessments and projects'], color:'#eb2d37' },
+  BGT: { label:'LCI Bogotá',              n:9,  stances:{Accelerator:2,'Creative partner':7},                   dominant:'Creative partner', hybrid_pct:56,  avg_tools:7.2,  top_b1:['As a creation/production tool','In assessments and projects','In course content'], color:'#5b8000' },
+  JKA: { label:'LaSalle Jakarta',         n:7,  stances:{Complementary:2,Accelerator:2,'Creative partner':3},  dominant:'Creative partner', hybrid_pct:57,  avg_tools:1.3,  top_b1:['In course content','As a creation/production tool','In assessments and projects'], color:'#337996' },
+  LCV: { label:'LaSalle Vancouver',       n:18, stances:{Complementary:7,Accelerator:2,'Creative partner':9},  dominant:'Creative partner', hybrid_pct:78,  avg_tools:9.2,  top_b1:['As a creation/production tool','In assessments and projects','In course content'], color:'#00587c' },
+  LCM: { label:'LCI Monterrey',           n:3,  stances:{'Creative partner':3},                                 dominant:'Creative partner', hybrid_pct:67,  avg_tools:7.3,  top_b1:['As a creation/production tool','In assessments and projects','In course content'], color:'#5b8000' },
+  LCR: { label:'LCI Veritas',             n:9,  stances:{Accelerator:1,'Creative partner':8},                   dominant:'Creative partner', hybrid_pct:78,  avg_tools:11.6, top_b1:['As a creation/production tool','In assessments and projects','As a subject of study/analysis'], color:'#eb2d37' },
+  LCA: { label:'LCI Melbourne',           n:1,  stances:{'Creative partner':1},                                 dominant:'Creative partner', hybrid_pct:0,   avg_tools:5.0,  top_b1:['In assessments and projects','In course content','As a creation/production tool'], color:'#337996' },
+};
+
+const OVERVIEW_STANCE_COLORS = { 'Complementary':'#337996', 'Accelerator':'#cc9f11', 'Creative partner':'#eb2d37' };
+const OVERVIEW_BADGE_STYLES  = { 'Creative partner':{ bg:'#fdecea', color:'#eb2d37' }, 'Accelerator':{ bg:'#fff8e6', color:'#cc9f11' }, 'Complementary':{ bg:'#e0ebef', color:'#00587c' } };
+
+let _overviewMapDone = false;
+
+function renderOverview() {
+  const t = OVERVIEW_STR[lang] || OVERVIEW_STR.fr;
+  const fields = {
+    'overview-tag':       t.tag,
+    'overview-h2':        t.h2,
+    'overview-p':         t.p,
+    'overview-async-h4':  t.ah4,
+    'overview-async-p':   t.ap,
+    'overview-stat1-lbl': t.stat1lbl,
+    'overview-stat1-sub': t.stat1sub,
+    'overview-stat2-lbl': t.stat2lbl,
+    'overview-stat3-lbl': t.stat3lbl,
+    'overview-stat3-sub': t.stat3sub,
+    'overview-stat4-lbl': t.stat4lbl,
+    'overview-map-tag':   t.maptag,
+    'overview-map-h2':    t.maph2,
+    'overview-map-p':     t.mapp,
+    'overview-next-btn':  t.nextbtn,
+  };
+  Object.entries(fields).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  });
+
+  const stanceData = [
+    { pct:'7%',  lbl:t.stancelbl[0], lc:'var(--blue)' },
+    { pct:'16%', lbl:t.stancelbl[1], lc:'var(--gold)' },
+    { pct:'77%', lbl:t.stancelbl[2], lc:'var(--red)'  },
+  ];
+  const strip = document.getElementById('overview-stance-strip');
+  if (strip) {
+    strip.innerHTML = stanceData.map(sd =>
+      '<div class="scale-pill" style="--lc:' + sd.lc + ';">' +
+        '<div style="font-size:2.8rem;font-weight:700;color:' + sd.lc + ';letter-spacing:-.04em;">' + sd.pct + '</div>' +
+        '<div style="font-size:1.3rem;color:var(--charcoal);margin:.4rem 0 .2rem;">' + sd.lbl + '</div>' +
+      '</div>'
+    ).join('');
+  }
+}
+
+
 function renderAll() {
+  renderOverview();
   renderLessons();
   updateHtmlFields();
   renderAgenda();
@@ -2047,7 +2168,7 @@ renderAll();
     VIZ_LEVELS.forEach(lv => {
       const item = document.createElement('div');
       item.className = 'viz-legend-item';
-      item.innerHTML = `<img src="${lv.icon}" alt="Niveau ${lv.id}" style="width:2.8rem;height:2.8rem;object-fit:contain;flex-shrink:0;">`;
+      item.innerHTML = '<img src="' + lv.icon + '" alt="Niveau ' + lv.id + '" style="width:2.8rem;height:2.8rem;object-fit:contain;flex-shrink:0;">';
       leg.appendChild(item);
     });
 

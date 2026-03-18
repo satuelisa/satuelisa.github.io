@@ -37,14 +37,15 @@
 
 <nav class="main-nav">
   <button class="nav-tab active" onclick="showSec('intro')" id="nav-intro"><span class="tab-num">1</span><span id="ntab-intro">Bienvenue</span></button>
-  <button class="nav-tab" onclick="showSec('lessons')" id="nav-lessons"><span class="tab-num">2</span><span id="ntab-lessons">Leçons tirées</span></button>
-  <button class="nav-tab" onclick="showSec('scale')" id="nav-scale"><span class="tab-num">3</span><span id="ntab-scale">L'échelle IA</span></button>
-  <button class="nav-tab" onclick="showSec('sort')" id="nav-sort"><span class="tab-num">4</span><span id="ntab-sort">Classer</span></button>
-  <button class="nav-tab" onclick="showSec('scenario')" id="nav-scenario"><span class="tab-num">5</span><span id="ntab-scenario">Scénarios</span></button>
-  <button class="nav-tab" onclick="showSec('redesign')" id="nav-redesign"><span class="tab-num">6</span><span id="ntab-redesign">Remanier</span></button>
-  <button class="nav-tab" onclick="showSec('data')" id="nav-data"><span class="tab-num">7</span><span id="ntab-data">Données</span></button>
-  <button class="nav-tab" onclick="showSec('active')" id="nav-active"><span class="tab-num">8</span><span id="ntab-active">Apprentissage actif</span></button>
-  <button class="nav-tab" onclick="showSec('discussion')" id="nav-discussion"><span class="tab-num">9</span><span id="ntab-discussion">Discussion</span></button>
+  <button class="nav-tab" onclick="showSec('overview')" id="nav-overview"><span class="tab-num">2</span><span id="ntab-survey">Sondage réseau</span></button>
+  <button class="nav-tab" onclick="showSec('lessons')" id="nav-lessons"><span class="tab-num">4</span><span id="ntab-lessons">Leçons tirées</span></button>
+  <button class="nav-tab" onclick="showSec('scale')" id="nav-scale"><span class="tab-num">4</span><span id="ntab-scale">L'échelle IA</span></button>
+  <button class="nav-tab" onclick="showSec('sort')" id="nav-sort"><span class="tab-num">5</span><span id="ntab-sort">Classer</span></button>
+  <button class="nav-tab" onclick="showSec('scenario')" id="nav-scenario"><span class="tab-num">6</span><span id="ntab-scenario">Scénarios</span></button>
+  <button class="nav-tab" onclick="showSec('redesign')" id="nav-redesign"><span class="tab-num">7</span><span id="ntab-redesign">Remanier</span></button>
+  <button class="nav-tab" onclick="showSec('data')" id="nav-data"><span class="tab-num">8</span><span id="ntab-data">Données</span></button>
+  <button class="nav-tab" onclick="showSec('active')" id="nav-active"><span class="tab-num">9</span><span id="ntab-active">Apprentissage actif</span></button>
+  <button class="nav-tab" onclick="showSec('discussion')" id="nav-discussion"><span class="tab-num">10</span><span id="ntab-discussion">Discussion</span></button>
 </nav>
 
 <section id="intro" class="sec active">
@@ -81,6 +82,56 @@
     </div>
     <div class="agenda-grid" id="agenda-grid"></div>
     <div class="context-box"><p id="context-p"></p></div>
+  </div>
+</section>
+
+<section id="overview" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag" id="overview-tag">LCI Éducation · Printemps 2026</div>
+      <h2 id="overview-h2">L'IA dans notre réseau — état des lieux</h2>
+      <p id="overview-p">136 réponses dans 11 institutions et 13 campus, couvrant 340 programmes — collectées au printemps 2026.</p>
+    </div>
+    <div class="async-banner" style="margin-bottom:2.4rem">
+      <div class="async-icon">🌍</div>
+      <div class="async-text">
+        <h4 id="overview-async-h4">Section à explorer en autonomie</h4>
+        <p id="overview-async-p">Cette section offre un aperçu en 2 minutes. Le détail par institution et la carte mondiale sont disponibles après l'atelier.</p>
+      </div>
+    </div>
+    <!-- top-line stats -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:1.6rem;margin-bottom:3.2rem;">
+      <div class="agenda-card" style="border-top-color:var(--blue);">
+        <div class="meta-val" style="font-size:3.2rem;color:var(--blue);">136</div>
+        <div class="meta-lbl" id="overview-stat1-lbl">répondant.e.s</div>
+        <p style="font-size:1.3rem;color:var(--ch-400);" id="overview-stat1-sub">dans 11 institutions</p>
+      </div>
+      <div class="agenda-card" style="border-top-color:var(--red);">
+        <div class="meta-val" style="font-size:3.2rem;color:var(--red);">93%</div>
+        <div class="meta-lbl" id="overview-stat2-lbl">voient l'IA comme partenaire créatif ou accélérateur</div>
+      </div>
+      <div class="agenda-card" style="border-top-color:var(--green);">
+        <div class="meta-val" style="font-size:3.2rem;color:var(--green);">340</div>
+        <div class="meta-lbl" id="overview-stat3-lbl">programmes</div>
+        <p style="font-size:1.3rem;color:var(--ch-400);" id="overview-stat3-sub">contenu IA généré en 4 langues</p>
+      </div>
+      <div class="agenda-card" style="border-top-color:var(--gold);">
+        <div class="meta-val" style="font-size:3.2rem;color:var(--gold);">66%</div>
+        <div class="meta-lbl" id="overview-stat4-lbl">mentionnent l'employabilité hybride</div>
+      </div>
+    </div>
+    <!-- stance pills -->
+    <div class="scale-strip" id="overview-stance-strip"></div>
+    <!-- world map -->
+    <div class="sec-header" style="margin-top:3.2rem;margin-bottom:1.6rem;padding-bottom:1.2rem;">
+      <div class="sec-tag" id="overview-map-tag">Carte mondiale</div>
+      <h2 style="font-size:2.4rem;" id="overview-map-h2">LCI Éducation — IA autour du monde</h2>
+      <p id="overview-map-p">Cliquez sur un campus pour explorer son profil d'intégration IA.</p>
+    </div>
+    <div id="lci-map-root"></div>
+    <div class="activity-controls mt-md">
+      <button class="btn btn-primary" onclick="showSec('lessons')" id="overview-next-btn">Leçons tirées →</button>
+    </div>
   </div>
 </section>
 
@@ -245,6 +296,7 @@
 
 <footer class="footer-wrap" id="site-footer"></footer>
 
+<script src="lci-world-map.js" defer></script>
 <script src="aqpc.js" defer></script>
 </body>
 </html>
