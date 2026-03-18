@@ -900,7 +900,7 @@ const STR = {
     'lessons-next-btn': "L'échelle IA →",
     'data-tag':      'Aperçu ~ 3 minutes',
     'data-h2':       'Distribution de l\'échelle IA dans quatre programmes',
-    'data-p':        "Un premier regard sur la façon dont quatre équipes ont positionné leurs cours et évaluations sur l\'échelle. À explorer en détail après l\'atelier.",
+    'data-p':        "Un premier regard sur la façon dont quatre équipes ont positionné leurs cours et évaluations sur l\'échelle.",
     'data-async-h4': 'Visualisation interactive disponible en ligne',
     'data-async-p':  'Le visualiseur complet permet de filtrer par programme, par session et par source de données. Survolez un segment pour voir les titres de cours.',
     'data-callout':  '<strong>Ce que vous voyez ici :</strong> quatre programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à l\'ensemble de leur grille de cours. Les programmes 420.BR, 420.BP et 420.BX (Technique de l\'informatique) sont des formations techniques traditionnelles ; le programme 574.CX (Design UI/UX) est conçu comme une approche de prototypage assisté par IA et de création en faible code.',
@@ -1921,11 +1921,11 @@ renderAll();
     };
 
     const VIZ_LEVELS = [
-      { id:0, lbl:'0 — IA interdite',     color:'#e84040' },
-      { id:1, lbl:'1 — Planification IA', color:'#f0a030' },
-      { id:2, lbl:'2 — Collaboration IA', color:'#4caf7a' },
-      { id:3, lbl:'3 — IA libre',         color:'#4a9fd4' },
-      { id:4, lbl:'4 — Exploration IA',   color:'#b06cde' },
+      { id:0, color:'var(--l0)', icon:'img/AI_0_circle.png' },
+      { id:1, color:'var(--l1)', icon:'img/AI_1_circle.png' },
+      { id:2, color:'var(--l2)', icon:'img/AI_2_circle.png' },
+      { id:3, color:'var(--l3)', icon:'img/AI_3_circle.png' },
+      { id:4, color:'var(--l4)', icon:'img/AI_4_circle.png' },
     ];
 
     // granularity state: both start active
@@ -2042,12 +2042,12 @@ renderAll();
     }
     function vizHideTT() { document.getElementById('viz-tooltip').classList.remove('visible'); }
 
-    // Build legend
+    // Build legend with circle icons
     const leg = document.getElementById('viz-legend');
     VIZ_LEVELS.forEach(lv => {
       const item = document.createElement('div');
       item.className = 'viz-legend-item';
-      item.innerHTML = `<span class="viz-legend-dot" style="background:${lv.color}"></span>${lv.lbl}`;
+      item.innerHTML = `<img src="${lv.icon}" alt="Niveau ${lv.id}" style="width:2.8rem;height:2.8rem;object-fit:contain;flex-shrink:0;">`;
       leg.appendChild(item);
     });
 
