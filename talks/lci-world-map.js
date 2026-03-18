@@ -40,17 +40,17 @@ const LCIMap = (() => {
 
   /* ── Geographic pin positions (equirectangular, % of 1920×960) ──────── */
   const PINS = {
-    LAS: { x: 29.56, y: 24.72 },
-    LCV: { x: 15.80, y: 22.62 },
-    LCB: { x: 50.60, y: 27.01 },
-    BGT: { x: 29.43, y: 47.38 },
-    JKA: { x: 79.68, y: 53.45 },
-    TUN: { x: 52.83, y: 29.54 },
-    MCA: { x: 47.40, y: 31.90 },   // Casablanca — nudged left from LCH
-    LCH: { x: 48.70, y: 30.60 },   // Rabat — nudged right/up from MCA
-    LCM: { x: 22.13, y: 35.73 },
-    LCR: { x: 26.64, y: 44.48 },
-    LCA: { x: 90.27, y: 71.01 },
+    LCV: { x: 12.97, y: 31.46 },   // Vancouver
+    LAS: { x: 28.96, y: 31.98 },   // Montréal
+    LCM: { x: 20.10, y: 48.85 },   // Monterrey
+    LCR: { x: 23.91, y: 56.04 },   // San José (Veritas)
+    BGT: { x: 27.19, y: 59.69 },   // Bogotá
+    MCA: { x: 53.80, y: 47.40 },   // Casablanca
+    LCH: { x: 55.10, y: 44.90 },   // Rabat
+    LCB: { x: 56.15, y: 38.54 },   // Barcelona
+    TUN: { x: 57.03, y: 43.44 },   // Tunis
+    JKA: { x: 81.25, y: 69.69 },   // Jakarta
+    LCA: { x: 85.83, y: 85.52 },   // Melbourne
   };
 
   /* ── CSS injected once ─────────────────────────────────────────────────── */
@@ -462,7 +462,11 @@ const LCIMap = (() => {
       el.setAttribute('aria-label', d.label);
       el.innerHTML = `
         <div class="lci-pin-dot pulse" style="background:${color};"></div>
-        <div class="lci-pin-label">${d.label.replace('Collège LaSalle ','').replace('LaSalle College ','').replace('LCI ','')}</div>`;
+        <div class="lci-pin-label">${({
+          TUN:'Tunis', LAS:'Montréal', LCH:'Rabat', MCA:'Casablanca',
+          LCB:'Barcelona', BGT:'Bogotá', JKA:'Jakarta', LCV:'Vancouver',
+          LCM:'Monterrey', LCR:'San José', LCA:'Melbourne'
+        })[code] || d.label.replace('LaSalle ','').replace('Collège ','').replace('LCI ','')}</div>`;
       el.addEventListener('click', (e) => { e.stopPropagation(); openPopup(code); });
       mapContainer.appendChild(el);
     });
