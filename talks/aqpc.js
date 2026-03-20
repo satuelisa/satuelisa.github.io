@@ -1,9 +1,25 @@
 const ICONS_CIRCLE = {
-  0: "img/AI_0_circle.png",
-  1: "img/AI_1_circle.png",
-  2: "img/AI_2_circle.png",
-  3: "img/AI_3_circle.png",
-  4: "img/AI_4_circle.png",
+  en: {
+    0: "img/AI_0_circle.png",
+    1: "img/AI_1_circle.png",
+    2: "img/AI_2_circle.png",
+    3: "img/AI_3_circle.png",
+    4: "img/AI_4_circle.png",
+  },
+  fr: {
+    0: "img/IA_0_circle.png",
+    1: "img/IA_1_circle.png",
+    2: "img/AI_2_circle.png",
+    3: "img/IA_3_circle.png",
+    4: "img/IA_4_circle.png",
+  },
+  es: {
+    0: "img/IA_0_circle.png",
+    1: "img/IA_1_circle.png",
+    2: "img/AI_2_circle.png",
+    3: "img/IA_3_circle.png",
+    4: "img/IA_4_circle.png",
+  },
 };
 
 const ICONS = {
@@ -1223,7 +1239,7 @@ function iconImg(n) {
   return `<img src="${ICONS[lang][n]}" alt="" style="width:100%;height:auto;display:block;">`;
 }
 function circleImg(n) {
-  return `<img src="${ICONS_CIRCLE[n]}" alt="" style="width:100%;height:auto;display:block;">`;
+  return `<img src="${(ICONS_CIRCLE[lang]||ICONS_CIRCLE.en)[n]}" alt="" style="width:100%;height:auto;display:block;">`;
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────────────────────
@@ -1905,6 +1921,7 @@ function renderOverview() {
 function renderAll() {
   renderOverview();
   renderLessons();
+  if (typeof rebuildVizLegend === 'function') rebuildVizLegend();
   updateHtmlFields();
   renderAgenda();
   renderScale();
@@ -2051,12 +2068,13 @@ renderAll();
     };
 
     const VIZ_LEVELS = [
-      { id:0, color:'var(--l0)', icon:'img/AI_0_circle.png' },
-      { id:1, color:'var(--l1)', icon:'img/AI_1_circle.png' },
-      { id:2, color:'var(--l2)', icon:'img/AI_2_circle.png' },
-      { id:3, color:'var(--l3)', icon:'img/AI_3_circle.png' },
-      { id:4, color:'var(--l4)', icon:'img/AI_4_circle.png' },
+      { id:0, color:'var(--l0)' },
+      { id:1, color:'var(--l1)' },
+      { id:2, color:'var(--l2)' },
+      { id:3, color:'var(--l3)' },
+      { id:4, color:'var(--l4)' },
     ];
+    const vizCircleIcon = n => (ICONS_CIRCLE[lang] || ICONS_CIRCLE.en)[n];
 
     // granularity state: both start active
     let vizGran = { course: true, eval: true };
@@ -2064,7 +2082,6 @@ renderAll();
     function toggleGran(which) {
       const other = which === 'course' ? 'eval' : 'course';
       if (vizGran[which] && !vizGran[other]) {
-        // turning off the only active one → turn the other on instead
         vizGran[which] = false;
         vizGran[other] = true;
       } else {
@@ -2074,6 +2091,27 @@ renderAll();
       document.getElementById('gran-eval').classList.toggle('active', vizGran.eval);
       vizRender();
     }
+    window.toggleGran = toggleGran;
+
+    function rebuildVizLegend() {
+      const leg = document.getElementById('viz-legend');
+      if (!leg) return;
+      leg.innerHTML = '';
+      VIZ_LEVELS.forEach(lv => {
+        const item = document.createElement('div');
+        item.className = 'viz-legend-item';
+        item.style.flexDirection = 'column';
+        item.style.alignItems = 'center';
+        item.style.gap = '0';
+        item.innerHTML =
+          '<div style="width:6rem;height:6rem;border-radius:8px 8px 0 0;background:' + lv.color + ';display:flex;align-items:center;justify-content:center;padding:.4rem;">' +
+            '<img src="' + vizCircleIcon(lv.id) + '" alt="Niveau ' + lv.id + '" style="width:100%;height:100%;object-fit:contain;">' +
+          '</div>' +
+          '<div style="width:6rem;height:.5rem;border-radius:0 0 4px 4px;background:' + lv.color + ';opacity:.5;flex-shrink:0;"></div>';
+        leg.appendChild(item);
+      });
+    }
+    window.rebuildVizLegend = rebuildVizLegend;
 
     function vizBuildCounts(courses) {
       const counts = {};
@@ -2153,7 +2191,7 @@ renderAll();
     function vizShowTT(e, progId, sess, lv, titles) {
       const tt = document.getElementById('viz-tooltip');
       document.getElementById('vtt-lv').style.color = lv.color;
-      document.getElementById('vtt-lv').textContent = lv.lbl;
+      document.getElementById('vtt-lv').textContent = 'Niveau ' + lv.id;
       document.getElementById('vtt-prog').textContent = VIZ_PROGRAMS[progId].name;
       document.getElementById('vtt-sess').textContent = `Session ${sess}`;
       const cl = document.getElementById('vtt-courses');
@@ -2172,12 +2210,19 @@ renderAll();
     }
     function vizHideTT() { document.getElementById('viz-tooltip').classList.remove('visible'); }
 
-    // Build legend with circle icons
+    // Build legend: circle icon inside colour swatch box
     const leg = document.getElementById('viz-legend');
     VIZ_LEVELS.forEach(lv => {
       const item = document.createElement('div');
       item.className = 'viz-legend-item';
-      item.innerHTML = '<img src="' + lv.icon + '" alt="Niveau ' + lv.id + '" style="width:2.8rem;height:2.8rem;object-fit:contain;flex-shrink:0;">';
+      item.style.flexDirection = 'column';
+      item.style.alignItems = 'center';
+      item.style.gap = '0';
+      item.innerHTML =
+        '<div style="width:6rem;height:6rem;border-radius:8px 8px 0 0;background:' + lv.color + ';display:flex;align-items:center;justify-content:center;padding:.4rem;">' +
+          '<img src="' + vizCircleIcon(lv.id) + '" alt="Niveau ' + lv.id + '" style="width:100%;height:100%;object-fit:contain;">' +
+        '</div>' +
+        '<div style="width:6rem;height:.5rem;border-radius:0 0 4px 4px;background:' + lv.color + ';opacity:.5;flex-shrink:0;"></div>';
       leg.appendChild(item);
     });
 
