@@ -475,7 +475,7 @@ const LCIMap = (() => {
       };
       const LABEL_POS = {
           LAS:'right', LCM:'right',
-          LCR:'left',  MCA:'left', JKA:'left',
+          LCR:'left',  MCA:'below', JKA:'left',
           LCB:'above', LCA:'above',
           TUN:'right',
       };

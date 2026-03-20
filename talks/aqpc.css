@@ -141,7 +141,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .level-opt.selected{background:var(--blue-light);border-color:var(--blue)}
 .level-opt.show-correct{background:#eef2e5;border-color:var(--green)}
 .level-opt.show-wrong{background:#fff0f0;border-color:var(--red)}
-.lo-icon{width:3.2rem;flex-shrink:0}
+.lo-icon{width:5.6rem;height:5.6rem;flex-shrink:0}
 .lo-name{font-size:1.35rem;font-weight:700;color:var(--charcoal)}
 .lo-sub{font-size:1.15rem;color:var(--ch-300)}
 .sc-feedback{display:none;margin-top:1.6rem;padding:1.4rem;border-radius:8px;font-size:1.35rem;line-height:1.55}

@@ -322,17 +322,17 @@ const SCENARIOS = {
     },
     lang: {
       meta:'Idioma · Redacción avanzada', title:'La carta de solicitud formal',
-      context:'Tu curso de redacción avanzada incluye una carta de solicitud formal. Quieres integrar la IA para preparar a los estudiantes para el mundo profesional.',
+      context:'Vuestro curso de redacción avanzada incluye una carta de solicitud formal. Queréis integrar la IA para preparar a los estudiantes para el mundo profesional.',
       question:'¿Qué nivel corresponde a esta instrucción?',
-      task:'"Redacta tu carta en su totalidad. Luego envíala a una herramienta de IA para obtener sugerencias sobre tono, registro y claridad. Integra los ajustes que consideres pertinentes y justifica tus decisiones."',
+      task:'"Redactad vuestra carta en su totalidad. Luego enviadla a una herramienta de IA para obtener sugerencias sobre tono, registro y claridad. Integrad los ajustes que consideréis pertinentes y justificad vuestras decisiones."',
       ans:2,
       fb:{ ok:'Correcto. El/la estudiante crea primero, luego usa la IA para mejorar. La IA no escribe — revisa. Ese es el nivel 2 (Colaboración IA).', ko:'No exactamente. El/la estudiante redacta primero; la IA solo interviene en la revisión y el/la estudiante debe validar las sugerencias. Corresponde al nivel 2 (Colaboración IA).' }
     },
     design: {
       meta:'Diseño visual · Identidad de marca', title:'La campaña visual completa',
-      context:'Tu curso de diseño de marca requiere una campaña completa (logo, paleta, tipografía, cartel). Decides integrar herramientas de IA generativa.',
+      context:'Vuestro curso de diseño de marca requiere una campaña completa (logo, paleta, tipografía, cartel). Decides integrar herramientas de IA generativa.',
       question:'¿Qué nivel corresponde a esta instrucción?',
-      task:'"Usa Firefly, Midjourney o una herramienta equivalente para generar los visuales de tu campaña. Presenta tu proceso de dirección artística: ¿cómo dirigiste, seleccionaste, modificaste y ensamblaste los resultados de la IA?"',
+      task:'"Usad Firefly, Midjourney o una herramienta equivalente para generar los visuales de vuestra campaña. Presenta tu proceso de dirección artística: ¿cómo dirigiste, seleccionaste, modificaste y ensamblaste los resultados de la IA?"',
       ans:3,
       fb:{ ok:'¡Perfecto! La IA genera los visuales centrales, pero el/la estudiante debe demostrar su dominio de la dirección artística. Ese es el nivel 3 (IA permitida).', ko:'No del todo. La IA se usa de forma extensiva para producir los elementos centrales. El/la estudiante supervisa, dirige y evalúa — eso es el nivel 3 (IA permitida).' }
     },
@@ -346,9 +346,9 @@ const SCENARIOS = {
     },
     ethics: {
       meta:'Ética de la innovación · IA y sociedad', title:'La nota de política pública',
-      context:'Tu curso aborda las políticas de IA en las organizaciones. Los estudiantes deben redactar una nota de política para un decisor ficticio.',
+      context:'Vuestro curso aborda las políticas de IA en las organizaciones. Los estudiantes deben redactar una nota de política para un decisor ficticio.',
       question:'¿Qué nivel corresponde a esta instrucción?',
-      task:'"Co-diseña conmigo (el/la docente) el formato y los criterios de evaluación de tu nota. Usa la IA para generar escenarios de impacto y datos contextuales. Tu nota debe demostrar cómo dirigiste, cuestionaste y reconfiguraste los resultados de la IA para convertirlos en un documento firmado."',
+      task:'"Co-diseñad conmigo (el/la docente) el formato y los criterios de evaluación de vuestra nota. Usad la IA para generar escenarios de impacto y datos contextuales. Tu nota debe demostrar cómo dirigiste, cuestionaste y reconfiguraste los resultados de la IA para convertirlos en un documento firmado."',
       ans:4,
       fb:{ ok:'Exactamente. La evaluación es co-diseñada con el/la docente, la IA se usa de forma creativa y estratégica, y se invita al/a la estudiante a innovar. Ese es el nivel 4 (Exploración IA).', ko:'Mira de nuevo. El co-diseño con el/la docente, el uso creativo y estratégico de la IA y el enfoque de innovación apuntan al nivel 4 (Exploración IA).' }
     }
@@ -836,9 +836,9 @@ const DISC_DATA = {
     { lc:'var(--l4)', title:'Prochaines étapes institutionnelles', items:['Quelles ressources ou formations seraient les plus utiles ?', 'Comment documenter et partager les bonnes pratiques entre collèges ?', 'Quel soutien institutionnel solliciter pour aller plus loin ?'] }
   ],
   es: [
-    { lc:'var(--blue)', title:'Experiencias de primera adopción', items:['¿Cuál fue el detonante en tu institución?','¿Cómo reaccionaron los estudiantes ante la introducción de la escala?','¿Cómo reaccionaron tus colegas docentes?','¿Qué ajustes realizaste tras el primer intento?'] },
+    { lc:'var(--blue)', title:'Experiencias de primera adopción', items:['¿Cuál fue el detonante en vuestra institución?','¿Cómo reaccionaron los estudiantes ante la introducción de la escala?','¿Cómo reaccionaron vuestros colegas docentes?','¿Qué ajustes realizasteis tras el primer intento?'] },
     { lc:'var(--l2)', title:'Coherencia en el programa', items:['¿Cómo aseguras que todos los docentes de un programa usen la escala de forma consistente?','¿Dónde indicar los niveles: plan de estudios, rúbrica, SGC?','¿Cómo informar al personal docente sobre el seguimiento de la integridad académica cuando el uso de la IA no es claramente permitido o prohibido?'] },
-    { lc:'var(--l3)', title:'Equidad y accesibilidad', items:['¿Tienen todos los estudiantes acceso equitativo a las herramientas de IA?','¿Cómo aplicar la escala para estudiantes que reciben servicios de adaptación?','¿Qué papel juega el acceso tecnológico en la elección del nivel?', '¿Cómo integras explícitamente la verificación crítica de las producciones de la IA en tus evaluaciones, independientemente del nivel de la escala utilizado?'] },
+    { lc:'var(--l3)', title:'Equidad y accesibilidad', items:['¿Tienen todos los estudiantes acceso equitativo a las herramientas de IA?','¿Cómo aplicar la escala para estudiantes que reciben servicios de adaptación?','¿Qué papel juega el acceso tecnológico en la elección del nivel?', '¿Cómo integráis explícitamente la verificación crítica de las producciones de la IA en vuestras evaluaciones, independientemente del nivel de la escala utilizado?'] },
     { lc:'var(--l4)', title:'Próximos pasos institucionales', items:['¿Qué recursos o formación serían más útiles?','¿Cómo documentar y compartir buenas prácticas entre instituciones?','¿Qué apoyo institucional necesitas para ir más lejos?'] }
   ],
   en: [
@@ -851,7 +851,14 @@ const DISC_DATA = {
 
 
 // ── STATE ──────────────────────────────────────────────────────────────────
-let lang = 'fr';
+// Detect browser language preference; default to 'fr' for this Québec conference
+function detectLang() {
+  const bl = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
+  if (bl.startsWith('es')) return 'es';
+  if (bl.startsWith('en')) return 'en';
+  return 'fr';
+}
+let lang = detectLang();
 let openScale = null;
 let sortDisc = 'math', scDisc = 'math', rdDisc = 'math';
 let sortPlaced = {}, scAnswered = {}, dragId = null;
@@ -919,8 +926,10 @@ const STR = {
     'data-p':        "Programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à leur grille de cours. Utilisez les boutons pour basculer entre les niveaux de cours et les niveaux par évaluation. Survolez une barre pour voir le nuage de mots-clés des cours correspondants.",
     'data-async-h4': 'Visualisation interactive disponible en ligne',
     'data-async-p':  'Le visualiseur complet permet de filtrer par programme, par session et par source de données. Survolez un segment pour voir les titres de cours.',
-    'data-callout':  '<strong>Comment lire ce graphique :</strong> chaque colonne représente une session ; chaque segment coloré, le nombre de cours ou d\'évaluations positionnés à ce niveau. Les descriptions de chaque programme apparaissent directement dans la visualisation.',
+    'data-callout':  '<strong>Comment lire ce graphique :</strong> chaque colonne représente une session ; chaque segment coloré, le nombre de cours ou d\'évaluations positionnés à ce niveau. Les sessions sans données correspondent à des travaux d\'équipe encore en cours. Les descriptions de chaque programme apparaissent directement dans la visualisation.',
     'gran-label':    'Granularité',
+    'gran-course-lbl': 'Cours',
+    'gran-eval-lbl':   'Évaluations',
     'data-next-btn': 'Apprentissage actif →',
     'ntab-data':     'Données',
         'active-tag': 'Activité 4 ~ 10 minutes',
@@ -1012,12 +1021,14 @@ const STR = {
     'lessons-async-p':  'This section is designed for asynchronous reading. Open the categories that interest you after the workshop.',
     'lessons-next-btn': 'AI Scale →',
     'data-tag':      'Overview ~ 3 minutes',
-    'data-h2':       'AI Scale Distribution Across Four Programmes',
+    'data-h2':       'AI Scale Distribution by Programme',
     'data-p':        'Programmes from Collège LaSalle Montréal that have applied the scale to their course grid. Use the buttons to toggle between course-level and assessment-level views. Hover over a bar to see a keyword cloud of the corresponding course titles.',
     'data-async-h4': 'Interactive visualisation available online',
     'data-async-p':  'The full visualiser lets you filter by programme, session, and data source. Hover over a segment to see course titles.',
-    'data-callout':  '<strong>How to read this chart:</strong> each column is a session; each coloured segment shows the number of courses or assessments at that level. Programme descriptions appear directly in the visualisation.',
+    'data-callout':  '<strong>How to read this chart:</strong> each column is a session; each coloured segment shows the number of courses or assessments at that level. Unpopulated sessions reflect work still in progress by the programme team. Programme descriptions appear directly in the visualisation.',
     'gran-label':    'Granularity',
+    'gran-course-lbl': 'Courses',
+    'gran-eval-lbl':   'Assessments',
     'data-next-btn': 'Active Learning →',
     'ntab-data':     'Data',
         'active-tag': 'Activity 4 ~ 10 minutes',
@@ -1042,7 +1053,7 @@ const STR = {
     'credit':        'AI Subcommittee, Global Academic Committee · LCI Education · 2026',
     'f-workshop':    'Workshop designed by',
     'f-dev':         'Website development',
-    'f-dev-text':    'This website was developed iteratively and collaboratively with <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer provided the conceptual framework, disciplinary directions, and scale content; she reviewed and refined all generated proposals throughout the conversation. The AI generated code, examples, and layout under her direction. Development took place iteratively over several days, including the addition of a synthesis of lessons learned from the field and an interactive visualisation of the AI scale distribution across four programmes.',
+    'f-dev-text':    'This website was developed iteratively and collaboratively with <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer provided the conceptual framework, disciplinary directions, and scale content; she reviewed and refined all generated proposals throughout the conversation. The AI generated code, examples, and layout under her direction. Development took place iteratively over several days, including the addition of a synthesis of lessons learned from the field and an interactive visualisation of the AI scale distribution by programme.',
     'f-tool':        'Tool',
     'f-tool-text':   'Claude Sonnet 4.6 via Claude.ai (claude.ai) — iterative and collaborative development, reviewed and validated by the author.',
     'f-author':      'Elisa Schaeffer, Dean, Tech &amp; Design, Collège LaSalle Montréal, LCI Education',
@@ -1064,7 +1075,7 @@ const STR = {
     'meta-lbl-act':  'Interactivo',
     'hero-cta':      'Comenzar el taller →',
     'async-h4':      'Esta página es autónoma',
-    'async-p':       'Todas las actividades funcionan de forma independiente del taller presencial. Comparte la URL con tus colegas para que exploren los ejemplos a su propio ritmo, en su disciplina.',
+    'async-p':       'Todas las actividades funcionan de forma independiente del taller presencial. Compartid la URL con vuestros/vuestras colegas para que exploren los ejemplos a vuestro propio ritmo, en vuestra disciplina.',
     'agenda-tag':    'Programa del taller',
     'agenda-h2':     '60 minutos juntos',
     'agenda-p':      'Un taller por etapas, con temporizador integrado para mantener el ritmo colectivo.',
@@ -1091,11 +1102,52 @@ const STR = {
     'rd-next-btn':   'Datos →',
     'disc-tag':      'Discusión ~ 5 minutos',
     'disc-h2':       'Reflexión colectiva',
-    'disc-p':        'Pautas para compartir experiencias y planificar los próximos pasos en tus instituciones.',
+    'disc-p':        'Pautas para compartir experiencias y planificar los próximos pasos en vuestras instituciones.',
     'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.',
     'active-crit-note': '<strong>Nota previa:</strong> en todos los usos pedagógicos descritos a continuación, recordar explícitamente a los/las estudiantes que la IA puede equivocarse y que la verificación crítica de sus producciones es en sí misma una competencia a evaluar.',
     'env-disclaimer': '<strong>Nota medioambiental:</strong> la IA generativa tiene un costo energético real. Esto debe tenerse en cuenta en cada uso y debe evitarse la generación de contenido de un solo uso. Usar la IA de forma intencional es también una manera de honrar los compromisos de sostenibilidad de nuestra institución.',
     'ntab-intro':       'Bienvenida',
+    'hdr-event': 'Coloquio AQPC · 4 de junio de 2026 · Drummondville',
+    'hdr-title': 'Poniéndonos de acuerdo sobre la IA',
+    'hero-badge': 'Coloquio AQPC 2026 · Drummondville · 4 de junio',
+    'hero-h1': 'Poniéndonos de <em>acuerdo</em><br>sobre la IA',
+    'hero-sub': 'Cómo comunicar claramente a los/las estudiantes qué está permitido — o no — en las evaluaciones calificadas.',
+    'hero-cta': 'Comenzar el taller →',
+    'meta-lbl-dur': 'Taller',
+    'meta-lbl-disc': 'Multidisciplinario',
+    'meta-lbl-act': 'Interactivo',
+    'async-h4': 'Esta página es autónoma',
+    'async-p': 'Todas las actividades funcionan de forma independiente del taller presencial. Compartid la URL con vuestros/vuestras colegas para que exploren los ejemplos a vuestro propio ritmo, en vuestra disciplina.',
+    'agenda-tag': 'Programa del taller',
+    'agenda-h2': '60 minutos juntos',
+    'agenda-p': 'Un taller en seis tiempos, con temporizador integrado para mantener el ritmo colectivo.',
+    'context-p': '',
+    'scale-h2': 'La escala de uso de la IA',
+    'scale-p': 'Cinco niveles. Haced clic en un nivel para ver la definición completa.',
+    'scale-next-btn': 'Pasar a la actividad 1 →',
+    'scale-origin-p': 'La escala fue desarrollada por LCI Melbourne y traducida al francés por el Collège LaSalle Montréal — motivada en particular por el sistema de grillas de tareas de la Universidad de Sherbrooke (UdeS), utilizada como referencia externa. Todas las versiones están actualmente en piloto en la red LCI. Se inspira en el trabajo de Leon Furze sobre la <em>AI Assessment Scale</em> (2024).',
+    'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.',
+    'sort-tag': 'Actividad 1 ~ 9 minutos',
+    'sort-h2': 'Clasificar evaluaciones',
+    'sort-p': 'Elegid vuestra disciplina, luego arrastrad y soltad cada evaluación hacia el nivel que le corresponde.',
+    'sort-check-btn': 'Verificar',
+    'sort-reset-btn': 'Reiniciar',
+    'sort-next-btn': 'Actividad 2 →',
+    'pool-label': 'Evaluaciones a clasificar',
+    'sc-tag': 'Actividad 2 ~ 9 minutos',
+    'sc-h2': 'Elegir el nivel adecuado',
+    'sc-p': 'Leed el contexto y el enunciado de la tarea, luego elegid el nivel más apropiado.',
+    'sc-prev': '← Anterior',
+    'sc-next': 'Siguiente →',
+    'rd-tag': 'Actividad 3 ~ 9 minutos',
+    'rd-h2': 'Rediseñar una evaluación',
+    'rd-p': 'Así es como una misma evaluación puede adaptarse a varios niveles según los objetivos pedagógicos.',
+    'rd-next-btn': 'Discusión final →',
+    'disc-tag': 'Discusión · 5 minutos',
+    'disc-h2': 'Reflexión colectiva',
+    'disc-p': 'Pistas para intercambiar vuestras experiencias y planificar los próximos pasos.',
+    'env-disclaimer': '<strong>Nota medioambiental:</strong> la IA generativa tiene un costo energético real. Esto debe tenerse en cuenta en cada uso y debe evitarse la generación de contenido de un solo uso. Usar la IA de forma intencional es también una manera de honrar los compromisos de sostenibilidad de nuestra institución.',
+    'active-crit-note': 'Recordatorio: los LLM son motores de plausibilidad lingüística, no de conocimiento verificado. Usadlos para generar propuestas — pero la validación, la adaptación disciplinar y el juicio crítico siguen siendo responsabilidad del/la docente y del/la estudiante.',
     'ntab-overview':     'Panorama general',
     'ntab-lessons':     'Lecciones aprendidas',
     'ntab-scale':       'Escala IA',
@@ -1110,11 +1162,13 @@ const STR = {
     'lessons-next-btn': 'Escala IA →',
     'data-tag':      'Vistazo ~ 3 minutos',
     'data-h2':       'Distribución de la escala IA por programa',
-    'data-p':        'Programas del Collège LaSalle Montréal que han aplicado la escala a su malla curricular. Use los botones para alternar entre los niveles de curso y de evaluación. Pase el cursor sobre una barra para ver la nube de palabras clave de los cursos correspondientes.',
+    'data-p':        'Programas del Collège LaSalle Montréal que han aplicado la escala a su malla curricular. Usad los botones para alternar entre los niveles de curso y de evaluación. Pasad el cursor sobre una barra para ver la nube de palabras clave de los cursos correspondientes.',
     'data-async-h4': 'Visualización interactiva disponible en línea',
-    'data-async-p':  'El visualizador completo permite filtrar por programa, sesión y fuente de datos. Pase el cursor sobre un segmento para ver los títulos de los cursos.',
-    'data-callout':  '<strong>Cómo leer este gráfico:</strong> cada columna representa una sesión; cada segmento coloreado muestra el número de cursos o evaluaciones en ese nivel. Las descripciones de cada programa aparecen directamente en la visualización.',
+    'data-async-p':  'El visualizador completo permite filtrar por programa, sesión y fuente de datos. Pasad el cursor sobre un segmento para ver los títulos de los cursos.',
+    'data-callout':  '<strong>Cómo leer este gráfico:</strong> cada columna representa una sesión; cada segmento coloreado muestra el número de cursos o evaluaciones en ese nivel. Las sesiones sin datos corresponden a trabajo en curso del equipo programa. Las descripciones de cada programa aparecen directamente en la visualización.',
     'gran-label':    'Granularidad',
+    'gran-course-lbl': 'Cursos',
+    'gran-eval-lbl':   'Evaluaciones',
     'data-next-btn': 'Aprendizaje activo →',
     'ntab-data':     'Datos',
         'active-tag': 'Actividad 4 ~ 10 minutos',
@@ -1164,7 +1218,7 @@ const AGENDA = {
     { time:'17–26 min', type:'interactive', typeLabel:'Activité',     title:'Classer des évaluations',        desc:'Drag-and-drop : associer des évaluations au bon niveau.' },
     { time:'26–35 min', type:'interactive', typeLabel:'Activité',     title:'Choisir le bon niveau',          desc:'Scénarios disciplinaires : quel niveau pour cet énoncé ?' },
     { time:'35–44 min', type:'interactive', typeLabel:'Activité',     title:'Remanier une évaluation',        desc:'Comment une même évaluation se décline à plusieurs niveaux.' },
-    { time:'44–47 min', type:'intro',       typeLabel:'Aperçu',       title:'Données terrain',                desc:'Distribution de l\'échelle dans quatre programmes — à explorer en autonomie.' },
+    { time:'44–47 min', type:'intro',       typeLabel:'Aperçu',       title:'Données terrain',                desc:'Distribution de l\'échelle par programme — à explorer en autonomie.' },
     { time:'47–55 min', type:'interactive', typeLabel:'Activité',     title:"L'IA pour l'apprentissage actif", desc:'Auto-évaluation, pairs, expérientiel, collaboratif.' },
     { time:'55–60 min', type:'discussion',  typeLabel:'Discussion',   title:'Réflexion collective',           desc:'Partage d\'expériences et prochaines étapes.' },
   ],
@@ -1176,7 +1230,7 @@ const AGENDA = {
     { time:'17–26 min', type:'interactive', typeLabel:'Activity',     title:'Sort the assessments',           desc:'Drag-and-drop: match assessments from your discipline to the right levels.' },
     { time:'26–35 min', type:'interactive', typeLabel:'Activity',     title:'Choose the right level',         desc:'Disciplinary scenarios: which level fits this task instruction?' },
     { time:'35–44 min', type:'interactive', typeLabel:'Activity',     title:'Redesign an assessment',         desc:'How one assessment can be adapted to multiple levels.' },
-    { time:'44–47 min', type:'intro',       typeLabel:'Overview',     title:'Field data',                     desc:'Scale distribution across four programmes — to explore independently.' },
+    { time:'44–47 min', type:'intro',       typeLabel:'Overview',     title:'Field data',                     desc:'Scale distribution by programme — to explore independently.' },
     { time:'47–55 min', type:'interactive', typeLabel:'Activity',     title:'AI for Active Learning',         desc:'Self-assessment, peer, experiential, collaborative.' },
     { time:'55–60 min', type:'discussion',  typeLabel:'Discussion',   title:'Collective reflection',          desc:'Sharing experiences and next steps in your institutions.' },
   ],
@@ -1185,12 +1239,12 @@ const AGENDA = {
     { time:'5–7 min',   type:'intro',       typeLabel:'Panorama',     title:'La IA en nuestra red',           desc:'Vistazo rápido al sondeo de la red LCI — 136 respondentes, 11 instituciones.' },
     { time:'7–12 min',  type:'intro',       typeLabel:'Presentación', title:'Lecciones del terreno',          desc:'Problemas y soluciones identificados por once equipos de programas en Collège LaSalle.' },
     { time:'12–17 min', type:'intro',       typeLabel:'Presentación', title:'La escala de uso de la IA',      desc:'Los 5 niveles, definiciones, objetivos y requisitos estudiantiles.' },
-    { time:'17–26 min', type:'interactive', typeLabel:'Actividad',    title:'Clasificar evaluaciones',        desc:'Arrastrar y soltar: asociar evaluaciones de tu disciplina a los niveles correctos.' },
+    { time:'17–26 min', type:'interactive', typeLabel:'Actividad',    title:'Clasificar evaluaciones',        desc:'Arrastrar y soltar: asociar evaluaciones de vuestra disciplina a los niveles correctos.' },
     { time:'26–35 min', type:'interactive', typeLabel:'Actividad',    title:'Elegir el nivel adecuado',       desc:'Escenarios disciplinarios: ¿qué nivel corresponde a esta instrucción?' },
     { time:'35–44 min', type:'interactive', typeLabel:'Actividad',    title:'Rediseñar una evaluación',       desc:'Cómo una misma evaluación se adapta a múltiples niveles.' },
-    { time:'44–47 min', type:'intro',       typeLabel:'Vistazo',      title:'Datos del terreno',              desc:'Distribución de la escala en cuatro programas — para explorar de forma autónoma.' },
+    { time:'44–47 min', type:'intro',       typeLabel:'Vistazo',      title:'Datos del terreno',              desc:'Distribución de la escala por programa — para explorar de forma autónoma.' },
     { time:'47–55 min', type:'interactive', typeLabel:'Actividad',    title:'La IA para el aprendizaje activo', desc:'Autoevaluación, pares, experiencial, colaborativo.' },
-    { time:'55–60 min', type:'discussion',  typeLabel:'Discusión',    title:'Reflexión colectiva',            desc:'Compartir experiencias y próximos pasos en tus instituciones.' },
+    { time:'55–60 min', type:'discussion',  typeLabel:'Discusión',    title:'Reflexión colectiva',            desc:'Compartir experiencias y próximos pasos en vuestras instituciones.' },
   ]
 };
 
@@ -1480,7 +1534,7 @@ function renderScenario() {
             else if (lv.n === sc.ans && chosen !== sc.ans) cls = 'show-correct';
           }
           return `<div class="level-opt ${cls}" style="--lc:${lv.color}" onclick="answerSc(${lv.n})">
-            <div class="lo-icon">${iconImg(lv.n)}</div>
+            <div class="lo-icon">${circleImg(lv.n)}</div>
             <div><div class="lo-name">${lv.n} · ${lv.name}</div><div class="lo-sub">${lv.fr !== lv.name ? lv.fr : ''}</div></div>
           </div>`;
         }).join('')}
@@ -1582,7 +1636,7 @@ function updateHtmlFields() {
     'scale-h2','scale-p','scale-next-btn',
     'sort-tag','sort-h2','sort-p','pool-label','sort-check-btn','sort-reset-btn','sort-next-btn',
     'sc-tag','sc-h2','sc-p','sc-prev','sc-next',
-    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','gran-label','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
+    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','gran-label','gran-course-lbl','gran-eval-lbl','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
     'disc-tag','disc-h2','disc-p',
     'ntab-intro','ntab-overview','ntab-lessons','ntab-scale','ntab-sort','ntab-scenario','ntab-redesign','ntab-data','ntab-active','ntab-discussion'
   ];
@@ -1661,7 +1715,7 @@ function renderClosing() {
             <div class="contact-links">
               <a class="contact-link" href="https://www.linkedin.com/in/satuelisa/" target="_blank" rel="noopener">linkedin.com/in/satuelisa</a>
               <a class="contact-link" href="https://satuelisa.github.io" target="_blank" rel="noopener">satuelisa.github.io</a>
-              <a class="contact-link" href="mailto:elisa.schaeffer@gmail.com">elisa.schaeffer@gmail.com</a>
+              <a class="contact-link" href="mailto:elisa.schaeffer@collegelasalle.com">elisa.schaeffer@collegelasalle.com</a>
             </div>
           </div>
         </div>
@@ -1850,7 +1904,7 @@ const OVERVIEW_STR = {
     stat3lbl: 'programas', stat3sub: 'contenido IA generado en 4 idiomas',
     stat4lbl: 'mencionan empleabilidad híbrida',
     maptag: 'Mapa mundial', maph2: 'LCI Education — IA alrededor del mundo',
-    mapp:   'Haga clic en un campus para explorar su perfil de integración de IA.',
+    mapp:   'Haced clic en un campus para explorar su perfil de integración de IA.',
     nextbtn: 'Lecciones aprendidas →',
     stancelbl: ['Herramienta complementaria','Acelerador de productividad','Socio creativo'],
     toolslbl: 'herramientas IA prom. / respondente', hybridlbl: 'señal de empleabilidad híbrida',
@@ -1922,6 +1976,7 @@ function renderAll() {
   renderOverview();
   renderLessons();
   if (typeof rebuildVizLegend === 'function') rebuildVizLegend();
+  if (typeof vizRender === 'function') vizRender();
   updateHtmlFields();
   renderAgenda();
   renderScale();
@@ -1941,6 +1996,11 @@ function renderAll() {
 
 
 // ── BOOT ─────────────────────────────────────────────────────────────────────
+// Sync language button state on boot
+['fr','en','es'].forEach(x => {
+  const btn = document.getElementById('lbtn-' + x);
+  if (btn) btn.classList.toggle('active', x === lang);
+});
 renderAll();
 
 
@@ -2128,6 +2188,7 @@ renderAll();
       vizRender();
     }
     window.toggleGran = toggleGran;
+    window.vizRender = vizRender;
 
     function rebuildVizLegend() {
       const leg = document.getElementById('viz-legend');
@@ -2249,30 +2310,44 @@ renderAll();
       'cours','course','aux','des','les','par','en','et','de','du','un','une',
       'pratique','pratiques','projet','projets','étude','études','travail',
       'application','applications','méthodes','méthode','activité','activités',
+      // Short fragments from apostrophe splits
+      'd','l','j','n','m','s','c','qu','jusqu',
+      // Common connectors that slip through
+      'dans','sur','avec','vers','lors','dès','selon','entre','sous',
+      'dont','tout','tous','toute','toutes','plus','bien','très',
     ]);
 
     function vizKeywords(titles) {
       const freq = {};
+      // Known irregular plurals/forms to correct before stemming
+      const CORRECTIONS = {
+        'réseaux': 'réseau', 'travaux': 'travail', 'journaux': 'journal',
+        'données': 'donnée', 'activités': 'activité', 'stratégies': 'stratégie',
+        'compétences': 'compétence', 'relations': 'relation', 'techniques': 'technique',
+        'numériques': 'numérique', 'organisationnelles': 'organisationnel',
+        'financières': 'financier', 'professionnels': 'professionnel',
+        'professionnelles': 'professionnel', 'créatives': 'créatif',
+        'créatifs': 'créatif', 'visuels': 'visuel', 'visuelles': 'visuel',
+      };
       titles.forEach(t => {
-        // Strip eval prefix
         const clean = t.replace(/^\[éval\.\]\s*/, '');
-        clean.split(/[\s\-–,/:()]+/).forEach(w => {
-          const lw = w.toLowerCase().replace(/[«»'".,;!?]/g, '').trim();
+        // Split on whitespace, hyphens, dashes, punctuation AND apostrophes (straight and curly)
+        clean.split(/[\s\-–—,/:;()!?«»"+&]+|['']/).forEach(w => {
+          // Remove remaining punctuation
+          let lw = w.toLowerCase().replace(/[.,;:!?()''"«»]/g, '').trim();
           if (lw.length < 3) return;
+          // Apply corrections first
+          if (CORRECTIONS[lw]) lw = CORRECTIONS[lw];
           if (VIZ_STOPWORDS.has(lw)) return;
-          // Light stemming: strip common suffixes
+          // Stemming: only strip clearly inflectional endings
           const stem = lw
-            .replace(/isation$/, '')
-            .replace(/ation$/, '')
-            .replace(/tions$/, '')
-            .replace(/tion$/, '')
-            .replace(/ement$/, '')
-            .replace(/ements$/, '')
-            .replace(/iques$/, 'ique')
-            .replace(/aux$/, 'al')
-            .replace(/elles$/, 'el')
-            .replace(/els$/, 'el')
-            .replace(/s$/, '');
+            .replace(/isations?$/, '')
+            .replace(/ations?$/, '')
+            .replace(/ements?$/, '')
+            .replace(/iques?$/, 'ique')
+            .replace(/elles?$/, 'el')
+            .replace(/[aeiou]ls?$/, w => w.replace(/[aeiou]ls?$/, 'al'))
+            .replace(/(?<=[^aeiouy])s$/, '');  // strip trailing s only after consonant
           if (stem.length < 3) return;
           freq[stem] = (freq[stem] || 0) + 1;
         });
