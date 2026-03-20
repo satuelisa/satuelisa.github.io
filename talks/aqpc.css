@@ -336,6 +336,13 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
       gap: .8rem;
     }
     .viz-prog-name::after { content: ''; flex: 1; height: 1px; background: var(--cream-dark); }
+    .viz-prog-desc {
+      font-size: 1.25rem;
+      color: var(--ch-400);
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
+      max-width: 80rem;
+    }
     .viz-sessions { display: grid; grid-template-columns: repeat(6, 1fr); gap: .8rem; }
     .viz-sess-col { display: flex; flex-direction: column; gap: .3rem; }
     .viz-sess-lbl { font-family: 'DM Mono', monospace; font-size: .95rem; color: var(--ch-200); letter-spacing: .06em; text-align: center; margin-bottom: .3rem; }
@@ -432,4 +439,40 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
   display: inline-block; font-size: 1rem; font-weight: 700;
   letter-spacing: .04em; text-transform: uppercase;
   padding: .25rem .8rem; border-radius: 2rem;
+}
+
+/* ── VIZ SIDEBAR LAYOUT ──────────────────────────────────────────────────── */
+.viz-layout {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media(max-width:700px) { .viz-layout { grid-template-columns: 1fr; } }
+.viz-sidebar {
+  position: sticky;
+  top: 14rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.viz-main {
+  min-width: 0;
+}
+/* Override: ctrl and legend inside sidebar are borderless, no top border */
+.viz-sidebar .viz-ctrl {
+  border-bottom: none;
+  border-radius: var(--radius);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .8rem;
+  padding: 1.2rem;
+}
+.viz-sidebar .viz-legend {
+  border-bottom: none;
+  border-radius: var(--radius);
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
 }
