@@ -1,22 +1,22 @@
 const ICONS_CIRCLE = {
   en: {
     0: "img/AI_0_circle.png",
-    1: "img/AI_1_circle.png",
+    1: "img/AI_1_circle.png",  // language-neutral
     2: "img/AI_2_circle.png",
     3: "img/AI_3_circle.png",
     4: "img/AI_4_circle.png",
   },
   fr: {
     0: "img/IA_0_circle.png",
-    1: "img/IA_1_circle.png",
-    2: "img/AI_2_circle.png",
+    1: "img/AI_1_circle.png",  // language-neutral
+    2: "img/IA_2_circle.png",
     3: "img/IA_3_circle.png",
     4: "img/IA_4_circle.png",
   },
   es: {
     0: "img/IA_0_circle.png",
-    1: "img/IA_1_circle.png",
-    2: "img/AI_2_circle.png",
+    1: "img/AI_1_circle.png",  // language-neutral
+    2: "img/IA_2_circle.png",
     3: "img/IA_3_circle.png",
     4: "img/IA_4_circle.png",
   },
@@ -915,11 +915,11 @@ const STR = {
     'lessons-async-p':  "Cette section est conçue pour une lecture asynchrone. Ouvrez les catégories qui vous intéressent après l'atelier.",
     'lessons-next-btn': "L'échelle IA →",
     'data-tag':      'Aperçu ~ 3 minutes',
-    'data-h2':       'Distribution de l\'échelle IA dans quatre programmes',
+    'data-h2':       'Distribution de l\'échelle IA par programme',
     'data-p':        "Un premier regard sur la façon dont quatre équipes ont positionné leurs cours et évaluations sur l\'échelle.",
     'data-async-h4': 'Visualisation interactive disponible en ligne',
     'data-async-p':  'Le visualiseur complet permet de filtrer par programme, par session et par source de données. Survolez un segment pour voir les titres de cours.',
-    'data-callout':  '<strong>Ce que vous voyez ici :</strong> sept programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à l\'ensemble de leur grille de cours : trois programmes en Technique de l\'informatique (420.BR, 420.BP, 420.BX), Design UI/UX (574.CX), Techniques d\'administration et de gestion (410.G0), Arts et Lettres, et Gestion des industries créatives (410.GX).',
+    'data-callout':  '<strong>Ce que vous voyez ici :</strong> programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à l\'ensemble de leur grille de cours : trois programmes en Technique de l\'informatique (420.BR, 420.BP, 420.BX), Design UI/UX (574.CX), Techniques d\'administration et de gestion (410.G0), Arts, lettres et communication option Arts (500.AF), et Gestion des industries créatives (410.GX).',
     'data-next-btn': 'Apprentissage actif →',
     'ntab-data':     'Données',
         'active-tag': 'Activité 4 ~ 10 minutes',
@@ -944,7 +944,7 @@ const STR = {
     'credit':        'Sous-comité IA, Global Academic Committee · LCI Éducation · 2026',
     'f-workshop':    'Atelier conçu par',
     'f-dev':         'Développement du site',
-    'f-dev-text':    "Ce site a été développé de façon itérative et collaborative avec <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer a fourni le cadre conceptuel, les orientations disciplinaires et le contenu de l'échelle ; elle a révisé et affiné l'ensemble des propositions générées au fil de la conversation. L'IA a généré le code, les exemples et la mise en page sous sa direction. Le développement s'est déroulé de façon itérative sur plusieurs jours, incluant l'ajout d'une synthèse des leçons tirées du terrain et d'une visualisation interactive de la distribution de l'échelle dans quatre programmes.",
+    'f-dev-text':    "Ce site a été développé de façon itérative et collaborative avec <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer a fourni le cadre conceptuel, les orientations disciplinaires et le contenu de l'échelle ; elle a révisé et affiné l'ensemble des propositions générées au fil de la conversation. L'IA a généré le code, les exemples et la mise en page sous sa direction. Le développement s'est déroulé de façon itérative sur plusieurs jours, incluant l'ajout d'une synthèse des leçons tirées du terrain et d'une visualisation interactive de la distribution de l'échelle par programme.",
     'f-tool':        'Outil',
     'f-tool-text':   "Claude Sonnet 4.6 via Claude.ai (claude.ai) — développement itératif et collaboratif, révision et validation par l'auteur.e.",
     'f-author':      'Elisa Schaeffer, Doyen.ne Tech &amp; Design, Collège LaSalle Montréal, LCI Éducation',
@@ -1015,7 +1015,7 @@ const STR = {
     'data-p':        'A first look at how four teaching teams have positioned their courses and assessments on the scale. Explore the full interactive version after the workshop.',
     'data-async-h4': 'Interactive visualisation available online',
     'data-async-p':  'The full visualiser lets you filter by programme, session, and data source. Hover over a segment to see course titles.',
-    'data-callout':  '<strong>What you see here:</strong> seven programmes from Collège LaSalle Montréal that have applied the scale across their full course grid: three Computer Science Technology programmes (420.BR, 420.BP, 420.BX), UI/UX Design (574.CX), Business Administration (410.G0), Arts and Letters, and Creative Industries Management (410.GX).',
+    'data-callout':  '<strong>What you see here:</strong> programmes from Collège LaSalle Montréal that have applied the scale across their full course grid: three Computer Science Technology programmes (420.BR, 420.BP, 420.BX), UI/UX Design (574.CX), Administration and Management Technology (410.G0), Arts, Literature and Communication — Arts option (500.AF), and Creative Industries Management (410.GX).',
     'data-next-btn': 'Active Learning →',
     'ntab-data':     'Data',
         'active-tag': 'Activity 4 ~ 10 minutes',
@@ -1107,11 +1107,11 @@ const STR = {
     'lessons-async-p':  'Esta sección está diseñada para lectura asíncrona. Abra las categorías que le interesen después del taller.',
     'lessons-next-btn': 'Escala IA →',
     'data-tag':      'Vistazo ~ 3 minutos',
-    'data-h2':       'Distribución de la escala IA en cuatro programas',
+    'data-h2':       'Distribución de la escala IA por programa',
     'data-p':        'Una primera mirada a cómo cuatro equipos docentes han posicionado sus cursos y evaluaciones en la escala. Explorar la versión interactiva completa después del taller.',
     'data-async-h4': 'Visualización interactiva disponible en línea',
     'data-async-p':  'El visualizador completo permite filtrar por programa, sesión y fuente de datos. Pase el cursor sobre un segmento para ver los títulos de los cursos.',
-    'data-callout':  '<strong>Lo que ves aquí:</strong> siete programas del Collège LaSalle Montréal que han aplicado la escala a toda su malla curricular: tres programas en Técnica en informática (420.BR, 420.BP, 420.BX), Diseño UI/UX (574.CX), Técnicas de administración y gestión (410.G0), Artes y Letras, y Gestión de industrias creativas (410.GX).',
+    'data-callout':  '<strong>Lo que ves aquí:</strong> programas del Collège LaSalle Montréal que han aplicado la escala a toda su malla curricular: tres programas en Técnica en informática (420.BR, 420.BP, 420.BX), Diseño UI/UX (574.CX), Técnicas de administración y gestión (410.G0), Artes, literatura y comunicación opción Artes (500.AF), y Gestión de industrias creativas (410.GX).',
     'data-next-btn': 'Aprendizaje activo →',
     'ntab-data':     'Datos',
         'active-tag': 'Actividad 4 ~ 10 minutos',
@@ -1136,7 +1136,7 @@ const STR = {
     'credit':        'Subcomité IA, Global Academic Committee · LCI Education · 2026',
     'f-workshop':    'Taller diseñado por',
     'f-dev':         'Desarrollo del sitio',
-    'f-dev-text':    'Este sitio fue desarrollado de forma iterativa y colaborativa con <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) vía Claude.ai. Elisa Schaeffer proporcionó el marco conceptual, las orientaciones disciplinarias y el contenido de la escala; revisó y refinó todas las propuestas generadas a lo largo de la conversación. La IA generó el código, los ejemplos y la maquetación bajo su dirección. El desarrollo se realizó de forma iterativa a lo largo de varios días, incluyendo la adición de una síntesis de lecciones del terreno y una visualización interactiva de la distribución de la escala en cuatro programas.',
+    'f-dev-text':    'Este sitio fue desarrollado de forma iterativa y colaborativa con <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) vía Claude.ai. Elisa Schaeffer proporcionó el marco conceptual, las orientaciones disciplinarias y el contenido de la escala; revisó y refinó todas las propuestas generadas a lo largo de la conversación. La IA generó el código, los ejemplos y la maquetación bajo su dirección. El desarrollo se realizó de forma iterativa a lo largo de varios días, incluyendo la adición de una síntesis de lecciones del terreno y una visualización interactiva de la distribución de la escala por programa.',
     'f-tool':        'Herramienta',
     'f-tool-text':   'Claude Sonnet 4.6 vía Claude.ai (claude.ai) — desarrollo iterativo y colaborativo, revisado y validado por la autora/el autor.',
     'f-author':      'Elisa Schaeffer, Doyen.ne Tech &amp; Design, Collège LaSalle Montréal, LCI Education',
@@ -1947,6 +1947,7 @@ renderAll();
     const VIZ_PROGRAMS = {
       "420.BR": {
         "name": "420.BR — Gestion de réseaux et sécurité",
+        "desc": "Formation technique en infrastructure, cybersécurité et infonuagique. L'IA est positionnée au niveau 3 pour la majorité des cours, avec de nombreuses évaluations au niveau 0, reflétant une maîtrise fondamentale exigée avant l'assistance.",
         "courses": [
           {"session":1,"title":"Mathématiques appliquées à l'informatique","course_level":2,"eval_levels":[]},
           {"session":1,"title":"Soutien technique matériel et logiciel","course_level":3,"eval_levels":[3,0,0]},
@@ -1976,6 +1977,7 @@ renderAll();
       },
       "420.BP": {
         "name": "420.BP — Programmation (Technique de l'informatique)",
+        "desc": "Formation en développement logiciel et web. Positionnement prudent : niveau 0 dominant, cohérent avec l'importance de la compréhension algorithmique sans assistance.",
         "courses": [
           {"session":1,"title":"Mathématiques appliquées à l'informatique","course_level":0,"eval_levels":[0,0,0,0]},
           {"session":1,"title":"Algorithmes et programmation","course_level":0,"eval_levels":[0,0,0,0]},
@@ -2005,6 +2007,7 @@ renderAll();
       },
       "420.BX": {
         "name": "420.BX — Programmation de jeux vidéo (Technique de l'informatique)",
+        "desc": "Parcours technique alliant programmation et création. L'IA progresse avec les sessions, de niveaux 0–1 en début de programme vers des niveaux 2–4 dans les cours de moteur de jeu et portfolio.",
         "courses": [
           {"session":1,"title":"Mathématiques appliquées à l'informatique","course_level":0,"eval_levels":[]},
           {"session":1,"title":"Introduction à la programmation","course_level":0,"eval_levels":[]},
@@ -2033,6 +2036,7 @@ renderAll();
       },
       "574.CX": {
         "name": "574.CX — Design UI/UX (Production 3D et synthèse d'images)",
+        "desc": "Prototypage assisté par IA et création en faible code dès la première session. La présence du niveau 4 dans plusieurs cours reflète une intégration centrale de l'IA comme outil de travail ordinaire.",
         "courses": [
           {"session":1,"title":"Introduction à l'imagerie numérique","course_level":2,"eval_levels":[2,1,2,2]},
           {"session":1,"title":"Outils informatiques","course_level":2,"eval_levels":[2,2,1]},
@@ -2067,15 +2071,18 @@ renderAll();
     // ── NEW PROGRAMS ─────────────────────────────────
     Object.assign(VIZ_PROGRAMS, {
       "410.G0": {
-        "name": "410.G0 — Techniques d'administration et de gestion",
+        "name": "410.G0 — Techniques d'administration et de gestion (Administration and Management Technology)",
+        "desc": "Couvre quatre profils (comptabilité, marketing numérique, e-commerce, gestion générale). Approche progressive, du niveau 0 en comptabilité et droit jusqu'au niveau 3 en création web et marketing numérique.",
         "courses": [{"session": 1, "title": "Planification de carrière", "course_level": 1, "eval_levels": [3, 3, 1]}, {"session": 1, "title": "Communication organisationnelle", "course_level": 1, "eval_levels": [0, 3, 0]}, {"session": 1, "title": "Outils de gestion de données", "course_level": 2, "eval_levels": [3, 2, 2]}, {"session": 1, "title": "Méthodologies de recherche et psychologie du consommateur", "course_level": 1, "eval_levels": [0, 3, 0]}, {"session": 1, "title": "Droit et politique à l'ère du numérique", "course_level": 0, "eval_levels": [0, 3, 0]}, {"session": 1, "title": "Comptabilité et environnement numérique", "course_level": 0, "eval_levels": [0, 2, 0]}, {"session": 2, "title": "Fondements du marketing et numérique", "course_level": 2, "eval_levels": [3, 3, 0]}, {"session": 2, "title": "Comptabilité des entreprises et applications Web", "course_level": 0, "eval_levels": [0, 2, 0]}, {"session": 2, "title": "Ressources humaines et innovation humaine", "course_level": 2, "eval_levels": [3, 3, 2, 0]}, {"session": 2, "title": "Environnement numérique", "course_level": 2, "eval_levels": [3, 2, 3]}, {"session": 2, "title": "Management des organisations", "course_level": 1, "eval_levels": [2, 0, 3, 0]}, {"session": 3, "title": "Planification et contrôle budgétaire", "course_level": 0, "eval_levels": [0, 3, 0]}, {"session": 3, "title": "Gestion d'équipe de travail et pensée créative", "course_level": 1, "eval_levels": [3, 2, 0]}, {"session": 3, "title": "Création et gestion de site web", "course_level": 3, "eval_levels": [3, 3, 3]}, {"session": 3, "title": "Rédaction, gestion de catalogue et marketing produit", "course_level": 0, "eval_levels": [0, 3, 0]}, {"session": 3, "title": "Service à la clientèle et fidélisation", "course_level": 0, "eval_levels": [0, 3, 0]}, {"session": 3, "title": "Finance 1 : Indicateurs de performance et financement", "course_level": 0, "eval_levels": [0, 3, 0]}, {"session": 3, "title": "Environnement légal de l'entreprise", "course_level": 0, "eval_levels": [0, 3, 0]}, {"session": 3, "title": "Comptabilité specialisée 1", "course_level": 0, "eval_levels": [0, 1, 0]}, {"session": 4, "title": "Marketing stratégique et numérique", "course_level": 2, "eval_levels": []}, {"session": 4, "title": "Gestion des opérations et logistique", "course_level": 1, "eval_levels": []}, {"session": 4, "title": "Analyse de données Web et analytique", "course_level": 2, "eval_levels": []}, {"session": 4, "title": "Activités de veille et mesures de performance", "course_level": 2, "eval_levels": []}, {"session": 4, "title": "Anglais des affaires", "course_level": 0, "eval_levels": []}, {"session": 4, "title": "Conception d'interface utilisateur (IU)", "course_level": 2, "eval_levels": []}, {"session": 4, "title": "Comptabilité specialisée 2", "course_level": 0, "eval_levels": []}, {"session": 5, "title": "Gestion des relations-fournisseurs et approvisionnements", "course_level": 1, "eval_levels": []}, {"session": 5, "title": "Éthique, développement durable et adaptation\nculturelle", "course_level": 1, "eval_levels": []}, {"session": 5, "title": "Expérience client et psychologie des consommateurs", "course_level": 1, "eval_levels": []}, {"session": 5, "title": "Optimisation pour les moteurs de recherche (SEO)", "course_level": 2, "eval_levels": []}, {"session": 5, "title": "Publicité marketing et marketing de recherche", "course_level": 2, "eval_levels": []}, {"session": 5, "title": "Fiscalité des particuliers", "course_level": 0, "eval_levels": []}, {"session": 5, "title": "Coût de revient", "course_level": 0, "eval_levels": []}, {"session": 5, "title": "Vérification et contrôle interne", "course_level": 2, "eval_levels": []}, {"session": 5, "title": "Modèles d'affaires: commerce électronique", "course_level": 1, "eval_levels": []}, {"session": 5, "title": "Gestion avancée des plateformes de commerce électronique", "course_level": 3, "eval_levels": []}, {"session": 5, "title": "Modèles d'affaires", "course_level": 1, "eval_levels": []}, {"session": 5, "title": "Études de cas organisationnelles", "course_level": 3, "eval_levels": []}, {"session": 6, "title": "Stage en milieu de travail", "course_level": 2, "eval_levels": []}, {"session": 6, "title": "Gestion de projet", "course_level": 3, "eval_levels": []}, {"session": 6, "title": "Projet final : Plan marketing numérique", "course_level": 3, "eval_levels": []}, {"session": 6, "title": "Transactions internationales et adaptation culturelle", "course_level": 2, "eval_levels": []}, {"session": 6, "title": "Stage en milieu de travail: comptabilité", "course_level": 2, "eval_levels": []}, {"session": 6, "title": "Fiscalité des sociétés", "course_level": 0, "eval_levels": []}, {"session": 6, "title": "Finance 2 : Cas en gestion financière", "course_level": 0, "eval_levels": []}, {"session": 6, "title": "Projet final : commerce électronique", "course_level": 3, "eval_levels": []}, {"session": 6, "title": "Projet final: Plan d'affaires", "course_level": 3, "eval_levels": []}]
       },
-      "Arts": {
-        "name": "Arts et Lettres",
+      "500.AF": {
+        "name": "500.AF — Arts, lettres et communication (Option Arts)",
+        "desc": "Programme préuniversitaire centré sur la démarche artistique personnelle et la critique. Utilisation de l'IA principalement aux niveaux 0–1, reflétant l'importance de l'authenticité et de la maîtrise technique avant l'assistance.",
         "courses": [{"session": 1, "title": "Histoire de l’art I", "course_level": 1, "eval_levels": []}, {"session": 1, "title": "Langage visuel", "course_level": 1, "eval_levels": []}, {"session": 1, "title": "Atelier d’expression artistique", "course_level": 0, "eval_levels": []}, {"session": 2, "title": "Histoire de l’art II", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Langage cinématographique", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Atelier de création I", "course_level": 0, "eval_levels": []}, {"session": 3, "title": "Critique I: l'ère contemporaine", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Atelier de création II", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Image et identité professionnelle", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Critique II: enjeux actuels", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Scènes artistiques et médiatiques", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Projet d'intégration", "course_level": null, "eval_levels": []}]
       },
       "410.GX": {
-        "name": "410.GX — Gestion des industries créatives",
+        "name": "410.GX — Gestion des industries créatives (Creative Industries Management)",
+        "desc": "Nouveau programme alliant gestion et disciplines créatives. La présence du niveau 4 dès la première session (Idéation, Outils technologiques) reflète une intégration centrale de l'IA comme outil de travail ordinaire.",
         "courses": [{"session": 1, "title": "Outils technologiques en affaires", "course_level": 4, "eval_levels": []}, {"session": 1, "title": "Idéation", "course_level": 4, "eval_levels": []}, {"session": 1, "title": "Principes de communication", "course_level": 2, "eval_levels": []}, {"session": 1, "title": "Les industries créatives et leurs professions", "course_level": 1, "eval_levels": []}, {"session": 1, "title": "Méthodologie", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Technologies créatives I", "course_level": 2, "eval_levels": []}, {"session": 2, "title": "Introduction à la planification d'événements", "course_level": 3, "eval_levels": []}, {"session": 2, "title": "Stratégies des médias sociaux", "course_level": 4, "eval_levels": []}, {"session": 2, "title": "Introduction au marketing", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Comportement du consommateur", "course_level": 1, "eval_levels": []}, {"session": 3, "title": "Recherche et analyse de données", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Planification d'événements", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Innovation dans l'évolution d'une entreprise", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Business English", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Introduction à la comptabilité", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Prévision des tendances", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Marketing : analyse de cas", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Pensée design", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Savoir-dire en affaires", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Technologies créatives II", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Planification budgétaire et analyse financière", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Projet final : idéation et recherche", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Stratégies marketing", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Communication marketing intégrée", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Développement durable et éthique", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Gestion de commerce électronique", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Opération budgétaire", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Ressources humaines", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Planification et design d'un espace", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Lois et règlements", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Projet final : développement et réalisation", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Stage", "course_level": null, "eval_levels": []}]
       }
     });
@@ -2117,8 +2124,8 @@ renderAll();
         item.style.alignItems = 'center';
         item.style.gap = '0';
         item.innerHTML =
-          '<div style="width:6rem;height:6rem;border-radius:8px 8px 0 0;background:' + lv.color + ';display:flex;align-items:center;justify-content:center;padding:.4rem;">' +
-            '<img src="' + vizCircleIcon(lv.id) + '" alt="Niveau ' + lv.id + '" style="width:100%;height:100%;object-fit:contain;">' +
+          '<div style="width:6rem;height:6rem;border-radius:8px 8px 0 0;background:' + lv.color + ';display:flex;align-items:center;justify-content:center;overflow:hidden;">' +
+            '<img src="' + vizCircleIcon(lv.id) + '" alt="Niveau ' + lv.id + '" style="width:5.2rem;height:5.2rem;object-fit:contain;flex-shrink:0;">' +
           '</div>' +
           '<div style="width:6rem;height:.5rem;border-radius:0 0 4px 4px;background:' + lv.color + ';opacity:.5;flex-shrink:0;"></div>';
         leg.appendChild(item);
@@ -2155,6 +2162,12 @@ renderAll();
         nameDiv.className = 'viz-prog-name';
         nameDiv.textContent = prog.name;
         block.appendChild(nameDiv);
+        if (prog.desc) {
+          const descDiv = document.createElement('div');
+          descDiv.className = 'viz-prog-desc';
+          descDiv.textContent = prog.desc;
+          block.appendChild(descDiv);
+        }
         const row = document.createElement('div');
         row.className = 'viz-sessions';
         for (let s = 1; s <= 6; s++) {
@@ -2201,14 +2214,75 @@ renderAll();
       });
     }
 
+    // Stop words (FR + EN) and stemming helpers
+    const VIZ_STOPWORDS = new Set([
+      // FR
+      'de','du','des','le','la','les','un','une','et','en','au','aux','à','par',
+      'pour','sur','avec','dans','ou','qui','que','se','son','sa','ses','ce','cet',
+      'cette','ces','mon','ton','leur','leurs','est','sont','été','avoir','être',
+      'il','elle','ils','elles','nous','vous','on','y','en','pas','plus','tout',
+      'bien','très','aussi','mais','si','car','donc','or','ni','ne','même',
+      'entre','sous','vers','lors','dès','sans','après','avant','autre','autres',
+      // EN
+      'of','the','and','in','to','a','an','for','with','on','at','by','from',
+      'as','is','are','was','were','be','been','have','has','had','do','does',
+      'or','not','this','that','its','it','their','they','we','our','your',
+      'i','ii','iii','iv','introduction','initiation','bases','base',
+      // Program-specific noise
+      'cours','course','aux','des','les','par','en','et','de','du','un','une',
+      'pratique','pratiques','projet','projets','étude','études','travail',
+      'application','applications','méthodes','méthode','activité','activités',
+    ]);
+
+    function vizKeywords(titles) {
+      const freq = {};
+      titles.forEach(t => {
+        // Strip eval prefix
+        const clean = t.replace(/^\[éval\.\]\s*/, '');
+        clean.split(/[\s\-–,/:()]+/).forEach(w => {
+          const lw = w.toLowerCase().replace(/[«»'".,;!?]/g, '').trim();
+          if (lw.length < 3) return;
+          if (VIZ_STOPWORDS.has(lw)) return;
+          // Light stemming: strip common suffixes
+          const stem = lw
+            .replace(/isation$/, '')
+            .replace(/ation$/, '')
+            .replace(/tions$/, '')
+            .replace(/tion$/, '')
+            .replace(/ement$/, '')
+            .replace(/ements$/, '')
+            .replace(/iques$/, 'ique')
+            .replace(/aux$/, 'al')
+            .replace(/elles$/, 'el')
+            .replace(/els$/, 'el')
+            .replace(/s$/, '');
+          if (stem.length < 3) return;
+          freq[stem] = (freq[stem] || 0) + 1;
+        });
+      });
+      return Object.entries(freq)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 14)
+        .map(([w, n]) => ({ w, n }));
+    }
+
     function vizShowTT(e, progId, sess, lv, titles) {
+      if (!titles || titles.length === 0) return;
       const tt = document.getElementById('viz-tooltip');
       document.getElementById('vtt-lv').style.color = lv.color;
       document.getElementById('vtt-lv').textContent = 'Niveau ' + lv.id;
       document.getElementById('vtt-prog').textContent = VIZ_PROGRAMS[progId].name;
-      document.getElementById('vtt-sess').textContent = `Session ${sess}`;
+      document.getElementById('vtt-sess').textContent = 'Session ' + sess + ' — ' + titles.length + ' cours';
       const cl = document.getElementById('vtt-courses');
-      cl.innerHTML = titles.map(t => `<div class="vtt-course">${t}</div>`).join('');
+      const kws = vizKeywords(titles);
+      const maxN = kws[0] ? kws[0].n : 1;
+      cl.innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:.4rem;line-height:1.4;">' +
+        kws.map(({w, n}) => {
+          const size = 0.85 + (n / maxN) * 0.55;
+          const alpha = 0.55 + (n / maxN) * 0.45;
+          return `<span style="font-size:${size.toFixed(2)}rem;opacity:${alpha.toFixed(2)};color:${lv.color};font-weight:${n>1?'700':'400'};">${w}</span>`;
+        }).join('') +
+      '</div>';
       tt.classList.add('visible');
       vizPosTT(e);
     }
@@ -2232,8 +2306,8 @@ renderAll();
       item.style.alignItems = 'center';
       item.style.gap = '0';
       item.innerHTML =
-        '<div style="width:6rem;height:6rem;border-radius:8px 8px 0 0;background:' + lv.color + ';display:flex;align-items:center;justify-content:center;padding:.4rem;">' +
-          '<img src="' + vizCircleIcon(lv.id) + '" alt="Niveau ' + lv.id + '" style="width:100%;height:100%;object-fit:contain;">' +
+        '<div style="width:6rem;height:6rem;border-radius:8px 8px 0 0;background:' + lv.color + ';display:flex;align-items:center;justify-content:center;overflow:hidden;">' +
+          '<img src="' + vizCircleIcon(lv.id) + '" alt="Niveau ' + lv.id + '" style="width:5.2rem;height:5.2rem;object-fit:contain;flex-shrink:0;">' +
         '</div>' +
         '<div style="width:6rem;height:.5rem;border-radius:0 0 4px 4px;background:' + lv.color + ';opacity:.5;flex-shrink:0;"></div>';
       leg.appendChild(item);
