@@ -257,11 +257,11 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 
 /* ── VISUALISER ── */
     /* Visualiser: scoped within .viz-wrap */
-    .viz-wrap { background: #0f1117; border-radius: 8px; overflow: hidden; margin-bottom: 2.4rem; }
+    .viz-wrap { background: #fff; border: 1px solid var(--cream-dark); border-radius: 8px; overflow: hidden; margin-bottom: 2.4rem; }
     .viz-ctrl {
-      background: #181c27;
+      background: var(--cream);
       padding: 1.4rem 2rem;
-      border-bottom: 1px solid #2a3050;
+      border-bottom: 1px solid var(--cream-dark);
       display: flex;
       align-items: center;
       gap: 1.6rem;
@@ -271,14 +271,14 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
       font-size: 1rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: #b0b8cc;
+      color: var(--ch-400);
       font-family: 'DM Mono', monospace;
     }
     .gran-btn {
-      background: #1e2336;
-      border: 1px solid #2a3050;
-      color: #b0b8cc;
-      font-family: 'DM Mono', monospace;
+      background: #fff;
+      border: 1px solid var(--cream-dark);
+      color: var(--ch-400);
+      font-family: 'Modern Gothic', system-ui, sans-serif;
       font-size: 1.2rem;
       padding: .45rem 1.2rem;
       border-radius: 4px;
@@ -286,16 +286,16 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
       transition: all .15s;
     }
     .gran-btn.active { background: rgba(176,108,222,.15); border-color: #b06cde; color: #b06cde; }
-    .gran-btn:hover:not(.active) { border-color: #8a95a8; color: #e8ecf4; }
+    .gran-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
     .viz-context {
-      background: #181c27;
+      background: var(--cream);
       padding: 1rem 2rem;
-      border-bottom: 1px solid #2a3050;
+      border-bottom: 1px solid var(--cream-dark);
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
       font-size: 1.2rem;
-      color: #b0b8cc;
+      color: var(--ch-400);
       line-height: 1.55;
     }
     .viz-ctx-grp { display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; max-width: 38rem; }
@@ -303,41 +303,41 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
       font-family: 'DM Mono', monospace;
       font-size: .95rem;
       letter-spacing: .06em;
-      color: #4a9fd4;
-      background: rgba(74,159,212,.12);
-      border: 1px solid rgba(74,159,212,.25);
+      color: var(--blue);
+      background: var(--blue-light);
+      border: 1px solid var(--blue-100);
       padding: .15rem .6rem;
       border-radius: 3px;
       white-space: nowrap;
       flex-shrink: 0;
     }
     .viz-legend {
-      background: #0f1117;
+      background: var(--cream);
       padding: 1rem 2rem;
       display: flex;
       gap: 1.6rem;
       flex-wrap: wrap;
-      border-bottom: 1px solid #2a3050;
+      border-bottom: 1px solid var(--cream-dark);
     }
-    .viz-legend-item { display: flex; align-items: center; gap: .5rem; font-size: 1.1rem; color: #b0b8cc; font-family: 'DM Mono', monospace; }
+    .viz-legend-item { display: flex; align-items: center; gap: .5rem; font-size: 1.1rem; color: var(--ch-400); font-family: 'DM Mono', monospace; }
     .viz-legend-dot { width: .9rem; height: .9rem; border-radius: 50%; flex-shrink: 0; }
-    .viz-chart { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; gap: 2.8rem; background: #0f1117; }
+    .viz-chart { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; gap: 2.8rem; background: #fff; }
     .viz-prog-block {}
     .viz-prog-name {
       font-family: 'DM Mono', monospace;
       font-size: 1rem;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: #b0b8cc;
+      color: var(--ch-400);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
       gap: .8rem;
     }
-    .viz-prog-name::after { content: ''; flex: 1; height: 1px; background: #2a3050; }
+    .viz-prog-name::after { content: ''; flex: 1; height: 1px; background: var(--cream-dark); }
     .viz-sessions { display: grid; grid-template-columns: repeat(6, 1fr); gap: .8rem; }
     .viz-sess-col { display: flex; flex-direction: column; gap: .3rem; }
-    .viz-sess-lbl { font-family: 'DM Mono', monospace; font-size: .95rem; color: #8a95a8; letter-spacing: .06em; text-align: center; margin-bottom: .3rem; }
+    .viz-sess-lbl { font-family: 'DM Mono', monospace; font-size: .95rem; color: var(--ch-200); letter-spacing: .06em; text-align: center; margin-bottom: .3rem; }
     .viz-stack { display: flex; flex-direction: column; gap: 2px; min-height: 10rem; }
     .viz-seg {
       border-radius: 3px; min-height: 4px; cursor: pointer;
@@ -351,10 +351,10 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
     .viz-seg[data-lv="3"] { background: var(--l3); }
     .viz-seg[data-lv="4"] { background: var(--l4); }
     .viz-seg-cnt { font-family: 'DM Mono', monospace; font-size: .9rem; font-weight: 500; color: rgba(0,0,0,.7); pointer-events: none; user-select: none; }
-    .viz-nodata { flex: 1; border: 1px dashed #2a3050; border-radius: 3px; display: flex; align-items: center; justify-content: center; min-height: 5rem; }
-    .viz-nodata-txt { font-family: 'DM Mono', monospace; font-size: .9rem; color: #8a95a8; }
+    .viz-nodata { flex: 1; border: 1px dashed var(--cream-dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; min-height: 5rem; }
+    .viz-nodata-txt { font-family: 'DM Mono', monospace; font-size: .9rem; color: var(--ch-200); }
     #viz-tooltip {
-      position: fixed; background: #1e2336; border: 1px solid #2a3050; border-radius: 8px;
+      position: fixed; background: var(--blue-light); border: 1px solid var(--cream-dark); border-radius: 8px;
       padding: 1rem 1.4rem; pointer-events: none; z-index: 2000; max-width: 26rem;
       box-shadow: 0 8px 32px rgba(0,0,0,.6); display: none;
     }

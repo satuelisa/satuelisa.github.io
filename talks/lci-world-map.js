@@ -86,6 +86,14 @@ const LCIMap = (() => {
 }
 .lci-pin:hover { transform: translate(-50%, -110%) scale(1.15); z-index: 20; }
 .lci-pin.active { transform: translate(-50%, -110%) scale(1.2); z-index: 30; }
+.lci-pin[data-pos="below"]  { transform: translate(-50%, -50%); }
+.lci-pin[data-pos="above"]  { transform: translate(-50%, -50%); }
+.lci-pin[data-pos="right"]  { transform: translate(-50%, -50%); }
+.lci-pin[data-pos="left"]   { transform: translate(-50%, -50%); }
+.lci-pin[data-pos="below"]:hover  { transform: translate(-50%, -60%) scale(1.15); }
+.lci-pin[data-pos="above"]:hover  { transform: translate(-50%, -60%) scale(1.15); }
+.lci-pin[data-pos="right"]:hover  { transform: translate(-50%, -60%) scale(1.15); }
+.lci-pin[data-pos="left"]:hover   { transform: translate(-50%, -60%) scale(1.15); }
 .lci-pin-dot {
   width: 1.4rem;
   height: 1.4rem;
@@ -460,13 +468,44 @@ const LCIMap = (() => {
       el.style.top   = pin.y + '%';
       el.dataset.code = code;
       el.setAttribute('aria-label', d.label);
-      el.innerHTML = `
-        <div class="lci-pin-dot pulse" style="background:${color};"></div>
-        <div class="lci-pin-label">${({
+      const CITY_NAMES = {
           TUN:'Tunis', LAS:'Montréal', LCH:'Rabat', MCA:'Casablanca',
           LCB:'Barcelona', BGT:'Bogotá', JKA:'Jakarta', LCV:'Vancouver',
           LCM:'Monterrey', LCR:'San José', LCA:'Melbourne'
-        })[code] || d.label.replace('LaSalle ','').replace('Collège ','').replace('LCI ','')}</div>`;
+      };
+      const LABEL_POS = {
+          LAS:'right', LCM:'right',
+          LCR:'left',  MCA:'left', JKA:'left',
+          LCB:'above', LCA:'above',
+          TUN:'right',
+      };
+      const cityName = CITY_NAMES[code] || d.label.replace('LaSalle ','').replace('Collège ','').replace('LCI ','');
+      const pos = LABEL_POS[code] || 'below';
+      const dot = '<div class="lci-pin-dot pulse" style="background:' + color + ';"></div>';
+      const lbl = '<div class="lci-pin-label">' + cityName + '</div>';
+      if (pos === 'below') {
+        el.style.flexDirection = 'column';
+        el.style.alignItems = 'center';
+        el.innerHTML = dot + lbl;
+        el.dataset.pos = pos;
+      } else if (pos === 'above') {
+        el.style.flexDirection = 'column-reverse';
+        el.style.alignItems = 'center';
+        el.innerHTML = dot + lbl;
+        el.dataset.pos = pos;
+      } else if (pos === 'right') {
+        el.style.flexDirection = 'row';
+        el.style.alignItems = 'center';
+        el.style.gap = '.4rem';
+        el.innerHTML = dot + lbl;
+        el.dataset.pos = pos;
+      } else if (pos === 'left') {
+        el.style.flexDirection = 'row-reverse';
+        el.style.alignItems = 'center';
+        el.style.gap = '.4rem';
+        el.innerHTML = dot + lbl;
+        el.dataset.pos = pos;
+      }
       el.addEventListener('click', (e) => { e.stopPropagation(); openPopup(code); });
       mapContainer.appendChild(el);
     });
