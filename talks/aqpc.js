@@ -916,10 +916,11 @@ const STR = {
     'lessons-next-btn': "L'échelle IA →",
     'data-tag':      'Aperçu ~ 3 minutes',
     'data-h2':       'Distribution de l\'échelle IA par programme',
-    'data-p':        "Un premier regard sur la façon dont quatre équipes ont positionné leurs cours et évaluations sur l\'échelle.",
+    'data-p':        "Programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à leur grille de cours. Utilisez les boutons pour basculer entre les niveaux de cours et les niveaux par évaluation. Survolez une barre pour voir le nuage de mots-clés des cours correspondants.",
     'data-async-h4': 'Visualisation interactive disponible en ligne',
     'data-async-p':  'Le visualiseur complet permet de filtrer par programme, par session et par source de données. Survolez un segment pour voir les titres de cours.',
-    'data-callout':  '<strong>Ce que vous voyez ici :</strong> programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à l\'ensemble de leur grille de cours : trois programmes en Technique de l\'informatique (420.BR, 420.BP, 420.BX), Design UI/UX (574.CX), Techniques d\'administration et de gestion (410.G0), Arts, lettres et communication option Arts (500.AF), et Gestion des industries créatives (410.GX).',
+    'data-callout':  '<strong>Comment lire ce graphique :</strong> chaque colonne représente une session ; chaque segment coloré, le nombre de cours ou d\'évaluations positionnés à ce niveau. Les descriptions de chaque programme apparaissent directement dans la visualisation.',
+    'gran-label':    'Granularité',
     'data-next-btn': 'Apprentissage actif →',
     'ntab-data':     'Données',
         'active-tag': 'Activité 4 ~ 10 minutes',
@@ -1012,10 +1013,11 @@ const STR = {
     'lessons-next-btn': 'AI Scale →',
     'data-tag':      'Overview ~ 3 minutes',
     'data-h2':       'AI Scale Distribution Across Four Programmes',
-    'data-p':        'A first look at how four teaching teams have positioned their courses and assessments on the scale. Explore the full interactive version after the workshop.',
+    'data-p':        'Programmes from Collège LaSalle Montréal that have applied the scale to their course grid. Use the buttons to toggle between course-level and assessment-level views. Hover over a bar to see a keyword cloud of the corresponding course titles.',
     'data-async-h4': 'Interactive visualisation available online',
     'data-async-p':  'The full visualiser lets you filter by programme, session, and data source. Hover over a segment to see course titles.',
-    'data-callout':  '<strong>What you see here:</strong> programmes from Collège LaSalle Montréal that have applied the scale across their full course grid: three Computer Science Technology programmes (420.BR, 420.BP, 420.BX), UI/UX Design (574.CX), Administration and Management Technology (410.G0), Arts, Literature and Communication — Arts option (500.AF), and Creative Industries Management (410.GX).',
+    'data-callout':  '<strong>How to read this chart:</strong> each column is a session; each coloured segment shows the number of courses or assessments at that level. Programme descriptions appear directly in the visualisation.',
+    'gran-label':    'Granularity',
     'data-next-btn': 'Active Learning →',
     'ntab-data':     'Data',
         'active-tag': 'Activity 4 ~ 10 minutes',
@@ -1108,10 +1110,11 @@ const STR = {
     'lessons-next-btn': 'Escala IA →',
     'data-tag':      'Vistazo ~ 3 minutos',
     'data-h2':       'Distribución de la escala IA por programa',
-    'data-p':        'Una primera mirada a cómo cuatro equipos docentes han posicionado sus cursos y evaluaciones en la escala. Explorar la versión interactiva completa después del taller.',
+    'data-p':        'Programas del Collège LaSalle Montréal que han aplicado la escala a su malla curricular. Use los botones para alternar entre los niveles de curso y de evaluación. Pase el cursor sobre una barra para ver la nube de palabras clave de los cursos correspondientes.',
     'data-async-h4': 'Visualización interactiva disponible en línea',
     'data-async-p':  'El visualizador completo permite filtrar por programa, sesión y fuente de datos. Pase el cursor sobre un segmento para ver los títulos de los cursos.',
-    'data-callout':  '<strong>Lo que ves aquí:</strong> programas del Collège LaSalle Montréal que han aplicado la escala a toda su malla curricular: tres programas en Técnica en informática (420.BR, 420.BP, 420.BX), Diseño UI/UX (574.CX), Técnicas de administración y gestión (410.G0), Artes, literatura y comunicación opción Artes (500.AF), y Gestión de industrias creativas (410.GX).',
+    'data-callout':  '<strong>Cómo leer este gráfico:</strong> cada columna representa una sesión; cada segmento coloreado muestra el número de cursos o evaluaciones en ese nivel. Las descripciones de cada programa aparecen directamente en la visualización.',
+    'gran-label':    'Granularidad',
     'data-next-btn': 'Aprendizaje activo →',
     'ntab-data':     'Datos',
         'active-tag': 'Actividad 4 ~ 10 minutos',
@@ -1579,7 +1582,7 @@ function updateHtmlFields() {
     'scale-h2','scale-p','scale-next-btn',
     'sort-tag','sort-h2','sort-p','pool-label','sort-check-btn','sort-reset-btn','sort-next-btn',
     'sc-tag','sc-h2','sc-p','sc-prev','sc-next',
-    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
+    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','gran-label','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
     'disc-tag','disc-h2','disc-p',
     'ntab-intro','ntab-overview','ntab-lessons','ntab-scale','ntab-sort','ntab-scenario','ntab-redesign','ntab-data','ntab-active','ntab-discussion'
   ];
@@ -2069,6 +2072,18 @@ renderAll();
     };
 
     // ── NEW PROGRAMS ─────────────────────────────────
+    // Programme descriptions shown under each name in the chart
+    const VIZ_DESC = {
+      '420.BR': 'Gestion de réseaux et sécurité — formation technique traditionnelle, maîtrise des fondements privilégiée.',
+      '420.BP': 'Programmation — formation technique traditionnelle, maîtrise des fondements privilégiée.',
+      '420.BX': 'Programmation de jeux vidéo — formation technique traditionnelle, maîtrise des fondements privilégiée.',
+      '574.CX': 'Design UI/UX — prototypage assisté par IA et création en faible code. L\'IA est intégrée comme outil central à travers tout le cursus.',
+      '410.G0': 'Administration and Management Technology — plusieurs profils (comptabilité, marketing numérique, e-commerce). Progression de l\'IA du niveau 0 en droit/comptabilité au niveau 3 en marketing et création web.',
+      '500.AF': 'Arts, lettres et communication (Option Arts) — démarche artistique personnelle et critique. IA principalement aux niveaux 0–1, reflétant l\'importance de l\'authenticité et de la maîtrise technique fondamentale.',
+      '410.GX': 'Gestion des industries créatives (Creative Industries Management) — IA intégrée comme outil de travail ordinaire dès la session 1, avec le niveau 4 présent en Idéation et en Outils technologiques.',
+    };
+    Object.entries(VIZ_DESC).forEach(([k, v]) => { if (VIZ_PROGRAMS[k]) VIZ_PROGRAMS[k].desc = v; });
+
     Object.assign(VIZ_PROGRAMS, {
       "410.G0": {
         "name": "410.G0 — Techniques d'administration et de gestion (Administration and Management Technology)",
@@ -2077,12 +2092,13 @@ renderAll();
       },
       "500.AF": {
         "name": "500.AF — Arts, lettres et communication (Option Arts)",
+        "sessions": 4,
         "desc": "Programme préuniversitaire centré sur la démarche artistique personnelle et la critique. Utilisation de l'IA principalement aux niveaux 0–1, reflétant l'importance de l'authenticité et de la maîtrise technique avant l'assistance.",
         "courses": [{"session": 1, "title": "Histoire de l’art I", "course_level": 1, "eval_levels": []}, {"session": 1, "title": "Langage visuel", "course_level": 1, "eval_levels": []}, {"session": 1, "title": "Atelier d’expression artistique", "course_level": 0, "eval_levels": []}, {"session": 2, "title": "Histoire de l’art II", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Langage cinématographique", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Atelier de création I", "course_level": 0, "eval_levels": []}, {"session": 3, "title": "Critique I: l'ère contemporaine", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Atelier de création II", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Image et identité professionnelle", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Critique II: enjeux actuels", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Scènes artistiques et médiatiques", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Projet d'intégration", "course_level": null, "eval_levels": []}]
       },
       "410.GX": {
         "name": "410.GX — Gestion des industries créatives (Creative Industries Management)",
-        "desc": "Nouveau programme alliant gestion et disciplines créatives. La présence du niveau 4 dès la première session (Idéation, Outils technologiques) reflète une intégration centrale de l'IA comme outil de travail ordinaire.",
+        "desc": "410.GX — Gestion des industries créatives (Creative Industries Management) : IA intégrée comme outil de travail ordinaire dès la session 1, avec le niveau 4 présent en Idéation et Outils technologiques.",
         "courses": [{"session": 1, "title": "Outils technologiques en affaires", "course_level": 4, "eval_levels": []}, {"session": 1, "title": "Idéation", "course_level": 4, "eval_levels": []}, {"session": 1, "title": "Principes de communication", "course_level": 2, "eval_levels": []}, {"session": 1, "title": "Les industries créatives et leurs professions", "course_level": 1, "eval_levels": []}, {"session": 1, "title": "Méthodologie", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Technologies créatives I", "course_level": 2, "eval_levels": []}, {"session": 2, "title": "Introduction à la planification d'événements", "course_level": 3, "eval_levels": []}, {"session": 2, "title": "Stratégies des médias sociaux", "course_level": 4, "eval_levels": []}, {"session": 2, "title": "Introduction au marketing", "course_level": 1, "eval_levels": []}, {"session": 2, "title": "Comportement du consommateur", "course_level": 1, "eval_levels": []}, {"session": 3, "title": "Recherche et analyse de données", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Planification d'événements", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Innovation dans l'évolution d'une entreprise", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Business English", "course_level": null, "eval_levels": []}, {"session": 3, "title": "Introduction à la comptabilité", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Prévision des tendances", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Marketing : analyse de cas", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Pensée design", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Savoir-dire en affaires", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Technologies créatives II", "course_level": null, "eval_levels": []}, {"session": 4, "title": "Planification budgétaire et analyse financière", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Projet final : idéation et recherche", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Stratégies marketing", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Communication marketing intégrée", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Développement durable et éthique", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Gestion de commerce électronique", "course_level": null, "eval_levels": []}, {"session": 5, "title": "Opération budgétaire", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Ressources humaines", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Planification et design d'un espace", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Lois et règlements", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Projet final : développement et réalisation", "course_level": null, "eval_levels": []}, {"session": 6, "title": "Stage", "course_level": null, "eval_levels": []}]
       }
     });
@@ -2170,7 +2186,8 @@ renderAll();
         }
         const row = document.createElement('div');
         row.className = 'viz-sessions';
-        for (let s = 1; s <= 6; s++) {
+        const maxSess = prog.sessions || 6;
+        for (let s = 1; s <= maxSess; s++) {
           const col = document.createElement('div');
           col.className = 'viz-sess-col';
           const lbl = document.createElement('div');
@@ -2272,7 +2289,7 @@ renderAll();
       document.getElementById('vtt-lv').style.color = lv.color;
       document.getElementById('vtt-lv').textContent = 'Niveau ' + lv.id;
       document.getElementById('vtt-prog').textContent = VIZ_PROGRAMS[progId].name;
-      document.getElementById('vtt-sess').textContent = 'Session ' + sess + ' — ' + titles.length + ' cours';
+      document.getElementById('vtt-sess').textContent = 'S' + sess + ' · ' + titles.length + (titles.length === 1 ? ' cours' : ' cours');
       const cl = document.getElementById('vtt-courses');
       const kws = vizKeywords(titles);
       const maxN = kws[0] ? kws[0].n : 1;
