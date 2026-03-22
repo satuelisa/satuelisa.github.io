@@ -218,6 +218,7 @@
     </div>
     <div class="discipline-selector" id="disc-selector-rd"></div>
     <div id="redesign-container"></div>
+    <div class="crit-callout" id="rd-principles" style="margin-top:2rem"></div>
     <div class="activity-controls mt-md">
       <button class="btn btn-primary" onclick="showSec('data')" id="rd-next-btn">Discussion finale →</button>
     </div>
@@ -246,8 +247,8 @@
       <div class="viz-sidebar">
         <div class="viz-ctrl">
           <span class="viz-ctrl-label" id="gran-label">Granularité</span>
-          <button class="gran-btn active" id="gran-course" onclick="toggleGran('course')">Cours</button>
-          <button class="gran-btn active" id="gran-eval"   onclick="toggleGran('eval')">Évaluations</button>
+          <button class="gran-btn active" id="gran-course" onclick="toggleGran('course')"><span id="gran-course-lbl">Cours</span></button>
+          <button class="gran-btn active" id="gran-eval"   onclick="toggleGran('eval')"><span id="gran-eval-lbl">Évaluations</span></button>
         </div>
         <div class="viz-legend" id="viz-legend"></div>
       </div>

@@ -100,6 +100,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .drag-item{background:var(--cream);border:1.5px solid var(--cream-dark);border-radius:8px;padding:1rem 1.4rem;font-size:1.35rem;color:var(--charcoal);line-height:1.45;cursor:grab;margin-bottom:.8rem;transition:all .15s var(--ease-fast);user-select:none}
 .drag-item:hover{border-color:var(--blue);background:var(--blue-light);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,88,124,.12)}
 .drag-item.is-dragging{opacity:.35;cursor:grabbing}
+.drag-item.selected{border-color:var(--blue);background:var(--blue-light);box-shadow:0 0 0 2px var(--blue);}
 .drag-item.placed{background:#fff;font-size:1.25rem;padding:.7rem 1.1rem;cursor:pointer;margin-bottom:.5rem;border-color:var(--lc,var(--cream-dark))}
 .drag-item.placed:hover{opacity:.65;transform:none}
 .drag-item.wrong{background:#fff0f0;border-color:var(--red)}

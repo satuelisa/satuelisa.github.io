@@ -316,7 +316,7 @@ const SCENARIOS = {
       meta:'Matemáticas · Cálculo diferencial', title:'Resolución de problemas aplicados',
       context:'Enseñas cálculo diferencial. Normalmente asignas 10 problemas para resolver de forma autónoma. Quieres mantener el objetivo de aprendizaje integrando la IA.',
       question:'¿Qué nivel corresponde a esta instrucción?',
-      task:'"Usa la IA para verificar tu enfoque en dos de los diez problemas, documentando los intercambios con la herramienta. Debes redactar todas las soluciones finales por tu cuenta."',
+      task:'"Usad la IA para verificar vuestro enfoque en dos de los diez problemas, documentando los intercambios con la herramienta. Debes redactar todas las soluciones finales por tu cuenta."',
       ans:1,
       fb:{ ok:'Correcto. La IA solo se usa para confirmar un enfoque (ideación/planificación) — el producto final es íntegramente humano. Ese es el nivel 1 (Planificación IA).', ko:'No del todo. La IA se usa aquí para validar una dirección de trabajo, no para redactar la solución. El producto final es íntegramente humano. Corresponde al nivel 1 (Planificación IA).' }
     },
@@ -833,18 +833,21 @@ const DISC_DATA = {
     { lc:'var(--blue)', title:'Expériences de première adoption', items:['Quel a été l\'élément déclencheur dans votre établissement ?', 'Comment vos étudiant.e.s ont-ils réagi à l\'introduction de l\'échelle ?', 'Comment vos collègues enseignant.e.s ont-ils réagi ?', 'Quels ajustements avez-vous faits après le premier essai ?'] },
     { lc:'var(--l2)', title:'Cohérence à l\'échelle du programme', items:['Comment assurer que tous les enseignants d\'un programme utilisent l\'échelle de la même façon ?', 'Où indiquer les niveaux : plan de cours, grille d\'évaluation, SGA ?', 'Comment informer le personnel enseignant sur la surveillance de l\'intégrité académique quand l\'usage de l\'IA n\'est pas clairement permis ou interdit ?'] },
     { lc:'var(--l3)', title:'Équité et accessibilité', items:['Tous les étudiants ont-ils un accès équitable aux outils IA ?', 'Comment appliquer l\'échelle pour les étudiant.e.s qui reçoivent des services adaptatifs ?', 'Quel rôle joue l\'accès aux technologies dans le choix du niveau ?', 'Comment intégrez-vous explicitement la vérification critique des productions de l\'IA dans vos évaluations, quelle que soit le niveau de l\'échelle utilisé ?'] },
+    { lc:'var(--gold)', title:'Attribution · Validation · Processus', items:['Comment demandez-vous explicitement aux étudiant.e.s d\'attribuer leurs usages de l\'IA (outil, version, prompt) ?', 'Comment évaluez-vous la qualité de leur validation des productions IA — pas seulement le résultat ?', 'Vos grilles d\'évaluation valorisent-elles le processus de décision autant que le produit final ?', 'Comment ces trois exigences évoluent-elles selon le niveau de l\'échelle utilisé ?'] },
     { lc:'var(--l4)', title:'Prochaines étapes institutionnelles', items:['Quelles ressources ou formations seraient les plus utiles ?', 'Comment documenter et partager les bonnes pratiques entre collèges ?', 'Quel soutien institutionnel solliciter pour aller plus loin ?'] }
   ],
   es: [
     { lc:'var(--blue)', title:'Experiencias de primera adopción', items:['¿Cuál fue el detonante en vuestra institución?','¿Cómo reaccionaron los estudiantes ante la introducción de la escala?','¿Cómo reaccionaron vuestros colegas docentes?','¿Qué ajustes realizasteis tras el primer intento?'] },
     { lc:'var(--l2)', title:'Coherencia en el programa', items:['¿Cómo aseguras que todos los docentes de un programa usen la escala de forma consistente?','¿Dónde indicar los niveles: plan de estudios, rúbrica, SGC?','¿Cómo informar al personal docente sobre el seguimiento de la integridad académica cuando el uso de la IA no es claramente permitido o prohibido?'] },
     { lc:'var(--l3)', title:'Equidad y accesibilidad', items:['¿Tienen todos los estudiantes acceso equitativo a las herramientas de IA?','¿Cómo aplicar la escala para estudiantes que reciben servicios de adaptación?','¿Qué papel juega el acceso tecnológico en la elección del nivel?', '¿Cómo integráis explícitamente la verificación crítica de las producciones de la IA en vuestras evaluaciones, independientemente del nivel de la escala utilizado?'] },
+    { lc:'var(--gold)', title:'Atribución · Validación · Proceso', items:['¿Cómo pedís explícitamente a los/las estudiantes que atribuyan sus usos de la IA (herramienta, versión, prompt)?','¿Cómo evaluáis la calidad de su validación de las producciones IA — no solo el resultado?','¿Vuestras rúbricas valoran el proceso de decisión tanto como el producto final?','¿Cómo evolucionan estas tres exigencias según el nivel de la escala utilizado?'] },
     { lc:'var(--l4)', title:'Próximos pasos institucionales', items:['¿Qué recursos o formación serían más útiles?','¿Cómo documentar y compartir buenas prácticas entre instituciones?','¿Qué apoyo institucional necesitas para ir más lejos?'] }
   ],
   en: [
     { lc:'var(--blue)', title:'First Adoption Experiences', items:['What was the trigger at your institution?', 'How did students react to the introduction of the scale?', 'How did your teaching colleagues react?', 'What adjustments did you make after the first attempt?'] },
     { lc:'var(--l2)', title:'Consistency Across the Programme', items:['How do you ensure all instructors in a programme use the scale consistently?', 'Where should levels be indicated: syllabus, rubric, LMS?', 'How do you inform teaching staff on monitoring academic integrity when AI use is not black-and-white?'] },
     { lc:'var(--l3)', title:'Equity and Accessibility', items:['Do all students have equitable access to AI tools?', 'How do you apply the scale for students who receive adaptive services?', 'What role does technology access play in level selection?', 'How do you explicitly integrate critical verification of AI outputs into your assessments, regardless of which scale level is used?'] },
+    { lc:'var(--gold)', title:'Attribution · Validation · Process', items:['How do you explicitly ask students to attribute their AI use (tool, version, prompt)?', 'How do you assess the quality of their validation of AI outputs — not just the result?', 'Do your rubrics reward the decision-making process as much as the final product?', 'How do these three expectations shift depending on which scale level is used?'] },
     { lc:'var(--l4)', title:'Next Institutional Steps', items:['What resources or training would be most useful?', 'How do you document and share best practices across colleges?', 'What institutional support should you seek to go further?'] }
   ]
 };
@@ -901,11 +904,12 @@ const STR = {
     'rd-tag':        'Activité 3 ~ 10 minutes',
     'rd-h2':         'Remanier une évaluation',
     'rd-p':          'Voici comment une même évaluation peut être déclinée en plusieurs niveaux selon les objectifs pédagogiques. Choisissez une discipline.',
+    'rd-principles':  '<strong>À garder en tête pour toute évaluation remaniée :</strong> prévoir explicitement comment les étudiant.e.s <strong>attribueront</strong> leurs usages de l\'IA, comment vous évaluerez leur <strong>validation</strong> des productions, et comment vos critères valorisent le <strong>processus</strong> plutôt que le seul produit fini.',
     'rd-next-btn':   'Données →',
     'disc-tag':      'Discussion ~ 5 minutes',
     'disc-h2':       'Réflexion collective',
     'disc-p':        'Pistes pour échanger sur vos expériences et planifier les prochaines étapes dans vos établissements.',
-    'scale-crit-callout': '<strong>Rappel fondamental :</strong> les grands modèles de langage (LLM) ne sont pas des moteurs de connaissance — ils sont des moteurs de vraisemblance linguistique. Ils peuvent produire des affirmations confiantes qui sont fausses, incomplètes ou biaisées. Le rôle de l\'enseignant.e est indissociable du développement de la pensée critique : l\'étudiant.e doit apprendre à questionner, vérifier et contextualiser tout contenu généré par un outil automatisé, sans jamais l\'accepter comme vérité.',
+    'scale-crit-callout': '<strong>Rappel fondamental :</strong> les grands modèles de langage (LLM) ne sont pas des moteurs de connaissance — ils sont des moteurs de vraisemblance linguistique. Ils peuvent produire des affirmations confiantes qui sont fausses, incomplètes ou biaisées. Le rôle de l\'enseignant.e est indissociable du développement de la pensée critique : l\'étudiant.e doit apprendre à questionner, vérifier et contextualiser tout contenu généré par un outil automatisé, sans jamais l\'accepter comme vérité.<br><br><strong>Dans tout travail assisté par IA, trois éléments sont indissociables :</strong> <strong>attribution</strong> (citer l\'outil et le prompt utilisés), <strong>validation</strong> (vérifier et corriger les productions de l\'IA), et <strong>évaluation du processus</strong> (valoriser les décisions et la démarche, pas seulement le produit final).',
     'active-crit-note': '<strong>Note préalable :</strong> dans tous les usages pédagogiques ci-dessous, rappeler explicitement aux étudiant.e.s que l\'IA peut se tromper et que la vérification critique de ses productions est elle-même une compétence à évaluer.',
     'env-disclaimer': '<strong>Note environnementale :</strong> l\'utilisation de l\'IA générative a un coût énergétique réel. Il convient d\'en tenir compte à chaque usage et d\'éviter la génération de contenu à usage unique. Utiliser l\'IA de façon intentionnelle, c\'est aussi respecter les objectifs de développement durable de notre institution.',
     'ntab-intro':       'Bienvenue',
@@ -926,7 +930,7 @@ const STR = {
     'data-p':        "Programmes du Collège LaSalle Montréal ayant appliqué l\'échelle à leur grille de cours. Utilisez les boutons pour basculer entre les niveaux de cours et les niveaux par évaluation. Survolez une barre pour voir le nuage de mots-clés des cours correspondants.",
     'data-async-h4': 'Visualisation interactive disponible en ligne',
     'data-async-p':  'Le visualiseur complet permet de filtrer par programme, par session et par source de données. Survolez un segment pour voir les titres de cours.',
-    'data-callout':  '<strong>Comment lire ce graphique :</strong> chaque colonne représente une session ; chaque segment coloré, le nombre de cours ou d\'évaluations positionnés à ce niveau. Les sessions sans données correspondent à des travaux d\'équipe encore en cours. Les descriptions de chaque programme apparaissent directement dans la visualisation.',
+    'data-callout':  '<strong>Comment lire ce graphique :</strong> chaque colonne représente une session ; chaque segment coloré, le nombre de cours ou d\'évaluations positionnés à ce niveau. Les sessions sans données correspondent à des travaux d\'équipe encore en cours. <em>Ces données reflètent une planification initiale des équipes enseignantes et ne constituent pas un engagement à les opérationnaliser telles quelles.</em> Les descriptions de chaque programme apparaissent directement dans la visualisation.',
     'gran-label':    'Granularité',
     'gran-course-lbl': 'Cours',
     'gran-eval-lbl':   'Évaluations',
@@ -1000,11 +1004,12 @@ const STR = {
     'rd-tag':        'Activity 3 ~ 10 minutes',
     'rd-h2':         'Redesign an Assessment',
     'rd-p':          'Here is how the same assessment can be adapted to multiple levels depending on pedagogical goals. Choose a discipline.',
+    'rd-principles':  '<strong>Keep in mind for any redesigned assessment:</strong> plan explicitly for how students will <strong>attribute</strong> their AI use, how you will assess their <strong>validation</strong> of AI outputs, and how your criteria reward <strong>process over product</strong>.',
     'rd-next-btn':   'Data →',
     'disc-tag':      'Discussion ~ 5 minutes',
     'disc-h2':       'Collective Reflection',
     'disc-p':        'Prompts for sharing your experiences and planning next steps in your institutions.',
-    'scale-crit-callout': '<strong>A fundamental reminder:</strong> large language models (LLMs) are not knowledge engines — they are linguistic plausibility engines. They can produce confident-sounding statements that are false, incomplete, or biased. The instructor\'s role is inseparable from developing critical thinking: students must learn to question, verify, and contextualise any AI-generated content, and never accept it at face value.',
+    'scale-crit-callout': '<strong>A fundamental reminder:</strong> large language models (LLMs) are not knowledge engines — they are linguistic plausibility engines. They can produce confident-sounding statements that are false, incomplete, or biased. The instructor\'s role is inseparable from developing critical thinking: students must learn to question, verify, and contextualise any AI-generated content, and never accept it at face value.<br><br><strong>In all AI-assisted work, three elements are non-negotiable:</strong> <strong>attribution</strong> (cite the tool and the prompt used), <strong>validation</strong> (verify and correct AI outputs), and <strong>assessing process over product</strong> (value decisions and approach, not just the final result).',
     'active-crit-note': '<strong>Prior note:</strong> in all the pedagogical uses below, explicitly remind students that AI can make mistakes and that critically verifying its outputs is itself a competency to be assessed.',
     'env-disclaimer': '<strong>Environmental note:</strong> generative AI has a real energy cost. This should be considered with every use, and single-use content generation should be avoided. Using AI intentionally is also a way of honouring our institution\'s sustainability commitments.',
     'ntab-intro':       'Welcome',
@@ -1025,7 +1030,7 @@ const STR = {
     'data-p':        'Programmes from Collège LaSalle Montréal that have applied the scale to their course grid. Use the buttons to toggle between course-level and assessment-level views. Hover over a bar to see a keyword cloud of the corresponding course titles.',
     'data-async-h4': 'Interactive visualisation available online',
     'data-async-p':  'The full visualiser lets you filter by programme, session, and data source. Hover over a segment to see course titles.',
-    'data-callout':  '<strong>How to read this chart:</strong> each column is a session; each coloured segment shows the number of courses or assessments at that level. Unpopulated sessions reflect work still in progress by the programme team. Programme descriptions appear directly in the visualisation.',
+    'data-callout':  '<strong>How to read this chart:</strong> each column is a session; each coloured segment shows the number of courses or assessments at that level. Unpopulated sessions reflect work still in progress by the programme team. <em>This data represents initial planning by teaching teams and does not commit them to implementing it as shown.</em> Programme descriptions appear directly in the visualisation.',
     'gran-label':    'Granularity',
     'gran-course-lbl': 'Courses',
     'gran-eval-lbl':   'Assessments',
@@ -1086,7 +1091,7 @@ const STR = {
     'scale-next-btn':'Ir a la actividad 1 →',
     'sort-tag':      'Actividad 1 ~ 9 minutos',
     'sort-h2':       'Clasificar evaluaciones',
-    'sort-p':        'Elige tu disciplina, luego arrastra y suelta cada evaluación al nivel que mejor corresponda. Discutan en grupo antes de verificar.',
+    'sort-p':        'Elegid vuestra disciplina, luego arrastrad y soltad cada evaluación al nivel que mejor corresponda. Discutan en grupo antes de verificar.',
     'pool-label':    'Evaluaciones a clasificar',
     'sort-check-btn':'Verificar',
     'sort-reset-btn':'Reiniciar',
@@ -1103,7 +1108,7 @@ const STR = {
     'disc-tag':      'Discusión ~ 5 minutos',
     'disc-h2':       'Reflexión colectiva',
     'disc-p':        'Pautas para compartir experiencias y planificar los próximos pasos en vuestras instituciones.',
-    'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.',
+    'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.<br><br><strong>En todo trabajo asistido por IA, tres elementos son inseparables:</strong> <strong>atribución</strong> (citar la herramienta y el prompt utilizado), <strong>validación</strong> (verificar y corregir las producciones de la IA), y <strong>valorar el proceso sobre el producto</strong> (evaluar las decisiones y el recorrido, no solo el resultado final).',
     'active-crit-note': '<strong>Nota previa:</strong> en todos los usos pedagógicos descritos a continuación, recordar explícitamente a los/las estudiantes que la IA puede equivocarse y que la verificación crítica de sus producciones es en sí misma una competencia a evaluar.',
     'env-disclaimer': '<strong>Nota medioambiental:</strong> la IA generativa tiene un costo energético real. Esto debe tenerse en cuenta en cada uso y debe evitarse la generación de contenido de un solo uso. Usar la IA de forma intencional es también una manera de honrar los compromisos de sostenibilidad de nuestra institución.',
     'ntab-intro':       'Bienvenida',
@@ -1126,7 +1131,7 @@ const STR = {
     'scale-p': 'Cinco niveles. Haced clic en un nivel para ver la definición completa.',
     'scale-next-btn': 'Pasar a la actividad 1 →',
     'scale-origin-p': 'La escala fue desarrollada por LCI Melbourne y traducida al francés por el Collège LaSalle Montréal — motivada en particular por el sistema de grillas de tareas de la Universidad de Sherbrooke (UdeS), utilizada como referencia externa. Todas las versiones están actualmente en piloto en la red LCI. Se inspira en el trabajo de Leon Furze sobre la <em>AI Assessment Scale</em> (2024).',
-    'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.',
+    'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.<br><br><strong>En todo trabajo asistido por IA, tres elementos son inseparables:</strong> <strong>atribución</strong> (citar la herramienta y el prompt utilizado), <strong>validación</strong> (verificar y corregir las producciones de la IA), y <strong>valorar el proceso sobre el producto</strong> (evaluar las decisiones y el recorrido, no solo el resultado final).',
     'sort-tag': 'Actividad 1 ~ 9 minutos',
     'sort-h2': 'Clasificar evaluaciones',
     'sort-p': 'Elegid vuestra disciplina, luego arrastrad y soltad cada evaluación hacia el nivel que le corresponde.',
@@ -1142,6 +1147,7 @@ const STR = {
     'rd-tag': 'Actividad 3 ~ 9 minutos',
     'rd-h2': 'Rediseñar una evaluación',
     'rd-p': 'Así es como una misma evaluación puede adaptarse a varios niveles según los objetivos pedagógicos.',
+    'rd-principles': '<strong>Para tener en cuenta en toda evaluación rediseñada:</strong> prever explícitamente cómo los/las estudiantes <strong>atribuirán</strong> sus usos de la IA, cómo evaluaréis su <strong>validación</strong> de las producciones, y cómo vuestros criterios valoran el <strong>proceso sobre el producto</strong>.',
     'rd-next-btn': 'Discusión final →',
     'disc-tag': 'Discusión · 5 minutos',
     'disc-h2': 'Reflexión colectiva',
@@ -1165,7 +1171,7 @@ const STR = {
     'data-p':        'Programas del Collège LaSalle Montréal que han aplicado la escala a su malla curricular. Usad los botones para alternar entre los niveles de curso y de evaluación. Pasad el cursor sobre una barra para ver la nube de palabras clave de los cursos correspondientes.',
     'data-async-h4': 'Visualización interactiva disponible en línea',
     'data-async-p':  'El visualizador completo permite filtrar por programa, sesión y fuente de datos. Pasad el cursor sobre un segmento para ver los títulos de los cursos.',
-    'data-callout':  '<strong>Cómo leer este gráfico:</strong> cada columna representa una sesión; cada segmento coloreado muestra el número de cursos o evaluaciones en ese nivel. Las sesiones sin datos corresponden a trabajo en curso del equipo programa. Las descripciones de cada programa aparecen directamente en la visualización.',
+    'data-callout':  '<strong>Cómo leer este gráfico:</strong> cada columna representa una sesión; cada segmento coloreado muestra el número de cursos o evaluaciones en ese nivel. Las sesiones sin datos corresponden a trabajo en curso del equipo programa. <em>Estos datos reflejan una planificación inicial de los equipos docentes y no los comprometen a operacionalizarla tal como aparece.</em> Las descripciones de cada programa aparecen directamente en la visualización.',
     'gran-label':    'Granularidad',
     'gran-course-lbl': 'Cursos',
     'gran-eval-lbl':   'Evaluaciones',
@@ -1434,9 +1440,8 @@ function renderSort() {
     zone.style.setProperty('--lc', lv.color);
     zone.innerHTML = `
       <div class="drop-zone-header">
-        <div class="dz-icon">${iconImg(lv.n)}</div>
-        <span class="dz-name">${lv.n} · ${lv.name}</span>
-        ${lv.fr !== lv.name ? `<span class="dz-name-fr">${lv.fr}</span>` : ''}
+        <div class="dz-icon">${circleImg(lv.n)}</div>
+        <span class="dz-name">${lv.n} · ${lv.fr}</span>
       </div>
       <div class="dz-items"><span class="dz-hint">${s('drop-hint')}</span></div>`;
     const dzItems = zone.querySelector('.dz-items');
@@ -1459,6 +1464,10 @@ function renderSort() {
       if (dragId == null) return;
       sortPlaced[dragId] = lv.n; dragId = null; renderSort();
     }, { passive: true });
+    zone.addEventListener('click', () => {
+      if (dragId == null) return;
+      sortPlaced[dragId] = lv.n; dragId = null; renderSort();
+    });
     targets.appendChild(zone);
   });
   const fb = document.getElementById('sort-feedback');
@@ -1471,12 +1480,38 @@ function makeDragItem(item, placed, lc) {
   if (placed && lc) el.style.setProperty('--lc', lc);
   el.textContent = item.text;
   el.draggable = true;
+
+  // ── Mouse / desktop drag ──────────────────────────────────────────────────
   el.addEventListener('dragstart', () => { dragId = item.id; el.classList.add('is-dragging'); });
   el.addEventListener('dragend',   () => el.classList.remove('is-dragging'));
-  el.addEventListener('touchstart', () => { dragId = item.id; }, { passive: true });
+
+  // ── Touch / tap interaction ───────────────────────────────────────────────
   if (placed) {
-    el.title = lang === 'fr' ? 'Cliquer pour retirer' : lang === 'es' ? 'Clic para quitar' : 'Click to remove';
-    el.addEventListener('click', () => { delete sortPlaced[item.id]; renderSort(); });
+    // Placed item: tap returns it to the pool
+    el.title = lang === 'fr' ? 'Toucher pour retirer' : lang === 'es' ? 'Tocar para quitar' : 'Tap to remove';
+    el.addEventListener('click', () => {
+      dragId = null;
+      delete sortPlaced[item.id];
+      renderSort();
+    });
+  } else {
+    // Pool item: tap selects it (highlights), then tapping a drop zone places it
+    el.addEventListener('click', () => {
+      if (dragId === item.id) {
+        // Tap again to deselect
+        dragId = null;
+        renderSort();
+      } else {
+        dragId = item.id;
+        renderSort();
+        // Highlight selected item
+        const pool = document.getElementById('dnd-pool');
+        pool.querySelectorAll('.drag-item').forEach(e => e.classList.remove('selected'));
+        const fresh = pool.querySelector('[data-id="' + item.id + '"]');
+        if (fresh) fresh.classList.add('selected');
+      }
+    });
+    el.dataset.id = item.id;
   }
   return el;
 }
@@ -1636,7 +1671,7 @@ function updateHtmlFields() {
     'scale-h2','scale-p','scale-next-btn',
     'sort-tag','sort-h2','sort-p','pool-label','sort-check-btn','sort-reset-btn','sort-next-btn',
     'sc-tag','sc-h2','sc-p','sc-prev','sc-next',
-    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-next-btn','data-tag','data-h2','data-p','gran-label','gran-course-lbl','gran-eval-lbl','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
+    'lessons-tag','lessons-h2','lessons-p','lessons-async-h4','lessons-async-p','lessons-next-btn','rd-tag','rd-h2','rd-p','rd-principles','rd-next-btn','data-tag','data-h2','data-p','gran-label','gran-course-lbl','gran-eval-lbl','data-next-btn','active-tag','active-h2','active-p','active-next-btn',
     'disc-tag','disc-h2','disc-p',
     'ntab-intro','ntab-overview','ntab-lessons','ntab-scale','ntab-sort','ntab-scenario','ntab-redesign','ntab-data','ntab-active','ntab-discussion'
   ];
@@ -1645,7 +1680,7 @@ function updateHtmlFields() {
     if (el) el.textContent = s(id);
   });
   // innerHTML fields (contain HTML tags)
-  ['hero-badge','hero-h1','scale-origin-p','scale-crit-callout','active-crit-note','data-callout','env-disclaimer'].forEach(id => {
+  ['hero-badge','hero-h1','scale-origin-p','scale-crit-callout','active-crit-note','rd-principles','data-callout','env-disclaimer'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.innerHTML = s(id);
   });
