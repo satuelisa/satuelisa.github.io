@@ -478,3 +478,15 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
   gap: 1rem;
   padding: 1.2rem;
 }
+
+/* Source hyperlinks — subtle, inherits context colour */
+.crit-callout a, #scale-origin-p a, .footer-ref a, p a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  opacity: .8;
+}
+.crit-callout a:hover, #scale-origin-p a:hover, .footer-ref a:hover, p a:hover {
+  opacity: 1;
+}
