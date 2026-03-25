@@ -887,7 +887,7 @@ const STR = {
     'context-p':     "L'ACPQ regroupe des établissements qui placent la réussite étudiante au cœur de leurs actions, notamment auprès des étudiants issus du secondaire, adultes, immigrants, ou présentant des besoins particuliers. Dans ce contexte d'inclusion et de diversité, les outils d'IA générative soulèvent des enjeux réels d'équité, d'intégrité académique et de communication pédagogique.",
     'scale-h2':      "L'échelle d'utilisation de l'IA",
     'scale-p':       'Cinq niveaux, du travail entièrement humain à la collaboration avancée avec l\'IA. Cliquez sur un niveau pour voir sa définition complète.',
-    'scale-origin-p':"L'échelle a été développée par LCI Melbourne et traduite en français par le Collège LaSalle Montréal — notamment motivée par le système de grilles de tâches de l'Université de Sherbrooke (UdeS), utilisé comme référence externe lors de l'adoption. L'ensemble des trois versions est actuellement en déploiement pilote dans le réseau LCI. Elle s'inspire des travaux de Leon Furze sur le <em>AI Assessment Scale</em> (2024).",
+    'scale-origin-p':"L'échelle a été développée par <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> et traduite en français par le Collège LaSalle Montréal — notamment motivée par le système de grilles de tâches de <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>l'Université de Sherbrooke (UdeS)</a>, utilisé comme référence externe lors de l'adoption. L'ensemble des trois versions est actuellement en déploiement pilote dans le réseau LCI. Elle s'inspire des travaux de <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Leon Furze sur le <em>AI Assessment Scale</em> (2024)</a>.",
     'scale-next-btn':"Passer à l'activité 1 →",
     'sort-tag':      'Activité 1 ~ 9 minutes',
     'sort-h2':       'Classer des évaluations',
@@ -901,7 +901,7 @@ const STR = {
     'sc-p':          "Lisez la mise en contexte et l'énoncé de tâche, puis choisissez le niveau qui convient le mieux. Discutez.",
     'sc-prev':       '← Précédent',
     'sc-next':       'Suivant →',
-    'rd-tag':        'Activité 3 ~ 10 minutes',
+    'rd-tag':        'Mise en contexte ~ 10 minutes',
     'rd-h2':         'Remanier une évaluation',
     'rd-p':          'Voici comment une même évaluation peut être déclinée en plusieurs niveaux selon les objectifs pédagogiques. Choisissez une discipline.',
     'rd-principles':  '<strong>À garder en tête pour toute évaluation remaniée :</strong> prévoir explicitement comment les étudiant.e.s <strong>attribueront</strong> leurs usages de l\'IA, comment vous évaluerez leur <strong>validation</strong> des productions, et comment vos critères valorisent le <strong>processus</strong> plutôt que le seul produit fini.',
@@ -918,7 +918,7 @@ const STR = {
     'ntab-scale':       "L'échelle IA",
     'ntab-sort':        'Classer',
     'ntab-scenario':    'Scénarios',
-    'ntab-redesign':    'Remanier',
+    'ntab-redesign':    'Mise en contexte',
     'lessons-tag':      'Collège LaSalle Montréal · Mars 2026',
     'lessons-h2':       'Leçons tirées du terrain',
     'lessons-p':        "Lors d'une journée pédagogique, onze équipes programmes ont analysé leurs évaluations sous l'angle de l'IA. Explorez les catégories à votre rythme.",
@@ -954,7 +954,7 @@ const STR = {
     'cp-choose':     'Choisissez le niveau',
     'cp-sub':        "Quel niveau correspond à cet énoncé ?",
     'ref-tag':       'Référence',
-    'ref-text':      "L'échelle d'utilisation de l'IA est celle de LCI Éducation, développée par LCI Melbourne (2024), traduite en français par le Collège LaSalle Montréal (avec les grilles de l'UdeS comme référence externe), en espagnol par LCI Barcelone. Elle s'inspire des travaux de <em>Leon Furze (AI Assessment Scale, 2024)</em>.",
+    'ref-text':      "L'échelle d'utilisation de l'IA est celle de LCI Éducation, développée par <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> (2024), traduite en français par le Collège LaSalle Montréal (avec <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>les grilles de l'UdeS</a> comme référence externe), en espagnol par LCI Barcelone. Elle s'inspire des travaux de <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.",
     'credit':        'Sous-comité IA, Global Academic Committee · LCI Éducation · 2026',
     'f-workshop':    'Atelier conçu par',
     'f-dev':         'Développement du site',
@@ -987,7 +987,7 @@ const STR = {
     'context-p':     'The ACPQ brings together institutions that put student success at the heart of their actions, including students from secondary school, adult learners, immigrants, and those with particular needs. In this context of inclusion and diversity, generative AI tools raise real questions of equity, academic integrity, and pedagogical communication.',
     'scale-h2':      'The AI Usage Scale',
     'scale-p':       'Five levels, from entirely human work to advanced AI collaboration. Click a level to see its full definition.',
-    'scale-origin-p':"The scale was developed by LCI Melbourne and translated into French by Collège LaSalle Montréal — an adoption motivated in part by the task grid system developed at the Université de Sherbrooke (UdeS), used as an external reference. All three language versions are currently in network-wide pilot across LCI Education. It draws on the work of Leon Furze on the <em>AI Assessment Scale</em> (2024).",
+    'scale-origin-p':"The scale was developed by <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> and translated into French by Collège LaSalle Montréal — an adoption motivated in part by the task grid system developed at <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>the Université de Sherbrooke (UdeS)</a>, used as an external reference. All three language versions are currently in network-wide pilot across LCI Education. It draws on the work of <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Leon Furze on the <em>AI Assessment Scale</em> (2024)</a>.",
     'scale-next-btn':'Go to Activity 1 →',
     'sort-tag':      'Activity 1 ~ 9 minutes',
     'sort-h2':       'Sort the Assessments',
@@ -1001,7 +1001,7 @@ const STR = {
     'sc-p':          'Read the context and task instruction, then choose the level that best fits. Discuss.',
     'sc-prev':       '← Previous',
     'sc-next':       'Next →',
-    'rd-tag':        'Activity 3 ~ 10 minutes',
+    'rd-tag':        'Contextualisation ~ 10 minutes',
     'rd-h2':         'Redesign an Assessment',
     'rd-p':          'Here is how the same assessment can be adapted to multiple levels depending on pedagogical goals. Choose a discipline.',
     'rd-principles':  '<strong>Keep in mind for any redesigned assessment:</strong> plan explicitly for how students will <strong>attribute</strong> their AI use, how you will assess their <strong>validation</strong> of AI outputs, and how your criteria reward <strong>process over product</strong>.',
@@ -1018,7 +1018,7 @@ const STR = {
     'ntab-scale':       'AI Scale',
     'ntab-sort':        'Sort',
     'ntab-scenario':    'Scenarios',
-    'ntab-redesign':    'Redesign',
+    'ntab-redesign':    'Contextualisation',
     'lessons-tag':      'Collège LaSalle Montréal · March 2026',
     'lessons-h2':       'Lessons from the Field',
     'lessons-p':        'During a professional development day, eleven programme teams analysed their assessments through the lens of AI. Explore the categories at your own pace.',
@@ -1054,7 +1054,7 @@ const STR = {
     'cp-choose':     'Choose a level',
     'cp-sub':        'Which level matches this instruction?',
     'ref-tag':       'Reference',
-    'ref-text':      "The AI usage scale is the LCI Education scale, developed by LCI Melbourne (2024), translated into French by Collège LaSalle Montréal (with the UdeS task grids as an external reference) and into Spanish by LCI Barcelona. It draws on the work of <em>Leon Furze (AI Assessment Scale, 2024)</em>.",
+    'ref-text':      "The AI usage scale is the LCI Education scale, developed by <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> (2024), translated into French by Collège LaSalle Montréal (with <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>the UdeS task grids</a> as an external reference) and into Spanish by LCI Barcelona. It draws on the work of <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.",
     'credit':        'AI Subcommittee, Global Academic Committee · LCI Education · 2026',
     'f-workshop':    'Workshop designed by',
     'f-dev':         'Website development',
@@ -1087,7 +1087,7 @@ const STR = {
     'context-p':     'La ACPQ reúne instituciones que ponen el éxito estudiantil en el centro de sus acciones, incluyendo estudiantes de secundaria, adultos, inmigrantes y personas con necesidades particulares. En este contexto de inclusión y diversidad, las herramientas de IA generativa plantean preguntas reales sobre equidad, integridad académica y comunicación pedagógica.',
     'scale-h2':      'La escala de uso de la IA',
     'scale-p':       'Cinco niveles, desde el trabajo completamente humano hasta la colaboración avanzada con IA. Haz clic en un nivel para ver su definición completa.',
-    'scale-origin-p':'La escala fue desarrollada por LCI Melbourne y traducida al francés por el Collège LaSalle Montréal — una adopción motivada en parte por el sistema de grillas de la Université de Sherbrooke (UdeS), utilizado como referencia externa. Las tres versiones lingüísticas están actualmente en despliegue piloto en la red LCI. Se inspira en el trabajo de <em>Leon Furze (AI Assessment Scale, 2024)</em>.',
+    'scale-origin-p':'La escala fue desarrollada por <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> y traducida al francés por el Collège LaSalle Montréal — una adopción motivada en parte por el sistema de grillas de <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>la Université de Sherbrooke (UdeS)</a>, utilizado como referencia externa. Las tres versiones lingüísticas están actualmente en despliegue piloto en la red LCI. Se inspira en el trabajo de <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.',
     'scale-next-btn':'Ir a la actividad 1 →',
     'sort-tag':      'Actividad 1 ~ 9 minutos',
     'sort-h2':       'Clasificar evaluaciones',
@@ -1101,7 +1101,7 @@ const STR = {
     'sc-p':          'Lee el contexto y la instrucción de tarea, luego elige el nivel que mejor corresponda. Discutan.',
     'sc-prev':       '← Anterior',
     'sc-next':       'Siguiente →',
-    'rd-tag':        'Actividad 3 ~ 10 minutos',
+    'rd-tag':        'Contextualización ~ 10 minutos',
     'rd-h2':         'Rediseñar una evaluación',
     'rd-p':          'Así es como una misma evaluación puede adaptarse a múltiples niveles según los objetivos pedagógicos. Elige una disciplina.',
     'rd-next-btn':   'Datos →',
@@ -1130,7 +1130,7 @@ const STR = {
     'scale-h2': 'La escala de uso de la IA',
     'scale-p': 'Cinco niveles. Haced clic en un nivel para ver la definición completa.',
     'scale-next-btn': 'Pasar a la actividad 1 →',
-    'scale-origin-p': 'La escala fue desarrollada por LCI Melbourne y traducida al francés por el Collège LaSalle Montréal — motivada en particular por el sistema de grillas de tareas de la Universidad de Sherbrooke (UdeS), utilizada como referencia externa. Todas las versiones están actualmente en piloto en la red LCI. Se inspira en el trabajo de Leon Furze sobre la <em>AI Assessment Scale</em> (2024).',
+    'scale-origin-p': 'La escala fue desarrollada por <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> y traducida al francés por el Collège LaSalle Montréal — motivada en particular por el sistema de grillas de tareas de <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>la Universidad de Sherbrooke (UdeS)</a>, utilizada como referencia externa. Todas las versiones están actualmente en piloto en la red LCI. Se inspira en el trabajo de <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Leon Furze sobre la <em>AI Assessment Scale</em> (2024)</a>.',
     'scale-crit-callout': '<strong>Un recordatorio fundamental:</strong> los grandes modelos de lenguaje (LLM) no son motores de conocimiento — son motores de plausibilidad lingüística. Pueden producir afirmaciones con apariencia de certeza que son falsas, incompletas o sesgadas. El papel del/la docente es inseparable del desarrollo del pensamiento crítico: el/la estudiante debe aprender a cuestionar, verificar y contextualizar cualquier contenido generado por una herramienta automatizada, sin aceptarlo nunca como verdad.<br><br><strong>En todo trabajo asistido por IA, tres elementos son inseparables:</strong> <strong>atribución</strong> (citar la herramienta y el prompt utilizado), <strong>validación</strong> (verificar y corregir las producciones de la IA), y <strong>valorar el proceso sobre el producto</strong> (evaluar las decisiones y el recorrido, no solo el resultado final).',
     'sort-tag': 'Actividad 1 ~ 9 minutos',
     'sort-h2': 'Clasificar evaluaciones',
@@ -1144,7 +1144,7 @@ const STR = {
     'sc-p': 'Leed el contexto y el enunciado de la tarea, luego elegid el nivel más apropiado.',
     'sc-prev': '← Anterior',
     'sc-next': 'Siguiente →',
-    'rd-tag': 'Actividad 3 ~ 9 minutos',
+    'rd-tag': 'Contextualización ~ 9 minutos',
     'rd-h2': 'Rediseñar una evaluación',
     'rd-p': 'Así es como una misma evaluación puede adaptarse a varios niveles según los objetivos pedagógicos.',
     'rd-principles': '<strong>Para tener en cuenta en toda evaluación rediseñada:</strong> prever explícitamente cómo los/las estudiantes <strong>atribuirán</strong> sus usos de la IA, cómo evaluaréis su <strong>validación</strong> de las producciones, y cómo vuestros criterios valoran el <strong>proceso sobre el producto</strong>.',
@@ -1159,7 +1159,7 @@ const STR = {
     'ntab-scale':       'Escala IA',
     'ntab-sort':        'Clasificar',
     'ntab-scenario':    'Escenarios',
-    'ntab-redesign':    'Rediseñar',
+    'ntab-redesign':    'Contextualización',
     'lessons-tag':      'Collège LaSalle Montréal · Marzo 2026',
     'lessons-h2':       'Lecciones del terreno',
     'lessons-p':        'Durante una jornada pedagógica, once equipos de programas analizaron sus evaluaciones desde la perspectiva de la IA. Explore las categorías a su propio ritmo.',
@@ -1195,7 +1195,7 @@ const STR = {
     'cp-choose':     'Elige un nivel',
     'cp-sub':        '¿Qué nivel corresponde a esta instrucción?',
     'ref-tag':       'Referencia',
-    'ref-text':      'La escala de uso de IA es la de LCI Education, desarrollada por LCI Melbourne (2024), traducida al francés por el Collège LaSalle Montréal (con las grillas de la UdeS como referencia externa) y al español por LCI Barcelona. Se inspira en el trabajo de <em>Leon Furze (AI Assessment Scale, 2024)</em>.',
+    'ref-text':      'La escala de uso de IA es la de LCI Education, desarrollada por <a href=&quot;https://melbourne.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>LCI Melbourne</a> (2024), traducida al francés por el Collège LaSalle Montréal (con <a href=&quot;https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>las grillas de la UdeS</a> como referencia externa) y al español por LCI Barcelona. Se inspira en el trabajo de <a href=&quot;https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.',
     'credit':        'Subcomité IA, Global Academic Committee · LCI Education · 2026',
     'f-workshop':    'Taller diseñado por',
     'f-dev':         'Desarrollo del sitio',
@@ -1223,7 +1223,7 @@ const AGENDA = {
     { time:'12–17 min', type:'intro',       typeLabel:'Présentation', title:"L'échelle d'utilisation de l'IA", desc:'Les 5 niveaux, définitions, objectifs et exigences.' },
     { time:'17–26 min', type:'interactive', typeLabel:'Activité',     title:'Classer des évaluations',        desc:'Drag-and-drop : associer des évaluations au bon niveau.' },
     { time:'26–35 min', type:'interactive', typeLabel:'Activité',     title:'Choisir le bon niveau',          desc:'Scénarios disciplinaires : quel niveau pour cet énoncé ?' },
-    { time:'35–44 min', type:'interactive', typeLabel:'Activité',     title:'Remanier une évaluation',        desc:'Comment une même évaluation se décline à plusieurs niveaux.' },
+    { time:'35–44 min', type:'context',     typeLabel:'Mise en contexte', title:'Remanier une évaluation',        desc:'Comment une même évaluation se décline à plusieurs niveaux.' },
     { time:'44–47 min', type:'intro',       typeLabel:'Aperçu',       title:'Données terrain',                desc:'Distribution de l\'échelle par programme — à explorer en autonomie.' },
     { time:'47–55 min', type:'interactive', typeLabel:'Activité',     title:"L'IA pour l'apprentissage actif", desc:'Auto-évaluation, pairs, expérientiel, collaboratif.' },
     { time:'55–60 min', type:'discussion',  typeLabel:'Discussion',   title:'Réflexion collective',           desc:'Partage d\'expériences et prochaines étapes.' },
@@ -1235,7 +1235,7 @@ const AGENDA = {
     { time:'12–17 min', type:'intro',       typeLabel:'Presentation', title:'The AI Usage Scale',             desc:'The 5 levels, definitions, purposes, and student requirements.' },
     { time:'17–26 min', type:'interactive', typeLabel:'Activity',     title:'Sort the assessments',           desc:'Drag-and-drop: match assessments from your discipline to the right levels.' },
     { time:'26–35 min', type:'interactive', typeLabel:'Activity',     title:'Choose the right level',         desc:'Disciplinary scenarios: which level fits this task instruction?' },
-    { time:'35–44 min', type:'interactive', typeLabel:'Activity',     title:'Redesign an assessment',         desc:'How one assessment can be adapted to multiple levels.' },
+    { time:'35–44 min', type:'context',     typeLabel:'Contextualisation', title:'Redesign an assessment',         desc:'How one assessment can be adapted to multiple levels.' },
     { time:'44–47 min', type:'intro',       typeLabel:'Overview',     title:'Field data',                     desc:'Scale distribution by programme — to explore independently.' },
     { time:'47–55 min', type:'interactive', typeLabel:'Activity',     title:'AI for Active Learning',         desc:'Self-assessment, peer, experiential, collaborative.' },
     { time:'55–60 min', type:'discussion',  typeLabel:'Discussion',   title:'Collective reflection',          desc:'Sharing experiences and next steps in your institutions.' },
@@ -1247,7 +1247,7 @@ const AGENDA = {
     { time:'12–17 min', type:'intro',       typeLabel:'Presentación', title:'La escala de uso de la IA',      desc:'Los 5 niveles, definiciones, objetivos y requisitos estudiantiles.' },
     { time:'17–26 min', type:'interactive', typeLabel:'Actividad',    title:'Clasificar evaluaciones',        desc:'Arrastrar y soltar: asociar evaluaciones de vuestra disciplina a los niveles correctos.' },
     { time:'26–35 min', type:'interactive', typeLabel:'Actividad',    title:'Elegir el nivel adecuado',       desc:'Escenarios disciplinarios: ¿qué nivel corresponde a esta instrucción?' },
-    { time:'35–44 min', type:'interactive', typeLabel:'Actividad',    title:'Rediseñar una evaluación',       desc:'Cómo una misma evaluación se adapta a múltiples niveles.' },
+    { time:'35–44 min', type:'context',     typeLabel:'Contextualización', title:'Rediseñar una evaluación',       desc:'Cómo una misma evaluación se adapta a múltiples niveles.' },
     { time:'44–47 min', type:'intro',       typeLabel:'Vistazo',      title:'Datos del terreno',              desc:'Distribución de la escala por programa — para explorar de forma autónoma.' },
     { time:'47–55 min', type:'interactive', typeLabel:'Actividad',    title:'La IA para el aprendizaje activo', desc:'Autoevaluación, pares, experiencial, colaborativo.' },
     { time:'55–60 min', type:'discussion',  typeLabel:'Discusión',    title:'Reflexión colectiva',            desc:'Compartir experiencias y próximos pasos en vuestras instituciones.' },
@@ -1263,7 +1263,7 @@ const PHASES = {
     { lbl:'Échelle ~ 5 min',             start:43, sec:'scale' },
     { lbl:'Classer ~ 9 min',             start:34, sec:'sort' },
     { lbl:'Scénarios ~ 9 min',           start:25, sec:'scenario' },
-    { lbl:'Remanier ~ 9 min',            start:16, sec:'redesign' },
+    { lbl:'Mise en contexte ~ 9 min',    start:16, sec:'redesign' },
     { lbl:'Données ~ 3 min',             start:13, sec:'data' },
     { lbl:'Apprentissage actif ~ 8 min', start:5,  sec:'active' },
     { lbl:'Discussion ~ 5 min',          start:0,  sec:'discussion' },
@@ -1275,7 +1275,7 @@ const PHASES = {
     { lbl:'Scale ~ 5 min',            start:43, sec:'scale' },
     { lbl:'Sort ~ 9 min',             start:34, sec:'sort' },
     { lbl:'Scenarios ~ 9 min',        start:25, sec:'scenario' },
-    { lbl:'Redesign ~ 9 min',         start:16, sec:'redesign' },
+    { lbl:'Contextualisation ~ 9 min', start:16, sec:'redesign' },
     { lbl:'Data ~ 3 min',             start:13, sec:'data' },
     { lbl:'Active Learning ~ 8 min',  start:5,  sec:'active' },
     { lbl:'Discussion ~ 5 min',       start:0,  sec:'discussion' },
@@ -1287,7 +1287,7 @@ const PHASES = {
     { lbl:'Escala ~ 5 min',             start:43, sec:'scale' },
     { lbl:'Clasificar ~ 9 min',         start:34, sec:'sort' },
     { lbl:'Escenarios ~ 9 min',         start:25, sec:'scenario' },
-    { lbl:'Rediseñar ~ 9 min',          start:16, sec:'redesign' },
+    { lbl:'Contextualización ~ 9 min',  start:16, sec:'redesign' },
     { lbl:'Datos ~ 3 min',              start:13, sec:'data' },
     { lbl:'Aprendizaje activo ~ 8 min', start:5,  sec:'active' },
     { lbl:'Discusión ~ 5 min',          start:0,  sec:'discussion' },
@@ -1547,7 +1547,7 @@ function renderScenario() {
   document.getElementById('sc-prev').style.opacity = idx === 0 ? '0.4' : '1';
   const isLast = idx === discs.length - 1;
   document.getElementById('sc-next').textContent = isLast
-    ? (lang === 'fr' ? 'Activité 3 →' : lang === 'es' ? 'Actividad 3 →' : 'Activity 3 →')
+    ? (lang === 'fr' ? 'Mise en contexte →' : lang === 'es' ? 'Contextualización →' : 'Contextualisation →')
     : s('sc-next');
   document.getElementById('scenario-container').innerHTML = `
     <div class="scenario-wrap">
@@ -1644,11 +1644,11 @@ function renderFooter() {
           <span class="footer-label" style="margin-bottom:0;margin-right:.4rem;">${s('f-links-label')} :</span>
           <a class="footer-link" href="${aqpcHref}" target="_blank" rel="noopener">${s('f-link-aqpc')}</a>
           <span class="footer-links-sep">·</span>
-          <a class="footer-link" href="https://lasallecollege.lcieducation.com/" target="_blank" rel="noopener">${s('f-link-lasalle')}</a>
+          <a class="footer-link" href=&quot;https://lasallecollege.lcieducation.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>${s('f-link-lasalle')}</a>
           <span class="footer-links-sep">·</span>
-          <a class="footer-link" href="https://lcieducation.com" target="_blank" rel="noopener">${s('f-link-lci')}</a>
+          <a class="footer-link" href=&quot;https://lcieducation.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>${s('f-link-lci')}</a>
           <span class="footer-links-sep">·</span>
-          <a class="footer-link" href="https://satuelisa.github.io" target="_blank" rel="noopener">${s('f-link-elisa')}</a>
+          <a class="footer-link" href=&quot;https://satuelisa.github.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>${s('f-link-elisa')}</a>
         </div>
       </div>
       <div>
@@ -1748,8 +1748,8 @@ function renderClosing() {
             <div class="contact-name">Elisa Schaeffer</div>
             <div class="contact-title">${CONTACT_TITLE[lang] || CONTACT_TITLE.en}</div>
             <div class="contact-links">
-              <a class="contact-link" href="https://www.linkedin.com/in/satuelisa/" target="_blank" rel="noopener">linkedin.com/in/satuelisa</a>
-              <a class="contact-link" href="https://satuelisa.github.io" target="_blank" rel="noopener">satuelisa.github.io</a>
+              <a class="contact-link" href=&quot;https://www.linkedin.com/in/satuelisa/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>linkedin.com/in/satuelisa</a>
+              <a class="contact-link" href=&quot;https://satuelisa.github.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>satuelisa.github.io</a>
               <a class="contact-link" href="mailto:elisa.schaeffer@collegelasalle.com">elisa.schaeffer@collegelasalle.com</a>
             </div>
           </div>

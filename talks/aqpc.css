@@ -69,6 +69,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .agenda-type{display:inline-block;font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .9rem;border-radius:2rem;background:var(--blue-light);color:var(--blue)}
 .agenda-type.interactive{background:#eef2e5;color:var(--green)}
 .agenda-type.discussion{background:#fff8e6;color:var(--gold)}
+.agenda-type.context{background:#f0eaf8;color:var(--l4)}
 .context-box{background:#fff;border-radius:var(--radius);padding:2.8rem;box-shadow:0 2px 10px rgba(7,24,30,.06);margin-bottom:3.2rem}
 .context-box p{font-size:1.55rem;color:var(--ch-400);line-height:1.7}
 .scale-strip{display:flex;gap:1rem;margin-bottom:3.2rem;flex-wrap:wrap}
