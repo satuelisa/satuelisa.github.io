@@ -494,4 +494,4 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 /* Survey form callout */
 .survey-cta{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;margin-top:1rem}
 .survey-qr-wrap{background:#fff;border-radius:8px;padding:.4rem;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.survey-qr{display:block;width:7rem;height:7rem;object-fit:contain}
+.survey-qr{display:block;width:9.6rem;height:9.6rem;object-fit:contain}
