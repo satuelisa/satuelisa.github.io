@@ -40,10 +40,10 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .nav-tab:hover:not(.active){color:#fff;background:rgba(255,255,255,.06)}
 .sec{display:none}
 .sec.active{display:block}
-.sec-inner{max-width:100rem;margin:0 auto;padding:4rem 2.4rem}
+.sec-inner{max-width:clamp(60rem,92vw,160rem);margin:0 auto;padding:4rem clamp(2.4rem,4vw,6rem)}
 .hero{background:var(--charcoal);padding:7.2rem 2.4rem;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 60%,rgba(0,88,124,.4) 0%,transparent 55%),radial-gradient(ellipse at 75% 15%,rgba(235,45,55,.12) 0%,transparent 45%)}
-.hero-inner{position:relative;max-width:80rem;margin:0 auto}
+.hero-inner{position:relative;max-width:clamp(60rem,88vw,120rem);margin:0 auto}
 .hero-badge{display:inline-block;background:rgba(0,88,124,.4);border:1px solid rgba(51,121,150,.6);color:var(--blue-100);font-size:1.1rem;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 1.6rem;border-radius:2rem;margin-bottom:3.2rem}
 .hero h1{font-size:clamp(3.6rem,6vw,6.4rem);font-weight:400;letter-spacing:-.04em;line-height:.95;color:var(--cream);margin-bottom:2.4rem}
 .hero h1 em{color:var(--blue-100);font-style:normal}
@@ -60,7 +60,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .sec-header{margin-bottom:3.2rem;padding-bottom:2.4rem;border-bottom:1px solid var(--cream-dark)}
 .sec-tag{font-size:1.15rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.8rem}
 .sec-header h2{font-size:clamp(2.4rem,3.5vw,3.8rem);font-weight:400;letter-spacing:-.03em;line-height:1;color:var(--charcoal);margin-bottom:1.2rem}
-.sec-header p{font-size:1.6rem;color:var(--ch-400);max-width:68rem;line-height:1.6}
+.sec-header p{font-size:1.6rem;color:var(--ch-400);max-width:clamp(48rem,60vw,90rem);line-height:1.6}
 .agenda-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(22rem,1fr));gap:1.6rem;margin-bottom:3.2rem}
 .agenda-card{background:#fff;border-radius:var(--radius);padding:2rem 2rem 1.6rem;border-top:3px solid var(--blue);box-shadow:0 2px 10px rgba(7,24,30,.06);display:flex;flex-direction:column;gap:.8rem}
 .agenda-time{font-size:1.1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
@@ -177,7 +177,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .ref-box p{font-size:1.5rem;line-height:1.7;opacity:.82}
 .ref-box .credit{font-size:1.2rem;opacity:.45;margin-top:1.6rem}
 .footer-wrap{background:var(--charcoal);border-top:3px solid var(--blue);padding:4rem 2.4rem;margin-top:4rem}
-.footer-inner{max-width:100rem;margin:0 auto;display:grid;grid-template-columns:1fr 1.8fr;gap:4rem;align-items:start}
+.footer-inner{max-width:clamp(60rem,92vw,160rem);margin:0 auto;display:grid;grid-template-columns:1fr 1.8fr;gap:4rem;align-items:start}
 @media(max-width:720px){.footer-inner{grid-template-columns:1fr;gap:2.4rem}}
 .footer-label{font-size:1.1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:.8rem}
 .footer-author{font-size:1.5rem;color:var(--cream);line-height:1.4;font-weight:400;margin-bottom:.8rem}
@@ -493,5 +493,3 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 
 /* Survey form callout */
 .survey-cta{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;margin-top:1rem}
-.survey-qr-wrap{background:#fff;border-radius:8px;padding:.4rem}
-.survey-qr{display:block;width:19.2rem;height:19.2rem;object-fit:contain}
