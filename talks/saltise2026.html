@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Eye to Eye with AI · SALTISE 2026 · ÉTS · June 1–2, 2026</title>
+<meta name="description" content="A 15-minute talk on adopting a five-level AI assessment scale at college level — steps, obstacles, and expected gains.">
+<link rel="stylesheet" href="aqpc.css">
+<style>
+  /* SALTISE overrides — 15-minute compressed single-page layout */
+  .s-timer-bar{position:sticky;top:0;z-index:100;background:var(--blue-dark);display:flex;align-items:center;justify-content:space-between;padding:.6rem 2rem;gap:1.2rem}
+  .s-phases{display:flex;gap:.4rem;flex:1;flex-wrap:wrap}
+  .s-pill{font-size:1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.3rem 1rem;border-radius:2rem;background:rgba(255,255,255,.12);color:rgba(255,255,255,.6);cursor:pointer;border:none;transition:background .2s}
+  .s-pill.active{background:var(--blue);color:#fff}
+  .s-pill:hover{background:rgba(255,255,255,.2);color:#fff}
+  .s-clock{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:.04em;min-width:5rem;text-align:right}
+  .s-clock.paused{opacity:.45}
+  .s-ctrl{display:flex;gap:.6rem}
+  .s-btn{background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.3rem;width:3rem;height:3rem;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .s-btn:hover{background:rgba(255,255,255,.3)}
+
+  .s-nav{display:flex;gap:.4rem;padding:.8rem 2rem;background:var(--cream);border-bottom:1px solid var(--cream-dark);overflow-x:auto;position:sticky;top:53px;z-index:90}
+  .s-tab{font-size:1.1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.5rem 1.4rem;border-radius:2rem;border:none;background:transparent;color:var(--ch-300);cursor:pointer;white-space:nowrap;transition:all .2s}
+  .s-tab.active{background:var(--blue);color:#fff}
+  .s-tab:hover:not(.active){background:var(--blue-light);color:var(--blue)}
+
+  .s-sec{display:none}
+  .s-sec.active{display:block}
+
+  /* Scale cards — compact grid */
+  .s-scale-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;margin-top:2rem}
+  @media(max-width:900px){.s-scale-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:600px){.s-scale-grid{grid-template-columns:1fr 1fr}}
+  .s-scale-card{border-radius:var(--radius);overflow:hidden;border:2px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .s-scale-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+  .s-scale-card.open{border-color:var(--lc)}
+  .s-card-icon{width:100%;aspect-ratio:1;display:block}
+  .s-card-name{font-size:1.2rem;font-weight:700;padding:.6rem .8rem .3rem;color:var(--charcoal)}
+  .s-card-detail{padding:0 .8rem .8rem;font-size:1.1rem;color:var(--ch-400);line-height:1.4;display:none}
+  .s-scale-card.open .s-card-detail{display:block}
+  .s-card-def{font-style:italic;margin-bottom:.4rem}
+  .s-card-req{font-size:1rem;color:var(--blue);font-weight:600}
+
+  /* Lessons — tighter two-column */
+  .s-lessons-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+  @media(max-width:800px){.s-lessons-grid{grid-template-columns:1fr}}
+  .s-lesson-col h3{font-size:1.4rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:2px solid var(--blue-light)}
+  .s-lesson-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--cream-dark)}
+  .s-lesson-item:last-child{border-bottom:none}
+  .s-lesson-icon{font-size:1.8rem;flex-shrink:0;line-height:1}
+  .s-lesson-body strong{display:block;font-size:1.2rem;margin-bottom:.2rem;color:var(--charcoal)}
+  .s-lesson-body p{font-size:1.1rem;color:var(--ch-400);line-height:1.4;margin:0}
+
+  /* Data section — reuse viz from aqpc */
+  .s-data-note{font-size:1.3rem;color:var(--ch-400);font-style:italic;margin-bottom:1.6rem}
+
+  /* Discussion */
+  .s-disc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.6rem;margin-top:2rem}
+  @media(max-width:900px){.s-disc-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.s-disc-grid{grid-template-columns:1fr}}
+  .s-disc-card{border-radius:var(--radius);padding:1.6rem;border-left:4px solid var(--lc)}
+  .s-disc-card h3{font-size:1.3rem;font-weight:700;margin-bottom:1rem;color:var(--charcoal)}
+  .s-disc-card ul{margin:0;padding-left:1.4rem}
+  .s-disc-card li{font-size:1.2rem;color:var(--ch-300);line-height:1.5;margin-bottom:.5rem}
+
+  /* Full version link */
+  .s-fullver{background:var(--blue-dark);border-radius:var(--radius);padding:2.4rem;display:flex;align-items:center;gap:2.4rem;flex-wrap:wrap;margin-top:3rem}
+  .s-fullver-text h3{font-size:2rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+  .s-fullver-text p{font-size:1.3rem;color:rgba(248,245,233,.7);margin:0 0 1.2rem}
+  .s-fullver-qr{flex-shrink:0;text-align:center}
+  .s-fullver-qr img{width:192px;height:192px;border-radius:6px;display:block}
+  .btn-white{background:#fff;color:var(--blue-dark);font-size:1.3rem;font-weight:700;padding:.8rem 2rem;border-radius:2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .15s}
+  .btn-white:hover{opacity:.85}
+
+  /* crit-callout reuse */
+  .s-callout{background:var(--blue-light);border-left:4px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:1.4rem 1.6rem;font-size:1.3rem;color:var(--charcoal);line-height:1.6;margin:2rem 0}
+
+  /* Collapsible abstract/description */
+  .s-details{border:1px solid var(--cream-dark);border-radius:var(--radius);margin-bottom:1rem;overflow:hidden}
+  .s-details summary{font-size:1.3rem;font-weight:700;padding:1rem 1.6rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;background:var(--cream);color:var(--blue)}
+  .s-details summary::-webkit-details-marker{display:none}
+  .s-details summary::after{content:'＋';font-size:1.4rem;transition:transform .2s}
+  .s-details[open] summary::after{content:'－'}
+  .s-details[open] summary{border-bottom:1px solid var(--cream-dark)}
+  .s-details-body{padding:1.4rem 1.6rem;font-size:1.3rem;color:var(--ch-300);line-height:1.7}
+  .s-details-body p{margin:0 0 1rem}
+  .s-details-body p:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+
+<!-- Timer bar -->
+<div class="s-timer-bar" id="s-timerbar">
+  <div class="s-phases" id="s-phases"></div>
+  <div class="s-clock" id="s-clock">15:00</div>
+  <div class="s-ctrl">
+    <button class="s-btn" id="s-playbtn" onclick="sToggle()">&#9654;</button>
+    <button class="s-btn" onclick="sReset()">&#8635;</button>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="s-nav">
+  <button class="s-tab active" onclick="sShow('s-intro')"    id="sn-intro">Welcome</button>
+  <button class="s-tab"        onclick="sShow('s-scale')"    id="sn-scale">The Scale</button>
+  <button class="s-tab"        onclick="sShow('s-lessons')"  id="sn-lessons">Lessons Learned</button>
+  <button class="s-tab"        onclick="sShow('s-data')"     id="sn-data">Data</button>
+  <button class="s-tab"        onclick="sShow('s-discuss')"  id="sn-discuss">Discussion</button>
+</nav>
+
+<!-- ── SECTION 1: WELCOME ─────────────────────────────────────────────────── -->
+<section id="s-intro" class="s-sec active">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">SALTISE 2026 · ÉTS · June 1–2</div>
+      <h1>Eye to Eye<br>with <em>AI</em></h1>
+      <p class="hero-sub">Adopting a five-level AI assessment scale at college level — steps, obstacles, and expected gains.</p>
+      <div class="hero-meta">
+        <div><div class="meta-val">15 min</div><div class="meta-lbl">Talk</div></div>
+        <div><div class="meta-val">SALTISE 2026 · ÉTS · June 1–2</div></div>
+      </div>
+      <button class="hero-cta" onclick="sShow('s-scale')">Start →</button>
+    </div>
+  </div>
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Context</div>
+      <h2>The challenge</h2>
+      <p>Clarity is key when communicating to students the "do's and don'ts" of Generative AI use during assessments. Establishing coherent descriptions with easy-to-recognise visuals reduces stress and confusion — but making and communicating such choices can itself be stressful and confusing for teachers.</p>
+    </div>
+    <div class="s-callout">
+      Following in the footsteps of many other institutions, our college and its international network are adopting a <strong>five-level scale</strong> for indicating, within the instructions of each graded assessment, what type of GenAI use is permitted. Levels range from forbidding all AI use to free use — topping off with a level that incorporates AI as a <em>necessary ingredient</em> of the work itself.
+    </div>
+    <div class="async-banner">
+      <div class="async-icon">🏫</div>
+      <div class="async-text">
+        <h4>Collège LaSalle Montréal · LCI Education</h4>
+        <p>Elisa Schaeffer — Dean, Technology &amp; Design. The scale was developed by LCI Melbourne, translated to French by Collège LaSalle Montréal (motivated by the <a href='https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag' target='_blank' rel='noopener'>Université de Sherbrooke task grids</a>), and to Spanish by LCI Barcelona. It draws on <a href='https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/' target='_blank' rel='noopener'>Leon Furze's AI Assessment Scale (2024)</a>.</p>
+      </div>
+    </div>
+    <details class="s-details">
+      <summary>Abstract</summary>
+      <div class="s-details-body">
+        <p>Clarity is key when communicating to students the &#8220;do&#8217;s and don&#8217;ts&#8221; of Generative AI use during assessments. Establishing a set of coherent descriptions, accompanied by easy-to-recognize visuals, can reduce stress and confusion among students. However, making and communicating such choices can be stressful and confusing for teachers with diverse skillsets and attitudes towards AI.</p>
+        <p>In this talk, we share experiences of the adoption of a five-level AI assessment scale at college level &#8212; from no AI use permitted through to AI as a necessary ingredient of the work itself &#8212; including the steps, the obstacles, and the concrete lessons learned.</p>
+      </div>
+    </details>
+    <details class="s-details">
+      <summary>Description</summary>
+      <div class="s-details-body">
+        <p>Following in the footsteps of many other academic institutions, our college, along with its international sibling entities, is in the process of adopting a five-level scale for indicating within the instructions of each graded assessment what type of GenAI use is permitted. The levels range from forbidding all AI use to free use of all AI tools, topping things off with a final level that incorporates AI use into the assessment preparation as a necessary ingredient.</p>
+        <p>The difficulties start with defining the levels in a way that is multidisciplinary and yet clear and concise enough to help inform the students. Encouraging teachers to associate a level to each graded assessment is the next big step, accommodating both those eager to adopt or forbid as well as those unsure about the role AI should play. Once choices are made, they must be discussed among teachers of parallel or sequential groups to achieve a consistent student experience &#8212; posing challenges for academic liberty. Students then need to be informed of the implications for how they carry out their tasks.</p>
+        <p>Drawing on an early 2026 rollout, this talk shares experiences on how assessments map to each level, where and how redesign takes place, what the frequent pain points are, and how disciplines appear to differ in their pace and needs.</p>
+      </div>
+    </details>
+    <div class="activity-controls mt-md">
+      <button class="btn btn-primary" onclick="sShow('s-scale')">The Scale →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: THE SCALE ───────────────────────────────────────────────── -->
+<section id="s-scale" class="s-sec">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Five levels</div>
+      <h2>The AI Assessment Scale</h2>
+      <p>Each graded assessment carries one of these five levels — communicated to students in the assessment instructions. Click a level to expand its definition.</p>
+    </div>
+    <div class="s-scale-grid" id="s-scale-grid"></div>
+    <div class="s-callout" style="margin-top:2.4rem">
+      <strong>Three non-negotiables in all AI-assisted work:</strong> <strong>attribution</strong> (cite the tool and prompt used), <strong>validation</strong> (verify and correct AI outputs), and <strong>assessing process over product</strong> (value decisions and approach, not just the final result).
+    </div>
+    <div class="activity-controls mt-md">
+      <button class="btn btn-primary" onclick="sShow('s-lessons')">Lessons Learned →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: LESSONS LEARNED ────────────────────────────────────────── -->
+<section id="s-lessons" class="s-sec">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Collège LaSalle Montréal · 2025–2026</div>
+      <h2>What we learned in the field</h2>
+      <p>During a professional development day, eleven programme teams analysed their assessments through the lens of AI. Four recurring issues, four recurring solutions.</p>
+    </div>
+    <div class="s-lessons-grid">
+      <div class="s-lesson-col" id="s-issues-col">
+        <h3>Issues identified</h3>
+      </div>
+      <div class="s-lesson-col" id="s-solutions-col">
+        <h3>Solutions proposed</h3>
+      </div>
+    </div>
+    <div class="s-callout">
+      <strong>Remarkable convergence across disciplines:</strong> the same three responses emerged independently in almost every programme — make the process visible, add an oral component, redesign the task. This was not coordinated; it arose from independent reflection in each team.
+    </div>
+    <div class="activity-controls mt-md">
+      <button class="btn btn-primary" onclick="sShow('s-data')">Data →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: DATA ────────────────────────────────────────────────────── -->
+<section id="s-data" class="s-sec">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">LCI Education · Spring 2026</div>
+      <h2>AI Scale Distribution by Programme</h2>
+      <p>Initial planning data from Collège LaSalle Montréal — four programmes, six sessions each. Hover a segment to see course titles.</p>
+    </div>
+    <p class="s-data-note">This data represents initial planning by teaching teams and does not commit them to implementing it as shown. Unpopulated sessions reflect work still in progress.</p>
+    <div id="s-viz-root"></div>
+    <div class="activity-controls mt-md">
+      <button class="btn btn-primary" onclick="sShow('s-discuss')">Discussion →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: DISCUSSION ─────────────────────────────────────────────── -->
+<section id="s-discuss" class="s-sec">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Discussion · 3 minutes</div>
+      <h2>Over to you</h2>
+      <p>Three questions to reflect on, individually or with a neighbour.</p>
+    </div>
+    <div class="s-disc-grid">
+      <div class="s-disc-card" style="--lc:var(--blue);background:var(--blue-light)">
+        <h3>Adoption</h3>
+        <ul>
+          <li>What would it take to introduce a scale like this in your institution?</li>
+          <li>Who would need to be on board first?</li>
+        </ul>
+      </div>
+      <div class="s-disc-card" style="--lc:var(--green);background:#eef2e5">
+        <h3>Friction</h3>
+        <ul>
+          <li>Which of the issues described resonates most with your own experience?</li>
+          <li>Which solutions feel most actionable for your context?</li>
+        </ul>
+      </div>
+      <div class="s-disc-card" style="--lc:var(--gold);background:#fff8e6">
+        <h3>Students</h3>
+        <ul>
+          <li>How do you currently communicate AI expectations to students?</li>
+          <li>What would "clarity" actually look like for your assessments?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Full version link -->
+    <div class="s-fullver">
+      <div class="s-fullver-text">
+        <h3>Explore the full workshop</h3>
+        <p>The interactive AQPC 2026 version includes discipline-specific sorting activities, scenario exercises, and the full LCI network survey data — in French, English, and Spanish.</p>
+        <a href="aqpc2026.html" class="btn-white" target="_blank" rel="noopener">Open full workshop →</a>
+      </div>
+      <div class="s-fullver-qr">
+        <img src="aqpc2026.png" alt="QR code — full workshop" style="width:192px;height:192px;border-radius:6px;display:block;">
+      </div>
+    </div>
+
+    <div class="footer-ref" style="margin-top:3rem;font-size:1.2rem;color:var(--ch-300);border-top:1px solid var(--cream-dark);padding-top:1.6rem">
+      Scale: <a href='https://melbourne.lcieducation.com/' target='_blank' rel='noopener'>LCI Melbourne</a> (2024), adapted by Collège LaSalle Montréal.
+      Inspired by <a href='https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/' target='_blank' rel='noopener'>Leon Furze — AI Assessment Scale (2024)</a>.
+      UdeS task grids: <a href='https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag' target='_blank' rel='noopener'>usherbrooke.ca</a>.
+      Developed with Claude Sonnet 4.6 · Elisa Schaeffer, Doyen.ne Tech &amp; Design, Collège LaSalle Montréal.
+    </div>
+  </div>
+</section>
+
+<script src="aqpc.js"></script>
+<script>
+// ── SALTISE standalone controller ────────────────────────────────────────────
+
+const S_PHASES = [
+  { lbl:'Welcome ~ 2 min',       sec:'s-intro',   mins:2  },
+  { lbl:'Scale ~ 3 min',         sec:'s-scale',   mins:3  },
+  { lbl:'Lessons ~ 4 min',       sec:'s-lessons', mins:4  },
+  { lbl:'Data ~ 3 min',          sec:'s-data',    mins:3  },
+  { lbl:'Discussion ~ 3 min',    sec:'s-discuss', mins:3  },
+];
+
+let sSecs = 15 * 60, sRunning = false, sInterval = null;
+
+function sShow(id) {
+  document.querySelectorAll('.s-sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabId = 'sn-' + id.replace('s-','');
+  const tab = document.getElementById(tabId);
+  if (tab) tab.classList.add('active');
+  // Highlight matching phase pill
+  document.querySelectorAll('.s-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.sec === id);
+  });
+  // Init viz on first visit to data tab
+  if (id === 's-data' && !sSvizDone) { sSvizDone = true; sRenderViz(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function sToggle() {
+  sRunning = !sRunning;
+  document.getElementById('s-playbtn').innerHTML = sRunning ? '&#9646;&#9646;' : '&#9654;';
+  if (sRunning) {
+    sInterval = setInterval(() => {
+      if (sSecs > 0) { sSecs--; sUpdateClock(); }
+      else { sRunning = false; clearInterval(sInterval); }
+    }, 1000);
+  } else {
+    clearInterval(sInterval);
+  }
+}
+
+function sReset() {
+  clearInterval(sInterval);
+  sRunning = false;
+  sSecs = 15 * 60;
+  document.getElementById('s-playbtn').innerHTML = '&#9654;';
+  sUpdateClock();
+}
+
+function sUpdateClock() {
+  const m = Math.floor(sSecs / 60), s = sSecs % 60;
+  const el = document.getElementById('s-clock');
+  el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  el.classList.toggle('paused', !sRunning);
+}
+
+// Phase pills
+document.getElementById('s-phases').innerHTML = S_PHASES.map(p =>
+  `<button class="s-pill" data-sec="${p.sec}" onclick="sShow('${p.sec}')">${p.lbl}</button>`
+).join('');
+
+// ── Scale section ─────────────────────────────────────────────────────────────
+let sOpenScale = null;
+const EN_SCALE = SCALE.en;
+const ICONS_EN = ICONS_CIRCLE.en;
+
+function sRenderScale() {
+  document.getElementById('s-scale-grid').innerHTML = EN_SCALE.map(lv => `
+    <div class="s-scale-card ${sOpenScale === lv.n ? 'open' : ''}" style="--lc:${lv.color}" onclick="sToggleScale(${lv.n})">
+      <img class="s-card-icon" src="${ICONS_EN[lv.n]}" alt="Level ${lv.n}">
+      <div class="s-card-name">${lv.n} · ${lv.name}</div>
+      <div class="s-card-detail">
+        <div class="s-card-def">${lv.def}</div>
+        <div class="s-card-req">→ ${lv.req}</div>
+      </div>
+    </div>`).join('');
+}
+function sToggleScale(n) { sOpenScale = sOpenScale === n ? null : n; sRenderScale(); }
+sRenderScale();
+
+// ── Lessons section ───────────────────────────────────────────────────────────
+const EN_LESSONS = LESSONS.en;
+// Show top 4 issues and top 4 solutions
+function sRenderLessons() {
+  const issCol = document.getElementById('s-issues-col');
+  const solCol = document.getElementById('s-solutions-col');
+  issCol.innerHTML = '<h3>Issues identified</h3>' +
+    EN_LESSONS.issues.groups.slice(0,4).map(g => `
+      <div class="s-lesson-item">
+        <div class="s-lesson-icon">${g.icon}</div>
+        <div class="s-lesson-body">
+          <strong>${g.title}</strong>
+          <p>${g.body}</p>
+        </div>
+      </div>`).join('');
+  solCol.innerHTML = '<h3>Solutions proposed</h3>' +
+    EN_LESSONS.solutions.groups.slice(0,4).map(g => `
+      <div class="s-lesson-item">
+        <div class="s-lesson-icon">${g.icon}</div>
+        <div class="s-lesson-body">
+          <strong>${g.title}</strong>
+          <p>${g.body}</p>
+        </div>
+      </div>`).join('');
+}
+sRenderLessons();
+
+// ── Data viz — reuse aqpc.js viz inline ───────────────────────────────────────
+let sSvizDone = false;
+
+function sRenderViz() {
+  const root = document.getElementById('s-viz-root');
+  const COLORS = ['var(--l0)','var(--l1)','var(--l2)','var(--l3)','var(--l4)'];
+  const LEVEL_NAMES = ['No AI','AI Planning','AI Collaboration','Full AI','AI Exploration'];
+  const PROGS = [
+    { key:'420.BR', name:'420.BR — Networking & Security',
+      desc:'Technical training in infrastructure, cybersecurity, and cloud. AI at level 3 for most courses, with level 0 evaluations reflecting required fundamentals.',
+      levels:{1:3,2:3,3:3,4:3,5:3,6:3}, sessions:6 },
+    { key:'420.BP', name:'420.BP — Computer Science',
+      desc:'Core programming and systems fundamentals. Initial planning data covers the first two sessions; remaining sessions are in progress with the teaching team.',
+      levels:{1:0,2:0}, sessions:6 },
+    { key:'420.BX', name:'420.BX — IT Support & Systems',
+      desc:'Broad IT program covering support, systems administration, and development. Mixed AI levels reflecting varying assessment types across the programme.',
+      levels:{1:0,2:1,3:2,4:2,5:4,6:1}, sessions:6 },
+    { key:'574.CX', name:'574.CX — AI-Assisted Prototyping',
+      desc:'Low-code, AI-native prototyping program designed from the ground up to integrate AI tools. Level 2–3 throughout with level 4 in the final session.',
+      levels:{1:2,2:2,3:2,4:2,5:3,6:2}, sessions:6 },
+  ];
+
+  // Legend
+  let out = '<div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:2rem">';
+  COLORS.forEach((c,i) => {
+    out += `<div style="display:flex;align-items:center;gap:.6rem;font-size:1.15rem">
+      <img src="img/AI_${i}_circle.png" style="width:2.6rem;height:2.6rem" alt="Level ${i}">
+      <span>${i} · ${LEVEL_NAMES[i]}</span></div>`;
+  });
+  out += '</div>';
+
+  PROGS.forEach(p => {
+    out += `<div style="margin-bottom:2.4rem;padding:1.6rem;background:var(--cream);border-radius:var(--radius)">
+      <div style="font-size:1.5rem;font-weight:700;margin-bottom:.3rem;color:var(--charcoal)">${p.name}</div>
+      <div style="font-size:1.15rem;color:var(--ch-400);margin-bottom:1.2rem;font-style:italic;line-height:1.4">${p.desc}</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem">`;
+    for (let s = 1; s <= p.sessions; s++) {
+      if (p.levels[s] !== undefined) {
+        const lv = p.levels[s];
+        out += `<div style="background:${COLORS[lv]};border-radius:6px;padding:.8rem .4rem;text-align:center;color:#fff;font-weight:700;font-size:1.1rem" title="Session ${s}: ${LEVEL_NAMES[lv]}">
+          <div style="font-size:.95rem;opacity:.8;margin-bottom:.2rem">S${s}</div>
+          <div>${lv}</div></div>`;
+      } else {
+        out += `<div style="background:var(--cream-dark);border-radius:6px;padding:.8rem .4rem;text-align:center;color:var(--ch-200);font-size:1.1rem" title="Session ${s}: in progress">
+          <div style="font-size:.95rem;margin-bottom:.2rem">S${s}</div>
+          <div>—</div></div>`;
+      }
+    }
+    out += '</div></div>';
+  });
+  root.innerHTML = out;
+}
+
+// Expose sShow globally for nav
+window.sShow = sShow;
+</script>
+</body>
+</html>
