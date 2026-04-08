@@ -10,17 +10,6 @@
 <link rel="stylesheet" href="aqpc.css">
 <style>
   /* SALTISE overrides — 15-minute compressed single-page layout */
-  .s-timer-bar{position:sticky;top:0;z-index:100;background:var(--blue-dark);display:flex;align-items:center;justify-content:space-between;padding:.6rem 2rem;gap:1.2rem}
-  .s-phases{display:flex;gap:.4rem;flex:1;flex-wrap:wrap}
-  .s-pill{font-size:1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.3rem 1rem;border-radius:2rem;background:rgba(255,255,255,.12);color:rgba(255,255,255,.6);cursor:pointer;border:none;transition:background .2s}
-  .s-pill.active{background:var(--blue);color:#fff}
-  .s-pill:hover{background:rgba(255,255,255,.2);color:#fff}
-  .s-clock{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:.04em;min-width:5rem;text-align:right}
-  .s-clock.paused{opacity:.45}
-  .s-ctrl{display:flex;gap:.6rem}
-  .s-btn{background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.3rem;width:3rem;height:3rem;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .s-btn:hover{background:rgba(255,255,255,.3)}
-
   .s-nav{display:flex;gap:.4rem;padding:.8rem 2rem;background:var(--cream);border-bottom:1px solid var(--cream-dark);overflow-x:auto;position:sticky;top:53px;z-index:90}
   .s-tab{font-size:1.1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.5rem 1.4rem;border-radius:2rem;border:none;background:transparent;color:var(--ch-300);cursor:pointer;white-space:nowrap;transition:all .2s}
   .s-tab.active{background:var(--blue);color:#fff}
@@ -90,16 +79,6 @@
 </style>
 </head>
 <body>
-
-<!-- Timer bar -->
-<div class="s-timer-bar" id="s-timerbar">
-  <div class="s-phases" id="s-phases"></div>
-  <div class="s-clock" id="s-clock">15:00</div>
-  <div class="s-ctrl">
-    <button class="s-btn" id="s-playbtn" onclick="sToggle()">&#9654;</button>
-    <button class="s-btn" onclick="sReset()">&#8635;</button>
-  </div>
-</div>
 
 <!-- Nav -->
 <nav class="s-nav">
@@ -282,165 +261,85 @@
 // ── SALTISE standalone controller ────────────────────────────────────────────
 
 const S_PHASES = [
-  { lbl:'Welcome ~ 2 min',       sec:'s-intro',   mins:2  },
-  { lbl:'Scale ~ 3 min',         sec:'s-scale',   mins:3  },
-  { lbl:'Lessons ~ 4 min',       sec:'s-lessons', mins:4  },
-  { lbl:'Data ~ 3 min',          sec:'s-data',    mins:3  },
-  { lbl:'Discussion ~ 3 min',    sec:'s-discuss', mins:3  },
+  { lbl:'Welcome',       sec:'s-intro'  },
+  { lbl:'Scale',         sec:'s-scale'  },
+  { lbl:'Lessons Learned', sec:'s-lessons' },
+  { lbl:'Data',          sec:'s-data'   },
+  { lbl:'Discussion',    sec:'s-discuss'},
 ];
 
-let sSecs = 15 * 60, sRunning = false, sInterval = null;
+window.sShow = sShow;
 
-function sShow(id) {
-  document.querySelectorAll('.s-sec').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const tabId = 'sn-' + id.replace('s-','');
-  const tab = document.getElementById(tabId);
-  if (tab) tab.classList.add('active');
-  // Highlight matching phase pill
-  document.querySelectorAll('.s-pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.sec === id);
-  });
-  // Init viz on first visit to data tab
-  if (id === 's-data' && !sSvizDone) { sSvizDone = true; sRenderViz(); }
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function sToggle() {
-  sRunning = !sRunning;
-  document.getElementById('s-playbtn').innerHTML = sRunning ? '&#9646;&#9646;' : '&#9654;';
-  if (sRunning) {
-    sInterval = setInterval(() => {
-      if (sSecs > 0) { sSecs--; sUpdateClock(); }
-      else { sRunning = false; clearInterval(sInterval); }
-    }, 1000);
-  } else {
-    clearInterval(sInterval);
-  }
-}
-
-function sReset() {
-  clearInterval(sInterval);
-  sRunning = false;
-  sSecs = 15 * 60;
-  document.getElementById('s-playbtn').innerHTML = '&#9654;';
-  sUpdateClock();
-}
-
-function sUpdateClock() {
-  const m = Math.floor(sSecs / 60), s = sSecs % 60;
-  const el = document.getElementById('s-clock');
-  el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-  el.classList.toggle('paused', !sRunning);
-}
-
-// Phase pills
-document.getElementById('s-phases').innerHTML = S_PHASES.map(p =>
-  `<button class="s-pill" data-sec="${p.sec}" onclick="sShow('${p.sec}')">${p.lbl}</button>`
-).join('');
-
-// ── Scale section ─────────────────────────────────────────────────────────────
-let sOpenScale = null;
-const EN_SCALE = SCALE.en;
-const ICONS_EN = ICONS_CIRCLE.en;
-
-function sRenderScale() {
-  document.getElementById('s-scale-grid').innerHTML = EN_SCALE.map(lv => `
-    <div class="s-scale-card ${sOpenScale === lv.n ? 'open' : ''}" style="--lc:${lv.color}" onclick="sToggleScale(${lv.n})">
-      <img class="s-card-icon" src="${ICONS_EN[lv.n]}" alt="Level ${lv.n}">
-      <div class="s-card-name">${lv.n} · ${lv.name}</div>
-      <div class="s-card-detail">
-        <div class="s-card-def">${lv.def}</div>
-        <div class="s-card-req">→ ${lv.req}</div>
-      </div>
-    </div>`).join('');
-}
-function sToggleScale(n) { sOpenScale = sOpenScale === n ? null : n; sRenderScale(); }
-sRenderScale();
-
-// ── Lessons section ───────────────────────────────────────────────────────────
-const EN_LESSONS = LESSONS.en;
-// Show top 4 issues and top 4 solutions
-function sRenderLessons() {
-  const issCol = document.getElementById('s-issues-col');
-  const solCol = document.getElementById('s-solutions-col');
-  issCol.innerHTML = '<h3>Issues identified</h3>' +
-    EN_LESSONS.issues.groups.slice(0,4).map(g => `
-      <div class="s-lesson-item">
-        <div class="s-lesson-icon">${g.icon}</div>
-        <div class="s-lesson-body">
-          <strong>${g.title}</strong>
-          <p>${g.body}</p>
-        </div>
-      </div>`).join('');
-  solCol.innerHTML = '<h3>Solutions proposed</h3>' +
-    EN_LESSONS.solutions.groups.slice(0,4).map(g => `
-      <div class="s-lesson-item">
-        <div class="s-lesson-icon">${g.icon}</div>
-        <div class="s-lesson-body">
-          <strong>${g.title}</strong>
-          <p>${g.body}</p>
-        </div>
-      </div>`).join('');
-}
-sRenderLessons();
-
-// ── Data viz — reuse aqpc.js viz inline ───────────────────────────────────────
+// ── Data viz ──────────────────────────────────────────────────────────────────
 let sSvizDone = false;
 
 function sRenderViz() {
   const root = document.getElementById('s-viz-root');
-  const COLORS = ['var(--l0)','var(--l1)','var(--l2)','var(--l3)','var(--l4)'];
+  const COLORS = ['#eb2d37','#cc9f11','#5b8000','#337996','#7b4fa6'];
   const LEVEL_NAMES = ['No AI','AI Planning','AI Collaboration','Full AI','AI Exploration'];
   const PROGS = [
-    { key:'420.BR', name:'420.BR — Networking & Security',
-      desc:'Technical training in infrastructure, cybersecurity, and cloud. AI at level 3 for most courses, with level 0 evaluations reflecting required fundamentals.',
-      levels:{1:3,2:3,3:3,4:3,5:3,6:3}, sessions:6 },
-    { key:'420.BP', name:'420.BP — Computer Science',
-      desc:'Core programming and systems fundamentals. Initial planning data covers the first two sessions; remaining sessions are in progress with the teaching team.',
-      levels:{1:0,2:0}, sessions:6 },
-    { key:'420.BX', name:'420.BX — IT Support & Systems',
-      desc:'Broad IT program covering support, systems administration, and development. Mixed AI levels reflecting varying assessment types across the programme.',
-      levels:{1:0,2:1,3:2,4:2,5:4,6:1}, sessions:6 },
-    { key:'574.CX', name:'574.CX — AI-Assisted Prototyping',
-      desc:'Low-code, AI-native prototyping program designed from the ground up to integrate AI tools. Level 2–3 throughout with level 4 in the final session.',
-      levels:{1:2,2:2,3:2,4:2,5:3,6:2}, sessions:6 },
+    { key:'420.BR', name:'Networking & Security',
+      data:{1:[8,0,3,6,0],2:[4,0,2,3,0],3:[4,0,1,2,0],4:[5,0,2,5,0],5:[4,0,2,3,0],6:[2,0,0,1,0]} },
+    { key:'420.BP', name:'Computer Science',
+      data:{1:[16,2,0,0,0],2:[9,3,0,0,0]} },
+    { key:'420.BX', name:'IT Support & Systems',
+      data:{1:[2,0,2,0,0],2:[0,1,0,0,0],3:[0,1,1,0,0],4:[0,0,2,1,0],5:[0,0,1,0,2],6:[0,1,0,0,0]} },
+    { key:'574.CX', name:'AI-Assisted Prototyping',
+      data:{1:[0,5,12,5,4],2:[0,2,6,3,6],3:[2,2,9,4,1],4:[0,5,8,2,2],5:[0,0,3,11,0],6:[2,4,11,3,2]} },
   ];
-
-  // Legend
-  let out = '<div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:2rem">';
+  const BAR_H = 160;
+  let out = '<div style="font-family:sans-serif">';
+  out += '<div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.6rem;align-items:center">';
   COLORS.forEach((c,i) => {
-    out += `<div style="display:flex;align-items:center;gap:.6rem;font-size:1.15rem">
-      <img src="img/AI_${i}_circle.png" style="width:2.6rem;height:2.6rem" alt="Level ${i}">
+    out += `<div style="display:flex;align-items:center;gap:.5rem;font-size:1.05rem;color:#dce8ee">
+      <div style="width:14px;height:14px;border-radius:3px;background:${c};flex-shrink:0"></div>
       <span>${i} · ${LEVEL_NAMES[i]}</span></div>`;
   });
   out += '</div>';
-
   PROGS.forEach(p => {
-    out += `<div style="margin-bottom:2.4rem;padding:1.6rem;background:var(--cream);border-radius:var(--radius)">
-      <div style="font-size:1.5rem;font-weight:700;margin-bottom:.3rem;color:var(--charcoal)">${p.name}</div>
-      <div style="font-size:1.15rem;color:var(--ch-400);margin-bottom:1.2rem;font-style:italic;line-height:1.4">${p.desc}</div>
-      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem">`;
-    for (let s = 1; s <= p.sessions; s++) {
-      if (p.levels[s] !== undefined) {
-        const lv = p.levels[s];
-        out += `<div style="background:${COLORS[lv]};border-radius:6px;padding:.8rem .4rem;text-align:center;color:#fff;font-weight:700;font-size:1.1rem" title="Session ${s}: ${LEVEL_NAMES[lv]}">
-          <div style="font-size:.95rem;opacity:.8;margin-bottom:.2rem">S${s}</div>
-          <div>${lv}</div></div>`;
+    out += `<div style="margin-bottom:1.8rem;background:#122a34;border-radius:10px;padding:1.2rem 1.4rem">`;
+    out += `<div style="font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.15rem">${p.key}</div>`;
+    out += `<div style="font-size:1.05rem;color:#8ca8b4;margin-bottom:1rem">${p.name}</div>`;
+    out += `<div style="display:flex;gap:6px;align-items:flex-end">`;
+    for (let s = 1; s <= 6; s++) {
+      out += `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">`;
+      if (p.data[s]) {
+        const counts = p.data[s];
+        const total = counts.reduce((a,b)=>a+b,0);
+        const segs = counts.map((c,i) => ({lv:i,c,h:total>0?Math.max(c>0?8:0,Math.round(c/total*BAR_H)):0}));
+        const sumH = segs.reduce((a,s)=>a+s.h,0);
+        if (sumH !== BAR_H && sumH > 0) {
+          const bi = segs.reduce((mi,s,i,a)=>s.h>a[mi].h?i:mi,0);
+          segs[bi].h += BAR_H - sumH;
+        }
+        out += `<div style="display:flex;flex-direction:column-reverse;width:100%;border-radius:6px;overflow:hidden;height:${BAR_H}px">`;
+        segs.forEach(seg => {
+          if (seg.h <= 0) return;
+          const pct = total > 0 ? Math.round(seg.c/total*100) : 0;
+          out += `<div style="background:${COLORS[seg.lv]};height:${seg.h}px;display:flex;align-items:center;justify-content:center" title="Level ${seg.lv}: ${seg.c} (${pct}%)">`;
+          if (seg.h >= 18 && seg.c > 0) out += `<span style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.9)">${pct}%</span>`;
+          out += `</div>`;
+        });
+        out += `</div>`;
       } else {
-        out += `<div style="background:var(--cream-dark);border-radius:6px;padding:.8rem .4rem;text-align:center;color:var(--ch-200);font-size:1.1rem" title="Session ${s}: in progress">
-          <div style="font-size:.95rem;margin-bottom:.2rem">S${s}</div>
-          <div>—</div></div>`;
+        out += `<div style="width:100%;height:${BAR_H}px;border-radius:6px;background:#28505a;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:.9rem;color:#4a7080">—</span></div>`;
       }
+      out += `<div style="font-size:.95rem;color:#8ca8b4;margin-top:2px">S${s}</div></div>`;
     }
-    out += '</div></div>';
+    out += `</div></div>`;
   });
+  out += '</div>';
   root.innerHTML = out;
 }
 
-// Expose sShow globally for nav
-window.sShow = sShow;
+// Trigger viz on first visit to data tab
+const _origSShow = window.sShow;
+window.sShow = function(id) {
+  _origSShow(id);
+  if (id === 's-data' && !sSvizDone) { sSvizDone = true; sRenderViz(); }
+};
+
 </script>
 </body>
 </html>
