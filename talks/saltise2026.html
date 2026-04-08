@@ -256,162 +256,6 @@
   </div>
 </section>
 
-<script>
-// Prevent aqpc.js boot functions from erroring on missing AQPC DOM elements
-window.__saltise = true;
-// Stub renderAll — saltise has its own init
-window.renderAll = function() {};
-// Stub setLang to avoid cascading calls
-window.setLang = function() {};
-</script>
-<script src="aqpc.js"></script>
-<script>
-// ── SALTISE standalone controller ────────────────────────────────────────────
-
-
-function sShow(id) {
-  document.querySelectorAll('.s-sec').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const tabId = 'sn-' + id.replace('s-','');
-  const tab = document.getElementById(tabId);
-  if (tab) tab.classList.add('active');
-  document.querySelectorAll('.s-pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.sec === id);
-  });
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-// Phase pills — called directly after all scripts load (no DOMContentLoaded needed,
-// scripts are at bottom of body so DOM is already ready)
-function sInitPage() {
-  sRenderScale();
-  sRenderLessons();
-}
-
-window.sShow = sShow;
-
-
-// ── Scale section ─────────────────────────────────────────────────────────────
-let sOpenScale = null;
-
-function sRenderScale() {
-  const grid = document.getElementById('s-scale-grid');
-  if (!grid) return;
-  const EN_SCALE = SCALE.en;
-  const ICONS_EN = ICONS_CIRCLE.en;
-  grid.innerHTML = EN_SCALE.map(lv => `
-    <div class="s-scale-card ${sOpenScale === lv.n ? 'open' : ''}" style="--lc:${lv.color}" onclick="sToggleScale(${lv.n})">
-      <img class="s-card-icon" src="${ICONS_EN[lv.n]}" alt="Level ${lv.n}">
-      <div class="s-card-name">${lv.n} · ${lv.name}</div>
-      <div class="s-card-detail">
-        <div class="s-card-def">${lv.def}</div>
-        <div class="s-card-req">→ ${lv.req}</div>
-      </div>
-    </div>`).join('');
-}
-
-function sToggleScale(n) { sOpenScale = sOpenScale === n ? null : n; sRenderScale(); }
-
-// ── Lessons section ───────────────────────────────────────────────────────────
-function sRenderLessons() {
-  const issCol = document.getElementById('s-issues-col');
-  const solCol = document.getElementById('s-solutions-col');
-  if (!issCol || !solCol) return;
-  const EN_LESSONS = LESSONS.en;
-  issCol.innerHTML = '<h3>Causes for concern</h3>' +
-    EN_LESSONS.issues.groups.slice(0,4).map(g => `
-      <div class="s-lesson-item">
-        <div class="s-lesson-icon">${g.icon}</div>
-        <div class="s-lesson-body">
-          <strong>${g.title}</strong>
-          <p>${g.body}</p>
-        </div>
-      </div>`).join('');
-  solCol.innerHTML = '<h3>Proposed solutions</h3>' +
-    EN_LESSONS.solutions.groups.slice(0,4).map(g => `
-      <div class="s-lesson-item">
-        <div class="s-lesson-icon">${g.icon}</div>
-        <div class="s-lesson-body">
-          <strong>${g.title}</strong>
-          <p>${g.body}</p>
-        </div>
-      </div>`).join('');
-}
-
-// ── Data viz ──────────────────────────────────────────────────────────────────
-let sSvizDone = false;
-
-function sRenderViz() {
-  const root = document.getElementById('s-viz-root');
-  const COLORS = ['#eb2d37','#cc9f11','#5b8000','#337996','#7b4fa6'];
-  const LEVEL_NAMES = ['No AI','AI Planning','AI Collaboration','Full AI','AI Exploration'];
-  const PROGS = [
-    { key:'420.BR', name:'Networking & Security',
-      data:{1:[8,0,3,6,0],2:[4,0,2,3,0],3:[4,0,1,2,0],4:[5,0,2,5,0],5:[4,0,2,3,0],6:[2,0,0,1,0]} },
-    { key:'420.BP', name:'Computer Science',
-      data:{1:[16,2,0,0,0],2:[9,3,0,0,0]} },
-    { key:'420.BX', name:'IT Support & Systems',
-      data:{1:[2,0,2,0,0],2:[0,1,0,0,0],3:[0,1,1,0,0],4:[0,0,2,1,0],5:[0,0,1,0,2],6:[0,1,0,0,0]} },
-    { key:'574.CX', name:'AI-Assisted Prototyping',
-      data:{1:[0,5,12,5,4],2:[0,2,6,3,6],3:[2,2,9,4,1],4:[0,5,8,2,2],5:[0,0,3,11,0],6:[2,4,11,3,2]} },
-  ];
-  const BAR_H = 160;
-  let out = '<div style="font-family:sans-serif">';
-  out += '<div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.6rem;align-items:center">';
-  COLORS.forEach((c,i) => {
-    out += `<div style="display:flex;align-items:center;gap:.5rem;font-size:1.05rem;color:#dce8ee">
-      <div style="width:14px;height:14px;border-radius:3px;background:${c};flex-shrink:0"></div>
-      <span>${i} · ${LEVEL_NAMES[i]}</span></div>`;
-  });
-  out += '</div>';
-  PROGS.forEach(p => {
-    out += `<div style="margin-bottom:1.8rem;background:#122a34;border-radius:10px;padding:1.2rem 1.4rem">`;
-    out += `<div style="font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.15rem">${p.key}</div>`;
-    out += `<div style="font-size:1.05rem;color:#8ca8b4;margin-bottom:1rem">${p.name}</div>`;
-    out += `<div style="display:flex;gap:6px;align-items:flex-end">`;
-    for (let s = 1; s <= 6; s++) {
-      out += `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">`;
-      if (p.data[s]) {
-        const counts = p.data[s];
-        const total = counts.reduce((a,b)=>a+b,0);
-        const segs = counts.map((c,i) => ({lv:i,c,h:total>0?Math.max(c>0?8:0,Math.round(c/total*BAR_H)):0}));
-        const sumH = segs.reduce((a,s)=>a+s.h,0);
-        if (sumH !== BAR_H && sumH > 0) {
-          const bi = segs.reduce((mi,s,i,a)=>s.h>a[mi].h?i:mi,0);
-          segs[bi].h += BAR_H - sumH;
-        }
-        out += `<div style="display:flex;flex-direction:column-reverse;width:100%;border-radius:6px;overflow:hidden;height:${BAR_H}px">`;
-        segs.forEach(seg => {
-          if (seg.h <= 0) return;
-          const pct = total > 0 ? Math.round(seg.c/total*100) : 0;
-          out += `<div style="background:${COLORS[seg.lv]};height:${seg.h}px;display:flex;align-items:center;justify-content:center" title="Level ${seg.lv}: ${seg.c} (${pct}%)">`;
-          if (seg.h >= 18 && seg.c > 0) out += `<span style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.9)">${pct}%</span>`;
-          out += `</div>`;
-        });
-        out += `</div>`;
-      } else {
-        out += `<div style="width:100%;height:${BAR_H}px;border-radius:6px;background:#28505a;display:flex;align-items:center;justify-content:center">
-          <span style="font-size:.9rem;color:#4a7080">—</span></div>`;
-      }
-      out += `<div style="font-size:.95rem;color:#8ca8b4;margin-top:2px">S${s}</div></div>`;
-    }
-    out += `</div></div>`;
-  });
-  out += '</div>';
-  root.innerHTML = out;
-}
-
-// Trigger viz on first visit to data tab
-const _origSShow = window.sShow;
-window.sShow = function(id) {
-  _origSShow(id);
-  if (id === 's-data' && !sSvizDone) { sSvizDone = true; sRenderViz(); }
-  if (id === 's-scale') sRenderScale();
-};
-
-</script>
-<script>sInitPage();</script>
 
 <footer class="footer-wrap">
   <div class="footer-inner">
@@ -439,5 +283,33 @@ window.sShow = function(id) {
     </div>
   </div>
 </footer>
+
+<footer class="footer-wrap">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-label">SALTISE 2026 · ÉTS Montréal · June 1–2</div>
+      <div class="footer-author">Elisa Schaeffer, Dean, Tech &amp; Design, Collège LaSalle Montréal, LCI Education</div>
+      <div class="footer-links" style="margin-top:1.6rem;">
+        <span class="footer-label" style="margin-bottom:0;margin-right:.4rem;">See also :</span>
+        <a class="footer-link" href="aqpc2026.html" target="_blank" rel="noopener">Full AQPC 2026 workshop</a>
+        <span class="footer-links-sep">·</span>
+        <a class="footer-link" href="https://lasallecollege.lcieducation.com/" target="_blank" rel="noopener">Collège LaSalle Montréal</a>
+        <span class="footer-links-sep">·</span>
+        <a class="footer-link" href="https://lcieducation.com" target="_blank" rel="noopener">LCI Education</a>
+        <span class="footer-links-sep">·</span>
+        <a class="footer-link" href="https://satuelisa.github.io" target="_blank" rel="noopener">Elisa Schaeffer</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-label">How this site was built</div>
+      <p class="footer-dev-text">This site was developed iteratively and collaboratively with <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer provided the conceptual framework, disciplinary directions, and scale content; she reviewed and refined all generated proposals throughout the conversation. The AI generated code, examples, and layout under her direction.</p>
+      <div class="footer-tool">
+        <span class="footer-tool-label">Tool :</span>
+        Claude Sonnet 4.6 via Claude.ai (claude.ai) — iterative and collaborative development, reviewed and validated by the author.
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="saltise.js"></script>
 </body>
 </html>
