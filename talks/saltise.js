@@ -81,6 +81,8 @@ const VIZ_PROGS = [
 
 const LEVEL_NAMES = ['No AI','AI Planning','AI Collaboration','Full AI','AI Exploration'];
 const LEVEL_COLORS = ['#eb2d37','#cc9f11','#5b8000','#337996','#7b4fa6'];
+// Text colour for labels on each level segment (dark where background is too light)
+const LEVEL_TEXT   = ['#07181e','#07181e','#ffffff','#ffffff','#ffffff'];
 
 // ── Navigation ────────────────────────────────────────────────────────────────
 function sShow(id) {
@@ -139,10 +141,10 @@ function sRenderViz() {
   const root = document.getElementById('s-viz-root');
   if (!root) return;
   const BAR_H = 160;
-  let out = '<div style="font-family:sans-serif">';
+  let out = '<div style="font-family:sans-serif;background:#07181e;border-radius:12px;padding:1.6rem 2rem">';
   out += '<div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.6rem;align-items:center">';
   LEVEL_COLORS.forEach((c,i) => {
-    out += `<div style="display:flex;align-items:center;gap:.5rem;font-size:1.05rem;color:#dce8ee">
+    out += `<div style="display:flex;align-items:center;gap:.5rem;font-size:1.05rem;color:#e8f2f6">
       <div style="width:14px;height:14px;border-radius:3px;background:${c};flex-shrink:0"></div>
       <span>${i} · ${LEVEL_NAMES[i]}</span></div>`;
   });
