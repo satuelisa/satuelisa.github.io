@@ -268,15 +268,76 @@ window.setLang = function() {};
 <script>
 // ── SALTISE standalone controller ────────────────────────────────────────────
 
-const S_PHASES = [
-  { lbl:'Welcome',       sec:'s-intro'  },
-  { lbl:'Scale',         sec:'s-scale'  },
-  { lbl:'Lessons Learned', sec:'s-lessons' },
-  { lbl:'Data',          sec:'s-data'   },
-  { lbl:'Discussion',    sec:'s-discuss'},
-];
+
+function sShow(id) {
+  document.querySelectorAll('.s-sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabId = 'sn-' + id.replace('s-','');
+  const tab = document.getElementById(tabId);
+  if (tab) tab.classList.add('active');
+  document.querySelectorAll('.s-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.sec === id);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Phase pills — called directly after all scripts load (no DOMContentLoaded needed,
+// scripts are at bottom of body so DOM is already ready)
+function sInitPage() {
+  sRenderScale();
+  sRenderLessons();
+}
 
 window.sShow = sShow;
+
+
+// ── Scale section ─────────────────────────────────────────────────────────────
+let sOpenScale = null;
+
+function sRenderScale() {
+  const grid = document.getElementById('s-scale-grid');
+  if (!grid) return;
+  const EN_SCALE = SCALE.en;
+  const ICONS_EN = ICONS_CIRCLE.en;
+  grid.innerHTML = EN_SCALE.map(lv => `
+    <div class="s-scale-card ${sOpenScale === lv.n ? 'open' : ''}" style="--lc:${lv.color}" onclick="sToggleScale(${lv.n})">
+      <img class="s-card-icon" src="${ICONS_EN[lv.n]}" alt="Level ${lv.n}">
+      <div class="s-card-name">${lv.n} · ${lv.name}</div>
+      <div class="s-card-detail">
+        <div class="s-card-def">${lv.def}</div>
+        <div class="s-card-req">→ ${lv.req}</div>
+      </div>
+    </div>`).join('');
+}
+
+function sToggleScale(n) { sOpenScale = sOpenScale === n ? null : n; sRenderScale(); }
+
+// ── Lessons section ───────────────────────────────────────────────────────────
+function sRenderLessons() {
+  const issCol = document.getElementById('s-issues-col');
+  const solCol = document.getElementById('s-solutions-col');
+  if (!issCol || !solCol) return;
+  const EN_LESSONS = LESSONS.en;
+  issCol.innerHTML = '<h3>Causes for concern</h3>' +
+    EN_LESSONS.issues.groups.slice(0,4).map(g => `
+      <div class="s-lesson-item">
+        <div class="s-lesson-icon">${g.icon}</div>
+        <div class="s-lesson-body">
+          <strong>${g.title}</strong>
+          <p>${g.body}</p>
+        </div>
+      </div>`).join('');
+  solCol.innerHTML = '<h3>Proposed solutions</h3>' +
+    EN_LESSONS.solutions.groups.slice(0,4).map(g => `
+      <div class="s-lesson-item">
+        <div class="s-lesson-icon">${g.icon}</div>
+        <div class="s-lesson-body">
+          <strong>${g.title}</strong>
+          <p>${g.body}</p>
+        </div>
+      </div>`).join('');
+}
 
 // ── Data viz ──────────────────────────────────────────────────────────────────
 let sSvizDone = false;
@@ -346,15 +407,37 @@ const _origSShow = window.sShow;
 window.sShow = function(id) {
   _origSShow(id);
   if (id === 's-data' && !sSvizDone) { sSvizDone = true; sRenderViz(); }
+  if (id === 's-scale') sRenderScale();
 };
 
 </script>
+<script>sInitPage();</script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof sRenderScale === 'function') sRenderScale();
-  if (typeof sRenderLessons === 'function') sRenderLessons();
-});
-</script>
+<footer class="footer-wrap">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-label">SALTISE 2026 · ÉTS Montréal · June 1–2</div>
+      <div class="footer-author">Elisa Schaeffer, Dean, Tech &amp; Design, Collège LaSalle Montréal, LCI Education</div>
+      <div class="footer-links" style="margin-top:1.6rem;">
+        <span class="footer-label" style="margin-bottom:0;margin-right:.4rem;">See also :</span>
+        <a class="footer-link" href="aqpc2026.html" target="_blank" rel="noopener">Full AQPC 2026 workshop</a>
+        <span class="footer-links-sep">·</span>
+        <a class="footer-link" href="https://lasallecollege.lcieducation.com/" target="_blank" rel="noopener">Collège LaSalle Montréal</a>
+        <span class="footer-links-sep">·</span>
+        <a class="footer-link" href="https://lcieducation.com" target="_blank" rel="noopener">LCI Education</a>
+        <span class="footer-links-sep">·</span>
+        <a class="footer-link" href="https://satuelisa.github.io" target="_blank" rel="noopener">Elisa Schaeffer</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-label">How this site was built</div>
+      <p class="footer-dev-text">This site was developed iteratively and collaboratively with <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer provided the conceptual framework, disciplinary directions, and scale content; she reviewed and refined all generated proposals throughout the conversation. The AI generated code, examples, and layout under her direction.</p>
+      <div class="footer-tool">
+        <span class="footer-tool-label">Tool :</span>
+        Claude Sonnet 4.6 via Claude.ai (claude.ai) — iterative and collaborative development, reviewed and validated by the author.
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
