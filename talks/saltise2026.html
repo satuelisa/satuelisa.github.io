@@ -256,6 +256,14 @@
   </div>
 </section>
 
+<script>
+// Prevent aqpc.js boot functions from erroring on missing AQPC DOM elements
+window.__saltise = true;
+// Stub renderAll — saltise has its own init
+window.renderAll = function() {};
+// Stub setLang to avoid cascading calls
+window.setLang = function() {};
+</script>
 <script src="aqpc.js"></script>
 <script>
 // ── SALTISE standalone controller ────────────────────────────────────────────
@@ -340,6 +348,13 @@ window.sShow = function(id) {
   if (id === 's-data' && !sSvizDone) { sSvizDone = true; sRenderViz(); }
 };
 
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof sRenderScale === 'function') sRenderScale();
+  if (typeof sRenderLessons === 'function') sRenderLessons();
+});
 </script>
 </body>
 </html>
