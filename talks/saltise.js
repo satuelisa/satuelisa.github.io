@@ -70,9 +70,9 @@ const LESSONS_EN = {
 // Aggregated from course_level + eval_levels across all courses per session
 const VIZ_PROGS = [
   { key:'420.BR', name:'Networking & Security',
-    data:{1:[8,0,3,6,0],2:[4,0,2,3,0],3:[4,0,1,2,0],4:[5,0,2,5,0],5:[4,0,2,3,0],6:[2,0,0,1,0]} },
+    data:{1:[12,0,3,6,0],2:[5,0,2,5,0],3:[5,0,1,4,0],4:[7,0,2,6,0],5:[4,0,2,3,0],6:[5,0,3,5,0]} },
   { key:'420.BP', name:'Computer Science',
-    data:{1:[16,2,0,0,0],2:[9,3,0,0,0]} },
+    data:{1:[16,2,0,0,0],2:[9,3,0,0,0],3:[12,2,2,0,0],4:[7,0,3,0,0],5:[13,0,5,0,0],6:[2,0,1,0,0]} },
   { key:'420.BX', name:'IT Support & Systems',
     data:{1:[2,0,2,0,0],2:[0,1,0,0,0],3:[0,1,1,0,0],4:[0,0,2,1,0],5:[0,0,1,0,2],6:[0,1,0,0,0]} },
   { key:'574.CX', name:'AI-Assisted Prototyping',
