@@ -2085,7 +2085,7 @@ renderAll();
           {"session":6,"title":"Cybersécurité II","course_level":3,"eval_levels":[0,0]}
         ]
       },
-            "420.BP": {
+      "420.BP": {
         "name": "420.BP — Programmation (Technique de l'informatique)",
         "desc": "Formation en développement logiciel et web. Positionnement prudent : niveau 0 dominant, cohérent avec l'importance de la compréhension algorithmique sans assistance.",
         "courses": [
@@ -2115,7 +2115,7 @@ renderAll();
           {"session":6,"title":"Intégration en entreprise : programmation","course_level":null,"eval_levels":[]}
         ]
       },
-            "420.BX": {
+      "420.BX": {
         "name": "420.BX — Programmation de jeux vidéo (Technique de l'informatique)",
         "desc": "Parcours technique alliant programmation et création. L'IA progresse avec les sessions, de niveaux 0–1 en début de programme vers des niveaux 2–4 dans les cours de moteur de jeu et portfolio.",
         "courses": [
