@@ -2266,7 +2266,7 @@ renderAll();
           counts[c.course_level].titles.push(c.title);
         }
         if (vizGran.eval) {
-          c.eval_levels.forEach(lv => {
+          c.eval_levels.forEach(lv => { if (lv === null || lv === undefined) return;
             counts[lv].count++;
             const lbl = (vizGran.course && vizGran.eval) ? `[éval.] ${c.title}` : c.title;
             if (!counts[lv].titles.includes(lbl)) counts[lv].titles.push(lbl);
