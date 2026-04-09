@@ -69,13 +69,13 @@ const LESSONS_EN = {
 // ── Viz data: per-session level distribution ──────────────────────────────────
 // Aggregated from course_level + eval_levels across all courses per session
 const VIZ_PROGS = [
-  { key:'420.BR', name:'Networking & Security',
+  { key:'420.BR', name:'Networking',
     data:{1:[12,0,3,6,0],2:[5,0,2,5,0],3:[5,0,1,4,0],4:[7,0,2,6,0],5:[4,0,2,3,0],6:[5,0,3,5,0]} },
-  { key:'420.BP', name:'Computer Science',
+  { key:'420.BP', name:'Programming',
     data:{1:[16,2,0,0,0],2:[9,3,0,0,0],3:[12,2,2,0,0],4:[7,0,3,0,0],5:[13,0,5,0,0],6:[2,0,1,0,0]} },
-  { key:'420.BX', name:'IT Support & Systems',
+  { key:'420.BX', name:'Gamedev',
     data:{1:[2,0,2,0,0],2:[0,1,0,0,0],3:[0,1,1,0,0],4:[0,0,2,1,0],5:[0,0,1,0,2],6:[0,1,0,0,0]} },
-  { key:'574.CX', name:'AI-Assisted Prototyping',
+  { key:'574.CX', name:'UX/UI',
     data:{1:[0,5,12,5,4],2:[0,2,6,3,6],3:[2,2,9,4,1],4:[0,5,8,2,2],5:[0,0,3,11,0],6:[2,4,11,3,2]} },
 ];
 
