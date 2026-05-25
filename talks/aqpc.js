@@ -1052,7 +1052,7 @@ const STR = {
     'rd-original-lbl':'Original assessment:',
     'cp-choose':     'Choose a level',
     'cp-sub':        'Which level matches this instruction?',
-    'ref-tag':       'Reference',
+    'ref-tag':       'Source',
     'ref-text':      "The AI usage scale is the LCI Education scale, developed by <a href=\"https://melbourne.lcieducation.com/\" target=\"_blank\" rel=\"noopener\">LCI Melbourne</a> (2024), translated into French by Collège LaSalle Montréal (with <a href=\"https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag\" target=\"_blank\" rel=\"noopener\">the UdeS task grids</a> as an external reference) and into Spanish by LCI Barcelona. It draws on the work of <a href=\"https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/\" target=\"_blank\" rel=\"noopener\"><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.",
     'f-workshop':    'Workshop designed by',
     'f-dev':         'Website development',
