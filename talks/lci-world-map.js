@@ -75,25 +75,13 @@ const LCIMap = (() => {
 }
 .lci-pin {
   position: absolute;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
   transition: transform .2s ${T.ease};
 }
-.lci-pin:hover { transform: translate(-50%, -110%) scale(1.15); z-index: 20; }
-.lci-pin.active { transform: translate(-50%, -110%) scale(1.2); z-index: 30; }
-.lci-pin[data-pos="below"]  { transform: translate(-50%, -50%); }
-.lci-pin[data-pos="above"]  { transform: translate(-50%, -50%); }
-.lci-pin[data-pos="right"]  { transform: translate(-50%, -50%); }
-.lci-pin[data-pos="left"]   { transform: translate(-50%, -50%); }
-.lci-pin[data-pos="below"]:hover  { transform: translate(-50%, -60%) scale(1.15); }
-.lci-pin[data-pos="above"]:hover  { transform: translate(-50%, -60%) scale(1.15); }
-.lci-pin[data-pos="right"]:hover  { transform: translate(-50%, -60%) scale(1.15); }
-.lci-pin[data-pos="left"]:hover   { transform: translate(-50%, -60%) scale(1.15); }
+.lci-pin:hover { transform: translate(-50%, -50%) scale(1.15); z-index: 20; }
+.lci-pin.active { transform: translate(-50%, -50%) scale(1.2); z-index: 30; }
 .lci-pin-dot {
   width: 1.4rem;
   height: 1.4rem;
@@ -103,6 +91,7 @@ const LCIMap = (() => {
   transition: all .2s;
 }
 .lci-pin-label {
+  position: absolute;
   background: rgba(7,24,30,.82);
   color: ${T.white};
   font-size: 1.05rem;
@@ -111,7 +100,6 @@ const LCIMap = (() => {
   padding: .25rem .7rem;
   border-radius: 3px;
   white-space: nowrap;
-  margin-top: .3rem;
   pointer-events: none;
   backdrop-filter: blur(4px);
 }
@@ -475,37 +463,24 @@ const LCIMap = (() => {
       };
       const LABEL_POS = {
           LAS:'right', LCM:'right', LCH:'above',
-          LCR:'left',  MCA:'right', JKA:'left',
-          LCB:'left', LCA:'above',
+          LCR:'left',  MCA:'below', JKA:'left',
+          LCB:'above', LCA:'above',
           TUN:'right',
       };
       const cityName = CITY_NAMES[code] || d.label.replace('LaSalle ','').replace('Collège ','').replace('LCI ','');
       const pos = LABEL_POS[code] || 'below';
       const dot = '<div class="lci-pin-dot pulse" style="background:' + color + ';"></div>';
-      const lbl = '<div class="lci-pin-label">' + cityName + '</div>';
-      if (pos === 'below') {
-        el.style.flexDirection = 'column';
-        el.style.alignItems = 'center';
-        el.innerHTML = dot + lbl;
-        el.dataset.pos = pos;
-      } else if (pos === 'above') {
-        el.style.flexDirection = 'column-reverse';
-        el.style.alignItems = 'center';
-        el.innerHTML = dot + lbl;
-        el.dataset.pos = pos;
-      } else if (pos === 'right') {
-        el.style.flexDirection = 'row';
-        el.style.alignItems = 'center';
-        el.style.gap = '.4rem';
-        el.innerHTML = dot + lbl;
-        el.dataset.pos = pos;
-      } else if (pos === 'left') {
-        el.style.flexDirection = 'row-reverse';
-        el.style.alignItems = 'center';
-        el.style.gap = '.4rem';
-        el.innerHTML = dot + lbl;
-        el.dataset.pos = pos;
-      }
+      const labelOffsets = {
+        below:  'top:calc(100% + .2rem);left:50%;transform:translateX(-50%)',
+        above:  'bottom:calc(100% + .2rem);left:50%;transform:translateX(-50%)',
+        right:  'left:calc(100% + .3rem);top:50%;transform:translateY(-50%)',
+        left:   'right:calc(100% + .3rem);top:50%;transform:translateY(-50%)',
+      };
+      const lbl = '<div class="lci-pin-label" style="' + (labelOffsets[pos] || labelOffsets.below) + '">' + cityName + '</div>';
+      el.style.width = '1.4rem';
+      el.style.height = '1.4rem';
+      el.innerHTML = dot + lbl;
+      el.dataset.pos = pos;
       el.addEventListener('click', (e) => { e.stopPropagation(); openPopup(code); });
       mapContainer.appendChild(el);
     });

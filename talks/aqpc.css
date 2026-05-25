@@ -214,7 +214,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 
 .crit-callout { background:var(--cream); border-left:4px solid var(--charcoal); border-radius:0 8px 8px 0; padding:1.4rem 1.8rem; font-size:1.4rem; color:var(--charcoal); line-height:1.65; margin-bottom:2.4rem; }
 .crit-callout strong { color:var(--charcoal); }
-.active-crit-note { background:#fff8e6; border:1px solid var(--gold); border-radius:8px; padding:1.1rem 1.4rem; font-size:1.3rem; color:var(--ch-500); line-height:1.55; margin-bottom:1.6rem; }
+.active-crit-note { background:#fff8e6; border:1px solid var(--gold); border-radius:8px; padding:1.1rem 1.4rem; font-size:1.3rem; color:var(--charcoal); line-height:1.55; margin-bottom:1.6rem; }
 
 .closing-section{margin-top:3.2rem;padding-top:2.4rem;border-top:1px solid var(--cream-dark)}
 .closing-thankyou{font-size:clamp(2.8rem,4vw,4.4rem);font-weight:400;letter-spacing:-.03em;color:var(--charcoal);line-height:1;margin-bottom:.8rem}

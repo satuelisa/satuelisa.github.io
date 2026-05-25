@@ -8,6 +8,105 @@
 <title>Rester sur la même page sur l'IA · AQPC 2026</title>
 <meta name="description" content="Atelier interactif sur l'échelle d'utilisation de l'IA dans les évaluations – Colloque AQPC, 4 juin 2026, Drummondville.">
 <link rel="stylesheet" href="aqpc.css">
+<style>
+  /* ── Dark / light mode ─────────────────────────────────────────────── */
+  .theme-btn{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.75);font-family:'Modern Gothic',system-ui,sans-serif;font-size:1.2rem;font-weight:500;letter-spacing:.06em;padding:.5rem 1.1rem;border-radius:3px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:.5rem}
+  .theme-btn:hover{border-color:var(--blue-mid);color:#fff}
+
+  :root[data-theme="dark"]{
+    --cream:#0f1e24;
+    --cream-dark:#1a2d34;
+    --ch-600:#c8d5d9;
+    --ch-500:#b0bec2;
+    --ch-400:#98aaae;
+    --ch-300:#7d9298;
+    --ch-200:#567078;
+    --ch-100:#3a5560;
+    --ch-50:#1e3440;
+    --white:#0a1820;
+    --blue-light:#0e2d3a;
+    --blue-100:#337996;
+  }
+  :root[data-theme="dark"] body{background:#0f1e24;color:#e8f0f3}
+  :root[data-theme="dark"] .site-header{background:#020c10}
+  :root[data-theme="dark"] .timer-bar{background:#020c10;border-bottom:1px solid #1a2d34}
+  :root[data-theme="dark"] .main-nav{background:#0a1c24}
+  :root[data-theme="dark"] .nav-tab{color:rgba(255,255,255,.45)}
+  :root[data-theme="dark"] .nav-tab.active{color:#fff;border-bottom-color:var(--cream)}
+  :root[data-theme="dark"] .nav-tab .tab-num{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+  :root[data-theme="dark"] .nav-tab.active .tab-num{background:var(--blue);color:#fff}
+  :root[data-theme="dark"] .hero h1{color:#e8f0f3}
+  :root[data-theme="dark"] .hero h1 em{color:var(--blue-100)}
+  :root[data-theme="dark"] .hero-sub{color:rgba(232,240,243,.75)}
+  :root[data-theme="dark"] .meta-val{color:#e8f0f3}
+  :root[data-theme="dark"] .async-banner{background:#111f26;border-color:var(--blue)}
+  :root[data-theme="dark"] .async-text h4{color:#e8f0f3}
+  :root[data-theme="dark"] .async-text p{color:#98aaae}
+  :root[data-theme="dark"] .crit-callout{background:#0e2d3a;border-color:var(--blue);color:#c8d5d9}
+  :root[data-theme="dark"] .crit-callout strong{color:#e8f0f3}
+  :root[data-theme="dark"] .sec-header{border-color:#1a2d34}
+  :root[data-theme="dark"] .sec-header h2{color:#e8f0f3}
+  :root[data-theme="dark"] .sec-header p{color:#98aaae}
+  :root[data-theme="dark"] .agenda-card{background:#111f26;border-top-color:var(--blue)}
+  :root[data-theme="dark"] .agenda-card h3{color:#e8f0f3}
+  :root[data-theme="dark"] .agenda-card p{color:#98aaae}
+  :root[data-theme="dark"] .context-box{background:#111f26}
+  :root[data-theme="dark"] .context-box p{color:#98aaae}
+  :root[data-theme="dark"] .scale-pill{background:#111f26}
+  :root[data-theme="dark"] .scale-detail{background:#111f26}
+  :root[data-theme="dark"] .scale-detail p{color:#98aaae}
+  :root[data-theme="dark"] .scale-detail-icon-wrap{border-color:#1a2d34}
+  :root[data-theme="dark"] .sd-name-en{color:#e8f0f3}
+  :root[data-theme="dark"] .dnd-pool-wrap{background:#111f26}
+  :root[data-theme="dark"] .dnd-pool-wrap h3{color:#7d9298;border-color:#1a2d34}
+  :root[data-theme="dark"] .drag-item{background:#0e2d3a;border-color:#1a2d34;color:#e8f0f3}
+  :root[data-theme="dark"] .drag-item:hover{background:#0e3a4a;border-color:var(--blue)}
+  :root[data-theme="dark"] .drop-zone{background:#111f26}
+  :root[data-theme="dark"] .dz-name{color:#e8f0f3}
+  :root[data-theme="dark"] .scenario-card{background:#111f26}
+  :root[data-theme="dark"] .scenario-card h3{color:#e8f0f3}
+  :root[data-theme="dark"] .sc-context{color:#98aaae}
+  :root[data-theme="dark"] .sc-task{background:#0e2d3a;color:#c8d5d9}
+  :root[data-theme="dark"] .choice-panel{background:#111f26}
+  :root[data-theme="dark"] .choice-panel h3{color:#e8f0f3}
+  :root[data-theme="dark"] .cp-sub{color:#7d9298;border-color:#1a2d34}
+  :root[data-theme="dark"] .level-opt:hover{background:#0e2d3a}
+  :root[data-theme="dark"] .level-opt.selected{background:#0e2d3a}
+  :root[data-theme="dark"] .lo-name{color:#e8f0f3}
+  :root[data-theme="dark"] .lo-sub{color:#7d9298}
+  :root[data-theme="dark"] .redesign-card{background:#111f26}
+  :root[data-theme="dark"] .redesign-card h4{color:#e8f0f3}
+  :root[data-theme="dark"] .redesign-card p{color:#98aaae}
+  :root[data-theme="dark"] .disc-card{background:#111f26}
+  :root[data-theme="dark"] .disc-card h3{color:#e8f0f3}
+  :root[data-theme="dark"] .disc-card p{color:#98aaae}
+  :root[data-theme="dark"] .btn-secondary{background:#111f26;color:#e8f0f3;border-color:#1a2d34}
+  :root[data-theme="dark"] .btn-secondary:hover{border-color:var(--blue);color:var(--blue-100)}
+  :root[data-theme="dark"] .disc-btn{background:#111f26;border-color:#1a2d34;color:#98aaae}
+  :root[data-theme="dark"] .disc-btn:hover{border-color:var(--blue);color:var(--blue-100)}
+  :root[data-theme="dark"] .disc-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+  :root[data-theme="dark"] .lessons-group summary{background:#111f26;color:#e8f0f3}
+  :root[data-theme="dark"] .active-title{color:#e8f0f3}
+  :root[data-theme="dark"] .active-disc{color:#98aaae}
+  :root[data-theme="dark"] .share-card h3{color:#e8f0f3}
+  :root[data-theme="dark"] .share-preview{background:#0e2d3a;color:#c8d5d9}
+  :root[data-theme="dark"] .footer-dev-text{color:rgba(248,245,233,.75)}
+  :root[data-theme="dark"] .footer-dev-text strong{color:#e8f0f3}
+  :root[data-theme="dark"] .footer-author{color:rgba(248,245,233,.85)}
+  :root[data-theme="dark"] .footer-tool{color:#567078}
+  :root[data-theme="dark"] .active-card{background:#111f26}
+  :root[data-theme="dark"] .active-card-header{border-color:#1a2d34}
+  :root[data-theme="dark"] .agenda-card p{color:#98aaae}
+  :root[data-theme="dark"] .meta-lbl{color:#7d9298}
+  :root[data-theme="dark"] .viz-chart{background:#111f26}
+  :root[data-theme="dark"] .viz-wrap{background:#111f26;border-color:#1a2d34}
+  :root[data-theme="dark"] .viz-prog-name{color:#e8f0f3}
+  :root[data-theme="dark"] .viz-prog-desc{color:#7d9298}
+  :root[data-theme="dark"] .viz-sess-lbl{color:#567078}
+  :root[data-theme="dark"] .viz-nodata{border-color:#1a2d34}
+  :root[data-theme="dark"] .viz-nodata-txt{color:#3a5560}
+  :root[data-theme="dark"] #viz-tooltip{background:#111f26;border-color:#1a2d34;color:#e8f0f3}
+</style>
 </head>
 <body>
 
@@ -22,6 +121,7 @@
     <button class="lang-btn active" onclick="setLang('fr')" id="lbtn-fr">FR</button>
     <button class="lang-btn" onclick="setLang('en')" id="lbtn-en">EN</button>
     <button class="lang-btn" onclick="setLang('es')" id="lbtn-es">ES</button>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle dark/light mode"><span id="theme-icon">🌙</span><span id="theme-label">Dark</span></button>
   </div>
 </header>
 
@@ -310,6 +410,25 @@
 
 <footer class="footer-wrap" id="site-footer"></footer>
 
+<script>
+(function(){
+  var saved = localStorage.getItem('aqpc-theme');
+  var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (dark) { document.documentElement.setAttribute('data-theme','dark'); updateBtn(true); }
+  function updateBtn(d){
+    var icon = document.getElementById('theme-icon');
+    var lbl  = document.getElementById('theme-label');
+    if (!icon) return;
+    if (d){ icon.textContent='☀️'; lbl.textContent='Light'; }
+    else  { icon.textContent='🌙'; lbl.textContent='Dark'; }
+  }
+  window.toggleTheme = function(){
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('aqpc-theme','light'); updateBtn(false); }
+    else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('aqpc-theme','dark'); updateBtn(true); }
+  };
+})();
+</script>
 <script src="lci-world-map.js" defer></script>
 <script src="aqpc.js" defer></script>
 </body>
