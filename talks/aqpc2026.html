@@ -12,7 +12,7 @@
   /* ── Dark / light mode ─────────────────────────────────────────────── */
   .theme-btn{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.75);font-family:'Modern Gothic',system-ui,sans-serif;font-size:1.2rem;font-weight:500;letter-spacing:.06em;padding:.5rem 1.1rem;border-radius:3px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:.5rem}
   .theme-btn:hover{border-color:var(--blue-mid);color:#fff}
-
+  .nav-tab.active{border-bottom-color:var(--charcoal)}
   :root[data-theme="dark"]{
     --cream:#0f1e24;
     --cream-dark:#1a2d34;
@@ -30,7 +30,8 @@
   :root[data-theme="dark"] body{background:#0f1e24;color:#e8f0f3}
   :root[data-theme="dark"] .site-header{background:#020c10}
   :root[data-theme="dark"] .timer-bar{background:#020c10;border-bottom:1px solid #1a2d34}
-  :root[data-theme="dark"] .main-nav{background:#0a1c24}
+  :root[data-theme="dark"] .nav-wrap{background:#0a1c24}
+  :root[data-theme="dark"] .main-nav{background:transparent}
   :root[data-theme="dark"] .nav-tab{color:rgba(255,255,255,.45)}
   :root[data-theme="dark"] .nav-tab.active{color:#fff;border-bottom-color:var(--cream)}
   :root[data-theme="dark"] .nav-tab .tab-num{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
@@ -123,7 +124,8 @@
   :root[data-theme="dark"] .ref-box a{color:var(--blue-100)}
   :root[data-theme="dark"] .closing-thankyou{color:#e8f0f3}
   :root[data-theme="dark"] .closing-sub{color:#98aaae}
-  
+  :root[data-theme="dark"] .header-title-sm{color:#e8f0f3}
+  :root[data-theme="dark"] .nav-tab.active{border-bottom-color:#e8f0f3}
 </style>
 </head>
 <body>
@@ -154,7 +156,9 @@
   <div class="timer-phase-label" id="timer-phase-label"></div>
 </div>
 
-<nav class="main-nav">
+<div class="nav-wrap">
+  <button class="nav-arrow nav-arrow-left" id="nav-arrow-left" onclick="navScroll(-1)" aria-label="Scroll left">&#8249;</button>
+<nav class="main-nav" id="main-nav">
   <button class="nav-tab active" onclick="showSec('intro')" id="nav-intro"><span class="tab-num">1</span><span id="ntab-intro">Bienvenue</span></button>
   <button class="nav-tab" onclick="showSec('overview')" id="nav-overview"><span class="tab-num">2</span><span id="ntab-overview">Vue d'ensemble</span></button>
   <button class="nav-tab" onclick="showSec('lessons')" id="nav-lessons"><span class="tab-num">4</span><span id="ntab-lessons">Leçons tirées</span></button>
@@ -166,6 +170,8 @@
   <button class="nav-tab" onclick="showSec('active')" id="nav-active"><span class="tab-num">9</span><span id="ntab-active">Apprentissage actif</span></button>
   <button class="nav-tab" onclick="showSec('discussion')" id="nav-discussion"><span class="tab-num">10</span><span id="ntab-discussion">Discussion</span></button>
 </nav>
+  <button class="nav-arrow nav-arrow-right" id="nav-arrow-right" onclick="navScroll(1)" aria-label="Scroll right">&#8250;</button>
+</div>
 
 <section id="intro" class="sec active">
   <div class="hero">
@@ -449,5 +455,27 @@
 </script>
 <script src="lci-world-map.js" defer></script>
 <script src="aqpc.js" defer></script>
+<script>
+(function(){
+  var nav = document.getElementById('main-nav');
+  var btnL = document.getElementById('nav-arrow-left');
+  var btnR = document.getElementById('nav-arrow-right');
+  function updateArrows(){
+    if (!nav) return;
+    btnL.style.opacity = nav.scrollLeft > 4 ? '1' : '0';
+    btnL.style.pointerEvents = nav.scrollLeft > 4 ? 'auto' : 'none';
+    var atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4;
+    btnR.style.opacity = atEnd ? '0' : '1';
+    btnR.style.pointerEvents = atEnd ? 'none' : 'auto';
+  }
+  window.navScroll = function(dir){
+    nav.scrollBy({ left: dir * 160, behavior: 'smooth' });
+    setTimeout(updateArrows, 300);
+  };
+  nav.addEventListener('scroll', updateArrows);
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+})();
+</script>
 </body>
 </html>
