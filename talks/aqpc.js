@@ -955,7 +955,6 @@ const STR = {
     'cp-sub':        "Quel niveau correspond à cet énoncé ?",
     'ref-tag':       'Référence',
     'ref-text':      "L'échelle d'utilisation de l'IA est celle de LCI Éducation, développée par <a href=\"https://melbourne.lcieducation.com/\" target=\"_blank\" rel=\"noopener\">LCI Melbourne</a> (2024), traduite en français par le Collège LaSalle Montréal (avec <a href=\"https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag\" target=\"_blank\" rel=\"noopener\">les grilles de l'UdeS</a> comme référence externe), en espagnol par LCI Barcelone. Elle s'inspire des travaux de <a href=\"https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/\" target=\"_blank\" rel=\"noopener\"><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.",
-    'credit':        'Sous-comité IA, Global Academic Committee · LCI Éducation · 2026',
     'f-workshop':    'Atelier conçu par',
     'f-dev':         'Développement du site',
     'f-dev-text':    "Ce site a été développé de façon itérative et collaborative avec <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer a fourni le cadre conceptuel, les orientations disciplinaires et le contenu de l'échelle ; Elisa a révisé et affiné l'ensemble des propositions générées au fil de la conversation. L'IA a généré le code, les exemples et la mise en page sous sa direction. Le développement s'est déroulé de façon itérative sur plusieurs jours, incluant l'ajout d'une synthèse des leçons tirées du terrain et d'une visualisation interactive de la distribution de l'échelle par programme.",
@@ -1055,7 +1054,6 @@ const STR = {
     'cp-sub':        'Which level matches this instruction?',
     'ref-tag':       'Reference',
     'ref-text':      "The AI usage scale is the LCI Education scale, developed by <a href=\"https://melbourne.lcieducation.com/\" target=\"_blank\" rel=\"noopener\">LCI Melbourne</a> (2024), translated into French by Collège LaSalle Montréal (with <a href=\"https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag\" target=\"_blank\" rel=\"noopener\">the UdeS task grids</a> as an external reference) and into Spanish by LCI Barcelona. It draws on the work of <a href=\"https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/\" target=\"_blank\" rel=\"noopener\"><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.",
-    'credit':        'AI Subcommittee, Global Academic Committee · LCI Education · 2026',
     'f-workshop':    'Workshop designed by',
     'f-dev':         'Website development',
     'f-dev-text':    'This website was developed iteratively and collaboratively with <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer provided the conceptual framework, disciplinary directions, and scale content; they reviewed and refined all generated proposals throughout the conversation. The AI generated code, examples, and layout under their direction. Development took place iteratively over several days, including the addition of a synthesis of lessons learned from the field and an interactive visualisation of the AI scale distribution by programme.',
@@ -1196,7 +1194,6 @@ const STR = {
     'cp-sub':        '¿Qué nivel corresponde a esta instrucción?',
     'ref-tag':       'Referencia',
     'ref-text':      'La escala de uso de IA es la de LCI Education, desarrollada por <a href="https://melbourne.lcieducation.com/" target="_blank" rel="noopener">LCI Melbourne</a> (2024), traducida al francés por el Collège LaSalle Montréal (con <a href="https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag" target="_blank" rel="noopener">las grillas de la UdeS</a> como referencia externa) y al español por LCI Barcelona. Se inspira en el trabajo de <a href="https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/" target="_blank" rel="noopener"><em>Leon Furze (AI Assessment Scale, 2024)</em></a>.',
-    'credit':        'Subcomité IA, Global Academic Committee · LCI Education · 2026',
     'f-workshop':    'Taller diseñado por',
     'f-dev':         'Desarrollo del sitio',
     'f-dev-text':    'Este sitio fue desarrollado de forma iterativa y colaborativa con <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) vía Claude.ai. Elisa Schaeffer proporcionó el marco conceptual, las orientaciones disciplinarias y el contenido de la escala; revisó y refinó todas las propuestas generadas a lo largo de la conversación. La IA generó el código, los ejemplos y la maquetación bajo su dirección. El desarrollo se realizó de forma iterativa a lo largo de varios días, incluyendo la adición de una síntesis de lecciones del terreno y una visualización interactiva de la distribución de la escala por programa.',
@@ -1634,8 +1631,7 @@ function renderDiscussion() {
     </div>`).join('');
   document.getElementById('ref-box').innerHTML = `
     <div class="rt">${s('ref-tag')}</div>
-    <p>${s('ref-text')}</p>
-    <p class="credit">${s('credit')}</p>`;
+    <p>${s('ref-text')}</p>`;
 }
 
 // ── FOOTER ───────────────────────────────────────────────────────────────────
