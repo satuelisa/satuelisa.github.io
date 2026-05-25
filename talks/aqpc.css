@@ -47,7 +47,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .hero-badge{display:inline-block;background:rgba(0,88,124,.4);border:1px solid rgba(51,121,150,.6);color:var(--blue-100);font-size:1.1rem;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 1.6rem;border-radius:2rem;margin-bottom:3.2rem}
 .hero h1{font-size:clamp(3.6rem,6vw,6.4rem);font-weight:400;letter-spacing:-.04em;line-height:.95;color:var(--cream);margin-bottom:2.4rem}
 .hero h1 em{color:var(--blue-100);font-style:normal}
-.hero-sub{font-size:clamp(1.6rem,2.2vw,1.9rem);color:rgba(248,245,233,.65);max-width:60rem;margin:0 auto 4rem;line-height:1.5}
+.hero-sub{font-size:clamp(1.6rem,2.2vw,1.9rem);color:rgba(248,245,233,.95);max-width:60rem;margin:0 auto 4rem;line-height:1.5}
 .hero-meta{display:flex;justify-content:center;gap:3.2rem;flex-wrap:wrap;margin-bottom:4rem}
 .meta-val{font-size:2.4rem;font-weight:700;color:var(--cream);letter-spacing:-.02em}
 .meta-lbl{font-size:1.1rem;color:var(--ch-300);letter-spacing:.06em;text-transform:uppercase}
