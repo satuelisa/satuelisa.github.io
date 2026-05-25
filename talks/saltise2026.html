@@ -6,7 +6,7 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Eye to Eye with AI · SALTISE 2026 · ÉTS · June 1–2, 2026</title>
-<meta name="description" content="A 15-minute talk on adopting a five-level AI assessment scale at college level — steps, obstacles, and expected gains.">
+<meta name="description" content="A 15-minute talk on adopting a five-level AI assessment scale at college level: steps, obstacles, and expected gains.">
 <link rel="stylesheet" href="aqpc.css">
 <style>
   /* SALTISE overrides — 15-minute compressed single-page layout */
@@ -76,9 +76,67 @@
   .s-details-body{padding:1.4rem 1.6rem;font-size:1.3rem;color:var(--ch-300);line-height:1.7}
   .s-details-body p{margin:0 0 1rem}
   .s-details-body p:last-child{margin-bottom:0}
+
+  /* ── Dark / light mode toggle ─────────────────────────────────────── */
+  .s-theme-bar{background:var(--charcoal);padding:.5rem 2rem;display:flex;justify-content:flex-end;align-items:center;gap:1rem;position:fixed;top:0;left:0;right:0;z-index:200}
+  .s-theme-btn{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.75);font-family:'Modern Gothic',system-ui,sans-serif;font-size:1.2rem;padding:.4rem 1.2rem;border-radius:3px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:.5rem}
+  .s-theme-btn:hover{border-color:var(--blue-mid);color:#fff}
+
+  body{padding-top:37px}
+  
+  .s-nav{top:37px}   /* push nav below the bar */
+
+  /* Dark theme overrides */
+  :root[data-theme="dark"]{
+    --cream:#0f1e24;
+    --cream-dark:#1a2d34;
+    --charcoal:#e8f0f3;
+    --ch-600:#c8d5d9;
+    --ch-500:#b0bec2;
+    --ch-400:#98aaae;
+    --ch-300:#7d9298;
+    --ch-200:#567078;
+    --ch-100:#3a5560;
+    --ch-50:#1e3440;
+    --white:#0a1820;
+    --blue-light:#0e2d3a;
+    --blue-100:#337996;
+  }
+  :root[data-theme="dark"] body{background:#0f1e24;color:#e8f0f3}
+  :root[data-theme="dark"] .s-nav{background:#0f1e24;border-color:#1a2d34}
+  :root[data-theme="dark"] .s-tab{color:#98aaae}
+  :root[data-theme="dark"] .s-tab.active{background:var(--blue);color:#fff}
+  :root[data-theme="dark"] .s-tab:hover:not(.active){background:#0e2d3a;color:#b0bec2}
+  :root[data-theme="dark"] .s-details{border-color:#1a2d34}
+  :root[data-theme="dark"] .s-details summary{background:#111f26;color:var(--blue-mid)}
+  :root[data-theme="dark"] .s-callout{background:#0e2d3a;color:#c8d5d9}
+  :root[data-theme="dark"] .async-banner{background:#111f26;border-color:var(--blue)}
+  :root[data-theme="dark"] .async-text h4{color:#e8f0f3}
+  :root[data-theme="dark"] .async-text p{color:#98aaae}
+  :root[data-theme="dark"] .s-scale-card{background:#111f26}
+  :root[data-theme="dark"] .s-card-name{color:#e8f0f3}
+  :root[data-theme="dark"] .s-card-detail{color:#98aaae}
+  :root[data-theme="dark"] .s-lesson-col h3{color:var(--blue-mid)}
+  :root[data-theme="dark"] .s-lesson-item{border-color:#1a2d34}
+  :root[data-theme="dark"] .s-lesson-body strong{color:#e8f0f3}
+  :root[data-theme="dark"] .s-lesson-body p{color:#98aaae}
+  :root[data-theme="dark"] .s-disc-card{background:#111f26!important;color:#e8f0f3}
+  :root[data-theme="dark"] .s-disc-card h3{color:#e8f0f3}
+  :root[data-theme="dark"] .s-disc-card li{color:#98aaae}
+  :root[data-theme="dark"] .sec-header{border-color:#1a2d34}
+  :root[data-theme="dark"] .sec-header h2{color:#e8f0f3}
+  :root[data-theme="dark"] .sec-header p{color:#98aaae}
+  :root[data-theme="dark"] .s-details-body{color:#98aaae}
 </style>
 </head>
 <body>
+
+<!-- Theme toggle bar -->
+<div class="s-theme-bar">
+  <button class="s-theme-btn" id="s-theme-btn" onclick="sToggleTheme()" title="Toggle dark/light mode">
+    <span id="s-theme-icon">🌙</span><span id="s-theme-label">Dark mode</span>
+  </button>
+</div>
 
 <!-- Nav -->
 <nav class="s-nav">
@@ -95,10 +153,9 @@
     <div class="hero-inner">
       <div class="hero-badge">SALTISE 2026 · ÉTS · June 1–2</div>
       <h1>Eye to Eye<br>with <em>AI</em></h1>
-      <p class="hero-sub">Adopting a five-level AI assessment scale at college level — steps, obstacles, and expected gains.</p>
+      <p class="hero-sub">Adopting a five-level AI assessment scale at college level:<br>steps, obstacles, and expected gains</p>
       <div class="hero-meta">
         <div><div class="meta-val">15 min</div><div class="meta-lbl">Talk</div></div>
-        <div><div class="meta-val">SALTISE 2026 · ÉTS · June 1–2</div></div>
       </div>
       <button class="hero-cta" onclick="sShow('s-scale')">Start →</button>
     </div>
@@ -107,33 +164,37 @@
     <div class="sec-header">
       <div class="sec-tag">Context</div>
       <h2>The challenge</h2>
-      <p>Clarity is key when communicating to students the "do's and don'ts" of Generative AI use during assessments. Establishing coherent descriptions with easy-to-recognise visuals reduces stress and confusion — but making and communicating such choices can itself be stressful and confusing for teachers.</p>
+      <p>Clarity is key when communicating to students what they can
+      and cannot do with Generative AI use during
+      assessments. Establishing coherent descriptions with
+      easy-to-recognise visuals may reduce stress and confusion among
+      students; making and communicating such choices can itself be
+      stressful and confusing for teachers.</p>
     </div>
     <div class="s-callout">
-      Following in the footsteps of many other institutions, our college and its international network are adopting a <strong>five-level scale</strong> for indicating, within the instructions of each graded assessment, what type of GenAI use is permitted. Levels range from forbidding all AI use to free use — topping off with a level that incorporates AI as a <em>necessary ingredient</em> of the work itself.
+      Following in the footsteps of other institutions, our college
+      and its international network are adopting a <strong>five-level
+      scale</strong> for indicating, within the instructions of each
+      graded assessment, what type of GenAI use is permitted. Levels
+      range from forbidding all AI use to free use — topping off with
+      a level that incorporates AI as an ingredient of the work
+      itself.
     </div>
     <div class="async-banner">
       <div class="async-icon">🏫</div>
       <div class="async-text">
         <h4>Collège LaSalle Montréal · LCI Education</h4>
-        <p>Elisa Schaeffer — Dean, Technology &amp; Design. The scale was developed by LCI Melbourne, translated to French by Collège LaSalle Montréal (motivated by the <a href='https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag' target='_blank' rel='noopener'>Université de Sherbrooke task grids</a>), and to Spanish by LCI Barcelona. It draws on <a href='https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/' target='_blank' rel='noopener'>Leon Furze's AI Assessment Scale (2024)</a>.</p>
+        <p>Elisa Schaeffer — Dean, Technology &amp; Design. The scale
+        was developed by LCI Melbourne, translated to French by
+        Collège LaSalle Montréal (motivated by
+        the <a href='https://www.usherbrooke.ca/ssf/enseignement/intelligence-artificielle-ia/outils/balises-dutilisation-des-outils-diag'
+        target='_blank' rel='noopener'>Université de Sherbrooke task
+        grids</a>), and to Spanish by LCI Barcelona. It draws
+        on <a href='https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/'
+        target='_blank' rel='noopener'>Leon Furze's AI Assessment
+        Scale (2024)</a>.</p>
       </div>
     </div>
-    <details class="s-details">
-      <summary>Abstract</summary>
-      <div class="s-details-body">
-        <p>Clarity is key when communicating to students the &#8220;do&#8217;s and don&#8217;ts&#8221; of Generative AI use during assessments. Establishing a set of coherent descriptions, accompanied by easy-to-recognize visuals, can reduce stress and confusion among students. However, making and communicating such choices can be stressful and confusing for teachers with diverse skillsets and attitudes towards AI.</p>
-        <p>In this talk, we share experiences of the adoption of a five-level AI assessment scale at college level &#8212; from no AI use permitted through to AI as a necessary ingredient of the work itself &#8212; including the steps, the obstacles, and the concrete lessons learned.</p>
-      </div>
-    </details>
-    <details class="s-details">
-      <summary>Description</summary>
-      <div class="s-details-body">
-        <p>Following in the footsteps of many other academic institutions, our college, along with its international sibling entities, is in the process of adopting a five-level scale for indicating within the instructions of each graded assessment what type of GenAI use is permitted. The levels range from forbidding all AI use to free use of all AI tools, topping things off with a final level that incorporates AI use into the assessment preparation as a necessary ingredient.</p>
-        <p>The difficulties start with defining the levels in a way that is multidisciplinary and yet clear and concise enough to help inform the students. Encouraging teachers to associate a level to each graded assessment is the next big step, accommodating both those eager to adopt or forbid as well as those unsure about the role AI should play. Once choices are made, they must be discussed among teachers of parallel or sequential groups to achieve a consistent student experience &#8212; posing challenges for academic liberty. Students then need to be informed of the implications for how they carry out their tasks.</p>
-        <p>Drawing on an early 2026 rollout, this talk shares experiences on how assessments map to each level, where and how redesign takes place, what the frequent pain points are, and how disciplines appear to differ in their pace and needs.</p>
-      </div>
-    </details>
     <div class="activity-controls mt-md">
       <button class="btn btn-primary" onclick="sShow('s-scale')">The Scale →</button>
     </div>
@@ -146,16 +207,22 @@
     <div class="sec-header">
       <div class="sec-tag">Five levels</div>
       <h2>The AI Assessment Scale</h2>
-      <p>Each graded assessment carries one of these five levels — communicated to students in the assessment instructions. Click a level to expand its definition.</p>
+      <p>Each graded assessment carries one of these five levels —
+      communicated to students in the course outline and within the
+      assessment instructions.
+      </p>
+      <p><small>Click a level to expand its definition.</small></p>
     </div>
     <div class="s-scale-grid" id="s-scale-grid"></div>
     <div class="s-callout" style="margin-top:2.4rem">
-      <strong>Three non-negotiables in all AI-assisted work</strong> 
+      <strong>Three non-negotiables in all AI-assisted work</strong>
+      <p>
       <ul>
-      <li><strong>attribution</strong>: cite the tool and prompt used</li>
-        <li><strong>validation</strong>: verify and correct AI outputs</li>
+	<li><strong>attribution</strong>: cite the tool &amp; prompt</li>
+        <li><strong>validation</strong>: verify and correct outputs</li>
         <li><strong>assessing process over product</strong>: value decisions and approach, not just the final result</li>
-    </ul>
+      </ul>
+      </p>
     </div>
     <div class="activity-controls mt-md">
       <button class="btn btn-primary" onclick="sShow('s-lessons')">Lessons Learned →</button>
@@ -168,8 +235,11 @@
   <div class="sec-inner">
     <div class="sec-header">
       <div class="sec-tag">Collège LaSalle Montréal · 2025–2026</div>
-      <h2>What we learned in the field</h2>
-      <p>During a pedagogical day, teams of full-time teachers (grouped by program) analysed their assessments through the lens of AI. Four recurring issues, four recurring solutions.</p>
+      <h2>Prep work by teachers</h2>
+      <p>During a pedagogical day, teams of full-time teachers
+      (grouped by program) analysed their assessments through the lens
+      of AI, encountering four recurring issues and envisioning four
+      recurring solutions.</p>
     </div>
     <div class="s-lessons-grid">
       <div class="s-lesson-col" id="s-issues-col">
@@ -180,7 +250,9 @@
       </div>
     </div>
     <div class="s-callout">
-      <strong>Emergent convergence</strong> the same three responses arose repeatedly: make the process visible, add an oral component, redesign the task.</div>
+      <strong>Emergent convergence</strong> the same three responses
+      arose repeatedly: make the <em>process</em> visible, add a live <em>oral</em>
+      component, redesign the <em>task</em>.</div>
     <div class="activity-controls mt-md">
       <button class="btn btn-primary" onclick="sShow('s-data')">Data →</button>
     </div>
@@ -195,8 +267,8 @@
       <h2>Level Distribution</h2>
       <p>Initial planning data from Collège LaSalle Montréal</p>
     </div>
-    <p class="s-data-note">This data represents initial planning by teaching teams and does not commit them to implementing it as shown. 
-      Unpopulated sessions reflect work still in progress.</p>
+    <p class="s-data-note">The planning done by teaching teams does <em>not</em> commit them to implementing it as such. 
+    </p>
     <div id="s-viz-root"></div>
     <div class="activity-controls mt-md">
       <button class="btn btn-primary" onclick="sShow('s-discuss')">Discussion →</button>
@@ -229,7 +301,8 @@
       <div class="s-disc-card" style="--lc:var(--gold);background:#fff8e6">
         <h3>Students</h3>
         <ul>
-          <li>How do you currently communicate AI expectations to students?</li>
+          <li>How do you currently communicate AI expectations to
+          students?</li>
           <li>What would <em>clarity</em> look like for your assessments?</li>
         </ul>
       </div>
@@ -266,14 +339,43 @@
     </div>
     <div>
       <div class="footer-label">How this site was built</div>
-      <p class="footer-dev-text">This site was developed iteratively and collaboratively with <strong>Claude Sonnet 4.6</strong> (Anthropic, 2025) via Claude.ai. Elisa Schaeffer provided the conceptual framework, disciplinary directions, and scale content; she reviewed and refined all generated proposals throughout the conversation. The AI generated code, examples, and layout under her direction.</p>
+      <p class="footer-dev-text">This site was developed iteratively
+      and collaboratively with <strong>Claude Sonnet 4.6</strong>
+      (Anthropic, 2025) via Claude.ai. Elisa provided the conceptual
+      framework, disciplinary directions, and scale content; then
+      Elisa reviewed and refined all generated proposals throughout
+      the conversation. The AI generated code, examples, and layout
+      for Elisa to edit.</p>
       <div class="footer-tool">
-        <span class="footer-tool-label">Tool :</span>
-        Claude Sonnet 4.6 via Claude.ai (claude.ai) — iterative and collaborative development, reviewed and validated by the author.
+        <span class="footer-tool-label">Tool :</span> Claude Sonnet
+        4.6 via Claude.ai (claude.ai) — iterative and collaborative
+        development, reviewed and validated by the author.
       </div>
     </div>
   </div>
 </footer>
 <script src="saltise.js"></script>
+
+<script>
+(function(){
+  var saved = localStorage.getItem('saltise-theme');
+  var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (dark) { document.documentElement.setAttribute('data-theme','dark'); updateBtn(true); }
+  function updateBtn(d){
+    var btn = document.getElementById('s-theme-btn');
+    var icon = document.getElementById('s-theme-icon');
+    var lbl = document.getElementById('s-theme-label');
+    if (!btn) return;
+    if (d){ icon.textContent='☀️'; lbl.textContent='Light mode'; }
+    else  { icon.textContent='🌙'; lbl.textContent='Dark mode'; }
+  }
+  window.sToggleTheme = function(){
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('saltise-theme','light'); updateBtn(false); }
+    else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('saltise-theme','dark'); updateBtn(true); }
+  };
+})();
+</script>
+
 </body>
 </html>
