@@ -474,9 +474,9 @@ const LCIMap = (() => {
           LCM:'Monterrey', LCR:'San José', LCA:'Melbourne'
       };
       const LABEL_POS = {
-          LAS:'right', LCM:'right',
-          LCR:'left',  MCA:'below', JKA:'left',
-          LCB:'above', LCA:'above',
+          LAS:'right', LCM:'right', LCH:'above',
+          LCR:'left',  MCA:'right', JKA:'left',
+          LCB:'left', LCA:'above',
           TUN:'right',
       };
       const cityName = CITY_NAMES[code] || d.label.replace('LaSalle ','').replace('Collège ','').replace('LCI ','');
