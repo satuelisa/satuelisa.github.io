@@ -1330,11 +1330,25 @@ function setLang(l) {
 // ── TIMER ────────────────────────────────────────────────────────────────────
 function renderTimerPhases() {
   const phases = PHASES[lang] || PHASES.fr;
-  const remaining = Math.floor(timerSecs / 60);
-  document.getElementById('timer-phases').innerHTML = phases.map(ph => {
-    const isActive = remaining <= (ph.start + (ph === phases[0] ? 5 : (phases[phases.indexOf(ph)-1] ? phases[phases.indexOf(ph)-1].start - ph.start : 5))) && remaining > ph.start;
-    return `<button class="phase-pill ${isActive ? 'active' : ''}" onclick="showSec('${ph.sec}')">${ph.lbl}</button>`;
-  }).join('');
+  const lbl = document.getElementById('timer-phase-label');
+  if (!lbl) return;
+  // Find current phase using exact seconds
+  let current = null, currentIdx = -1;
+  for (let i = 0; i < phases.length; i++) {
+    const endSecs = (i === 0 ? 60 : phases[i-1].start) * 60;
+    const startSecs = phases[i].start * 60;
+    if (timerSecs <= endSecs && timerSecs > startSecs) { current = phases[i]; currentIdx = i; break; }
+  }
+  if (!current) { lbl.textContent = ''; lbl.style.color = ''; return; }
+  lbl.textContent = current.lbl;
+  // Colour logic: green for first 15s of phase, red for last 15s
+  const endSecs = (currentIdx === 0 ? 60 : phases[currentIdx-1].start) * 60;
+  const startSecs = current.start * 60;
+  const secsIntoPhase = endSecs - timerSecs;
+  const secsLeftInPhase = timerSecs - startSecs;
+  if (secsIntoPhase <= 15) lbl.style.color = 'var(--green)';
+  else if (secsLeftInPhase <= 15) lbl.style.color = 'var(--red)';
+  else lbl.style.color = 'rgba(255,255,255,.65)';
 }
 
 function updateTimerDisplay() {
