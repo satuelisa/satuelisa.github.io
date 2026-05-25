@@ -1372,13 +1372,19 @@ function resetTimer() {
 
 // ── AGENDA ───────────────────────────────────────────────────────────────────
 function renderAgenda() {
-  document.getElementById('agenda-grid').innerHTML = (AGENDA[lang] || AGENDA.fr).map(d => `
-    <div class="agenda-card">
+  const phases = PHASES[lang] || PHASES.fr;
+  document.getElementById('agenda-grid').innerHTML = (AGENDA[lang] || AGENDA.fr).map((d, i) => {
+    const sec = phases[i] ? phases[i].sec : null;
+    const card = `
       <div class="agenda-time">${d.time}</div>
       <span class="agenda-type ${d.type}">${d.typeLabel}</span>
       <h3>${d.title}</h3>
-      <p>${d.desc}</p>
-    </div>`).join('');
+      <p>${d.desc}</p>`;
+    if (sec) {
+      return `<div class="agenda-card agenda-card-link" role="button" tabindex="0" onclick="showSec('${sec}')" onkeydown="if(event.key==='Enter')showSec('${sec}')">${card}</div>`;
+    }
+    return `<div class="agenda-card">${card}</div>`;
+  }).join('');
 }
 
 // ── SCALE ────────────────────────────────────────────────────────────────────
