@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQPC 2026 · En attente / Waiting</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;background:#000;overflow:hidden}
+  body{display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none}
+  .slide{
+    width:100vw;
+    height:100vh;
+    background:url('aqpc2026.jpg') center center / contain no-repeat;
+  }
+  .hint{
+    position:fixed;
+    bottom:2rem;
+    left:50%;
+    transform:translateX(-50%);
+    font-family:system-ui,sans-serif;
+    font-size:1.1rem;
+    color:rgba(255,255,255,.4);
+    letter-spacing:.06em;
+    pointer-events:none;
+    animation:pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:.4}
+    50%{opacity:.9}
+  }
+</style>
+</head>
+<body onclick="window.location.href='aqpc2026.html'">
+  <div class="slide"></div>
+  <div class="hint">Cliquez n'importe où pour commencer · Click anywhere to begin</div>
+</body>
+</html>
