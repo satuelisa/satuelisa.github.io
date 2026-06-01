@@ -21,7 +21,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .header-right{display:flex;align-items:center;gap:.8rem;flex-shrink:0}
 .lang-btn{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.65);font-family:'Modern Gothic',system-ui,sans-serif;font-size:1.2rem;font-weight:500;letter-spacing:.06em;padding:.5rem 1.1rem;border-radius:3px;cursor:pointer;transition:all .15s var(--ease-fast)}
 .lang-btn.active,.lang-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-.timer-bar{background:var(--blue-dark);padding:.8rem 2.4rem;display:flex;align-items:center;justify-content:space-between;gap:1.6rem;flex-wrap:wrap}
+.timer-bar{background:var(--blue-dark);padding:.8rem 2.4rem;display:flex;align-items:center;justify-content:space-between;gap:1.6rem;flex-wrap:wrap;position:sticky;top:53px;z-index:190}
 .timer-phase-label{font-size:1.2rem;font-weight:500;color:rgba(255,255,255,.65);letter-spacing:.04em;white-space:nowrap;transition:color .5s}
 .timer-clock{font-size:1.8rem;font-weight:700;color:var(--cream);letter-spacing:.05em;font-variant-numeric:tabular-nums;cursor:pointer;user-select:none}
 .timer-clock.paused{color:var(--ch-300)}
@@ -30,7 +30,7 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 .timer-btn:hover{background:rgba(255,255,255,.2);color:#fff}
 .main-nav{background:var(--blue);display:flex;overflow-x:auto;scrollbar-width:none}
 .main-nav::-webkit-scrollbar{display:none}
-.nav-wrap{position:sticky;top:0;z-index:150;display:flex;align-items:stretch;background:var(--blue)}
+.nav-wrap{position:sticky;top:99px;z-index:150;display:flex;align-items:stretch;background:var(--blue)}
 .main-nav{flex:1}
 .nav-arrow{flex-shrink:0;background:transparent;border:none;color:rgba(255,255,255,.8);font-size:2.4rem;line-height:1;padding:0 1rem;cursor:pointer;transition:opacity .15s,background .15s}
 .nav-arrow:hover{background:rgba(255,255,255,.12);color:#fff}
