@@ -17,7 +17,10 @@ body{font-family:'Modern Gothic',system-ui,-apple-system,sans-serif;font-weight:
 
 @media(max-width:600px){
   .site-header{flex-wrap:wrap;padding:.8rem 1.2rem}
-  .header-right{order:2;width:100%;justify-content:flex-end;display:flex}
+
+
+  .header-right{order:2;width:100%;justify-content:flex-end;display:flex;align-items:center;gap:.8rem}
+  
   .header-title-sm{order:1;width:100%;font-size:1.3rem}
 }
 

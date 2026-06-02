@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talks · Elisa Schaeffer</title>
+<link rel="stylesheet" href="aqpc.css">
+<style>
+  .talks-hero{background:var(--charcoal);padding:6rem 2.4rem 4rem;text-align:center;position:relative;overflow:hidden}
+  .talks-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(0,88,124,.35) 0%,transparent 55%),radial-gradient(ellipse at 70% 20%,rgba(235,45,55,.1) 0%,transparent 45%);pointer-events:none}
+  .talks-hero h1{font-size:clamp(3rem,5vw,5.6rem);font-weight:400;letter-spacing:-.04em;color:var(--cream);line-height:1;margin-bottom:1.2rem;position:relative}
+  .talks-hero p{font-size:1.6rem;color:rgba(248,245,233,.55);max-width:52rem;margin:0 auto;position:relative}
+  .talks-grid{max-width:clamp(60rem,92vw,120rem);margin:5rem auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(38rem,1fr));gap:3rem;padding:0 2.4rem}
+  .talk-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 12px rgba(7,24,30,.07);display:flex;flex-direction:column;transition:transform .2s var(--ease),box-shadow .2s var(--ease);text-decoration:none;color:inherit}
+  .talk-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(7,24,30,.13)}
+  .talk-card-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--blue-dark)}
+  .talk-card-img-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 100%);display:flex;align-items:center;justify-content:center;font-size:4rem}
+  .talk-card-body{padding:2.4rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+  .talk-card-event{font-size:1.05rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-mid);font-weight:500}
+  .talk-card-title{font-size:2rem;font-weight:400;letter-spacing:-.02em;color:var(--charcoal);line-height:1.2}
+  .talk-card-meta{font-size:1.3rem;color:var(--ch-400);margin-top:auto;padding-top:1.2rem;border-top:1px solid var(--cream-dark);display:flex;gap:1.6rem;flex-wrap:wrap}
+  .talk-card-cta{margin-top:1.6rem;align-self:flex-start;background:var(--blue);color:#fff;border:none;border-radius:4px;padding:.7rem 1.8rem;font-family:'Modern Gothic',system-ui,sans-serif;font-size:1.3rem;font-weight:500;letter-spacing:.04em;cursor:pointer;text-decoration:none;transition:background .15s}
+  .talk-card-cta:hover{background:var(--blue-dark)}
+  .talks-footer{text-align:center;padding:4rem 2.4rem;font-size:1.3rem;color:var(--ch-300)}
+  @media(max-width:600px){.talks-grid{grid-template-columns:1fr;padding:0 1.6rem}.talk-card-title{font-size:1.8rem}}
+</style>
+</head>
+<body>
+
+<div class="talks-hero">
+  <h1>Selected recent talks</h1>
+</div>
+
+<div class="talks-grid">
+
+  <div class="talk-card" onclick="location.href='preaqpc2026.html'" style="cursor:pointer">
+    <img class="talk-card-img" src="aqpc2026.jpg" alt="AQPC 2026 slide" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="talk-card-img-placeholder" style="display:none">🎓</div>
+    <div class="talk-card-body">
+      <div class="talk-card-event">AQPC Symposium 2026</div>
+      <div class="talk-card-title">Staying on the Same Page About AI</div>
+      <div class="talk-card-meta">
+        <span>Drummondville</span>
+        <span>June 4, 2026</span>
+        <span>60 min</span>
+      </div>
+      <a class="talk-card-cta" href="preaqpc2026.html">Open</a>
+    </div>
+  </div>
+
+  <div class="talk-card" onclick="location.href='saltise2026.html'" style="cursor:pointer">
+    <div class="talk-card-body">
+      <div class="talk-card-event">SALTISE 2026</div>
+      <div class="talk-card-title">Adopting a Five-Level AI Assessment Scale at College Level</div>
+      <div class="talk-card-meta">
+        <span>Montréal</span>
+        <span>June 1, 2026</span>
+        <span>15 min</span>
+      </div>
+      <a class="talk-card-cta" href="saltise2026.html">Open</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
