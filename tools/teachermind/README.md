@@ -25,9 +25,20 @@ tools/validate.py
 ## Game rules (in `data/config.json`)
 
 - Each of the 5 protagonists has 0–5 stars (`maxStars`).
-- A character has "found a direction" at `purposeThreshold` stars (currently 3).
+- A character has "found a direction" at `purposeThreshold` stars (currently 4).
 - Endings are chosen from how many characters found a direction (`endings` in `story.json`, first match wins).
 - Progress is saved in the browser (localStorage). "Restart" keeps the list of endings found; "Clear saved progress" erases everything.
+
+## Story structure (three threads)
+
+`s00_intro` → `s10_hub` (the mall map). From the hub the player picks a thread: **A** (ditch, `s01`–`s07`), **B** (empty shop unit, `b01`–`b07`) or **C** (café, `c01`–`c05`). Each thread ends with `setFlags: ["doneX"]` and returns to the hub. Then `s90_evening` (shared finale) and the ending.
+
+- By default the group has time for **two** threads per run. To allow all three, remove the `{"not": {"count": {"flags": [...], "gte": 2}}}` conditions on the three hub choices in `s10_hub` and the `gte 2` in the hub lines.
+- `count` condition: `{"count": {"flags": ["doneA","doneB","doneC"], "gte": 2}}` — how many of the listed flags are set.
+- `setFlags` on a scene sets flags when the scene is entered.
+- Per-character `results` in `story.json` choose a variant of the ending text depending on flags (first match wins; falls back to `char.<id>.end_<band>`).
+- `story.json` has `version`; changing it invalidates old saved progress.
+- Balance check: `python3 tools/validate.py --simulate --sample 20000` (random playthroughs; plain `--simulate` is exact but slow).
 
 ## Editing the story
 

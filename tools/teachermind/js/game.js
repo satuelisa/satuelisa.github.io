@@ -190,6 +190,7 @@
     protagonists().forEach((id) => { stars[id] = 0; });
     return {
       v: 1,
+      sv: story.version,
       started: false,
       scene: null,
       feed: [],
@@ -209,7 +210,8 @@
     state = freshState(false);
     try {
       const saved = JSON.parse(storageGet(KEY_PROGRESS()) || "null");
-      if (saved && saved.v === 1 && (saved.scene === null || story.scenes[saved.scene])) {
+      if (saved && saved.v === 1 && saved.sv === story.version &&
+          (saved.scene === null || story.scenes[saved.scene])) {
         // keep only known characters so editing the story file never breaks a saved game
         protagonists().forEach((id) => { if (typeof saved.stars[id] !== "number") saved.stars[id] = 0; });
         state = saved;
@@ -232,6 +234,11 @@
       const v = st.stars[c.stars.char] || 0;
       return (c.stars.gte === undefined || v >= c.stars.gte) &&
              (c.stars.lte === undefined || v <= c.stars.lte);
+    }
+    if (c.count) {   // how many of the listed flags are set, e.g. threads already played
+      const n = c.count.flags.filter((f) => st.flags[f]).length;
+      return (c.count.gte === undefined || n >= c.count.gte) &&
+             (c.count.lte === undefined || n <= c.count.lte);
     }
     if (c.found) {
       const n = foundCount(st);
@@ -259,6 +266,7 @@
     state.picks = [];
     state.nextTarget = null;
     state.activePanel = null;
+    (sc.setFlags || []).forEach((f) => { state.flags[f] = true; });
     state.queue = (sc.lines || [])
       .filter((ln) => cond(ln.if))
       .map((ln) => ({ s: ln.s, k: `${id}.${ln.id}`, p: ln.p }));
@@ -625,7 +633,7 @@
       head.appendChild(starRow(cid, 0));
       if (band === "high") head.appendChild(el("span", "tag", t("purposeFound")));
       body.appendChild(head);
-      body.appendChild(el("p", "", txt(`char.${cid}.end_${band}`)));
+      body.appendChild(el("p", "", txt(resultKey(cid, band))));
       li.appendChild(body);
       list.appendChild(li);
     });
@@ -639,6 +647,13 @@
       li.textContent = known ? txt(`ending.${e.id}.title`) : `🔒 ${t("endingLocked")}`;
       seen.appendChild(li);
     });
+  }
+
+  // Ending text for one character: the first matching variant in story.json "results", else the default key.
+  function resultKey(cid, band) {
+    const rules = story.characters[cid].results || [];
+    const hit = rules.find((r) => r.band === band && cond(r.if));
+    return hit ? hit.key : `char.${cid}.end_${band}`;
   }
 
   function showOnly(name) {

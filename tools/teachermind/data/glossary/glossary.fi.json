@@ -15,5 +15,15 @@
   "kierrätys": "Vanhasta tavarasta tehdään uutta. Silloin syntyy vähemmän roskaa.",
   "logistiikka": "Työ, jossa tuotteet kuljetetaan ja varastoidaan oikeaan paikkaan oikeaan aikaan.",
   "ainesosa": "Aine, josta ruoka on tehty. Ainesosat luetaan pakkauksesta.",
-  "mekanismi": "Koneen osat, jotka liikkuvat yhdessä ja tekevät työn."
+  "mekanismi": "Koneen osat, jotka liikkuvat yhdessä ja tekevät työn.",
+  "pop-up": "Pop-up: myymälä tai kioski, joka on auki vain lyhyen aikaa, esimerkiksi yhden päivän.",
+  "kate": "Kate: myyntihinnan ja ostohinnan erotus. Esimerkiksi myyntihinta 39 €, ostohinta 22 € → kate 17 €.",
+  "vuokra": "Vuokra: raha, jonka maksat säännöllisesti, kun käytät toisen omistamaa tilaa tai asuntoa.",
+  "asiakaspalvelu": "Asiakaspalvelu: asiakkaiden auttamista, heidän kysymyksiinsä vastaamista ja ongelmien ratkaisemista.",
+  "palaute": "Palaute: mitä ihmiset kertovat siitä, miten jokin meni, jotta asiaa voi parantaa.",
+  "catering": "Catering: ruoan valmistamista ja viemistä paikkaan, esimerkiksi kokoukseen tai juhliin.",
+  "pähkinä": "Pähkinä: jotkut ihmiset ovat allergisia pähkinöille, eivätkä voi syödä niitä. Allergia voi olla vakava, siksi siitä kysytään.",
+  "harjoittelu": "Harjoittelu: lyhyt työjakso työpaikalla, jonka aikana opit työn.",
+  "korkeakoulu": "Korkeakoulu: yliopisto tai ammattikorkeakoulu, jossa opiskellaan korkeampaan tutkintoon.",
+  "tutkinto": "Tutkinto: virallinen todistus siitä, että olet suorittanut opinnot."
 }

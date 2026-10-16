@@ -1,363 +1,1159 @@
 {
   "id": "ojanpenkka",
-  "version": 1,
-  "start": "s01_corner",
-
+  "version": 2,
+  "start": "s00_intro",
   "characters": {
-    "amira":    { "type": "protagonist", "color": "#C2410C", "initial": "A", "portrait": null },
-    "dawit":    { "type": "protagonist", "color": "#1D4ED8", "initial": "D", "portrait": null },
-    "olena":    { "type": "protagonist", "color": "#047857", "initial": "O", "portrait": null },
-    "minh":     { "type": "protagonist", "color": "#7E22CE", "initial": "M", "portrait": null },
-    "mateo":    { "type": "protagonist", "color": "#BE185D", "initial": "T", "portrait": null },
-    "kalle":    { "type": "npc", "color": "#475569", "initial": "K", "portrait": null },
-    "leila":    { "type": "npc", "color": "#475569", "initial": "L", "portrait": null },
-    "pekka":    { "type": "npc", "color": "#475569", "initial": "P", "portrait": null },
-    "narrator": { "type": "narrator" }
-  },
-
-  "scenes": {
-
-    "s01_corner": {
-      "panels": [
-        { "id": "p1", "image": null, "emoji": "🏬", "tone": 1, "caption": true },
-        { "id": "p2", "image": null, "emoji": "🧑‍🤝‍🧑", "tone": 2 },
-        { "id": "p3", "image": null, "emoji": "✨", "tone": 6 }
-      ],
-      "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "amira", "p": 1 },
-        { "id": "l3", "s": "dawit", "p": 1 },
-        { "id": "l4", "s": "olena", "p": 1 },
-        { "id": "l5", "s": "minh", "p": 1 },
-        { "id": "l6", "s": "mateo", "p": 2 }
-      ],
-      "pick": { "min": 1, "max": 1 },
-      "choices": [
-        { "id": "c_look", "actor": "amira", "next": "s02a_can",
-          "reaction": [ { "id": "r1", "s": "amira" } ] },
-        { "id": "c_wait", "actor": "olena", "next": "s02b_smoke",
-          "reaction": [ { "id": "r1", "s": "olena" } ] }
+    "amira": {
+      "type": "protagonist",
+      "color": "#C2410C",
+      "initial": "A",
+      "portrait": null,
+      "results": [
+        {"band": "high", "if": {"flag": "solarTalk"}, "key": "char.amira.end_high_solar"},
+        {"band": "mid", "if": {"flag": "solarTalk"}, "key": "char.amira.end_mid_solar"}
       ]
     },
-
+    "dawit": {
+      "type": "protagonist",
+      "color": "#1D4ED8",
+      "initial": "D",
+      "portrait": null,
+      "results": [
+        {
+          "band": "high",
+          "if": {"any": [{"flag": "askedRescue"}, {"flag": "selfPut"}, {"flag": "called"}]},
+          "key": "char.dawit.end_high_rescue"
+        },
+        {
+          "band": "mid",
+          "if": {"any": [{"flag": "askedRescue"}, {"flag": "selfPut"}, {"flag": "called"}]},
+          "key": "char.dawit.end_mid_rescue"
+        },
+        {
+          "band": "low",
+          "if": {"any": [{"flag": "askedRescue"}, {"flag": "selfPut"}, {"flag": "called"}]},
+          "key": "char.dawit.end_low_rescue"
+        }
+      ]
+    },
+    "olena": {"type": "protagonist", "color": "#047857", "initial": "O", "portrait": null},
+    "minh": {
+      "type": "protagonist",
+      "color": "#7E22CE",
+      "initial": "M",
+      "portrait": null,
+      "results": [
+        {
+          "band": "high",
+          "if": {"any": [{"flag": "logisticsQ"}, {"flag": "recycleQ"}]},
+          "key": "char.minh.end_high_logistics"
+        },
+        {
+          "band": "mid",
+          "if": {"any": [{"flag": "logisticsQ"}, {"flag": "recycleQ"}]},
+          "key": "char.minh.end_mid_logistics"
+        },
+        {
+          "band": "low",
+          "if": {"any": [{"flag": "logisticsQ"}, {"flag": "recycleQ"}]},
+          "key": "char.minh.end_low_logistics"
+        }
+      ]
+    },
+    "mateo": {
+      "type": "protagonist",
+      "color": "#BE185D",
+      "initial": "T",
+      "portrait": null,
+      "results": [
+        {"band": "high", "if": {"flag": "pathQuit"}, "key": "char.mateo.end_high_quit"},
+        {"band": "mid", "if": {"flag": "pathQuit"}, "key": "char.mateo.end_mid_quit"},
+        {"band": "low", "if": {"flag": "pathQuit"}, "key": "char.mateo.end_low_quit"},
+        {"band": "high", "if": {"flag": "engineeringQ"}, "key": "char.mateo.end_high_eng"}
+      ]
+    },
+    "kalle": {"type": "npc", "color": "#475569", "initial": "K", "portrait": null},
+    "leila": {"type": "npc", "color": "#475569", "initial": "L", "portrait": null},
+    "pekka": {"type": "npc", "color": "#475569", "initial": "P", "portrait": null},
+    "narrator": {"type": "narrator"},
+    "marja": {"type": "npc", "color": "#475569", "initial": "M", "portrait": null},
+    "hanna": {"type": "npc", "color": "#475569", "initial": "H", "portrait": null},
+    "liisa": {"type": "npc", "color": "#475569", "initial": "L", "portrait": null},
+    "customer": {"type": "npc", "color": "#475569", "initial": "A", "portrait": null}
+  },
+  "scenes": {
+    "s00_intro": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🏬", "tone": 1, "caption": true},
+        {"id": "p2", "image": null, "emoji": "🧑‍🤝‍🧑", "tone": 2}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "amira", "p": 1},
+        {"id": "l3", "s": "dawit", "p": 1},
+        {"id": "l4", "s": "olena", "p": 1},
+        {"id": "l5", "s": "minh", "p": 1},
+        {"id": "l6", "s": "mateo", "p": 1},
+        {"id": "l7", "s": "narrator", "p": 0}
+      ],
+      "next": "s10_hub"
+    },
+    "s10_hub": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🗺️", "tone": 3}],
+      "lines": [
+        {
+          "id": "h1",
+          "s": "narrator",
+          "p": 0,
+          "if": {"not": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 1}}}
+        },
+        {
+          "id": "h2",
+          "s": "narrator",
+          "p": 0,
+          "if": {
+            "all": [
+              {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 1}},
+              {"not": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 2}}}
+            ]
+          }
+        },
+        {"id": "h3", "s": "narrator", "p": 0, "if": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 2}}}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_ditch",
+          "actor": "mateo",
+          "next": "s01_corner",
+          "requires": {
+            "all": [{"not": {"flag": "doneA"}}, {"not": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 2}}}]
+          },
+          "reaction": [{"id": "r1", "s": "mateo"}]
+        },
+        {
+          "id": "c_unit",
+          "actor": "amira",
+          "next": "b01_unit",
+          "requires": {
+            "all": [{"not": {"flag": "doneB"}}, {"not": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 2}}}]
+          },
+          "reaction": [{"id": "r1", "s": "amira"}]
+        },
+        {
+          "id": "c_cafe",
+          "actor": "minh",
+          "next": "c01_cafe",
+          "requires": {
+            "all": [{"not": {"flag": "doneC"}}, {"not": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 2}}}]
+          },
+          "reaction": [{"id": "r1", "s": "minh"}]
+        },
+        {
+          "id": "c_evening",
+          "actor": "olena",
+          "next": "s90_evening",
+          "requires": {"count": {"flags": ["doneA", "doneB", "doneC"], "gte": 1}},
+          "reaction": [{"id": "r1", "s": "olena"}]
+        }
+      ]
+    },
+    "s01_corner": {
+      "panels": [{"id": "p1", "image": null, "emoji": "✨", "tone": 6}],
+      "lines": [{"id": "l1", "s": "mateo", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_look", "actor": "amira", "next": "s02a_can", "reaction": [{"id": "r1", "s": "amira"}]},
+        {"id": "c_wait", "actor": "olena", "next": "s02b_smoke", "reaction": [{"id": "r1", "s": "olena"}]}
+      ]
+    },
     "s02a_can": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "👀", "tone": 3 },
-        { "id": "p2", "image": null, "emoji": "🥫", "tone": 6 },
-        { "id": "p3", "image": null, "emoji": "😃", "tone": 1 }
+        {"id": "p1", "image": null, "emoji": "👀", "tone": 3},
+        {"id": "p2", "image": null, "emoji": "🥫", "tone": 6},
+        {"id": "p3", "image": null, "emoji": "😃", "tone": 1}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "mateo", "p": 1 },
-        { "id": "l3", "s": "amira", "p": 2 }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "mateo", "p": 1},
+        {"id": "l3", "s": "amira", "p": 2}
       ],
-      "pick": { "min": 1, "max": 3 },
+      "pick": {"min": 1, "max": 3},
       "next": "s03a_smoke",
       "choices": [
-        { "id": "c_oven", "actor": "amira",
-          "effects": [ { "char": "amira", "stars": 1 } ],
-          "flags": [ "solarTalk", "businessIdea" ],
+        {
+          "id": "c_oven",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "flags": ["solarTalk", "businessIdea"],
           "reaction": [
-            { "id": "r1", "s": "amira" }, { "id": "r2", "s": "amira" },
-            { "id": "r3", "s": "olena" }, { "id": "r4", "s": "amira" } ] },
-        { "id": "c_optics", "actor": "mateo",
-          "effects": [ { "char": "mateo", "stars": 1 } ],
-          "flags": [ "opticsTalk" ],
+            {"id": "r1", "s": "amira"},
+            {"id": "r2", "s": "amira"},
+            {"id": "r3", "s": "olena"},
+            {"id": "r4", "s": "amira"}
+          ]
+        },
+        {
+          "id": "c_optics",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["opticsTalk"],
           "reaction": [
-            { "id": "r1", "s": "mateo" }, { "id": "r2", "s": "mateo" },
-            { "id": "r3", "s": "amira" }, { "id": "r4", "s": "mateo" } ] },
-        { "id": "c_customer", "actor": "olena",
-          "effects": [ { "char": "olena", "stars": 1 } ],
-          "reaction": [
-            { "id": "r1", "s": "olena" }, { "id": "r2", "s": "amira" },
-            { "id": "r3", "s": "olena" } ] },
-        { "id": "c_fire", "actor": "dawit",
-          "effects": [ { "char": "dawit", "stars": 1 } ],
-          "reaction": [
-            { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "mateo" },
-            { "id": "r3", "s": "dawit" } ] }
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "mateo"},
+            {"id": "r3", "s": "amira"},
+            {"id": "r4", "s": "mateo"}
+          ]
+        },
+        {
+          "id": "c_customer",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "olena"}]
+        },
+        {
+          "id": "c_fire",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "mateo"}, {"id": "r3", "s": "dawit"}]
+        }
       ]
     },
-
     "s03a_smoke": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "💨", "tone": 5 },
-        { "id": "p2", "image": null, "emoji": "💧", "tone": 3 }
+        {"id": "p1", "image": null, "emoji": "💨", "tone": 5},
+        {"id": "p2", "image": null, "emoji": "💧", "tone": 3}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "mateo", "p": 0 },
-        { "id": "l3", "s": "dawit", "p": 1 }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "mateo", "p": 0},
+        {"id": "l3", "s": "dawit", "p": 1}
       ],
-      "pick": { "min": 1, "max": 2 },
+      "pick": {"min": 1, "max": 2},
       "next": "s04_cans",
       "choices": [
-        { "id": "c_water", "actor": "dawit",
-          "effects": [ { "char": "dawit", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "dawit", "p": 1 }, { "id": "r2", "s": "narrator" } ] },
-        { "id": "c_shade", "actor": "mateo",
-          "effects": [ { "char": "mateo", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "mateo" }, { "id": "r2", "s": "mateo" } ] }
+        {
+          "id": "c_water",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit", "p": 1}, {"id": "r2", "s": "narrator"}]
+        },
+        {
+          "id": "c_shade",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "mateo"}]
+        }
       ]
     },
-
     "s02b_smoke": {
       "note": true,
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🔥", "tone": 4 },
-        { "id": "p2", "image": null, "emoji": "😮", "tone": 2 }
+        {"id": "p1", "image": null, "emoji": "🔥", "tone": 4},
+        {"id": "p2", "image": null, "emoji": "😮", "tone": 2}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "dawit", "p": 1 },
-        { "id": "l3", "s": "olena", "p": 1 }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "dawit", "p": 1},
+        {"id": "l3", "s": "olena", "p": 1}
       ],
-      "pick": { "min": 1, "max": 1 },
+      "pick": {"min": 1, "max": 1},
       "choices": [
-        { "id": "c_call", "actor": "dawit", "next": "s03b_brigade",
-          "effects": [ { "char": "dawit", "stars": 1 } ],
-          "flags": [ "called" ],
-          "reaction": [ { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "narrator" } ] },
-        { "id": "c_self", "actor": "mateo", "next": "s03b_brigade",
-          "effects": [ { "char": "mateo", "stars": 1 } ],
-          "flags": [ "selfPut" ],
-          "reaction": [ { "id": "r1", "s": "mateo" }, { "id": "r2", "s": "narrator" } ] },
-        { "id": "c_wait", "actor": "olena", "next": "s03b_brigade",
-          "flags": [ "waited" ],
-          "reaction": [ { "id": "r1", "s": "narrator" }, { "id": "r2", "s": "dawit" }, { "id": "r3", "s": "olena" } ] }
+        {
+          "id": "c_call",
+          "actor": "dawit",
+          "next": "s03b_brigade",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "flags": ["called"],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "narrator"}]
+        },
+        {
+          "id": "c_self",
+          "actor": "mateo",
+          "next": "s03b_brigade",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["selfPut"],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "narrator"}]
+        },
+        {
+          "id": "c_wait",
+          "actor": "olena",
+          "next": "s03b_brigade",
+          "flags": ["waited"],
+          "reaction": [{"id": "r1", "s": "narrator"}, {"id": "r2", "s": "dawit"}, {"id": "r3", "s": "olena"}]
+        }
       ]
     },
-
     "s03b_brigade": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🚒", "tone": 4 },
-        { "id": "p2", "image": null, "emoji": "🧑‍🚒", "tone": 3 },
-        { "id": "p3", "image": null, "emoji": "🥫", "tone": 6 }
+        {"id": "p1", "image": null, "emoji": "🚒", "tone": 4},
+        {"id": "p2", "image": null, "emoji": "🧑‍🚒", "tone": 3},
+        {"id": "p3", "image": null, "emoji": "🥫", "tone": 6}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2a", "s": "kalle", "p": 1, "if": { "flag": "called" } },
-        { "id": "l2b", "s": "kalle", "p": 1, "if": { "not": { "flag": "called" } } },
-        { "id": "l3", "s": "kalle", "p": 2 },
-        { "id": "l4", "s": "olena", "p": 2 },
-        { "id": "l5", "s": "kalle", "p": 1 }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2a", "s": "kalle", "p": 1, "if": {"flag": "called"}},
+        {"id": "l2b", "s": "kalle", "p": 1, "if": {"not": {"flag": "called"}}},
+        {"id": "l3", "s": "kalle", "p": 2},
+        {"id": "l4", "s": "olena", "p": 2},
+        {"id": "l5", "s": "kalle", "p": 1}
       ],
-      "pick": { "min": 1, "max": 2 },
+      "pick": {"min": 1, "max": 2},
       "next": "s03c_can",
       "choices": [
-        { "id": "c_study", "actor": "dawit",
-          "effects": [ { "char": "dawit", "stars": 1 } ],
-          "flags": [ "askedRescue" ],
-          "reaction": [ { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "kalle" }, { "id": "r3", "s": "dawit" } ] },
-        { "id": "c_pump", "actor": "mateo",
-          "effects": [ { "char": "mateo", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "mateo" }, { "id": "r2", "s": "kalle" }, { "id": "r3", "s": "mateo" } ] },
-        { "id": "c_flood", "actor": "minh",
-          "reaction": [ { "id": "r1", "s": "minh" }, { "id": "r2", "s": "kalle" } ] }
+        {
+          "id": "c_study",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "flags": ["askedRescue"],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "kalle"}, {"id": "r3", "s": "dawit"}]
+        },
+        {
+          "id": "c_pump",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "kalle"}, {"id": "r3", "s": "mateo"}]
+        },
+        {"id": "c_flood", "actor": "minh", "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "kalle"}]}
       ]
     },
-
     "s03c_can": {
-      "panels": [
-        { "id": "p1", "image": null, "emoji": "🤔", "tone": 5 }
-      ],
-      "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "amira", "p": 0 }
-      ],
-      "pick": { "min": 1, "max": 2 },
+      "panels": [{"id": "p1", "image": null, "emoji": "🤔", "tone": 5}],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "amira", "p": 0}],
+      "pick": {"min": 1, "max": 2},
       "next": "s04_cans",
       "choices": [
-        { "id": "c_oven", "actor": "amira",
-          "effects": [ { "char": "amira", "stars": 1 } ],
-          "flags": [ "solarTalk", "businessIdea" ],
-          "reaction": [ { "id": "r1", "s": "amira" }, { "id": "r2", "s": "amira" }, { "id": "r3", "s": "amira" } ] },
-        { "id": "c_optics", "actor": "mateo",
-          "effects": [ { "char": "mateo", "stars": 1 } ],
-          "flags": [ "opticsTalk" ],
-          "reaction": [ { "id": "r1", "s": "mateo" }, { "id": "r2", "s": "mateo" } ] },
-        { "id": "c_customer", "actor": "olena",
-          "effects": [ { "char": "olena", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "olena" }, { "id": "r2", "s": "amira" }, { "id": "r3", "s": "olena" } ] }
+        {
+          "id": "c_oven",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "flags": ["solarTalk", "businessIdea"],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "amira"}]
+        },
+        {
+          "id": "c_optics",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["opticsTalk"],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "mateo"}]
+        },
+        {
+          "id": "c_customer",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "olena"}]
+        }
       ]
     },
-
     "s04_cans": {
-      "panels": [
-        { "id": "p1", "image": null, "emoji": "🥫", "tone": 6 }
-      ],
-      "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "minh", "p": 0 }
-      ],
-      "pick": { "min": 1, "max": 1 },
+      "panels": [{"id": "p1", "image": null, "emoji": "🥫", "tone": 6}],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "minh", "p": 0}],
+      "pick": {"min": 1, "max": 1},
       "choices": [
-        { "id": "c_collect", "actor": "minh", "next": "s05a_machine",
-          "flags": [ "collected" ],
-          "reaction": [ { "id": "r1", "s": "minh" } ] },
-        { "id": "c_leave", "actor": "olena", "next": "s05b_ad",
-          "flags": [ "leftCans" ],
-          "reaction": [ { "id": "r1", "s": "olena" } ] }
+        {
+          "id": "c_collect",
+          "actor": "minh",
+          "next": "s05a_machine",
+          "flags": ["collected"],
+          "reaction": [{"id": "r1", "s": "minh"}]
+        },
+        {
+          "id": "c_leave",
+          "actor": "olena",
+          "next": "s05b_ad",
+          "flags": ["leftCans"],
+          "reaction": [{"id": "r1", "s": "olena"}]
+        }
       ]
     },
-
     "s05a_machine": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🛍️", "tone": 1 },
-        { "id": "p2", "image": null, "emoji": "⚠️", "tone": 5 },
-        { "id": "p3", "image": null, "emoji": "🧾", "tone": 6 }
+        {"id": "p1", "image": null, "emoji": "🛍️", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "⚠️", "tone": 5},
+        {"id": "p3", "image": null, "emoji": "🧾", "tone": 6}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "leila", "p": 1 },
-        { "id": "l3", "s": "narrator", "p": 2 },
-        { "id": "l4", "s": "leila", "p": 2 },
-        { "id": "l5", "s": "leila", "p": 2 }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "leila", "p": 1},
+        {"id": "l3", "s": "narrator", "p": 2},
+        {"id": "l4", "s": "leila", "p": 2},
+        {"id": "l5", "s": "leila", "p": 2}
       ],
-      "pick": { "min": 1, "max": 2 },
+      "pick": {"min": 1, "max": 2},
       "next": "s06_shop",
       "choices": [
-        { "id": "c_job", "actor": "olena",
-          "effects": [ { "char": "olena", "stars": 1 } ],
-          "flags": [ "askedJob" ],
-          "reaction": [ { "id": "r1", "s": "olena" }, { "id": "r2", "s": "leila" }, { "id": "r3", "s": "olena" } ] },
-        { "id": "c_recycle", "actor": "minh",
-          "effects": [ { "char": "minh", "stars": 1 } ],
-          "flags": [ "recycleQ" ],
-          "reaction": [ { "id": "r1", "s": "minh" }, { "id": "r2", "s": "leila" }, { "id": "r3", "s": "minh" } ] },
-        { "id": "c_help", "actor": "dawit",
-          "effects": [ { "char": "dawit", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "leila" }, { "id": "r3", "s": "dawit" } ] }
+        {
+          "id": "c_job",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "flags": ["askedJob"],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "leila"}, {"id": "r3", "s": "olena"}]
+        },
+        {
+          "id": "c_recycle",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["recycleQ"],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "leila"}, {"id": "r3", "s": "minh"}]
+        },
+        {
+          "id": "c_help",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "leila"}, {"id": "r3", "s": "dawit"}]
+        }
       ]
     },
-
     "s05b_ad": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🚶", "tone": 1 },
-        { "id": "p2", "image": null, "emoji": "📋", "tone": 6 }
+        {"id": "p1", "image": null, "emoji": "🚶", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "📋", "tone": 6}
       ],
-      "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "narrator", "p": 1 }
-      ],
-      "pick": { "min": 1, "max": 2 },
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "narrator", "p": 1}],
+      "pick": {"min": 1, "max": 2},
       "next": "s06_shop",
       "choices": [
-        { "id": "c_ad", "actor": "olena",
-          "effects": [ { "char": "olena", "stars": 1 } ],
-          "flags": [ "sawJobAd" ],
-          "reaction": [ { "id": "r1", "s": "olena" }, { "id": "r2", "s": "olena" } ] },
-        { "id": "c_products", "actor": "minh",
-          "effects": [ { "char": "minh", "stars": 1 } ],
-          "flags": [ "logisticsQ" ],
-          "reaction": [ { "id": "r1", "s": "minh" }, { "id": "r2", "s": "minh" } ] }
+        {
+          "id": "c_ad",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "flags": ["sawJobAd"],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "olena"}]
+        },
+        {
+          "id": "c_products",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["logisticsQ"],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "minh"}]
+        }
       ]
     },
-
     "s06_shop": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🧃", "tone": 1 },
-        { "id": "p2", "image": null, "emoji": "💁", "tone": 2 }
+        {"id": "p1", "image": null, "emoji": "🧃", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "💁", "tone": 2}
       ],
       "lines": [
-        { "id": "l1a", "s": "narrator", "p": 0, "if": { "flag": "collected" } },
-        { "id": "l1b", "s": "narrator", "p": 0, "if": { "not": { "flag": "collected" } } },
-        { "id": "l2", "s": "minh", "p": 0 }
+        {"id": "l1a", "s": "narrator", "p": 0, "if": {"flag": "collected"}},
+        {"id": "l1b", "s": "narrator", "p": 0, "if": {"not": {"flag": "collected"}}},
+        {"id": "l2", "s": "minh", "p": 0}
       ],
-      "pick": { "min": 1, "max": 3 },
+      "pick": {"min": 1, "max": 3},
       "next": "s07_technician",
       "choices": [
-        { "id": "c_supply", "actor": "minh",
-          "effects": [ { "char": "minh", "stars": 1 } ],
-          "flags": [ "logisticsQ" ],
-          "reaction": [ { "id": "r1", "s": "minh" }, { "id": "r2", "s": "leila", "p": 1 }, { "id": "r3", "s": "minh" } ] },
-        { "id": "c_local", "actor": "amira",
-          "requires": { "flag": "solarTalk" },
-          "effects": [ { "char": "amira", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "amira" }, { "id": "r2", "s": "leila", "p": 1 }, { "id": "r3", "s": "amira" } ] },
-        { "id": "c_price", "actor": "olena",
-          "effects": [ { "char": "olena", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "olena" }, { "id": "r2", "s": "leila", "p": 1 }, { "id": "r3", "s": "olena" } ] },
-        { "id": "c_candy", "actor": "dawit",
-          "reaction": [ { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "leila", "p": 1 }, { "id": "r3", "s": "dawit" } ] }
+        {
+          "id": "c_supply",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["logisticsQ"],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "leila", "p": 1}, {"id": "r3", "s": "minh"}]
+        },
+        {
+          "id": "c_local",
+          "actor": "amira",
+          "requires": {"flag": "solarTalk"},
+          "effects": [{"char": "amira", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "leila", "p": 1}, {"id": "r3", "s": "amira"}]
+        },
+        {
+          "id": "c_price",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "leila", "p": 1}, {"id": "r3", "s": "olena"}]
+        },
+        {
+          "id": "c_candy",
+          "actor": "dawit",
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "leila", "p": 1}, {"id": "r3", "s": "dawit"}]
+        }
       ]
     },
-
     "s07_technician": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🔧", "tone": 3 },
-        { "id": "p2", "image": null, "emoji": "⚙️", "tone": 5 }
+        {"id": "p1", "image": null, "emoji": "🔧", "tone": 3},
+        {"id": "p2", "image": null, "emoji": "⚙️", "tone": 5}
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "pekka", "p": 0}],
+      "pick": {"min": 1, "max": 2},
+      "next": "s10_hub",
+      "choices": [
+        {
+          "id": "c_machine",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["engineeringQ"],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "pekka", "p": 1}, {"id": "r3", "s": "mateo"}]
+        },
+        {
+          "id": "c_diy",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "flags": ["diyOven"],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "pekka"}, {"id": "r3", "s": "amira"}]
+        },
+        {"id": "c_reuse", "actor": "minh", "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "pekka"}]}
+      ],
+      "setFlags": ["doneA"]
+    },
+    "b01_unit": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🪟", "tone": 1, "caption": true},
+        {"id": "p2", "image": null, "emoji": "🧑‍🤝‍🧑", "tone": 2}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2", "s": "pekka", "p": 0 }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "amira", "p": 1},
+        {"id": "l3", "s": "dawit", "p": 1},
+        {"id": "l4", "s": "mateo", "p": 1}
       ],
-      "pick": { "min": 1, "max": 2 },
-      "next": "s08_evening",
+      "pick": {"min": 1, "max": 1},
       "choices": [
-        { "id": "c_machine", "actor": "mateo",
-          "effects": [ { "char": "mateo", "stars": 1 } ],
-          "flags": [ "engineeringQ" ],
-          "reaction": [ { "id": "r1", "s": "mateo" }, { "id": "r2", "s": "pekka", "p": 1 }, { "id": "r3", "s": "mateo" } ] },
-        { "id": "c_diy", "actor": "amira",
-          "effects": [ { "char": "amira", "stars": 1 } ],
-          "flags": [ "diyOven" ],
-          "reaction": [ { "id": "r1", "s": "amira" }, { "id": "r2", "s": "pekka" }, { "id": "r3", "s": "amira" } ] },
-        { "id": "c_reuse", "actor": "minh",
-          "reaction": [ { "id": "r1", "s": "minh" }, { "id": "r2", "s": "pekka" } ] }
+        {
+          "id": "c_walk",
+          "actor": "dawit",
+          "next": "s10_hub",
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "narrator"}]
+        },
+        {
+          "id": "c_peek",
+          "actor": "olena",
+          "next": "b02_ideas",
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "amira"}]
+        },
+        {"id": "c_joke", "actor": "amira", "next": "b02_ideas", "reaction": [{"id": "r1", "s": "amira"}]}
       ]
     },
-
-    "s08_evening": {
-      "prompt": true,
+    "b02_ideas": {
       "panels": [
-        { "id": "p1", "image": null, "emoji": "🌇", "tone": 1 },
-        { "id": "p2", "image": null, "emoji": "💬", "tone": 2 }
+        {"id": "p1", "image": null, "emoji": "💡", "tone": 6},
+        {"id": "p2", "image": null, "emoji": "😂", "tone": 2}
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 3},
+      "next": "b03_popup",
+      "choices": [
+        {
+          "id": "c_sun",
+          "actor": "amira",
+          "requires": {"flag": "businessIdea"},
+          "effects": [{"char": "amira", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "olena"}]
+        },
+        {
+          "id": "c_flea",
+          "actor": "amira",
+          "requires": {"not": {"flag": "businessIdea"}},
+          "effects": [{"char": "amira", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "olena"}]
+        },
+        {
+          "id": "c_sneaker",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "mateo"}]
+        },
+        {
+          "id": "c_repair",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["mateoIdea"],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "dawit"}, {"id": "r3", "s": "mateo"}]
+        },
+        {
+          "id": "c_gaming",
+          "actor": "dawit",
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "dawit"}]
+        },
+        {
+          "id": "c_social",
+          "actor": "minh",
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "narrator"}]
+        }
+      ]
+    },
+    "b03_popup": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🧑‍💼", "tone": 5},
+        {"id": "p2", "image": null, "emoji": "👕", "tone": 1},
+        {"id": "p3", "image": null, "emoji": "🧮", "tone": 6}
       ],
       "lines": [
-        { "id": "l1", "s": "narrator", "p": 0 },
-        { "id": "l2a", "s": "amira", "p": 1, "if": { "stars": { "char": "amira", "gte": 2 } } },
-        { "id": "l2b", "s": "amira", "p": 1, "if": { "stars": { "char": "amira", "lte": 1 } } },
-        { "id": "l3a", "s": "dawit", "p": 1, "if": { "stars": { "char": "dawit", "gte": 2 } } },
-        { "id": "l3b", "s": "dawit", "p": 1, "if": { "stars": { "char": "dawit", "lte": 1 } } },
-        { "id": "l4a", "s": "olena", "p": 1, "if": { "stars": { "char": "olena", "gte": 2 } } },
-        { "id": "l4b", "s": "olena", "p": 1, "if": { "stars": { "char": "olena", "lte": 1 } } },
-        { "id": "l5a", "s": "minh", "p": 1, "if": { "stars": { "char": "minh", "gte": 2 } } },
-        { "id": "l5b", "s": "minh", "p": 1, "if": { "stars": { "char": "minh", "lte": 1 } } },
-        { "id": "l6a", "s": "mateo", "p": 1, "if": { "stars": { "char": "mateo", "gte": 2 } } },
-        { "id": "l6b", "s": "mateo", "p": 1, "if": { "stars": { "char": "mateo", "lte": 1 } } }
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "narrator", "p": 0},
+        {"id": "l3", "s": "marja", "p": 0},
+        {"id": "l4", "s": "narrator", "p": 1}
       ],
-      "pick": { "min": 1, "max": 3 },
+      "pick": {"min": 1, "max": 3},
+      "next": "b04_ad",
+      "choices": [
+        {
+          "id": "c_calc",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}, {"char": "mateo", "stars": 1}],
+          "flags": ["marginCalc"],
+          "reaction": [
+            {"id": "r1", "s": "olena", "p": 2},
+            {"id": "r2", "s": "mateo", "p": 2},
+            {"id": "r3", "s": "marja", "p": 2},
+            {"id": "r4", "s": "mateo", "p": 2}
+          ]
+        },
+        {
+          "id": "c_product",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "reaction": [
+            {"id": "r1", "s": "amira", "p": 1, "if": {"flag": "businessIdea"}},
+            {"id": "r1b", "s": "amira", "p": 1, "if": {"not": {"flag": "businessIdea"}}},
+            {"id": "r2", "s": "marja"}
+          ]
+        },
+        {
+          "id": "c_rival",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "marja"}]
+        },
+        {"id": "c_green", "actor": "minh", "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "marja"}]}
+      ]
+    },
+    "b04_ad": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "📱", "tone": 5},
+        {"id": "p2", "image": null, "emoji": "🤷", "tone": 4}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "minh", "p": 0},
+        {"id": "l3", "s": "amira", "p": 1}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_publish",
+          "actor": "minh",
+          "next": "b05_filmer",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["adBad"],
+          "reaction": [{"id": "r1", "s": "narrator"}, {"id": "r2", "s": "minh"}]
+        },
+        {
+          "id": "c_ask",
+          "actor": "dawit",
+          "next": "b05_filmer",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "narrator"}, {"id": "r3", "s": "dawit"}]
+        },
+        {
+          "id": "c_test",
+          "actor": "mateo",
+          "next": "b05_filmer",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["abTest"],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "narrator"}, {"id": "r3", "s": "mateo"}]
+        }
+      ]
+    },
+    "b05_filmer": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🎬", "tone": 5}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "amira", "p": 0},
+        {"id": "l3", "s": "minh", "p": 0},
+        {"id": "l4", "s": "minh", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 2},
+      "next": "b06_customer",
+      "choices": [
+        {
+          "id": "c_seen",
+          "actor": "dawit",
+          "effects": [{"char": "minh", "stars": 1}, {"char": "dawit", "stars": 1}],
+          "flags": ["minhFilm"],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "minh"}]
+        },
+        {
+          "id": "c_learn",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["minhFilm"],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "marja"}]
+        }
+      ]
+    },
+    "b06_customer": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🛍️", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "😠", "tone": 4}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "customer", "p": 1},
+        {"id": "l3", "s": "narrator", "p": 1},
+        {"id": "l4", "s": "olena", "p": 1}
+      ],
+      "pick": {"min": 1, "max": 2},
+      "next": "b07_eighteen",
+      "choices": [
+        {
+          "id": "c_calm",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "flags": ["calmedCustomer"],
+          "reaction": [
+            {"id": "r1", "s": "dawit"},
+            {"id": "r2", "s": "customer"},
+            {"id": "r3", "s": "marja"},
+            {"id": "r4", "s": "dawit"},
+            {"id": "r5", "s": "amira"}
+          ]
+        },
+        {
+          "id": "c_listen",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "customer"}, {"id": "r3", "s": "marja"}]
+        },
+        {
+          "id": "c_refund",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "marja"}]
+        }
+      ]
+    },
+    "b07_eighteen": {
+      "setFlags": ["doneB"],
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🎂", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "🛤️", "tone": 5}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "mateo", "p": 0},
+        {"id": "l3a", "s": "mateo", "p": 0, "if": {"flag": "marginCalc"}},
+        {"id": "l3b", "s": "mateo", "p": 0, "if": {"not": {"flag": "marginCalc"}}},
+        {"id": "l4", "s": "narrator", "p": 1}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_quit",
+          "actor": "mateo",
+          "next": "s10_hub",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["pathQuit"],
+          "reaction": [
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "narrator"},
+            {"id": "r3", "s": "narrator"},
+            {"id": "r4", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_work",
+          "actor": "mateo",
+          "next": "s10_hub",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["pathWork"],
+          "reaction": [
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "narrator"},
+            {"id": "r3", "s": "narrator"},
+            {"id": "r4", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_biz",
+          "actor": "mateo",
+          "next": "s10_hub",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["pathBiz"],
+          "reaction": [
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "narrator"},
+            {"id": "r3", "s": "narrator"},
+            {"id": "r4", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_now",
+          "actor": "mateo",
+          "next": "s10_hub",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["pathNow"],
+          "reaction": [
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "narrator"},
+            {"id": "r3", "s": "narrator"},
+            {"id": "r4", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_uni",
+          "actor": "mateo",
+          "next": "s10_hub",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["pathUni"],
+          "reaction": [
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "narrator"},
+            {"id": "r3", "s": "narrator"},
+            {"id": "r4", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_unsure",
+          "actor": "mateo",
+          "next": "s10_hub",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["pathUnsure"],
+          "reaction": [
+            {"id": "r1", "s": "mateo"},
+            {"id": "r2", "s": "narrator"},
+            {"id": "r3", "s": "narrator"},
+            {"id": "r4", "s": "narrator"}
+          ]
+        }
+      ]
+    },
+    "c01_cafe": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "☕", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "🗣️", "tone": 2},
+        {"id": "p3", "image": null, "emoji": "❓", "tone": 6}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "minh", "p": 1},
+        {"id": "l3", "s": "hanna", "p": 0},
+        {"id": "l4", "s": "minh", "p": 1},
+        {"id": "l5", "s": "hanna", "p": 2},
+        {"id": "l6", "s": "narrator", "p": 2}
+      ],
+      "pick": {"min": 1, "max": 3},
+      "next": "c02_skills",
+      "choices": [
+        {
+          "id": "c_help",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "minh"}, {"id": "r3", "s": "hanna"}]
+        },
+        {
+          "id": "c_quest",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["triedOrder"],
+          "reaction": [
+            {"id": "r1", "s": "narrator"},
+            {"id": "r2", "s": "minh"},
+            {"id": "r3", "s": "hanna"},
+            {"id": "r4", "s": "minh"},
+            {"id": "r5", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_english",
+          "actor": "dawit",
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "hanna"}, {"id": "r3", "s": "narrator"}]
+        }
+      ]
+    },
+    "c02_skills": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🥐", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "🤝", "tone": 3}
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "hanna", "p": 0}],
+      "pick": {"min": 1, "max": 3},
+      "next": "c03_customers",
+      "choices": [
+        {
+          "id": "c_bake",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "flags": ["bakingIdea"],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "hanna"}, {"id": "r3", "s": "amira"}]
+        },
+        {
+          "id": "c_film",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["minhFilm"],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_needs",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_web",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "flags": ["webSkill"],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_sales",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "hanna"}]
+        }
+      ]
+    },
+    "c03_customers": {
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🧁", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "🚶", "tone": 3}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "narrator", "p": 1},
+        {"id": "l3", "s": "narrator", "p": 1}
+      ],
+      "pick": {"min": 1, "max": 3},
+      "next": "c04_weeks",
+      "choices": [
+        {
+          "id": "c_try",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "flags": ["triedFinnish"],
+          "reaction": [
+            {"id": "r1", "s": "olena"},
+            {"id": "r2", "s": "liisa"},
+            {"id": "r3", "s": "olena"},
+            {"id": "r4", "s": "liisa"},
+            {"id": "r5", "s": "olena"},
+            {"id": "r6", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_again",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "flags": ["askedRepeat"],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "liisa"}, {"id": "r3", "s": "minh"}]
+        },
+        {
+          "id": "c_english",
+          "actor": "dawit",
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "narrator"}, {"id": "r3", "s": "dawit"}]
+        },
+        {
+          "id": "c_avoid",
+          "actor": "mateo",
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "mateo"}]
+        }
+      ]
+    },
+    "c04_weeks": {
+      "panels": [{"id": "p1", "image": null, "emoji": "📅", "tone": 5}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "narrator", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0},
+        {"id": "l4", "s": "narrator", "p": 0},
+        {"id": "l5", "s": "narrator", "p": 0},
+        {"id": "l6", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 3},
+      "next": "c05_failure",
+      "choices": [
+        {
+          "id": "c_phone",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [
+            {"id": "r1", "s": "dawit"},
+            {"id": "r2", "s": "dawit", "if": {"flag": "waited"}},
+            {"id": "r2b", "s": "dawit", "if": {"flag": "called"}},
+            {"id": "r3", "s": "narrator"}
+          ]
+        },
+        {
+          "id": "c_message",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_pitch",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "narrator"}]
+        },
+        {
+          "id": "c_ask",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "olena"}, {"id": "r3", "s": "minh"}]
+        },
+        {
+          "id": "c_price",
+          "actor": "olena",
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "narrator"}]
+        }
+      ]
+    },
+    "c05_failure": {
+      "setFlags": ["doneC"],
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "📉", "tone": 4},
+        {"id": "p2", "image": null, "emoji": "🔄", "tone": 3}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "olena", "p": 1},
+        {"id": "l3", "s": "hanna", "p": 1}
+      ],
+      "pick": {"min": 1, "max": 3},
+      "next": "s10_hub",
+      "choices": [
+        {
+          "id": "c_who",
+          "actor": "dawit",
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_price",
+          "actor": "olena",
+          "effects": [{"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_place",
+          "actor": "minh",
+          "effects": [{"char": "minh", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "hanna"}]
+        },
+        {
+          "id": "c_change",
+          "actor": "amira",
+          "effects": [{"char": "amira", "stars": 1}],
+          "flags": ["cateringPivot"],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "hanna"}, {"id": "r3", "s": "narrator"}]
+        },
+        {
+          "id": "c_sheet",
+          "actor": "mateo",
+          "effects": [{"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "hanna"}]
+        }
+      ]
+    },
+    "s90_evening": {
+      "prompt": true,
+      "panels": [
+        {"id": "p1", "image": null, "emoji": "🌇", "tone": 1},
+        {"id": "p2", "image": null, "emoji": "💬", "tone": 2}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l1b", "s": "narrator", "p": 0, "if": {"all": [{"flag": "doneA"}, {"flag": "doneB"}]}},
+        {"id": "l1c", "s": "narrator", "p": 0, "if": {"all": [{"flag": "doneA"}, {"flag": "doneC"}]}},
+        {"id": "l1d", "s": "narrator", "p": 0, "if": {"all": [{"flag": "doneB"}, {"flag": "doneC"}]}},
+        {"id": "l2a", "s": "amira", "p": 1, "if": {"stars": {"char": "amira", "gte": 2}}},
+        {"id": "l2b", "s": "amira", "p": 1, "if": {"stars": {"char": "amira", "lte": 1}}},
+        {"id": "l3a", "s": "dawit", "p": 1, "if": {"stars": {"char": "dawit", "gte": 2}}},
+        {"id": "l3b", "s": "dawit", "p": 1, "if": {"stars": {"char": "dawit", "lte": 1}}},
+        {"id": "l4a", "s": "olena", "p": 1, "if": {"stars": {"char": "olena", "gte": 2}}},
+        {"id": "l4b", "s": "olena", "p": 1, "if": {"stars": {"char": "olena", "lte": 1}}},
+        {"id": "l5a", "s": "minh", "p": 1, "if": {"stars": {"char": "minh", "gte": 2}}},
+        {"id": "l5b", "s": "minh", "p": 1, "if": {"stars": {"char": "minh", "lte": 1}}},
+        {"id": "l6a", "s": "mateo", "p": 1, "if": {"stars": {"char": "mateo", "gte": 2}}},
+        {"id": "l6b", "s": "mateo", "p": 1, "if": {"stars": {"char": "mateo", "lte": 1}}}
+      ],
+      "pick": {"min": 1, "max": 3},
       "next": "@ending",
       "choices": [
-        { "id": "c_model", "actor": "amira",
-          "requires": { "all": [
-            { "stars": { "char": "amira", "gte": 1 } },
-            { "stars": { "char": "mateo", "gte": 1 } } ] },
-          "effects": [ { "char": "amira", "stars": 1 }, { "char": "mateo", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "amira" }, { "id": "r2", "s": "mateo" }, { "id": "r3", "s": "narrator" } ] },
-        { "id": "c_job", "actor": "olena",
-          "requires": { "all": [
-            { "stars": { "char": "olena", "gte": 1 } },
-            { "stars": { "char": "minh", "gte": 1 } } ] },
-          "effects": [ { "char": "olena", "stars": 1 }, { "char": "minh", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "olena" }, { "id": "r2", "s": "minh" }, { "id": "r3", "s": "narrator" } ] },
-        { "id": "c_vpk", "actor": "dawit",
-          "requires": { "stars": { "char": "dawit", "gte": 1 } },
-          "effects": [ { "char": "dawit", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "amira" }, { "id": "r3", "s": "dawit" } ] },
-        { "id": "c_seen", "actor": "dawit",
-          "requires": { "any": [ { "flag": "logisticsQ" }, { "flag": "recycleQ" } ] },
-          "effects": [ { "char": "minh", "stars": 1 } ],
-          "reaction": [ { "id": "r1", "s": "dawit" }, { "id": "r2", "s": "minh" }, { "id": "r3", "s": "minh" } ] }
+        {
+          "id": "c_model",
+          "actor": "amira",
+          "requires": {
+            "all": [
+              {"flag": "solarTalk"},
+              {"stars": {"char": "amira", "gte": 1}},
+              {"stars": {"char": "mateo", "gte": 1}}
+            ]
+          },
+          "effects": [{"char": "amira", "stars": 1}, {"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "mateo"}, {"id": "r3", "s": "narrator"}]
+        },
+        {
+          "id": "c_job",
+          "actor": "olena",
+          "requires": {
+            "all": [
+              {"any": [{"flag": "askedJob"}, {"flag": "sawJobAd"}]},
+              {"stars": {"char": "olena", "gte": 1}},
+              {"stars": {"char": "minh", "gte": 1}}
+            ]
+          },
+          "effects": [{"char": "olena", "stars": 1}, {"char": "minh", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "olena"}, {"id": "r2", "s": "minh"}, {"id": "r3", "s": "narrator"}]
+        },
+        {
+          "id": "c_vpk",
+          "actor": "dawit",
+          "requires": {
+            "all": [
+              {"any": [{"flag": "askedRescue"}, {"flag": "selfPut"}, {"flag": "called"}]},
+              {"stars": {"char": "dawit", "gte": 1}}
+            ]
+          },
+          "effects": [{"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "dawit"}]
+        },
+        {
+          "id": "c_seen",
+          "actor": "dawit",
+          "requires": {"any": [{"flag": "logisticsQ"}, {"flag": "recycleQ"}]},
+          "effects": [{"char": "minh", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "dawit"}, {"id": "r2", "s": "minh"}, {"id": "r3", "s": "minh"}]
+        },
+        {
+          "id": "c_sunpop",
+          "actor": "amira",
+          "requires": {"all": [{"flag": "solarTalk"}, {"flag": "marginCalc"}]},
+          "effects": [{"char": "amira", "stars": 1}, {"char": "olena", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "amira"}, {"id": "r2", "s": "olena"}, {"id": "r3", "s": "narrator"}]
+        },
+        {
+          "id": "c_sunbake",
+          "actor": "mateo",
+          "requires": {"all": [{"flag": "solarTalk"}, {"flag": "bakingIdea"}]},
+          "effects": [{"char": "amira", "stars": 1}, {"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "amira"}, {"id": "r3", "s": "narrator"}]
+        },
+        {
+          "id": "c_clip",
+          "actor": "mateo",
+          "requires": {"all": [{"flag": "minhFilm"}, {"flag": "webSkill"}]},
+          "effects": [{"char": "minh", "stars": 1}, {"char": "mateo", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "mateo"}, {"id": "r2", "s": "minh"}, {"id": "r3", "s": "narrator"}]
+        },
+        {
+          "id": "c_hanna",
+          "actor": "minh",
+          "requires": {
+            "all": [{"flag": "doneC"}, {"stars": {"char": "minh", "gte": 1}}, {"stars": {"char": "dawit", "gte": 1}}]
+          },
+          "effects": [{"char": "minh", "stars": 1}, {"char": "dawit", "stars": 1}],
+          "reaction": [{"id": "r1", "s": "minh"}, {"id": "r2", "s": "dawit"}, {"id": "r3", "s": "narrator"}]
+        }
       ]
     }
   },
-
   "endings": [
-    { "id": "all",  "when": { "found": { "gte": 5 } } },
-    { "id": "most", "when": { "found": { "gte": 3 } } },
-    { "id": "some", "when": { "found": { "gte": 1 } } },
-    { "id": "none", "when": {} }
+    {"id": "all", "when": {"found": {"gte": 5}}},
+    {"id": "most", "when": {"found": {"gte": 3}}},
+    {"id": "some", "when": {"found": {"gte": 1}}},
+    {"id": "none", "when": {}}
   ]
 }
