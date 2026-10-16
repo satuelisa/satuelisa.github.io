@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-size="md">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tulevaisuuden tähdet</title>
+  <meta name="description" content="Interactive story game for young learners of Finnish. Interface in English, Spanish, French, Finnish and Swedish.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#story" data-i18n="skipLink">Skip to the story</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-star" aria-hidden="true">★</span>
+        <div>
+          <h1 class="brand-title" data-i18n="appTitle">Tulevaisuuden tähdet</h1>
+          <p class="brand-tag" data-i18n="appTagline">An interactive story about finding your direction</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="lang-toggle" id="langToggle" role="group" data-i18n-aria="languageGroup" aria-label="Interface language">
+          <!-- language buttons are generated from data/config.json -->
+        </div>
+        <button type="button" class="btn btn-ghost" id="btnTheme"><span id="btnThemeLabel">Dark mode</span></button>
+        <button type="button" class="btn btn-ghost" id="btnSettings" aria-haspopup="dialog"><span aria-hidden="true">⚙</span> <span data-i18n="settings">Settings</span></button>
+        <button type="button" class="btn btn-ghost" id="btnRestart" hidden><span aria-hidden="true">↺</span> <span data-i18n="restart">Restart</span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="party-wrap" id="partyWrap" hidden>
+    <div class="party-inner">
+      <h2 class="visually-hidden" data-i18n="party">The group</h2>
+      <ul class="party" id="party" data-i18n-aria="partyAria" aria-label="The characters and their stars"></ul>
+    </div>
+  </section>
+
+  <main id="story" tabindex="-1">
+
+    <p class="load-error" id="loadError" role="alert" hidden></p>
+
+    <!-- START SCREEN -->
+    <section class="screen start" id="screenStart" hidden>
+      <p class="kicker" id="startSubtitle"></p>
+      <h2 class="start-title" id="startTitle"></h2>
+      <p class="start-blurb" id="startBlurb"></p>
+      <p class="note-box" id="startNote"></p>
+
+      <div class="howto">
+        <h3 data-i18n="howToTitle">How to play</h3>
+        <ol>
+          <li data-i18n="howTo1">Read the story. Press “Continue” to move forward.</li>
+          <li data-i18n="howTo2">You decide what the characters do. Each character has 0 to 5 stars.</li>
+          <li data-i18n="howTo3">A star appears when a character starts to see a new possibility. There are no wrong answers.</li>
+        </ol>
+        <p class="hint"><span aria-hidden="true">💡</span> <span data-i18n="glossaryHint">Underlined words are tappable. Tap one to see a simple explanation.</span></p>
+      </div>
+
+      <div class="start-actions">
+        <button type="button" class="btn btn-primary btn-big" id="btnStart"><span id="btnStartLabel">Start the story</span></button>
+      </div>
+      <p class="hint" data-i18n="savedNote">Your progress is saved in this browser.</p>
+    </section>
+
+    <!-- SCENE SCREEN -->
+    <section class="screen scene" id="screenScene" hidden>
+      <div class="scene-head">
+        <h2 class="scene-title" id="sceneTitle"></h2>
+        <p class="note-box" id="sceneNote" hidden></p>
+      </div>
+      <div class="panels" id="panels"></div>
+      <div class="feed" id="feed" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <div class="actions" id="actions"></div>
+    </section>
+
+    <!-- ENDING SCREEN -->
+    <section class="screen ending" id="screenEnding" hidden>
+      <p class="kicker" data-i18n="endingLabel">Ending</p>
+      <h2 class="start-title" id="endingTitle"></h2>
+      <p class="start-blurb" id="endingText"></p>
+      <p class="found-count" id="endingFound"></p>
+
+      <h3 class="section-label" data-i18n="endingResults">What happened to everyone</h3>
+      <ul class="results" id="endingResultsList"></ul>
+
+      <div class="start-actions">
+        <button type="button" class="btn btn-primary btn-big" id="btnTryAgain"><span data-i18n="tryAgain">Try again with different choices</span></button>
+        <button type="button" class="btn" id="btnClearEnding"><span data-i18n="clearProgress">Clear saved progress</span></button>
+      </div>
+
+      <p class="hint" id="endingsSeenLabel"></p>
+      <ul class="endings-list" id="endingsList"></ul>
+    </section>
+  </main>
+
+  <!-- glossary pop-over -->
+  <div class="gloss-pop" id="glossPop" role="dialog" aria-labelledby="glossWord" hidden>
+    <div class="gloss-pop-inner">
+      <div class="gloss-pop-head">
+        <h3 id="glossWord"></h3>
+        <button type="button" class="btn btn-ghost btn-small" id="glossClose"><span data-i18n="glossaryClose">Close</span></button>
+      </div>
+      <p class="gloss-base" id="glossBase"></p>
+      <p class="gloss-text" id="glossText"></p>
+    </div>
+  </div>
+
+  <!-- settings dialog -->
+  <dialog class="dialog" id="dlgSettings" aria-labelledby="dlgSettingsTitle">
+    <form method="dialog" class="dialog-body">
+      <h2 id="dlgSettingsTitle" data-i18n="settings">Settings</h2>
+
+      <fieldset class="field">
+        <legend data-i18n="textSize">Text size</legend>
+        <div class="seg" id="sizeToggle">
+          <button type="button" class="seg-btn" data-size="sm"><span data-i18n="textSizeSmall">Small</span></button>
+          <button type="button" class="seg-btn" data-size="md"><span data-i18n="textSizeMedium">Medium</span></button>
+          <button type="button" class="seg-btn" data-size="lg"><span data-i18n="textSizeLarge">Large</span></button>
+        </div>
+      </fieldset>
+
+      <div class="field" id="fieldTextLang" hidden>
+        <label for="selTextLang" data-i18n="dialogueLanguage">Story language</label>
+        <select id="selTextLang"></select>
+      </div>
+
+      <div class="field">
+        <button type="button" class="btn btn-danger" id="btnClearSettings"><span data-i18n="clearProgress">Clear saved progress</span></button>
+      </div>
+
+      <div class="dialog-actions">
+        <button class="btn btn-primary" value="close"><span data-i18n="closeSettings">Close</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- confirm dialog (restart / clear) -->
+  <dialog class="dialog" id="dlgConfirm" aria-labelledby="dlgConfirmTitle" aria-describedby="dlgConfirmBody">
+    <form method="dialog" class="dialog-body">
+      <h2 id="dlgConfirmTitle"></h2>
+      <p id="dlgConfirmBody"></p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel"><span data-i18n="cancel">Cancel</span></button>
+        <button class="btn btn-primary" value="confirm" id="btnConfirmOk"><span data-i18n="confirm">Confirm</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="appfoot">
+    <details class="ai-attribution">
+      <summary data-i18n="aiAttribTitle">How this tool was made</summary>
+      <p data-i18n="aiAttribP1"></p>
+      <p data-i18n="aiAttribP2"></p>
+      <p><strong data-i18n="aiAttribP3Strong"></strong> — <span data-i18n="aiAttribP3Rest"></span></p>
+    </details>
+  </footer>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

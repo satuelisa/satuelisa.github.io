@@ -1,0 +1,25 @@
+{
+  "storageKey": "tulevaisuuden-tahdet",
+  "defaultUiLanguage": "en",
+  "uiLanguages": [
+    { "code": "en", "short": "EN", "label": "English" },
+    { "code": "es", "short": "ES", "label": "Español" },
+    { "code": "fr", "short": "FR", "label": "Français" },
+    { "code": "fi", "short": "FI", "label": "Suomi" },
+    { "code": "sv", "short": "SV", "label": "Svenska" }
+  ],
+  "i18nPath": "data/i18n/{lang}.json",
+  "glossaryPath": "data/glossary/glossary.{lang}.json",
+  "maxStars": 5,
+  "purposeThreshold": 3,
+  "story": "ojanpenkka",
+  "stories": {
+    "ojanpenkka": {
+      "path": "data/stories/ojanpenkka",
+      "defaultTextLanguage": "fi",
+      "textLanguages": [
+        { "code": "fi", "label": "Suomi" }
+      ]
+    }
+  }
+}
