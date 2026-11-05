@@ -1,0 +1,135 @@
+{
+  "title": "Lärarhandledning",
+  "intro": "Den här handledningen hjälper dig att leda Tulevaisuuden tähdet med en grupp unga som lär sig finska. Spelet är ett samtalsverktyg, inte ett prov. Eleverna läser finska, gör val för karaktärerna och pratar om vad de lägger märke till. Tiderna är förslag: anpassa dem efter din grupp.",
+  "sections": [
+    {
+      "h": "1. Vad spelet är och vad det inte är",
+      "blocks": [
+        { "ul": [
+          "Fem unga tillbringar en eftermiddag på ett köpcentrum. Det finns tre platser att besöka: diket (spår A), den tomma butikslokalen (spår B) och caféet (spår C). En grupp hinner med två av tre.",
+          "Varje val görs för en av karaktärerna. Stjärnorna (0 till 5) visar hur tydligt karaktären ser en riktning. En stjärna ges för att man märker en möjlighet, aldrig för ett ”rätt svar”.",
+          "Spelet bedöms inte, ger inget betyg och är varken karriärvägledning eller samtalsstöd."
+        ] }
+      ]
+    },
+    {
+      "h": "2. Före lektionen",
+      "blocks": [
+        { "ul": [
+          "Spela igenom det själv en gång (cirka 20 till 30 minuter) på det gränssnittsspråk som eleverna ska använda.",
+          "Förslag för 60 minuter: 5 min inledning, 30 min spel, 20 min gemensamt samtal, 5 min avslutning.",
+          "En enhet per par eller trio. Framstegen sparas i webbläsaren. Om grupper delar enhet, använd ”Radera sparade framsteg” (Inställningar) mellan grupperna.",
+          "Välj det gränssnittsspråk som eleverna kan bäst. Berättelsen förblir på finska. Textstorleken ändras i Inställningar.",
+          "Läs avsnitt 6 (känsliga moment) och avgör om något spår inte passar din grupp.",
+          "Kontrollera före användning: den finska texten och uppgifterna om studier och arbete i Finland (till exempel yrkesskola, högskola, praktik) har skrivits med hjälp av AI. Låt en finsktalande person granska dem och jämför med ditt lokala system."
+        ] }
+      ]
+    },
+    {
+      "h": "3. Genomförande",
+      "blocks": [
+        { "h": "Inledning (5 min)" },
+        { "ul": [
+          "Säg att det inte finns några felaktiga svar. Stjärnorna visar att en karaktär märker något nytt.",
+          "Säg att berättelsen handlar om personer i deras ålder och att det är de som bestämmer vad karaktärerna gör."
+        ] },
+        { "h": "Under spelet (30 min)" },
+        { "ul": [
+          "Grupper på två eller tre. En läser högt, en sköter enheten. Byt roller vid varje ny scen.",
+          "Varje valkort visar vem som agerar. Du kan ge varje elev ”sin” karaktär och låta eleven avgöra när karaktärens val dyker upp.",
+          "Låt olika grupper börja med olika spår och jämför i det gemensamma samtalet.",
+          "”Fortsätt” bestämmer takten. Stanna när ett val visas och fråga ”Varför det här?” innan gruppen klickar.",
+          "Understrukna ord går att trycka på. Förklaringen visas på gränssnittsspråket."
+        ] }
+      ]
+    },
+    {
+      "h": "4. Stöd i finskan",
+      "blocks": [
+        { "ul": [
+          "Uppmuntra eleverna att gissa utifrån sammanhanget och bilderna innan de trycker på ett ord.",
+          "Rätta inte uttal eller grammatik under spelet. Anteckna användbara ord och återvänd till dem i det gemensamma samtalet.",
+          "Caféspåret har en ”Finnish Quest”: ett lyckat samtal är viktigare än en perfekt mening. Ge respons i samma anda.",
+          "Erbjud meningsstommar: ”Anteeksi, voitko sanoa uudelleen?”, ”Mitä se tarkoittaa?”, ”Minä valitsen tämän, koska …”.",
+          "Differentiering: tryggare läsare kan läsa dialogen med roller. Andra kan arbeta i par och använda ordlistan och större text."
+        ] }
+      ]
+    },
+    {
+      "h": "5. Att prata om stjärnor och slut",
+      "blocks": [
+        { "ul": [
+          "Säg tydligt att stjärnor inte är ett betyg. Om eleverna börjar ”maximera”, fråga hellre: ”Vad märkte karaktären?”",
+          "Det är bra att spela igen. Olika spår och val leder till olika slut.",
+          "Inget slut är ”dåligt”. Att alla hittar en riktning är medvetet ovanligt: det kräver två spår och flera väl avvägda val.",
+          "Om en karaktär får få stjärnor, fråga vad karaktären kan prova härnäst. Berättelsen säger aldrig att karaktären misslyckades."
+        ] }
+      ]
+    },
+    {
+      "h": "6. Känsliga moment",
+      "blocks": [
+        { "ul": [
+          "Spår A: en liten gräsbrand och ett samtal till nödnumret 112. Ingen skadas (scenen har en innehållsnotis). Vissa elever kan ha svåra erfarenheter av nödlägen eller myndigheter.",
+          "Spår B: Mateo säger att han ska sluta skolan när han fyller 18. Sista scenen visar sex alternativ med vad vart och ett öppnar och stänger. Inget är det ”rätta”. Styr inte eleverna mot att stanna eller sluta.",
+          "Spår C: att tala finska offentligt kan kännas pinsamt. Normalisera misstag och skratta åt dina egna.",
+          "Karaktärerna är nya i Finland och eleverna kan känna igen sin egen situation. Be inte eleverna berätta sin egen historia. Bjud in dem att prata om karaktärerna: ”Vad skulle Amira säga?”",
+          "Om en elev berättar något oroande, följ din institutions rutiner och hänvisa till lämpligt stöd. Spelet är inget verktyg för samtalsstöd."
+        ] }
+      ]
+    },
+    {
+      "h": "7. Frågor för det gemensamma samtalet (15 till 20 min)",
+      "blocks": [
+        { "h": "För alla grupper" },
+        { "ul": [
+          "Vilket val var svårast? Vems val överraskade dig?",
+          "Vad märkte en karaktär som den inte hade märkt förut?",
+          "Vilket litet steg kan karaktären ta nästa vecka?"
+        ] },
+        { "h": "Spår A: diket" },
+        { "ul": [
+          "Vilka färdigheter använde karaktärerna (nyfikenhet, lugn, att fråga, att bygga)?",
+          "Vad gör människor under en arbetsdag i yrken som logistik, förpackning eller ingenjörsarbete?"
+        ] },
+        { "h": "Spår B: den tomma butikslokalen" },
+        { "ul": [
+          "Försäljningspris minus inköpspris: vad blir kvar och vad ska det betala?",
+          "Vem är kunden? Vad lärde den första kunden gruppen?",
+          "Vad öppnar och stänger Mateos sex alternativ? Kan beslutet ändras senare?"
+        ] },
+        { "h": "Spår C: caféet" },
+        { "ul": [
+          "Vad hjälpte när finskan var svår?",
+          "Vad kan du redan som en arbetsplats i Finland skulle ha nytta av?",
+          "Den första idén fungerade inte. Vad skulle du ändra?"
+        ] },
+        { "h": "Frivilligt" },
+        { "ul": [
+          "Vilken karaktär liknar någon du känner? Håll dig till tredje person och kräv aldrig ett svar."
+        ] }
+      ]
+    },
+    {
+      "h": "8. Uppföljning",
+      "blocks": [
+        { "ul": [
+          "Skrivande: fortsätt en karaktärs berättelse ett år senare, med fem meningar på finska.",
+          "Rollspel: beställningen på caféet eller varuretur, med hjälp av meningsstommarna.",
+          "Minisökning: välj ett yrke ur berättelsen och hitta en utbildningsväg i ditt lokala system. Den lokala informationen kommer från dig, eftersom spelet inte innehåller den.",
+          "Jämför de slut olika grupper nådde och prata om vad varje grupp valde och varför."
+        ] }
+      ]
+    },
+    {
+      "h": "9. Praktiska anteckningar",
+      "blocks": [
+        { "ul": [
+          "”Börja om” startar om och behåller listan över redan sedda slut. ”Radera sparade framsteg” raderar allt.",
+          "Berättelsens text finns i en JSON-fil per språk, så den kan redigeras eller bytas mot ett annat dialogspråk. Se projektets README.",
+          "Illustrationer kan läggas i bildmappen. Tills vidare visar rutorna platshållare med en beskrivning."
+        ] }
+      ]
+    }
+  ]
+}

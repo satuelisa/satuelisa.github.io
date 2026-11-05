@@ -57,5 +57,8 @@
   "aiAttribP1": "Tämä työkalu on rakennettu iteratiivisessa yhteistyössä Elisa Schaefferin, Collège LaSalle Montréalin teknologian ja designin dekaanin, ja Clauden (Anthropic), tekoälyavustajan, kanssa. Elisa määritteli, kyseenalaisti ja hioi pedagogisen sisällön, rakenteen, toiminnot, painopisteet ja toimitukselliset valinnat joka vaiheessa. Claude tuotti koodin, ehdotti sanamuotoja ja huomautti epäjohdonmukaisuuksista – mutta jokaisen merkittävän päätöksen teki ihminen.",
   "aiAttribP2": "Tämä ei ole kerralla tekoälyn tuottamaa sisältöä. Se on pitkän tarkistusdialogin tulos: jokainen istunto luettiin, arvioitiin kriittisesti ja korjattiin. Työkalu kehittyy edelleen.",
   "aiAttribP3Strong": "Harkittu tekoälyn käyttö",
-  "aiAttribP3Rest": "Generatiivinen tekoäly on työväline, ei ammatillisen harkinnan korvike. Tämä hanke havainnollistaa lähestymistapaa, jossa ihminen pysyy tekijänä: tekoäly lisää tuotantokykyä, mutta toimituksellinen, pedagoginen ja eettinen vastuu pysyy kokonaan ihmisellä. Viimeksi päivitetty: lokakuu 2026."
+  "aiAttribP3Rest": "Generatiivinen tekoäly on työväline, ei ammatillisen harkinnan korvike. Tämä hanke havainnollistaa lähestymistapaa, jossa ihminen pysyy tekijänä: tekoäly lisää tuotantokykyä, mutta toimituksellinen, pedagoginen ja eettinen vastuu pysyy kokonaan ihmisellä. Viimeksi päivitetty: lokakuu 2026.",
+  "teachers": "Opettajille",
+  "teacherPrint": "Tulosta",
+  "teacherLoadError": "Opettajan opasta ei voitu ladata."
 }

@@ -1,0 +1,135 @@
+{
+  "title": "Opettajan opas",
+  "intro": "Tämä opas auttaa sinua käyttämään Tulevaisuuden tähdet -peliä suomea opiskelevien nuorten kanssa. Peli on keskustelun apuväline, ei koe. Opiskelijat lukevat suomea, tekevät valintoja hahmojen puolesta ja puhuvat siitä, mitä huomaavat. Ajat ovat ehdotuksia: mukauta ne ryhmällesi.",
+  "sections": [
+    {
+      "h": "1. Mikä peli on ja mikä ei",
+      "blocks": [
+        { "ul": [
+          "Viisi nuorta viettää iltapäivän ostarilla. Käydä voi kolmessa paikassa: ojassa (polku A), tyhjässä liiketilassa (polku B) ja kahvilassa (polku C). Ryhmä ehtii kaksi kolmesta.",
+          "Jokainen valinta tehdään yhden hahmon puolesta. Tähdet (0–5) näyttävät, kuinka selvästi hahmo näkee suuntansa. Tähti tulee siitä, että hahmo huomaa mahdollisuuden, ei ”oikeasta vastauksesta”.",
+          "Peliä ei arvioida eikä siitä saa arvosanaa. Se ei ole uraohjausta eikä terapiaa."
+        ] }
+      ]
+    },
+    {
+      "h": "2. Ennen tuntia",
+      "blocks": [
+        { "ul": [
+          "Pelaa peli itse kerran läpi (noin 20–30 minuuttia) siinä käyttöliittymäkielessä, jota opiskelijat käyttävät.",
+          "Ehdotus 60 minuutin tunnille: 5 min johdanto, 30 min pelaaminen, 20 min yhteinen keskustelu, 5 min lopetus.",
+          "Yksi laite paria tai kolmen ryhmää kohti. Eteneminen tallentuu selaimeen. Jos ryhmät jakavat laitteen, käytä ryhmien välillä Asetuksista kohtaa ”Poista tallennettu eteneminen”.",
+          "Valitse käyttöliittymän kieleksi se, jonka opiskelijat osaavat parhaiten. Tarina pysyy suomeksi. Tekstin kokoa voi muuttaa Asetuksissa.",
+          "Lue kohta 6 (herkät kohdat) ja päätä, sopiiko jokin polku huonosti ryhmällesi.",
+          "Tarkista ennen käyttöä: suomenkielinen teksti sekä tiedot opinnoista ja työstä Suomessa (esimerkiksi ammattikoulu, korkeakoulu, harjoittelu) on laadittu tekoälyn avulla. Anna suomea äidinkielenään puhuvan tarkistaa ne ja vertaa niitä omaan koulutusjärjestelmääsi."
+        ] }
+      ]
+    },
+    {
+      "h": "3. Tunnin kulku",
+      "blocks": [
+        { "h": "Johdanto (5 min)" },
+        { "ul": [
+          "Kerro, että väärää vastausta ei ole. Tähdet näyttävät, että hahmo huomaa jotain uutta.",
+          "Kerro, että tarina kertoo heidän ikäisistään ihmisistä ja että he päättävät, mitä hahmot tekevät."
+        ] },
+        { "h": "Pelaaminen (30 min)" },
+        { "ul": [
+          "Työskennelkää kahden tai kolmen ryhmissä. Yksi lukee ääneen, toinen käyttää laitetta. Vaihtakaa rooleja jokaisessa uudessa kohtauksessa.",
+          "Valintakortti näyttää, kuka toimii. Voit antaa jokaiselle opiskelijalle ”oman” hahmon ja antaa hänen päättää, kun tämän hahmon valinnat tulevat.",
+          "Anna eri ryhmien aloittaa eri poluilla ja vertailkaa yhteisessä keskustelussa.",
+          "”Jatka”-painike antaa tahdin. Pysähdy, kun valinta tulee, ja kysy ”Miksi tämä?” ennen kuin ryhmä klikkaa.",
+          "Alleviivattuja sanoja voi napauttaa. Selitys näkyy käyttöliittymän kielellä."
+        ] }
+      ]
+    },
+    {
+      "h": "4. Suomen kielen tukeminen",
+      "blocks": [
+        { "ul": [
+          "Kannusta arvaamaan sanoja asiayhteydestä ja kuvista ennen kuin sanaa napautetaan.",
+          "Älä korjaa ääntämistä tai kielioppia pelin aikana. Kirjaa hyödyllisiä sanoja ja palaa niihin yhteisessä keskustelussa.",
+          "Kahvilapolulla on ”Finnish Quest”: onnistunut vuorovaikutus on tärkeämpi kuin täydellinen lause. Anna palautetta samassa hengessä.",
+          "Tarjoa lauserunkoja: ”Anteeksi, voitko sanoa uudelleen?”, ”Mitä se tarkoittaa?”, ”Minä valitsen tämän, koska …”.",
+          "Eriyttäminen: sujuvammat lukijat voivat lukea dialogin rooleittain. Muut voivat työskennellä parina ja käyttää sanastoa ja suurempaa tekstikokoa."
+        ] }
+      ]
+    },
+    {
+      "h": "5. Tähdistä ja lopuista puhuminen",
+      "blocks": [
+        { "ul": [
+          "Sano selvästi, että tähdet eivät ole arvosana. Jos opiskelijat alkavat ”maksimoida”, kysy mieluummin: ”Mitä tämä hahmo huomasi?”",
+          "Uudelleen pelaamista kannustetaan. Eri polut ja valinnat johtavat eri loppuihin.",
+          "Mikään loppu ei ole ”huono”. Se, että kaikki löytävät suunnan, on tarkoituksella harvinaista: siihen tarvitaan kaksi polkua ja useita sopivia valintoja.",
+          "Jos hahmo päätyy vähillä tähdillä, kysy, mitä hän voisi kokeilla seuraavaksi. Tarina ei koskaan sano, että hahmo epäonnistui."
+        ] }
+      ]
+    },
+    {
+      "h": "6. Herkät kohdat",
+      "blocks": [
+        { "ul": [
+          "Polku A: pieni ruohopalo ja soitto hätänumeroon 112. Kukaan ei loukkaannu (kohtauksessa on sisältöhuomautus). Joillakin opiskelijoilla voi olla vaikeita kokemuksia hätätilanteista tai viranomaisista.",
+          "Polku B: Mateo sanoo lopettavansa koulun 18-vuotiaana. Viimeisessä kohtauksessa on kuusi vaihtoehtoa, joista jokaisesta näkyy, mitä se avaa ja sulkee. Mikään ei ole ”oikea”. Älä ohjaa opiskelijoita jäämään tai lähtemään.",
+          "Polku C: suomen puhuminen julkisesti voi jännittää. Normalisoi virheet ja naura omillesi.",
+          "Hahmot ovat uusia Suomessa, ja opiskelijat voivat tunnistaa oman tilanteensa. Älä pyydä opiskelijoita kertomaan omaa tarinaansa. Kutsu heidät puhumaan hahmoista: ”Mitä Amira sanoisi?”",
+          "Jos opiskelija kertoo jotain huolestuttavaa, toimi oppilaitoksesi ohjeiden mukaan ja ohjaa hänet sopivan tuen piiriin. Peli ei ole keskusteluapu- tai terapiaväline."
+        ] }
+      ]
+    },
+    {
+      "h": "7. Purkukysymykset (15–20 min)",
+      "blocks": [
+        { "h": "Kaikille ryhmille" },
+        { "ul": [
+          "Mikä valinta oli vaikein? Kenen valinta yllätti sinut?",
+          "Mitä hahmo huomasi, mitä hän ei ollut ennen huomannut?",
+          "Minkä pienen askeleen tämä hahmo voisi ottaa ensi viikolla?"
+        ] },
+        { "h": "Polku A: oja" },
+        { "ul": [
+          "Mitä taitoja hahmot käyttivät (uteliaisuus, rauhallisuus, kysyminen, rakentaminen)?",
+          "Mitä ihmiset tekevät työpäivän aikana esimerkiksi logistiikassa, pakkaamisessa tai insinöörityössä?"
+        ] },
+        { "h": "Polku B: tyhjä liiketila" },
+        { "ul": [
+          "Myyntihinta miinus ostohinta: mitä jää jäljelle ja mitä sillä pitää maksaa?",
+          "Kuka on asiakas? Mitä ensimmäinen asiakas opetti ryhmälle?",
+          "Mitä Mateon kuusi vaihtoehtoa avaavat ja sulkevat? Voiko päätöksen muuttaa myöhemmin?"
+        ] },
+        { "h": "Polku C: kahvila" },
+        { "ul": [
+          "Mikä auttoi, kun suomi oli vaikeaa?",
+          "Mitä osaat jo, mitä suomalainen työpaikka voisi hyödyntää?",
+          "Ensimmäinen idea ei toiminut. Mitä muuttaisit?"
+        ] },
+        { "h": "Vapaaehtoinen" },
+        { "ul": [
+          "Kuka hahmoista on lähimpänä jotakuta tuntemaasi ihmistä? Pysy kolmannessa persoonassa äläkä koskaan vaadi vastausta."
+        ] }
+      ]
+    },
+    {
+      "h": "8. Jatkotehtäviä",
+      "blocks": [
+        { "ul": [
+          "Kirjoittaminen: jatka yhden hahmon tarinaa vuoden kuluttua, viidellä suomenkielisellä lauseella.",
+          "Roolileikki: tilaus kahvilassa tai tuotteen palautus, lauserunkojen avulla.",
+          "Pieni selvitys: valitse tarinasta ammatti ja etsi siihen johtava koulutuspolku omasta koulutusjärjestelmästäsi. Paikalliset tiedot tulevat sinulta, koska peli ei sisällä niitä.",
+          "Vertailkaa eri ryhmien saavuttamia loppuja ja keskustelkaa siitä, mitä kukin ryhmä valitsi ja miksi."
+        ] }
+      ]
+    },
+    {
+      "h": "9. Käytännön huomioita",
+      "blocks": [
+        { "ul": [
+          "”Aloita alusta” aloittaa pelin uudelleen ja säilyttää jo nähtyjen loppujen listan. ”Poista tallennettu eteneminen” poistaa kaiken.",
+          "Tarinan teksti on yhdessä JSON-tiedostossa kieltä kohti, joten sitä voi muokata tai vaihtaa toiseen dialogikieleen. Katso projektin README.",
+          "Kuvituksia voi lisätä kuvakansioon. Siihen asti ruuduissa näkyy paikkamerkki ja kuvaus."
+        ] }
+      ]
+    }
+  ]
+}

@@ -197,6 +197,19 @@ for lang, d in ui.items():
             err(f"i18n/{lang}.json: placeholders differ from English in {k}")
 
 
+# ---------- teacher guide: same sections and block shapes in every UI language ----------
+def teacher_shape(g):
+    return [[("h" if "h" in b else "ul" if "ul" in b else "p", len(b.get("ul", [])))
+             if isinstance(b, dict) else ("p", 0) for b in sec.get("blocks", [])] for sec in g.get("sections", [])]
+
+if config.get("teacherPath"):
+    guides = {x["code"]: load(ROOT / config["teacherPath"].format(lang=x["code"])) for x in config["uiLanguages"]}
+    ref = teacher_shape(guides[config["defaultUiLanguage"]])
+    for lang, g in guides.items():
+        if teacher_shape(g) != ref:
+            err(f"teacher.{lang}.json: structure differs from English (sections, blocks or list lengths)")
+
+
 # ---------- simulation ----------
 def cond(c, st):
     """st = (stars tuple in protagonists order, frozenset of flags)"""

@@ -1,0 +1,135 @@
+{
+  "title": "Guía para docentes",
+  "intro": "Esta guía te ayuda a dirigir Tulevaisuuden tähdet con un grupo de jóvenes que aprenden finés. El juego es una herramienta de conversación, no un examen. El estudiantado lee en finés, toma decisiones por los personajes y conversa sobre lo que nota. Los tiempos son sugerencias: ajústalos a tu grupo.",
+  "sections": [
+    {
+      "h": "1. Qué es el juego y qué no es",
+      "blocks": [
+        { "ul": [
+          "Cinco jóvenes pasan una tarde en un centro comercial. Hay tres lugares para visitar: la zanja (hilo A), el local vacío (hilo B) y la cafetería (hilo C). Un grupo tiene tiempo para dos de los tres.",
+          "Cada decisión se toma por uno de los personajes. Las estrellas (de 0 a 5) muestran qué tan claro ve ese personaje una dirección. Se da una estrella por notar una posibilidad, nunca por una «respuesta correcta».",
+          "No se evalúa, no da calificación y no es orientación profesional ni apoyo psicológico."
+        ] }
+      ]
+    },
+    {
+      "h": "2. Antes de la sesión",
+      "blocks": [
+        { "ul": [
+          "Juégalo tú una vez (unos 20 a 30 minutos) en el idioma de interfaz que usará tu grupo.",
+          "Plan sugerido para 60 minutos: 5 min de introducción, 30 min de juego, 20 min de puesta en común, 5 min de cierre.",
+          "Un dispositivo por pareja o trío. El progreso se guarda en el navegador. Si varios grupos comparten un dispositivo, usa «Borrar el progreso guardado» (Ajustes) entre grupos.",
+          "Elige como idioma de interfaz el que mejor domine el estudiantado. La historia sigue en finés. El tamaño del texto se cambia en Ajustes.",
+          "Lee la sección 6 (momentos sensibles) y decide si algún hilo no es adecuado para tu grupo.",
+          "Verifica antes de usar: el texto en finés y los datos sobre estudios y trabajo en Finlandia (por ejemplo escuela vocacional, educación superior, prácticas) se redactaron con ayuda de IA. Haz que los revise alguien que hable finés y compáralos con tu sistema local."
+        ] }
+      ]
+    },
+    {
+      "h": "3. Dirigir la sesión",
+      "blocks": [
+        { "h": "Introducción (5 min)" },
+        { "ul": [
+          "Di que no hay respuestas incorrectas. Las estrellas muestran que un personaje está notando algo nuevo.",
+          "Di que la historia trata de personas de su edad y que ellos deciden lo que hacen los personajes."
+        ] },
+        { "h": "Durante el juego (30 min)" },
+        { "ul": [
+          "Grupos de dos o tres. Una persona lee en voz alta y otra maneja el dispositivo. Cambien de rol en cada escena nueva.",
+          "Cada tarjeta de decisión indica quién actúa. Puedes dar a cada estudiante «su» personaje y dejar que decida cuándo llegan las decisiones de ese personaje.",
+          "Deja que grupos distintos empiecen por hilos distintos y compárenlos en la puesta en común.",
+          "«Continuar» marca el ritmo. Haz una pausa cuando aparezca una decisión y pregunta «¿Por qué esta?» antes de que el grupo haga clic.",
+          "Las palabras subrayadas se pueden tocar. La explicación aparece en el idioma de la interfaz."
+        ] }
+      ]
+    },
+    {
+      "h": "4. Apoyar el finés",
+      "blocks": [
+        { "ul": [
+          "Anima a deducir por el contexto y las imágenes antes de tocar una palabra.",
+          "No corrijas la pronunciación ni la gramática durante el juego. Anota las palabras útiles y vuelve a ellas en la puesta en común.",
+          "El hilo de la cafetería tiene una «Finnish Quest»: un intercambio exitoso importa más que una frase perfecta. Da tu retroalimentación con ese mismo espíritu.",
+          "Ofrece estructuras de frases: «Anteeksi, voitko sanoa uudelleen?», «Mitä se tarkoittaa?», «Minä valitsen tämän, koska …».",
+          "Diferenciación: quienes leen con más soltura pueden leer los diálogos por papeles. Quienes necesitan más apoyo pueden trabajar en pareja y usar el glosario y un tamaño de texto mayor."
+        ] }
+      ]
+    },
+    {
+      "h": "5. Hablar de las estrellas y los finales",
+      "blocks": [
+        { "ul": [
+          "Di con claridad que las estrellas no son una calificación. Si empiezan a «maximizar», pregunta mejor: «¿Qué notó este personaje?»",
+          "Se anima a jugar de nuevo. Hilos y decisiones distintos llevan a finales distintos.",
+          "Ningún final es «malo». Que todos encuentren una dirección es raro a propósito: requiere dos hilos y varias decisiones bien ajustadas.",
+          "Si un personaje termina con pocas estrellas, pregunta qué podría intentar después. La historia nunca dice que fracasó."
+        ] }
+      ]
+    },
+    {
+      "h": "6. Momentos sensibles",
+      "blocks": [
+        { "ul": [
+          "Hilo A: un pequeño incendio de pasto y una llamada al número de emergencias 112. Nadie resulta herido (la escena tiene una nota de contenido). Algunas personas pueden haber vivido experiencias difíciles con emergencias o autoridades.",
+          "Hilo B: Mateo dice que dejará la escuela a los 18 años. La escena final muestra seis opciones con lo que cada una abre y cierra. Ninguna es la «correcta». No orientes al estudiantado hacia quedarse ni hacia irse.",
+          "Hilo C: hablar finés en público puede dar vergüenza. Normaliza los errores y bromea con los tuyos.",
+          "Los personajes son nuevos en Finlandia y el estudiantado puede reconocer su propia situación. No pidas que cuenten su historia. Invítales a hablar de los personajes: «¿Qué diría Amira?»",
+          "Si alguien comparte algo preocupante, sigue los procedimientos de tu institución y derívale al apoyo adecuado. El juego no es una herramienta de intervención psicológica."
+        ] }
+      ]
+    },
+    {
+      "h": "7. Preguntas para la puesta en común (15 a 20 min)",
+      "blocks": [
+        { "h": "Para todos los grupos" },
+        { "ul": [
+          "¿Qué decisión fue la más difícil? ¿La decisión de quién te sorprendió?",
+          "¿Qué notó un personaje que antes no había notado?",
+          "¿Qué pequeño paso podría dar este personaje la próxima semana?"
+        ] },
+        { "h": "Hilo A: la zanja" },
+        { "ul": [
+          "¿Qué habilidades usaron los personajes (curiosidad, mantener la calma, preguntar, construir)?",
+          "¿Qué hace la gente todo el día en trabajos como logística, empaque o ingeniería?"
+        ] },
+        { "h": "Hilo B: el local vacío" },
+        { "ul": [
+          "Precio de venta menos precio de compra: ¿qué queda y con qué hay que pagar?",
+          "¿Quién es el cliente? ¿Qué le enseñó el primer cliente al grupo?",
+          "¿Qué abre y qué cierra cada una de las seis opciones de Mateo? ¿Se puede cambiar la decisión después?"
+        ] },
+        { "h": "Hilo C: la cafetería" },
+        { "ul": [
+          "¿Qué te ayudó cuando el finés era difícil?",
+          "¿Qué sabes hacer ya que un lugar de trabajo en Finlandia podría aprovechar?",
+          "La primera idea no funcionó. ¿Qué cambiarías?"
+        ] },
+        { "h": "Opcional y voluntario" },
+        { "ul": [
+          "¿Qué personaje se parece más a alguien que conoces? Mantén la tercera persona y nunca exijas una respuesta."
+        ] }
+      ]
+    },
+    {
+      "h": "8. Actividades de seguimiento",
+      "blocks": [
+        { "ul": [
+          "Escritura: continuar la historia de un personaje un año después, en cinco oraciones en finés.",
+          "Juego de roles: el pedido en la cafetería o la devolución de un producto, con las estructuras de frases.",
+          "Mini investigación: elegir un trabajo de la historia y encontrar una ruta de formación en tu sistema local. La información local la aportas tú, porque el juego no la contiene.",
+          "Comparar los finales que alcanzaron distintos grupos y conversar sobre lo que eligió cada uno y por qué."
+        ] }
+      ]
+    },
+    {
+      "h": "9. Notas prácticas",
+      "blocks": [
+        { "ul": [
+          "«Reiniciar» vuelve a empezar y conserva la lista de finales ya vistos. «Borrar el progreso guardado» lo borra todo.",
+          "El texto de la historia está en un archivo JSON por idioma, así que se puede editar o cambiar por otro idioma de diálogo. Consulta el README del proyecto.",
+          "Se pueden añadir ilustraciones en la carpeta de imágenes. Mientras tanto, las viñetas muestran marcadores con una descripción."
+        ] }
+      ]
+    }
+  ]
+}

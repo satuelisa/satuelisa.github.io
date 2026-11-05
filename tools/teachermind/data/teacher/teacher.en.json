@@ -1,0 +1,135 @@
+{
+  "title": "Teacher guide",
+  "intro": "This guide helps you run Tulevaisuuden tähdet with a group of young learners of Finnish. The game is a conversation tool, not a test. Students read Finnish, make choices for the characters and talk about what they notice. Times below are suggestions: adjust them to your group.",
+  "sections": [
+    {
+      "h": "1. What the game is, and what it is not",
+      "blocks": [
+        { "ul": [
+          "Five young people spend an afternoon at a mall. There are three places to visit: the ditch (thread A), the empty shop unit (thread B) and the café (thread C). A group has time for two of the three.",
+          "Every choice is made for one of the characters. The stars (0 to 5) show how clearly that character sees a direction. A star is given for noticing a possibility, never for a “right answer”.",
+          "It is not assessed, it gives no grade, and it is not career guidance or counselling."
+        ] }
+      ]
+    },
+    {
+      "h": "2. Before the session",
+      "blocks": [
+        { "ul": [
+          "Play it once yourself (about 20 to 30 minutes) in the interface language your students will use.",
+          "Suggested plan for 60 minutes: 5 min introduction, 30 min play, 20 min debrief, 5 min closing.",
+          "One device per pair or trio. Progress is saved in the browser. If groups share a device, use “Clear saved progress” (Settings) between groups.",
+          "Set the interface language to the students’ strongest language. The story itself stays in Finnish. Text size can be changed in Settings.",
+          "Read section 6 (sensitive moments) and decide whether any thread is unsuitable for your group.",
+          "Check before use: the Finnish text, and the facts about studies and work in Finland (for example vocational school, higher education, internships), were drafted with AI help. Have them checked against your local system and by a Finnish speaker."
+        ] }
+      ]
+    },
+    {
+      "h": "3. Running the session",
+      "blocks": [
+        { "h": "Introduction (5 min)" },
+        { "ul": [
+          "Say that there are no wrong answers. The stars show that a character is noticing something new.",
+          "Say that the story is about people their age and that they decide what the characters do."
+        ] },
+        { "h": "During play (30 min)" },
+        { "ul": [
+          "Groups of two or three. One person reads aloud, one operates the device. Swap roles at every new scene.",
+          "Each choice card shows who acts. You can give each student “their” character and let them decide when that character’s choices come up.",
+          "Let different groups start with different threads, then compare in the debrief.",
+          "“Continue” sets the pace. Stop when a choice appears and ask “Why this one?” before the group clicks.",
+          "Underlined words can be tapped. The explanation appears in the interface language."
+        ] }
+      ]
+    },
+    {
+      "h": "4. Supporting the Finnish",
+      "blocks": [
+        { "ul": [
+          "Encourage students to guess from context and from the pictures before they tap a word.",
+          "Do not correct pronunciation or grammar during play. Note useful words and come back to them in the debrief.",
+          "The café thread has a “Finnish Quest”: a successful exchange matters more than a perfect sentence. Give feedback in the same spirit.",
+          "Offer sentence frames: “Anteeksi, voitko sanoa uudelleen?”, “Mitä se tarkoittaa?”, “Minä valitsen tämän, koska …”.",
+          "Differentiation: stronger readers can read the dialogue in roles. Weaker readers can work in a pair and use the glossary and a larger text size."
+        ] }
+      ]
+    },
+    {
+      "h": "5. Talking about the stars and the endings",
+      "blocks": [
+        { "ul": [
+          "Say clearly that stars are not a grade. If students start to “maximise”, ask instead: “What did this character notice?”",
+          "Playing again is encouraged. Different threads and choices lead to different endings.",
+          "No ending is “bad”. Everyone finding a direction is deliberately rare: it needs two threads and several well-fitting choices.",
+          "If a character ends with few stars, ask what that character could try next. The story never says the character failed."
+        ] }
+      ]
+    },
+    {
+      "h": "6. Sensitive moments",
+      "blocks": [
+        { "ul": [
+          "Thread A: a small grass fire and a call to the emergency number 112. Nobody is hurt (the scene has a content note). Some students may have had difficult experiences with emergencies or authorities.",
+          "Thread B: Mateo says he will quit school at 18. The final scene shows six options with what each opens and closes. None is the “right” one. Do not steer students toward staying or leaving.",
+          "Thread C: speaking Finnish in public can be embarrassing. Normalise mistakes and make a joke of your own.",
+          "The characters are new in Finland, and students may recognise their own situation. Do not ask students to tell their own story. Invite them to talk about the characters: “What would Amira say?”",
+          "If a student shares something worrying, follow your institution’s procedures and refer them to the appropriate support. The game is not a counselling tool."
+        ] }
+      ]
+    },
+    {
+      "h": "7. Debrief questions (15 to 20 min)",
+      "blocks": [
+        { "h": "For every group" },
+        { "ul": [
+          "Which choice was the hardest? Whose choice surprised you?",
+          "What did a character notice that they had not noticed before?",
+          "What small step could this character take next week?"
+        ] },
+        { "h": "Thread A: the ditch" },
+        { "ul": [
+          "Which skills did the characters use (curiosity, staying calm, asking, building)?",
+          "What do people do all day in jobs like logistics, packaging or engineering?"
+        ] },
+        { "h": "Thread B: the empty shop unit" },
+        { "ul": [
+          "Selling price minus purchase price: what is left, and what must it pay for?",
+          "Who is the customer? What did the first customer teach the group?",
+          "What does each of Mateo’s six options open and close? Can the decision be changed later?"
+        ] },
+        { "h": "Thread C: the café" },
+        { "ul": [
+          "What helped when the Finnish was difficult?",
+          "What do you already know how to do that a workplace in Finland could use?",
+          "The first idea did not work. What would you change?"
+        ] },
+        { "h": "Optional and voluntary" },
+        { "ul": [
+          "Which character is closest to someone you know? Keep it in the third person and never require an answer."
+        ] }
+      ]
+    },
+    {
+      "h": "8. Follow-up activities",
+      "blocks": [
+        { "ul": [
+          "Writing: continue one character’s story one year later, in five Finnish sentences.",
+          "Role-play the café order or the customer return, using the sentence frames.",
+          "Mini research: choose a job from the story and find a training path in your local system. You provide the local information, because the game does not contain it.",
+          "Compare the endings that different groups reached, and discuss what each group chose and why."
+        ] }
+      ]
+    },
+    {
+      "h": "9. Practical notes",
+      "blocks": [
+        { "ul": [
+          "“Restart” starts again and keeps the list of endings already seen. “Clear saved progress” erases everything.",
+          "The story text is in one JSON file per language, so it can be edited or swapped for another dialogue language. See the README in the project.",
+          "Illustrations can be added to the images folder. Until then, the panels show placeholders with a description."
+        ] }
+      ]
+    }
+  ]
+}

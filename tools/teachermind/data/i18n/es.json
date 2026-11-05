@@ -57,5 +57,8 @@
   "aiAttribP1": "Esta herramienta fue construida mediante una colaboración iterativa entre Elisa Schaeffer, Decana de Tecnología y Diseño en el Collège LaSalle Montréal, y Claude (Anthropic), un asistente de IA. El contenido pedagógico, la estructura, las funcionalidades, las prioridades y las decisiones editoriales fueron definidos, cuestionados y afinados por Elisa en cada etapa. Claude generó el código, propuso formulaciones y señaló incoherencias, pero cada decisión sustancial fue tomada por una persona.",
   "aiAttribP2": "No es contenido generado por IA de una sola vez. Es el resultado de un diálogo de revisión prolongado: cada sesión fue leída, criticada y corregida. La herramienta sigue evolucionando.",
   "aiAttribP3Strong": "Uso reflexivo de la IA",
-  "aiAttribP3Rest": "La IA generativa es una herramienta de trabajo, no un sustituto del juicio profesional. Este proyecto ilustra un enfoque en el que la persona sigue siendo la autora: la IA amplía la capacidad de producción, pero la responsabilidad editorial, pedagógica y ética sigue siendo enteramente humana. Última actualización: octubre de 2026."
+  "aiAttribP3Rest": "La IA generativa es una herramienta de trabajo, no un sustituto del juicio profesional. Este proyecto ilustra un enfoque en el que la persona sigue siendo la autora: la IA amplía la capacidad de producción, pero la responsabilidad editorial, pedagógica y ética sigue siendo enteramente humana. Última actualización: octubre de 2026.",
+  "teachers": "Para docentes",
+  "teacherPrint": "Imprimir",
+  "teacherLoadError": "No se pudo cargar la guía para docentes."
 }

@@ -57,5 +57,8 @@
   "aiAttribP1": "This tool was built through an iterative collaboration between Elisa Schaeffer, Dean of Technology and Design at Collège LaSalle Montréal, and Claude (Anthropic), an AI assistant. The pedagogical content, structure, features, priorities, and editorial choices were defined, questioned, and refined by Elisa at every step. Claude generated the code, proposed wording, and flagged inconsistencies — but every substantive decision was made by a human.",
   "aiAttribP2": "This is not one-shot AI-generated content. It is the result of an extended review dialogue: each session was read, critiqued, and corrected. The tool continues to evolve.",
   "aiAttribP3Strong": "Thoughtful use of AI",
-  "aiAttribP3Rest": "Generative AI is a working tool, not a substitute for professional judgment. This project illustrates an approach where the human remains the author: AI amplifies production capacity, but editorial, pedagogical, and ethical responsibility remains entirely human. Last updated: October 2026."
+  "aiAttribP3Rest": "Generative AI is a working tool, not a substitute for professional judgment. This project illustrates an approach where the human remains the author: AI amplifies production capacity, but editorial, pedagogical, and ethical responsibility remains entirely human. Last updated: October 2026.",
+  "teachers": "For teachers",
+  "teacherPrint": "Print",
+  "teacherLoadError": "Teacher guide could not be loaded."
 }

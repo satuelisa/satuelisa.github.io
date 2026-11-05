@@ -25,6 +25,7 @@
           <!-- language buttons are generated from data/config.json -->
         </div>
         <button type="button" class="btn btn-ghost" id="btnTheme"><span id="btnThemeLabel">Dark mode</span></button>
+        <button type="button" class="btn btn-ghost" id="btnTeachers" aria-haspopup="dialog"><span aria-hidden="true">🍎</span> <span data-i18n="teachers">For teachers</span></button>
         <button type="button" class="btn btn-ghost" id="btnSettings" aria-haspopup="dialog"><span aria-hidden="true">⚙</span> <span data-i18n="settings">Settings</span></button>
         <button type="button" class="btn btn-ghost" id="btnRestart" hidden><span aria-hidden="true">↺</span> <span data-i18n="restart">Restart</span></button>
       </div>
@@ -135,6 +136,20 @@
         <button class="btn btn-primary" value="close"><span data-i18n="closeSettings">Close</span></button>
       </div>
     </form>
+  </dialog>
+
+  <!-- teacher guide (content from data/teacher/teacher.<lang>.json) -->
+  <dialog class="dialog dialog-wide" id="dlgTeachers" aria-labelledby="teacherTitle">
+    <div class="dialog-body">
+      <div class="teacher-head">
+        <h2 id="teacherTitle"></h2>
+        <div class="teacher-tools">
+          <button type="button" class="btn btn-small" id="btnTeacherPrint"><span data-i18n="teacherPrint">Print</span></button>
+          <button type="button" class="btn btn-primary btn-small" id="btnTeacherClose"><span data-i18n="closeSettings">Close</span></button>
+        </div>
+      </div>
+      <div class="teacher-content" id="teacherContent"></div>
+    </div>
   </dialog>
 
   <!-- confirm dialog (restart / clear) -->

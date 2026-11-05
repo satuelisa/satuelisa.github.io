@@ -2,11 +2,31 @@
   "storageKey": "tulevaisuuden-tahdet",
   "defaultUiLanguage": "en",
   "uiLanguages": [
-    { "code": "en", "short": "EN", "label": "English" },
-    { "code": "es", "short": "ES", "label": "Español" },
-    { "code": "fr", "short": "FR", "label": "Français" },
-    { "code": "fi", "short": "FI", "label": "Suomi" },
-    { "code": "sv", "short": "SV", "label": "Svenska" }
+    {
+      "code": "en",
+      "short": "EN",
+      "label": "English"
+    },
+    {
+      "code": "es",
+      "short": "ES",
+      "label": "Español"
+    },
+    {
+      "code": "fr",
+      "short": "FR",
+      "label": "Français"
+    },
+    {
+      "code": "fi",
+      "short": "FI",
+      "label": "Suomi"
+    },
+    {
+      "code": "sv",
+      "short": "SV",
+      "label": "Svenska"
+    }
   ],
   "i18nPath": "data/i18n/{lang}.json",
   "glossaryPath": "data/glossary/glossary.{lang}.json",
@@ -18,8 +38,12 @@
       "path": "data/stories/ojanpenkka",
       "defaultTextLanguage": "fi",
       "textLanguages": [
-        { "code": "fi", "label": "Suomi" }
+        {
+          "code": "fi",
+          "label": "Suomi"
+        }
       ]
     }
-  }
+  },
+  "teacherPath": "data/teacher/teacher.{lang}.json"
 }

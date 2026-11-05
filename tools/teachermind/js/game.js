@@ -79,6 +79,55 @@
     updateThemeButton();
   }
 
+  // ---------------------------------------------------------------- teacher guide
+  // Content is loaded on demand from config.teacherPath (one JSON per interface language, English fallback).
+  async function loadTeacherGuide() {
+    const path = (l) => config.teacherPath.replace("{lang}", l);
+    try {
+      return await fetchJSON(path(prefs.ui));
+    } catch (e) {
+      return fetchJSON(path(config.defaultUiLanguage));
+    }
+  }
+
+  function renderTeacherGuide(guide) {
+    $("#teacherTitle").textContent = guide.title;
+    const box = $("#teacherContent");
+    box.replaceChildren();
+    const add = (tag, text, parent = box) => {
+      const el = document.createElement(tag);
+      el.textContent = text;
+      parent.appendChild(el);
+      return el;
+    };
+    if (guide.intro) add("p", guide.intro);
+    (guide.sections || []).forEach((sec) => {
+      add("h3", sec.h);
+      (sec.blocks || []).forEach((b) => {
+        if (typeof b === "string") add("p", b);
+        else if (b.h) add("h4", b.h);
+        else if (b.p) add("p", b.p);
+        else if (b.ul) {
+          const ul = document.createElement("ul");
+          b.ul.forEach((li) => add("li", li, ul));
+          box.appendChild(ul);
+        }
+      });
+    });
+  }
+
+  async function openTeacherGuide() {
+    try {
+      renderTeacherGuide(await loadTeacherGuide());
+    } catch (e) {
+      showLoadError(new Error(t("teacherLoadError")));
+      return;
+    }
+    const dlg = $("#dlgTeachers");
+    if (!dlg.open) dlg.showModal();
+    $("#teacherContent").scrollTop = 0;
+  }
+
   // ---------------------------------------------------------------- theme / size
   function isDark() { return document.documentElement.getAttribute("data-theme") === "dark"; }
 
@@ -737,6 +786,7 @@
     updateLanguageButtons();
     closeGloss();
     renderAll(true);   // re-render dynamic content (party labels, buttons, notes)
+    if ($("#dlgTeachers").open) loadTeacherGuide().then(renderTeacherGuide).catch(() => {});
   }
 
   function buildTextLanguageSelect(storyCfg) {
@@ -786,6 +836,9 @@
     $("#btnTheme").addEventListener("click", toggleTheme);
     $("#btnSettings").addEventListener("click", () => { updateSizeButtons(); $("#dlgSettings").showModal(); });
     $("#btnRestart").addEventListener("click", askRestart);
+    $("#btnTeachers").addEventListener("click", openTeacherGuide);
+    $("#btnTeacherClose").addEventListener("click", () => $("#dlgTeachers").close());
+    $("#btnTeacherPrint").addEventListener("click", () => window.print());
     $("#btnClearSettings").addEventListener("click", () => { $("#dlgSettings").close(); askClear(); });
     $("#btnClearEnding").addEventListener("click", askClear);
     $("#btnTryAgain").addEventListener("click", restartStory);

@@ -40,6 +40,10 @@ tools/validate.py
 - `story.json` has `version`; changing it invalidates old saved progress.
 - Balance check: `python3 tools/validate.py --simulate --sample 20000` (random playthroughs; plain `--simulate` is exact but slow).
 
+## Teacher guide
+
+The "For teachers" button in the header opens a printable guide. Its content is in `data/teacher/teacher.<lang>.json` (one file per interface language; path set by `teacherPath` in `config.json`). Format: `title`, `intro`, and `sections` of `{h, blocks}` where a block is `{h}` (sub-heading), `{ul: [...]}` or a paragraph string. `tools/validate.py` checks that all languages have the same structure. The guide was drafted with AI help: check the Finnish-education facts against your local system.
+
 ## Editing the story
 
 **Text** lives only in `text.fi.json`. Keys follow the structure of `story.json`:

@@ -57,5 +57,8 @@
   "aiAttribP1": "Det här verktyget har byggts genom ett iterativt samarbete mellan Elisa Schaeffer, dekanus för teknik och design vid Collège LaSalle Montréal, och Claude (Anthropic), en AI-assistent. Det pedagogiska innehållet, strukturen, funktionerna, prioriteringarna och de redaktionella valen definierades, ifrågasattes och finslipades av Elisa i varje steg. Claude genererade koden, föreslog formuleringar och påpekade inkonsekvenser – men varje väsentligt beslut fattades av en människa.",
   "aiAttribP2": "Det här är inte innehåll som AI genererat i ett svep. Det är resultatet av en lång granskningsdialog: varje session lästes, kritiserades och rättades. Verktyget fortsätter att utvecklas.",
   "aiAttribP3Strong": "Eftertänksam användning av AI",
-  "aiAttribP3Rest": "Generativ AI är ett arbetsverktyg, inte en ersättning för professionellt omdöme. Projektet illustrerar ett förhållningssätt där människan förblir upphovsperson: AI ökar produktionskapaciteten, men det redaktionella, pedagogiska och etiska ansvaret ligger helt hos människan. Senast uppdaterad: oktober 2026."
+  "aiAttribP3Rest": "Generativ AI är ett arbetsverktyg, inte en ersättning för professionellt omdöme. Projektet illustrerar ett förhållningssätt där människan förblir upphovsperson: AI ökar produktionskapaciteten, men det redaktionella, pedagogiska och etiska ansvaret ligger helt hos människan. Senast uppdaterad: oktober 2026.",
+  "teachers": "För lärare",
+  "teacherPrint": "Skriv ut",
+  "teacherLoadError": "Lärarhandledningen kunde inte laddas."
 }

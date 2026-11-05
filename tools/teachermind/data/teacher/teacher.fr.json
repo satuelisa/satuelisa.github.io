@@ -1,0 +1,135 @@
+{
+  "title": "Guide de l’enseignant·e",
+  "intro": "Ce guide t’aide à animer Tulevaisuuden tähdet avec un groupe de jeunes qui apprennent le finnois. Le jeu est un outil de conversation, pas un test. Les élèves lisent en finnois, font des choix pour les personnages et discutent de ce qu’ils remarquent. Les durées sont des suggestions : adapte-les à ton groupe.",
+  "sections": [
+    {
+      "h": "1. Ce qu’est le jeu, et ce qu’il n’est pas",
+      "blocks": [
+        { "ul": [
+          "Cinq jeunes passent un après-midi dans un centre commercial. Il y a trois lieux à visiter : le fossé (fil A), le local vide (fil B) et le café (fil C). Un groupe a le temps d’en faire deux sur trois.",
+          "Chaque choix est fait pour l’un des personnages. Les étoiles (de 0 à 5) montrent à quel point ce personnage voit une direction. Une étoile récompense le fait de remarquer une possibilité, jamais une « bonne réponse ».",
+          "Le jeu n’est pas évalué, ne donne aucune note et n’est ni de l’orientation professionnelle ni de l’accompagnement psychologique."
+        ] }
+      ]
+    },
+    {
+      "h": "2. Avant la séance",
+      "blocks": [
+        { "ul": [
+          "Joue-le une fois toi-même (de 20 à 30 minutes environ) dans la langue d’interface que tes élèves utiliseront.",
+          "Plan suggéré pour 60 minutes : 5 min d’introduction, 30 min de jeu, 20 min de retour en groupe, 5 min de clôture.",
+          "Un appareil par duo ou trio. La progression est sauvegardée dans le navigateur. Si des groupes partagent un appareil, utilise « Effacer la progression sauvegardée » (Paramètres) entre les groupes.",
+          "Choisis comme langue d’interface la langue que les élèves maîtrisent le mieux. L’histoire reste en finnois. La taille du texte se change dans les Paramètres.",
+          "Lis la section 6 (moments sensibles) et décide si un fil ne convient pas à ton groupe.",
+          "À vérifier avant l’utilisation : le texte finnois et les faits sur les études et le travail en Finlande (p. ex. école professionnelle, enseignement supérieur, stage) ont été rédigés avec l’aide de l’IA. Fais-les vérifier selon ton système local et par une personne qui parle finnois."
+        ] }
+      ]
+    },
+    {
+      "h": "3. Animer la séance",
+      "blocks": [
+        { "h": "Introduction (5 min)" },
+        { "ul": [
+          "Dis qu’il n’y a pas de mauvaise réponse. Les étoiles montrent qu’un personnage remarque quelque chose de nouveau.",
+          "Dis que l’histoire parle de gens de leur âge et que ce sont eux qui décident ce que font les personnages."
+        ] },
+        { "h": "Pendant le jeu (30 min)" },
+        { "ul": [
+          "Groupes de deux ou trois. Une personne lit à voix haute, une autre manipule l’appareil. Changez de rôle à chaque nouvelle scène.",
+          "Chaque carte de choix indique qui agit. Tu peux donner à chaque élève « son » personnage et lui laisser décider quand les choix de ce personnage arrivent.",
+          "Laisse des groupes différents commencer par des fils différents, puis comparez au retour en groupe.",
+          "Le bouton « Continuer » donne le rythme. Arrête-toi quand un choix apparaît et demande « Pourquoi celui-là ? » avant que le groupe clique.",
+          "Les mots soulignés sont cliquables. L’explication s’affiche dans la langue d’interface."
+        ] }
+      ]
+    },
+    {
+      "h": "4. Soutenir le finnois",
+      "blocks": [
+        { "ul": [
+          "Encourage les élèves à deviner à partir du contexte et des images avant de toucher un mot.",
+          "Ne corrige ni la prononciation ni la grammaire pendant le jeu. Note les mots utiles et reviens-y au retour en groupe.",
+          "Le fil du café contient une « Finnish Quest » : un échange réussi compte plus qu’une phrase parfaite. Donne ta rétroaction dans le même esprit.",
+          "Propose des structures de phrases : « Anteeksi, voitko sanoa uudelleen? », « Mitä se tarkoittaa? », « Minä valitsen tämän, koska … ».",
+          "Différenciation : les lecteurs plus à l’aise peuvent lire les dialogues par rôles. Les autres peuvent travailler en duo et utiliser le glossaire et une taille de texte plus grande."
+        ] }
+      ]
+    },
+    {
+      "h": "5. Parler des étoiles et des fins",
+      "blocks": [
+        { "ul": [
+          "Dis clairement que les étoiles ne sont pas une note. Si les élèves cherchent à « maximiser », demande plutôt : « Qu’est-ce que ce personnage a remarqué ? »",
+          "Rejouer est encouragé. Des fils et des choix différents mènent à des fins différentes.",
+          "Aucune fin n’est « mauvaise ». Que tout le monde trouve une direction est volontairement rare : il faut deux fils et plusieurs choix bien adaptés.",
+          "Si un personnage termine avec peu d’étoiles, demande ce qu’il pourrait essayer ensuite. L’histoire ne dit jamais qu’il a échoué."
+        ] }
+      ]
+    },
+    {
+      "h": "6. Moments sensibles",
+      "blocks": [
+        { "ul": [
+          "Fil A : un petit feu d’herbe et un appel au numéro d’urgence 112. Personne n’est blessé (la scène a une note sur le contenu). Certains élèves ont peut-être vécu des expériences difficiles avec des urgences ou des autorités.",
+          "Fil B : Mateo dit qu’il quittera l’école à 18 ans. La scène finale présente six options, avec ce que chacune ouvre et ferme. Aucune n’est la « bonne ». N’oriente pas les élèves vers rester ou partir.",
+          "Fil C : parler finnois en public peut être gênant. Normalise les erreurs et fais une blague sur les tiennes.",
+          "Les personnages sont nouveaux en Finlande et les élèves peuvent reconnaître leur propre situation. Ne demande pas aux élèves de raconter leur histoire. Invite-les à parler des personnages : « Qu’est-ce qu’Amira dirait ? »",
+          "Si un élève confie quelque chose d’inquiétant, suis les procédures de ton établissement et dirige-le vers le soutien approprié. Le jeu n’est pas un outil d’intervention psychologique."
+        ] }
+      ]
+    },
+    {
+      "h": "7. Questions pour le retour en groupe (15 à 20 min)",
+      "blocks": [
+        { "h": "Pour tous les groupes" },
+        { "ul": [
+          "Quel choix a été le plus difficile ? Le choix de qui t’a surpris ?",
+          "Qu’est-ce qu’un personnage a remarqué qu’il n’avait pas remarqué avant ?",
+          "Quel petit pas ce personnage pourrait-il faire la semaine prochaine ?"
+        ] },
+        { "h": "Fil A : le fossé" },
+        { "ul": [
+          "Quelles compétences les personnages ont-ils utilisées (curiosité, calme, poser des questions, construire) ?",
+          "Que font les gens toute la journée dans des métiers comme la logistique, l’emballage ou l’ingénierie ?"
+        ] },
+        { "h": "Fil B : le local vide" },
+        { "ul": [
+          "Prix de vente moins prix d’achat : que reste-t-il et que doit-on payer avec ?",
+          "Qui est le client ? Qu’est-ce que le premier client a appris au groupe ?",
+          "Qu’est-ce que chacune des six options de Mateo ouvre et ferme ? Peut-on changer la décision plus tard ?"
+        ] },
+        { "h": "Fil C : le café" },
+        { "ul": [
+          "Qu’est-ce qui t’a aidé quand le finnois était difficile ?",
+          "Que sais-tu déjà faire qu’un lieu de travail en Finlande pourrait utiliser ?",
+          "La première idée n’a pas fonctionné. Que changerais-tu ?"
+        ] },
+        { "h": "Facultatif et volontaire" },
+        { "ul": [
+          "Quel personnage ressemble le plus à quelqu’un que tu connais ? Reste à la troisième personne et n’exige jamais de réponse."
+        ] }
+      ]
+    },
+    {
+      "h": "8. Activités de prolongement",
+      "blocks": [
+        { "ul": [
+          "Écriture : continuer l’histoire d’un personnage un an plus tard, en cinq phrases en finnois.",
+          "Jeu de rôle : la commande au café ou le retour d’un article, avec les structures de phrases.",
+          "Mini-recherche : choisir un métier de l’histoire et trouver un parcours de formation dans ton système local. C’est toi qui fournis l’information locale, car le jeu ne la contient pas.",
+          "Comparer les fins atteintes par différents groupes, et discuter de ce que chaque groupe a choisi et pourquoi."
+        ] }
+      ]
+    },
+    {
+      "h": "9. Notes pratiques",
+      "blocks": [
+        { "ul": [
+          "« Recommencer » repart au début et garde la liste des fins déjà vues. « Effacer la progression sauvegardée » efface tout.",
+          "Le texte de l’histoire est dans un fichier JSON par langue : on peut le modifier ou le remplacer par une autre langue de dialogue. Voir le README du projet.",
+          "On peut ajouter des illustrations dans le dossier d’images. D’ici là, les cases affichent des espaces réservés avec une description."
+        ] }
+      ]
+    }
+  ]
+}
