@@ -1,0 +1,283 @@
+{
+  "id": "kaksiunelmaa",
+  "version": 1,
+  "start": "k00_intro",
+  "howto": "C",
+  "maxStars": 1,
+  "purposeThreshold": null,
+  "characters": {
+    "narrator": {"type": "npc", "color": "#475569", "initial": "K", "portrait": null},
+    "pelaaja": {"type": "npc", "color": "#1E3A8A", "initial": "P", "portrait": null},
+    "valmentaja": {"type": "npc", "color": "#7C2D12", "initial": "V", "portrait": null},
+    "opettaja": {"type": "npc", "color": "#0F766E", "initial": "O", "portrait": null},
+    "ohjaaja": {"type": "npc", "color": "#B45309", "initial": "T", "portrait": null},
+    "kaveri": {"type": "npc", "color": "#BE185D", "initial": "J", "portrait": null},
+    "star_kuuluminen": {"type": "protagonist", "color": "#C2410C", "initial": "★", "portrait": null, "max": 1},
+    "star_sinnikkyys": {"type": "protagonist", "color": "#1D4ED8", "initial": "★", "portrait": null, "max": 1},
+    "star_luottamus": {"type": "protagonist", "color": "#047857", "initial": "★", "portrait": null, "max": 1},
+    "star_resilienssi": {"type": "protagonist", "color": "#7E22CE", "initial": "★", "portrait": null, "max": 1},
+    "star_osaaminen": {"type": "protagonist", "color": "#B45309", "initial": "★", "portrait": null, "max": 1},
+    "star_yhteiso": {"type": "protagonist", "color": "#BE185D", "initial": "★", "portrait": null, "max": 1},
+    "star_tulevaisuus": {"type": "protagonist", "color": "#9333EA", "initial": "★", "portrait": null, "max": 1},
+    "star_toivo": {"type": "protagonist", "color": "#0369A1", "initial": "★", "portrait": null, "max": 1}
+  },
+  "scenes": {
+    "k00_intro": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🏒",
+          "tone": 3,
+          "pos": "center 60%"
+        },
+        {"id": "p2", "image": null, "emoji": "📚", "tone": 2}
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "pelaaja", "p": 1},
+        {"id": "l3", "s": "opettaja", "p": 1}
+      ],
+      "next": "k10_hub"
+    },
+    "k10_hub": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🪑",
+          "tone": 4,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [
+        {
+          "id": "h1",
+          "s": "narrator",
+          "p": 0,
+          "if": {"not": {"count": {"flags": ["doneK12", "doneK13"], "gte": 1}}}
+        },
+        {"id": "h2", "s": "narrator", "p": 0, "if": {"count": {"flags": ["doneK12", "doneK13"], "gte": 1}}}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_12",
+          "actor": "pelaaja",
+          "next": "k12",
+          "requires": {"not": {"flag": "doneK12"}},
+          "reaction": []
+        },
+        {
+          "id": "c_13",
+          "actor": "pelaaja",
+          "next": "k13",
+          "requires": {"not": {"flag": "doneK13"}},
+          "reaction": []
+        },
+        {
+          "id": "c_close",
+          "actor": "pelaaja",
+          "next": "k90_dual",
+          "requires": {"count": {"flags": ["doneK12", "doneK13"], "gte": 1}},
+          "reaction": []
+        }
+      ]
+    },
+    "k12": {
+      "note": true,
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🩹", "tone": 4}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "pelaaja", "p": 0},
+        {"id": "l3", "s": "kaveri", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "pelaaja", "next": "k12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "pelaaja", "next": "k12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "pelaaja", "next": "k12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "pelaaja",
+          "next": "k12_t",
+          "flags": ["altK12"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "k12_t": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🩹", "tone": 4}],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altK12"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altK12"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altK12"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "pelaaja",
+          "next": "k10_hub",
+          "flags": ["doneK12"],
+          "effects": [
+            {"char": "star_kuuluminen", "stars": 1, "once": "got_kuuluminen"},
+            {"char": "star_sinnikkyys", "stars": 1, "once": "got_sinnikkyys"}
+          ],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "pelaaja", "next": "k12", "reaction": []},
+        {"id": "c_skip", "actor": "pelaaja", "next": "k10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "k13": {
+      "note": true,
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🪑",
+          "tone": 3,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "pelaaja", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "pelaaja", "next": "k13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "pelaaja", "next": "k13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "pelaaja", "next": "k13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "pelaaja",
+          "next": "k13_t",
+          "flags": ["altK13"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "k13_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🪑",
+          "tone": 3,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altK13"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altK13"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altK13"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "pelaaja",
+          "next": "k10_hub",
+          "flags": ["doneK13"],
+          "effects": [
+            {"char": "star_resilienssi", "stars": 1, "once": "got_resilienssi"},
+            {"char": "star_osaaminen", "stars": 1, "once": "got_osaaminen"}
+          ],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "pelaaja", "next": "k13", "reaction": []},
+        {"id": "c_skip", "actor": "pelaaja", "next": "k10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "k90_dual": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🛤️", "tone": 6}],
+      "lines": [{"id": "l1", "s": "opettaja", "p": 0}, {"id": "l2", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 2},
+      "next": "k91_close",
+      "choices": [
+        {
+          "id": "c_liiketoiminta",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_yrittajyys",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_markkinointi",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_tapahtuma",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_myynti",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_valmennus",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_urheiluliike",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_vayla",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        },
+        {
+          "id": "c_amk",
+          "actor": "pelaaja",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "k91_close": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🚶", "tone": 5}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "opettaja", "p": 0},
+        {"id": "l3", "s": "opettaja", "p": 0},
+        {"id": "l4", "s": "opettaja", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_end",
+          "actor": "pelaaja",
+          "next": "@ending",
+          "effects": [
+            {"char": "star_yhteiso", "stars": 1, "once": "got_yhteiso"},
+            {"char": "star_luottamus", "stars": 1, "once": "got_luottamus"},
+            {"char": "star_toivo", "stars": 1, "once": "got_toivo"}
+          ],
+          "reaction": []
+        }
+      ]
+    }
+  },
+  "endings": [{"id": "end", "when": {}}]
+}

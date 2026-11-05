@@ -1,0 +1,1257 @@
+{
+  "id": "minunpolku",
+  "version": 1,
+  "start": "m00_start",
+  "howto": "C",
+  "maxStars": 15,
+  "purposeThreshold": null,
+  "hideResults": true,
+  "startRulesTitle": "story.rules.title",
+  "startRules": ["story.rules.1", "story.rules.2", "story.rules.3", "story.rules.4", "story.rules.5", "story.rules.6"],
+  "characters": {
+    "narrator": {"type": "npc", "color": "#475569", "initial": "K", "portrait": null},
+    "nuori": {"type": "protagonist", "color": "#0F766E", "initial": "N", "portrait": null, "max": 15}
+  },
+  "scenes": {
+    "m00_start": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/keuda-sign.jpg",
+          "emoji": "🏫",
+          "tone": 2,
+          "pos": "center 60%"
+        },
+        {
+          "id": "p2",
+          "image": "images/panels/keuda/keuda-entrance.jpg",
+          "emoji": "🚪",
+          "tone": 3,
+          "pos": "center 35%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "narrator", "p": 1},
+        {"id": "l3", "s": "narrator", "p": 1}
+      ],
+      "next": "m10_hub"
+    },
+    "m10_hub": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-windows.jpg",
+          "emoji": "🗺️",
+          "tone": 3,
+          "pos": "center 40%"
+        }
+      ],
+      "lines": [
+        {"id": "h1", "s": "narrator", "p": 0, "if": {"not": {"flag": "starR01"}}},
+        {"id": "h2", "s": "narrator", "p": 0, "if": {"flag": "starR01"}}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_r01",
+          "actor": "nuori",
+          "next": "r01",
+          "requires": {"not": {"flag": "starR01"}},
+          "reaction": []
+        },
+        {"id": "c_r01d", "actor": "nuori", "next": "r01", "requires": {"flag": "starR01"}, "reaction": []},
+        {
+          "id": "c_r02",
+          "actor": "nuori",
+          "next": "r02",
+          "requires": {"not": {"flag": "starR02"}},
+          "reaction": []
+        },
+        {"id": "c_r02d", "actor": "nuori", "next": "r02", "requires": {"flag": "starR02"}, "reaction": []},
+        {
+          "id": "c_r03",
+          "actor": "nuori",
+          "next": "r03",
+          "requires": {"not": {"flag": "starR03"}},
+          "reaction": []
+        },
+        {"id": "c_r03d", "actor": "nuori", "next": "r03", "requires": {"flag": "starR03"}, "reaction": []},
+        {
+          "id": "c_r04",
+          "actor": "nuori",
+          "next": "r04",
+          "requires": {"not": {"flag": "starR04"}},
+          "reaction": []
+        },
+        {"id": "c_r04d", "actor": "nuori", "next": "r04", "requires": {"flag": "starR04"}, "reaction": []},
+        {
+          "id": "c_r05",
+          "actor": "nuori",
+          "next": "r05",
+          "requires": {"not": {"flag": "starR05"}},
+          "reaction": []
+        },
+        {"id": "c_r05d", "actor": "nuori", "next": "r05", "requires": {"flag": "starR05"}, "reaction": []},
+        {
+          "id": "c_r06",
+          "actor": "nuori",
+          "next": "r06",
+          "requires": {"not": {"flag": "starR06"}},
+          "reaction": []
+        },
+        {"id": "c_r06d", "actor": "nuori", "next": "r06", "requires": {"flag": "starR06"}, "reaction": []},
+        {
+          "id": "c_r07",
+          "actor": "nuori",
+          "next": "r07",
+          "requires": {"not": {"flag": "starR07"}},
+          "reaction": []
+        },
+        {"id": "c_r07d", "actor": "nuori", "next": "r07", "requires": {"flag": "starR07"}, "reaction": []},
+        {
+          "id": "c_r08",
+          "actor": "nuori",
+          "next": "r08",
+          "requires": {"not": {"flag": "starR08"}},
+          "reaction": []
+        },
+        {"id": "c_r08d", "actor": "nuori", "next": "r08", "requires": {"flag": "starR08"}, "reaction": []},
+        {
+          "id": "c_r09",
+          "actor": "nuori",
+          "next": "r09",
+          "requires": {"not": {"flag": "starR09"}},
+          "reaction": []
+        },
+        {"id": "c_r09d", "actor": "nuori", "next": "r09", "requires": {"flag": "starR09"}, "reaction": []},
+        {
+          "id": "c_r10",
+          "actor": "nuori",
+          "next": "r10",
+          "requires": {"not": {"flag": "starR10"}},
+          "reaction": []
+        },
+        {"id": "c_r10d", "actor": "nuori", "next": "r10", "requires": {"flag": "starR10"}, "reaction": []},
+        {
+          "id": "c_r11",
+          "actor": "nuori",
+          "next": "r11",
+          "requires": {"not": {"flag": "starR11"}},
+          "reaction": []
+        },
+        {"id": "c_r11d", "actor": "nuori", "next": "r11", "requires": {"flag": "starR11"}, "reaction": []},
+        {
+          "id": "c_r12",
+          "actor": "nuori",
+          "next": "r12",
+          "requires": {"not": {"flag": "starR12"}},
+          "reaction": []
+        },
+        {"id": "c_r12d", "actor": "nuori", "next": "r12", "requires": {"flag": "starR12"}, "reaction": []},
+        {
+          "id": "c_r13",
+          "actor": "nuori",
+          "next": "r13",
+          "requires": {"not": {"flag": "starR13"}},
+          "reaction": []
+        },
+        {"id": "c_r13d", "actor": "nuori", "next": "r13", "requires": {"flag": "starR13"}, "reaction": []},
+        {
+          "id": "c_r14",
+          "actor": "nuori",
+          "next": "r14",
+          "requires": {"not": {"flag": "starR14"}},
+          "reaction": []
+        },
+        {"id": "c_r14d", "actor": "nuori", "next": "r14", "requires": {"flag": "starR14"}, "reaction": []},
+        {
+          "id": "c_r15",
+          "actor": "nuori",
+          "next": "r15",
+          "requires": {"not": {"flag": "starR15"}},
+          "reaction": []
+        },
+        {"id": "c_r15d", "actor": "nuori", "next": "r15", "requires": {"flag": "starR15"}, "reaction": []},
+        {
+          "id": "c_finish",
+          "actor": "nuori",
+          "next": "m90_map",
+          "requires": {
+            "count": {
+              "flags": [
+                "starR01",
+                "starR02",
+                "starR03",
+                "starR04",
+                "starR05",
+                "starR06",
+                "starR07",
+                "starR08",
+                "starR09",
+                "starR10",
+                "starR11",
+                "starR12",
+                "starR13",
+                "starR14",
+                "starR15"
+              ],
+              "gte": 1
+            }
+          },
+          "reaction": []
+        }
+      ]
+    },
+    "r01": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🧭",
+          "tone": 2,
+          "pos": "center 60%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r01_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r01_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r01_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r01_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r01_t",
+          "flags": ["altR01"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r01_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🧭",
+          "tone": 2,
+          "pos": "center 60%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR01"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR01"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR01"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR01"}},
+          "flags": ["doneR01"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR01", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR01"},
+          "flags": ["doneR01"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR01", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r01", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r02": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/keuda-entrance.jpg",
+          "emoji": "🧭",
+          "tone": 3,
+          "pos": "center 35%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r02_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r02_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r02_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r02_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r02_t",
+          "flags": ["altR02"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r02_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/keuda-entrance.jpg",
+          "emoji": "🧭",
+          "tone": 3,
+          "pos": "center 35%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR02"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR02"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR02"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR02"}},
+          "flags": ["doneR02"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR02", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR02"},
+          "flags": ["doneR02"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR02", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r02", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r03": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/stairs-down.jpg",
+          "emoji": "🧭",
+          "tone": 4,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r03_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r03_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r03_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r03_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r03_t",
+          "flags": ["altR03"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r03_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/stairs-down.jpg",
+          "emoji": "🧭",
+          "tone": 4,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR03"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR03"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR03"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR03"}},
+          "flags": ["doneR03"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR03", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR03"},
+          "flags": ["doneR03"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR03", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r03", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r04": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-mural.jpg",
+          "emoji": "🧭",
+          "tone": 5,
+          "pos": "center 75%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r04_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r04_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r04_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r04_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r04_t",
+          "flags": ["altR04"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r04_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-mural.jpg",
+          "emoji": "🧭",
+          "tone": 5,
+          "pos": "center 75%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR04"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR04"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR04"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR04"}},
+          "flags": ["doneR04"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR04", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR04"},
+          "flags": ["doneR04"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR04", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r04", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r05": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r05_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r05_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r05_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r05_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r05_t",
+          "flags": ["altR05"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r05_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR05"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR05"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR05"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR05"}},
+          "flags": ["doneR05"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR05", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR05"},
+          "flags": ["doneR05"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR05", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r05", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r06": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 1,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r06_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r06_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r06_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r06_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r06_t",
+          "flags": ["altR06"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r06_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 1,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR06"}}},
+        {"id": "t_ex0", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR06"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR06"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR06"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR06"}},
+          "flags": ["doneR06"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR06", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR06"},
+          "flags": ["doneR06"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR06", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r06", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r07": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/wall-word-cards.jpg",
+          "emoji": "🧭",
+          "tone": 2,
+          "pos": "center 35%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r07_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r07_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r07_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r07_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r07_t",
+          "flags": ["altR07"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r07_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/wall-word-cards.jpg",
+          "emoji": "🧭",
+          "tone": 2,
+          "pos": "center 35%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR07"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR07"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR07"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR07"}},
+          "flags": ["doneR07"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR07", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR07"},
+          "flags": ["doneR07"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR07", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r07", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r08": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/stairs-rail.jpg",
+          "emoji": "🧭",
+          "tone": 3,
+          "pos": "center 40%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r08_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r08_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r08_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r08_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r08_t",
+          "flags": ["altR08"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r08_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/stairs-rail.jpg",
+          "emoji": "🧭",
+          "tone": 3,
+          "pos": "center 40%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR08"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR08"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR08"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR08"}},
+          "flags": ["doneR08"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR08", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR08"},
+          "flags": ["doneR08"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR08", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r08", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r09": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "🧭",
+          "tone": 4,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r09_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r09_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r09_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r09_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r09_t",
+          "flags": ["altR09"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r09_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "🧭",
+          "tone": 4,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR09"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR09"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR09"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR09"}},
+          "flags": ["doneR09"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR09", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR09"},
+          "flags": ["doneR09"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR09", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r09", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r10": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🧭",
+          "tone": 5,
+          "pos": "center 15%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r10_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r10_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r10_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r10_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r10_t",
+          "flags": ["altR10"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r10_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🧭",
+          "tone": 5,
+          "pos": "center 15%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR10"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR10"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR10"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR10"}},
+          "flags": ["doneR10"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR10", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR10"},
+          "flags": ["doneR10"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR10", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r10", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r11": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-close.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r11_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r11_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r11_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r11_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r11_t",
+          "flags": ["altR11"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r11_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-close.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR11"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR11"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR11"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR11"}},
+          "flags": ["doneR11"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR11", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR11"},
+          "flags": ["doneR11"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR11", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r11", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r12": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-shelf.jpg",
+          "emoji": "🧭",
+          "tone": 1,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r12_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r12_t",
+          "flags": ["altR12"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r12_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-shelf.jpg",
+          "emoji": "🧭",
+          "tone": 1,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR12"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR12"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR12"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR12"}},
+          "flags": ["doneR12"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR12", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR12"},
+          "flags": ["doneR12"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR12", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r12", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r13": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-windows.jpg",
+          "emoji": "🧭",
+          "tone": 2,
+          "pos": "left 40%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r13_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r13_t",
+          "flags": ["altR13"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r13_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-windows.jpg",
+          "emoji": "🧭",
+          "tone": 2,
+          "pos": "left 40%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR13"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR13"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR13"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR13"}},
+          "flags": ["doneR13"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR13", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR13"},
+          "flags": ["doneR13"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR13", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r13", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r14": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/stairs-rail.jpg",
+          "emoji": "🧭",
+          "tone": 3,
+          "pos": "center 70%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r14_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r14_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r14_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r14_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r14_t",
+          "flags": ["altR14"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r14_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/stairs-rail.jpg",
+          "emoji": "🧭",
+          "tone": 3,
+          "pos": "center 70%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR14"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR14"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR14"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR14"}},
+          "flags": ["doneR14"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR14", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR14"},
+          "flags": ["doneR14"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR14", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r14", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "r15": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-windows.jpg",
+          "emoji": "🧭",
+          "tone": 4,
+          "pos": "right 30%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "nuori", "next": "r15_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_b", "actor": "nuori", "next": "r15_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_c", "actor": "nuori", "next": "r15_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {"id": "c_own", "actor": "nuori", "next": "r15_t", "reaction": [{"id": "r1", "s": "narrator"}]},
+        {
+          "id": "c_alt",
+          "actor": "nuori",
+          "next": "r15_t",
+          "flags": ["altR15"],
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "r15_t": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-windows.jpg",
+          "emoji": "🧭",
+          "tone": 4,
+          "pos": "right 30%"
+        }
+      ],
+      "lines": [
+        {"id": "t1", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR15"}}},
+        {"id": "t_alt", "s": "narrator", "p": 0, "if": {"flag": "altR15"}},
+        {"id": "t2", "s": "narrator", "p": 0, "if": {"not": {"flag": "altR15"}}},
+        {"id": "t3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"not": {"flag": "altR15"}},
+          "flags": ["doneR15"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR15", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_done_alt",
+          "actor": "nuori",
+          "next": "m10_hub",
+          "requires": {"flag": "altR15"},
+          "flags": ["doneR15"],
+          "effects": [{"char": "nuori", "stars": 1, "once": "starR15", "label": "star"}],
+          "reaction": []
+        },
+        {"id": "c_again", "actor": "nuori", "next": "r15", "reaction": []},
+        {"id": "c_skip", "actor": "nuori", "next": "m10_hub", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "m90_map": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/keuda-sign.jpg",
+          "emoji": "🌟",
+          "tone": 6,
+          "pos": "center 60%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "narrator", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0},
+        {"id": "l4", "s": "narrator", "p": 0},
+        {"id": "l5", "s": "narrator", "p": 0},
+        {"id": "l6", "s": "narrator", "p": 0},
+        {"id": "l7", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_end", "actor": "nuori", "next": "@ending", "reaction": []}]
+    }
+  },
+  "endings": [{"id": "map", "when": {}}]
+}

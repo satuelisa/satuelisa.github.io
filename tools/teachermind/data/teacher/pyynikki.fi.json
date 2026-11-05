@@ -1,0 +1,100 @@
+{
+  "title": "Opettajan opas: Pyynikin tulevaisuusseikkailu 2030",
+  "intro": "Peli toimii ohjatun retken digitaalisena tehtäväkorttina: tehtävät tehdään Pyynikillä omilla puhelimilla ja vahvistetaan pelissä, jolloin tähti syttyy.",
+  "sections": [
+    {
+      "h": "1. Mikä peli on",
+      "blocks": [
+        {
+          "ul": [
+            "Seitsemän asemaa: näkötorni, munkkikahvila, luontopolku, kulttuurien tori, yrittäjyysasema, työelämäasema ja TAMK-väyläasema. Lopuksi palataan torniin.",
+            "Jokaisella asemalla näkyy tehtävä sekä GreenComp- ja DigComp-osaamiset. Ryhmä vahvistaa tehdyn tehtävän ja saa tähden.",
+            "Tähtiä on yhdeksän: Toivon, Asiakaspalvelun, Digi-, Kestävyyden, Yhteistyön, Yrittäjyyden, Rohkeuden, Työelämän ja Tulevaisuuden tähti."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "2. Ennen retkeä",
+      "blocks": [
+        {
+          "ul": [
+            "Käy reitti itse läpi ja varmista asemien paikat, aukioloajat ja kahvilan hinnat.",
+            "Valmistele työkalut: Forms-lomake (asema 2), Padlet-seinä (asema 4) ja Teams-ryhmä (asema 6). Jokaisella ryhmällä on vähintään yksi toimiva puhelin.",
+            "Tarkista kuvauslupa ja asiakkaiden haastattelun periaatteet. Kuvissa ja videoissa ei kuvata tunnistettavia ihmisiä ilman lupaa.",
+            "Teksti ja tiedot on laadittu tekoälyn avulla. Anna suomea äidinkielenään puhuvan tarkistaa ne."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "3. Retken kulku",
+      "blocks": [
+        {
+          "ul": [
+            "Ryhmät 3–4 hengen ryhmissä. Yksi ryhmä, yksi laite pelille.",
+            "Tehtävät tehdään oikeassa maailmassa. Peli ei tallenna kuvia, vastauksia tai videoita: ne jäävät opiskelijoiden puhelimiin.",
+            "Jos tehtävää ei ehditä tehdä, ryhmä voi jatkaa ilman tähteä ja palata siihen myöhemmin."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Tähtien arviointi",
+      "blocks": [
+        {
+          "ul": [
+            "Peli luottaa ryhmän vahvistukseen. Opettaja voi pyytää näkemään tuotoksen (kuva, lomake, video, Padlet-julkaisu, Teams-suunnitelma).",
+            "Digitähti on yksi tähti, vaikka sitä voi harjoitella usealla asemalla.",
+            "Rohkeus- ja Työelämätähti kuuluvat molemmat asemalle 6 (ohjeen tähtitaulukon rivit puuttuvat, joten kriteerit on luonnosteltu)."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "5. Kielituki",
+      "blocks": [
+        {
+          "ul": [
+            "Sanat voi napauttaa. Anna lauserunkoja: ”Hei, saanko kysyä sinulta kolme kysymystä?”, ”Mitä mieltä olet…?”, ”Kiitos vastauksesta.”",
+            "Anna kielenoppijoille mahdollisuus kuvata ratkaisu kuvin tai omalla äidinkielellä ennen suomeksi kirjoittamista."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "6. Turvallisuus",
+      "blocks": [
+        {
+          "ul": [
+            "Sovi kokoontumispaikka ja aikataulu. Pyynikin maasto ja jyrkät portaat vaativat sopivat jalkineet.",
+            "Hätätilanne: soita 112. Älä jaa opiskelijoiden henkilötietoja julkisiin palveluihin: Padlet-seinä voi olla ryhmätunnuksin ja ilman nimiä."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "7. Purkukysymykset",
+      "blocks": [
+        {
+          "ul": [
+            "Mitä mahdollisuuksia näet nyt omassa tulevaisuudessasi?",
+            "Mikä tehtävä vaati eniten rohkeutta? Mitä digitaalinen työkalu mahdollisti?",
+            "Miten GreenComp ja DigComp näkyivät tekemisessä?"
+          ]
+        }
+      ]
+    },
+    {
+      "h": "8. Käytännön huomioita",
+      "blocks": [
+        {
+          "ul": [
+            "Kuvissa on toistaiseksi paikkamerkit. Lisää omat kuvat kansioon images/panels ja liitä ne story.json-tiedostoon.",
+            "Eteneminen tallentuu selaimeen. Jaetulla laitteella poista tallennettu eteneminen ryhmien välillä."
+          ]
+        }
+      ]
+    }
+  ]
+}

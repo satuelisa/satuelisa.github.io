@@ -1,0 +1,116 @@
+{
+  "title": "Teacher guide: My path",
+  "intro": "This guide supports using My path with young people (17–20) in adult basic education. The game is a tool for discussion and practice, not a test and not a substitute for a guidance conversation. Timings are suggestions.",
+  "sections": [
+    {
+      "h": "1. What the game is",
+      "blocks": [
+        {
+          "ul": [
+            "Fifteen checkpoints on a future map. Each has a situation, three options, an own option and the possibility to ask for another situation.",
+            "After a choice come reflection on consequences and a task. A star is given when the task (or the alternative task) is done. It is not tied to a particular choice and is never lost.",
+            "Every situation is about the story’s young person. Nobody has to tell about their own life."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "2. Before the lesson",
+      "blocks": [
+        {
+          "ul": [
+            "Play it yourself. One checkpoint takes about 5–10 minutes; the whole game is too much for one lesson.",
+            "Choose the checkpoints for your group: tick them in Settings, or use a link with ?only=r01,r02,r03.",
+            "Prepare a support list (teacher, study counsellor, student welfare, support persons) and display it before checkpoint 5.",
+            "Check: texts and information were written with AI help. Have a native Finnish speaker review them and adapt them to your own education system."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "3. Start and safety rules",
+      "blocks": [
+        {
+          "ul": [
+            "Go through the safety rules on the start screen together before playing.",
+            "Emergency (life or health at risk): call 112. In the game an emergency call is only practised verbally; nobody dials.",
+            "The game asks for no names and stores no free text. Do not ask students to write private matters anywhere."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Lesson flow (example 45–60 min)",
+      "blocks": [
+        {
+          "ul": [
+            "5 min: safety rules and explanation.",
+            "25–35 min: in pairs, 2–3 checkpoints. Read the situation, choose an option, discuss consequences and do the task.",
+            "10–15 min: shared debrief and the personal future map (final screen)."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "5. Language support",
+      "blocks": [
+        {
+          "ul": [
+            "Every task has language support: a key word and a ready sentence. Words can be tapped.",
+            "Do not correct language errors while playing. Note useful expressions and return to them at the end.",
+            "Differentiation: stronger readers read in roles, others use the word help and larger text size."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "6. Sensitive checkpoints",
+      "blocks": [
+        {
+          "ul": [
+            "Checkpoints 4 (family conflict), 5 (difficulties), 6 (pressure, substances, violence), 10 (prejudice), 12 (scam), 13 (responsibility at home) carry a content note. Nobody is forced.",
+            "Do not act out substance use or violence. Practise refusing, leaving and asking for help. Do not repeat racist expressions.",
+            "Checkpoint 15 (moving abroad): the game does not settle permit or residence matters. Those are checked individually.",
+            "Checkpoint 12: use no real account details. If credentials may have been compromised, contact the bank and report to the police.",
+            "If a student shares something worrying, follow your institution’s procedures and offer a private conversation."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "7. Stars and the alternative task",
+      "blocks": [
+        {
+          "ul": [
+            "A star = a practised skill. It is not a grade or a means of comparison.",
+            "A student may skip a situation or task or ask for another. The alternative task gives the same chance of a star.",
+            "A checkpoint can be revisited to try another option."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "8. Debrief questions",
+      "blocks": [
+        {
+          "ul": [
+            "Which choice was hardest? What did the consequence teach?",
+            "Who could help the story’s young person? How is help asked for?",
+            "What is one small next step? (final screen; answers are written on paper or said aloud)"
+          ]
+        }
+      ]
+    },
+    {
+      "h": "9. Practical notes",
+      "blocks": [
+        {
+          "ul": [
+            "The photos show Keuda premises. Check image rights before publishing.",
+            "Progress is stored in the browser. On a shared device use “Delete saved progress” in Settings."
+          ]
+        }
+      ]
+    }
+  ]
+}

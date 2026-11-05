@@ -1,0 +1,116 @@
+{
+  "title": "Opettajan opas: Minun polkuni",
+  "intro": "Tämä opas tukee Minun polkuni -pelin käyttöä aikuisten perusopetuksen nuorten (17–20 v.) kanssa. Peli on keskustelun ja harjoittelun apuväline, ei koe eikä ohjauskeskustelun korvike. Ajat ovat ehdotuksia.",
+  "sections": [
+    {
+      "h": "1. Mikä peli on",
+      "blocks": [
+        {
+          "ul": [
+            "Viisitoista rastia tulevaisuuskartalla. Jokaisella rastilla on tilanne, kolme valittavaa vaihtoehtoa, oma vaihtoehto ja mahdollisuus pyytää toinen tilanne.",
+            "Valinnan jälkeen tulee seurausten pohdinta ja tehtävä. Tähti tulee, kun tehtävä (tai vaihtoehtoinen tehtävä) on tehty. Tähteä ei anneta tietystä valinnasta eikä sitä menetä.",
+            "Kaikki tilanteet koskevat tarinan nuorta. Kenenkään ei tarvitse kertoa omasta elämästään."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "2. Ennen tuntia",
+      "blocks": [
+        {
+          "ul": [
+            "Pelaa peli itse läpi. Yksi rasti vie noin 5–10 minuuttia; koko peli on liikaa yhdelle tunnille.",
+            "Valitse ryhmälle sopivat rastit: Asetuksissa voit rastittaa ne, tai käytä linkkiä ?only=r01,r02,r03.",
+            "Valmistele tukilista (opettaja, opinto-ohjaaja, opiskelijahuolto, tukihenkilöt) ja anna se näkyville ennen rastia 5.",
+            "Tarkista: tekstit ja tiedot on laadittu tekoälyn avulla. Anna suomea äidinkielenään puhuvan tarkistaa ne ja mukauta ne oman koulutusjärjestelmäsi mukaan."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "3. Aloitus ja turvasäännöt",
+      "blocks": [
+        {
+          "ul": [
+            "Käy aloitusnäytön turvasäännöt yhdessä läpi ennen pelaamista.",
+            "Hätätilanne (henki tai terveys vaarassa): soita 112. Pelissä hätäpuhelua harjoitellaan vain sanallisesti, numeroon ei soiteta.",
+            "Peli ei kysy nimiä eikä tallenna vapaata tekstiä. Älä pyydä opiskelijoita kirjoittamaan yksityisiä asioita mihinkään."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Tunnin kulku (esimerkki 45–60 min)",
+      "blocks": [
+        {
+          "ul": [
+            "5 min: turvasäännöt ja tehtävän selitys.",
+            "25–35 min: pareittain 2–3 rastia. Lukekaa tilanne, valitkaa vaihtoehto, keskustelkaa seurauksista ja tehkää tehtävä.",
+            "10–15 min: yhteinen purku ja oma tulevaisuuskartta (viimeinen näyttö)."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "5. Kielituki",
+      "blocks": [
+        {
+          "ul": [
+            "Jokaisessa tehtävässä on kielituki: avainsana ja valmis lause. Sanat voi napauttaa.",
+            "Älä korjaa kielivirheitä peliä pelatessa. Kirjaa hyödylliset ilmaisut ja palaa niihin lopuksi.",
+            "Eriyttäminen: vahvemmat lukijat lukevat roolein, muut käyttävät sanoja ja suurempaa tekstikokoa."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "6. Herkät rastit",
+      "blocks": [
+        {
+          "ul": [
+            "Rasti 4 (perheriita), 5 (vaikeudet), 6 (painostus, päihteet, väkivalta), 10 (ennakkoluulot), 12 (huijaus), 13 (vastuu kotona): rastilla on sisältöhuomautus. Ketään ei pakoteta.",
+            "Älä näytä päihteiden käyttöä tai väkivaltaa. Harjoitellaan kieltäytymistä, poistumista ja avun pyytämistä. Älä toista rasistisia ilmauksia.",
+            "Rasti 15 (muutto): peli ei ratkaise lupa- tai oleskeluasioita. Ne selvitetään henkilökohtaisesti.",
+            "Rasti 12: älä käytä oikeita tilitietoja. Jos epäilet tunnusten joutuneen vääriin käsiin, ota yhteys pankkiin ja tee rikosilmoitus.",
+            "Jos opiskelija kertoo jotain huolestuttavaa, toimi oppilaitoksen ohjeiden mukaan ja tarjoa kahdenkeskinen keskustelu."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "7. Tähdet ja vaihtoehtoinen tehtävä",
+      "blocks": [
+        {
+          "ul": [
+            "Tähti = harjoiteltu taito. Se ei ole arvosana eikä vertailun väline.",
+            "Opiskelija saa jättää tilanteen tai tehtävän väliin tai pyytää toisen. Vaihtoehtoisesta tehtävästä saa saman mahdollisuuden tähteen.",
+            "Rastille voi palata ja kokeilla toista vaihtoehtoa."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "8. Purkukysymykset",
+      "blocks": [
+        {
+          "ul": [
+            "Mikä valinta oli vaikein? Mitä seuraus opetti?",
+            "Kuka voisi auttaa tarinan nuorta? Miten apua pyydetään?",
+            "Mikä on yksi pieni seuraava teko? (viimeinen näyttö; vastaukset kirjataan paperille tai sanotaan ääneen)"
+          ]
+        }
+      ]
+    },
+    {
+      "h": "9. Käytännön huomioita",
+      "blocks": [
+        {
+          "ul": [
+            "Kuvat ovat Keudan tiloista. Tarkista kuvien käyttöoikeudet ennen julkaisua.",
+            "Eteneminen tallentuu selaimeen. Jaetulla laitteella käytä Asetuksista kohtaa ”Poista tallennettu eteneminen”."
+          ]
+        }
+      ]
+    }
+  ]
+}

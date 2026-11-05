@@ -25,6 +25,7 @@
           <!-- language buttons are generated from data/config.json -->
         </div>
         <button type="button" class="btn btn-ghost" id="btnTheme"><span id="btnThemeLabel">Dark mode</span></button>
+        <button type="button" class="btn btn-ghost" id="btnMenu" hidden><span aria-hidden="true">☰</span> <span data-i18n="menuBack">All games</span></button>
         <button type="button" class="btn btn-ghost" id="btnTeachers" aria-haspopup="dialog"><span aria-hidden="true">🍎</span> <span data-i18n="teachers">For teachers</span></button>
         <button type="button" class="btn btn-ghost" id="btnSettings" aria-haspopup="dialog"><span aria-hidden="true">⚙</span> <span data-i18n="settings">Settings</span></button>
         <button type="button" class="btn btn-ghost" id="btnRestart" hidden><span aria-hidden="true">↺</span> <span data-i18n="restart">Restart</span></button>
@@ -43,6 +44,13 @@
 
     <p class="load-error" id="loadError" role="alert" hidden></p>
 
+    <!-- GAME MENU: one card per story (data/config.json -> stories) -->
+    <section class="screen menu" id="screenMenu" hidden>
+      <h2 class="start-title" id="menuTitle"></h2>
+      <p class="start-blurb" id="menuIntro"></p>
+      <ul class="menu-grid" id="menuCards"></ul>
+    </section>
+
     <!-- START SCREEN -->
     <section class="screen start" id="screenStart" hidden>
       <p class="kicker" id="startSubtitle"></p>
@@ -53,11 +61,16 @@
       <div class="howto">
         <h3 data-i18n="howToTitle">How to play</h3>
         <ol>
-          <li data-i18n="howTo1">Read the story. Press “Continue” to move forward.</li>
-          <li data-i18n="howTo2">You decide what the characters do. Each character has 0 to 5 stars.</li>
-          <li data-i18n="howTo3">A star appears when a character starts to see a new possibility. There are no wrong answers.</li>
+          <li id="howTo1"></li>
+          <li id="howTo2"></li>
+          <li id="howTo3"></li>
         </ol>
         <p class="hint"><span aria-hidden="true">💡</span> <span data-i18n="glossaryHint">Underlined words are tappable. Tap one to see a simple explanation.</span></p>
+      </div>
+
+      <div class="howto rules" id="startRules" hidden>
+        <h3 id="startRulesTitle"></h3>
+        <ul id="startRulesList"></ul>
       </div>
 
       <div class="start-actions">
@@ -84,7 +97,7 @@
       <p class="start-blurb" id="endingText"></p>
       <p class="found-count" id="endingFound"></p>
 
-      <h3 class="section-label" data-i18n="endingResults">What happened to everyone</h3>
+      <h3 class="section-label" id="endingResultsHead">What happened to everyone</h3>
       <ul class="results" id="endingResultsList"></ul>
 
       <div class="start-actions">
@@ -127,6 +140,12 @@
         <label for="selTextLang" data-i18n="dialogueLanguage">Story language</label>
         <select id="selTextLang"></select>
       </div>
+
+      <fieldset class="field" id="fieldSelect" hidden>
+        <legend data-i18n="selectLegend">Teacher: choose the checkpoints</legend>
+        <p class="hint" data-i18n="selectHelp">Tick the checkpoints available to the group. The choice is kept in this browser.</p>
+        <div class="check-list" id="selectList"></div>
+      </fieldset>
 
       <div class="field">
         <button type="button" class="btn btn-danger" id="btnClearSettings"><span data-i18n="clearProgress">Clear saved progress</span></button>

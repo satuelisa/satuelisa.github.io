@@ -34,14 +34,27 @@ def warn(msg):
 
 
 config = load(ROOT / "data/config.json")
-story_cfg = config["stories"][config["story"]]
-story_dir = ROOT / story_cfg["path"]
-story = load(story_dir / "story.json")
-scenes = story.get("scenes", {})
-chars = story.get("characters", {})
-protagonists = [c for c, v in chars.items() if v.get("type") == "protagonist"]
+story_cfg = story_dir = story = None
+scenes, chars, protagonists = {}, {}, []
 MAX_STARS = config["maxStars"]
 THRESHOLD = config["purposeThreshold"]
+
+
+def use_story(sid):
+    """Point the module-level state at one story (the checks below read these globals)."""
+    global story_cfg, story_dir, story, scenes, chars, protagonists, MAX_STARS, THRESHOLD
+    story_cfg = config["stories"][sid]
+    story_dir = ROOT / story_cfg["path"]
+    story = load(story_dir / "story.json")
+    scenes = story.get("scenes", {})
+    chars = story.get("characters", {})
+    protagonists = [c for c, v in chars.items() if v.get("type") == "protagonist"]
+    MAX_STARS = story.get("maxStars", config["maxStars"])
+    THRESHOLD = story["purposeThreshold"] if "purposeThreshold" in story else config["purposeThreshold"]
+    referenced_flags.clear()
+    set_flags.clear()
+
+
 TERM_RE = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 referenced_flags = set()   # flags that appear in some condition (the only ones that matter for balance)
 set_flags = set()
@@ -73,6 +86,9 @@ def check_cond(c, where):
 
 def needed_text_keys():
     keys = {"story.title", "story.subtitle", "story.blurb", "story.note"}
+    keys.update(story.get("startRules", []))
+    if story.get("startRulesTitle"):
+        keys.add(story["startRulesTitle"])
     for cid, c in chars.items():
         if c.get("type") != "narrator":
             keys.add(f"char.{cid}.name")
@@ -120,6 +136,10 @@ def needed_text_keys():
                 if "if" in r:
                     check_cond(r["if"], f"{sid}.{ch['id']}.{r['id']}")
             for ef in ch.get("effects", []):
+                if ef.get("once"):
+                    set_flags.add(ef["once"])
+                if ef.get("label"):
+                    keys.add(f"{sid}.{ch['id']}.{ef['label']}")
                 if ef["char"] not in protagonists:
                     err(f"{sid}.{ch['id']}: effect on non-protagonist {ef['char']}")
             nxt = ch.get("next")
@@ -156,25 +176,37 @@ def reachable():
     return seen
 
 
-keys = needed_text_keys()
-for sid in set(scenes) - reachable():
-    warn(f"scene '{sid}' is not reachable from the start")
-for f in sorted(referenced_flags - set_flags):
-    warn(f"flag '{f}' is tested in a condition but never set")
-
-# ---------- story texts ----------
 glossary_terms = set()
-for lang in [x["code"] for x in story_cfg["textLanguages"]]:
-    text = load(story_dir / f"text.{lang}.json")
-    for k in sorted(keys - set(text)):
-        err(f"text.{lang}.json: missing key {k}")
-    for k in sorted(set(text) - keys):
-        warn(f"text.{lang}.json: unused key {k}")
-    for k, v in text.items():
-        for m in TERM_RE.finditer(v):
-            glossary_terms.add(m.group(1))  # [[key|surface form]] or [[key]]
-        if v.count("[[") != v.count("]]"):
-            err(f"text.{lang}.json: unbalanced [[ ]] in {k}")
+PLACEHOLDER_RE = re.compile(r"\[(?!\[)[^\]]*(?:\.\.\.|…|TODO)[^\]]*\]")
+
+
+def check_story(sid):
+    use_story(sid)
+    keys = needed_text_keys()
+    for sc_id in set(scenes) - reachable():
+        warn(f"{story['id']}: scene '{sc_id}' is not reachable from the start")
+    for f in sorted(referenced_flags - set_flags):
+        warn(f"{story['id']}: flag '{f}' is tested in a condition but never set")
+
+    # ---------- story texts ----------
+    for lang in [x["code"] for x in story_cfg["textLanguages"]]:
+        text = load(story_dir / f"text.{lang}.json")
+        for k in sorted(keys - set(text)):
+            err(f"{sid}/text.{lang}.json: missing key {k}")
+        for k in sorted(set(text) - keys):
+            warn(f"{sid}/text.{lang}.json: unused key {k}")
+        for k, v in text.items():
+            for m in TERM_RE.finditer(v):
+                glossary_terms.add(m.group(1))  # [[key|surface form]] or [[key]]
+            if PLACEHOLDER_RE.search(v):
+                warn(f"{sid}/text.{lang}.json: unfilled [placeholder] in {k}")
+            if v.count("[[") != v.count("]]"):
+                err(f"{sid}/text.{lang}.json: unbalanced [[ ]] in {k}")
+
+
+
+for _sid in config["stories"]:
+    check_story(_sid)
 
 # ---------- glossary ----------
 for lang in [x["code"] for x in config["uiLanguages"]]:
@@ -202,12 +234,25 @@ def teacher_shape(g):
     return [[("h" if "h" in b else "ul" if "ul" in b else "p", len(b.get("ul", [])))
              if isinstance(b, dict) else ("p", 0) for b in sec.get("blocks", [])] for sec in g.get("sections", [])]
 
-if config.get("teacherPath"):
-    guides = {x["code"]: load(ROOT / config["teacherPath"].format(lang=x["code"])) for x in config["uiLanguages"]}
-    ref = teacher_shape(guides[config["defaultUiLanguage"]])
+for _sid, _cfg in config["stories"].items():
+    if not _cfg.get("teacher"):
+        continue
+    guides = {}
+    for x in config["uiLanguages"]:
+        path = ROOT / _cfg["teacher"].format(lang=x["code"])
+        if path.exists():
+            guides[x["code"]] = load(path)
+    base_lang = config["defaultUiLanguage"]
+    if base_lang not in guides:
+        err(f"{_sid}: teacher guide missing for default language {base_lang}")
+        continue
+    ref = teacher_shape(guides[base_lang])
     for lang, g in guides.items():
         if teacher_shape(g) != ref:
-            err(f"teacher.{lang}.json: structure differs from English (sections, blocks or list lengths)")
+            err(f"{_sid}: teacher guide {lang} differs in structure from {base_lang}")
+    missing = [x["code"] for x in config["uiLanguages"] if x["code"] not in guides]
+    if missing:
+        warn(f"{_sid}: no teacher guide in {', '.join(missing)} (the app falls back to en, then fi)")
 
 
 # ---------- simulation ----------
@@ -236,12 +281,20 @@ def cond(c, st):
     return True
 
 
+def max_of(cid):
+    return chars[cid].get("max", MAX_STARS)
+
+
 def apply_choice(ch, st):
     stars, flags = list(st[0]), set(st[1])
     flags |= {f for f in ch.get("flags", []) if f in referenced_flags}
     for ef in ch.get("effects", []):
+        if ef.get("once"):
+            if ef["once"] in flags:
+                continue
+            flags.add(ef["once"])
         i = protagonists.index(ef["char"])
-        stars[i] = max(0, min(MAX_STARS, stars[i] + ef["stars"]))
+        stars[i] = max(0, min(max_of(ef["char"]), stars[i] + ef["stars"]))
     return tuple(stars), frozenset(flags)
 
 
@@ -316,16 +369,21 @@ def sample(n, seed=1):
 
 
 def found_of(stars):
-    return sum(1 for v in stars if v >= THRESHOLD)
+    return sum(1 for v in stars if THRESHOLD is not None and v >= THRESHOLD)
 
 
-if "--simulate" in sys.argv and not errors:
+def report():
+    print(f"\n=== {story['id']} ===")
     finals = sample(int(sys.argv[sys.argv.index("--sample") + 1])) if "--sample" in sys.argv else simulate()
     by_found = {}
     for stars, _ in finals:
         by_found.setdefault(found_of(stars), set()).add(stars)
     outcomes = {s for s, _ in finals}
     print(f"\nDistinct final star combinations reachable: {len(outcomes)}")
+    if THRESHOLD is None:
+        best = max(outcomes, key=sum)
+        print("Collect mode. Most stars reachable:", sum(best), "of", sum(max_of(c) for c in protagonists))
+        return
     print(f"Characters that found a direction (>= {THRESHOLD} stars) / number of distinct outcomes:")
     for n in sorted(by_found):
         print(f"  {n} found: {len(by_found[n])}")
@@ -349,6 +407,15 @@ if "--simulate" in sys.argv and not errors:
         for key, c in sorted(combos.items()):
             print(f"  threads {'+'.join(key) or '-'}: best {c['best']} found, {len(c['n'])} outcomes, "
                   f"{c['all']} with everyone")
+
+
+
+if "--simulate" in sys.argv and not errors:
+    for _sid in config["stories"]:
+        use_story(_sid)
+        # re-collect flags referenced by conditions for this story
+        needed_text_keys()
+        report()
 
 print()
 for w in warnings:

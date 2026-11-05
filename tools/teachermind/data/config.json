@@ -32,18 +32,54 @@
   "glossaryPath": "data/glossary/glossary.{lang}.json",
   "maxStars": 5,
   "purposeThreshold": 4,
-  "story": "ojanpenkka",
   "stories": {
     "ojanpenkka": {
       "path": "data/stories/ojanpenkka",
+      "icon": "🛍️",
       "defaultTextLanguage": "fi",
       "textLanguages": [
         {
           "code": "fi",
           "label": "Suomi"
         }
-      ]
+      ],
+      "teacher": "data/teacher/teacher.{lang}.json"
+    },
+    "minunpolku": {
+      "path": "data/stories/minunpolku",
+      "icon": "🗺️",
+      "defaultTextLanguage": "fi",
+      "textLanguages": [
+        {
+          "code": "fi",
+          "label": "Suomi"
+        }
+      ],
+      "teacher": "data/teacher/minunpolku.{lang}.json"
+    },
+    "pyynikki": {
+      "path": "data/stories/pyynikki",
+      "icon": "🌲",
+      "defaultTextLanguage": "fi",
+      "textLanguages": [
+        {
+          "code": "fi",
+          "label": "Suomi"
+        }
+      ],
+      "teacher": "data/teacher/pyynikki.{lang}.json"
+    },
+    "kaksiunelmaa": {
+      "path": "data/stories/kaksiunelmaa",
+      "icon": "🏒",
+      "defaultTextLanguage": "fi",
+      "textLanguages": [
+        {
+          "code": "fi",
+          "label": "Suomi"
+        }
+      ],
+      "teacher": "data/teacher/kaksiunelmaa.{lang}.json"
     }
-  },
-  "teacherPath": "data/teacher/teacher.{lang}.json"
+  }
 }

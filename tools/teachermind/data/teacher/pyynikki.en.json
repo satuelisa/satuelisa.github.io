@@ -1,0 +1,100 @@
+{
+  "title": "Teacher guide: Pyynikki Future Adventure 2030",
+  "intro": "The game is the digital task card for a guided outing: the tasks are done at Pyynikki on the students’ own phones and confirmed in the game, which lights a star.",
+  "sections": [
+    {
+      "h": "1. What the game is",
+      "blocks": [
+        {
+          "ul": [
+            "Seven stations: lookout tower, doughnut café, nature trail, culture market, entrepreneurship station, working-life station and TAMK pathway station. The group returns to the tower at the end.",
+            "Each station shows the task and the GreenComp and DigComp competences. The group confirms the finished task and receives a star.",
+            "There are nine stars: Hope, Customer service, Digital, Sustainability, Cooperation, Entrepreneurship, Courage, Working life and Future."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "2. Before the outing",
+      "blocks": [
+        {
+          "ul": [
+            "Walk the route yourself and check station locations, opening hours and café prices.",
+            "Prepare the tools: a Forms form (station 2), a Padlet wall (station 4) and a Teams group (station 6). Each group needs at least one working phone.",
+            "Check filming permission and interview principles. Do not film identifiable people without permission.",
+            "Text and information were written with AI help. Have a native Finnish speaker review them."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "3. Outing flow",
+      "blocks": [
+        {
+          "ul": [
+            "Groups of 3–4. One group, one device for the game.",
+            "Tasks are done in the real world. The game stores no photos, answers or videos; they stay on the students’ phones.",
+            "If a task is not finished, the group may continue without the star and return later."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Awarding stars",
+      "blocks": [
+        {
+          "ul": [
+            "The game trusts the group’s confirmation. You can ask to see the output (photo, form, video, Padlet post, Teams plan).",
+            "The Digital star is one star, even though it can be practised at several stations.",
+            "The Courage and Working-life stars both belong to station 6 (the source table has no rows for them, so the criteria were drafted)."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "5. Language support",
+      "blocks": [
+        {
+          "ul": [
+            "Words can be tapped. Offer sentence frames: “Hei, saanko kysyä sinulta kolme kysymystä?”, “Mitä mieltä olet…?”, “Kiitos vastauksesta.”",
+            "Let language learners sketch the solution or use their own language before writing in Finnish."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "6. Safety",
+      "blocks": [
+        {
+          "ul": [
+            "Agree a meeting point and schedule. Pyynikki’s terrain and steep stairs need suitable footwear.",
+            "Emergency: call 112. Do not share students’ personal details on public services: the Padlet wall can use group names without personal names."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "7. Debrief questions",
+      "blocks": [
+        {
+          "ul": [
+            "What possibilities do you see now in your own future?",
+            "Which task needed most courage? What did the digital tool make possible?",
+            "How did GreenComp and DigComp show in what you did?"
+          ]
+        }
+      ]
+    },
+    {
+      "h": "8. Practical notes",
+      "blocks": [
+        {
+          "ul": [
+            "The panels currently hold placeholders. Add your own pictures to images/panels and link them in story.json.",
+            "Progress is stored in the browser. On a shared device delete saved progress between groups."
+          ]
+        }
+      ]
+    }
+  ]
+}

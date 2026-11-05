@@ -1,0 +1,222 @@
+{
+  "id": "pyynikki",
+  "version": 1,
+  "start": "p00_intro",
+  "howto": "C",
+  "maxStars": 1,
+  "purposeThreshold": null,
+  "endings": [{"id": "end", "when": {}}],
+  "characters": {
+    "narrator": {"type": "npc", "color": "#475569", "initial": "K", "portrait": null},
+    "ryhma": {"type": "npc", "color": "#0F766E", "initial": "R", "portrait": null},
+    "opettaja": {"type": "npc", "color": "#7C2D12", "initial": "O", "portrait": null},
+    "star_toivo": {"type": "protagonist", "color": "#C2410C", "initial": "★", "portrait": null, "max": 1},
+    "star_asiakas": {"type": "protagonist", "color": "#1D4ED8", "initial": "★", "portrait": null, "max": 1},
+    "star_digi": {"type": "protagonist", "color": "#7E22CE", "initial": "★", "portrait": null, "max": 1},
+    "star_kestavyys": {"type": "protagonist", "color": "#047857", "initial": "★", "portrait": null, "max": 1},
+    "star_yhteistyo": {"type": "protagonist", "color": "#BE185D", "initial": "★", "portrait": null, "max": 1},
+    "star_yrittajyys": {"type": "protagonist", "color": "#B45309", "initial": "★", "portrait": null, "max": 1},
+    "star_rohkeus": {"type": "protagonist", "color": "#0369A1", "initial": "★", "portrait": null, "max": 1},
+    "star_tyoelama": {"type": "protagonist", "color": "#4D7C0F", "initial": "★", "portrait": null, "max": 1},
+    "star_tulevaisuus": {"type": "protagonist", "color": "#9333EA", "initial": "★", "portrait": null, "max": 1}
+  },
+  "scenes": {
+    "p00_intro": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🌲", "tone": 2}],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "narrator", "p": 0}],
+      "next": "p01_torni"
+    },
+    "p01_torni": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🗼", "tone": 2}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "opettaja", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p02_kahvila",
+          "effects": [{"char": "star_toivo", "stars": 1, "once": "got_toivo"}],
+          "reaction": [{"id": "r1", "s": "ryhma"}]
+        },
+        {"id": "c_skip", "actor": "ryhma", "next": "p02_kahvila", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "p02_kahvila": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🍩", "tone": 3}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0},
+        {"id": "s1", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p03_luontopolku",
+          "effects": [
+            {"char": "star_asiakas", "stars": 1, "once": "got_asiakas"},
+            {"char": "star_digi", "stars": 1, "once": "got_digi"}
+          ],
+          "reaction": [{"id": "r1", "s": "ryhma"}]
+        },
+        {
+          "id": "c_skip",
+          "actor": "ryhma",
+          "next": "p03_luontopolku",
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "p03_luontopolku": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🌿", "tone": 4}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0},
+        {"id": "s1", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p04_tori",
+          "effects": [
+            {"char": "star_kestavyys", "stars": 1, "once": "got_kestavyys"},
+            {"char": "star_digi", "stars": 1, "once": "got_digi"}
+          ],
+          "reaction": [{"id": "r1", "s": "ryhma"}, {"id": "r2", "s": "narrator", "if": {"flag": "got_digi"}}]
+        },
+        {"id": "c_skip", "actor": "ryhma", "next": "p04_tori", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "p04_tori": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🌍", "tone": 5}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0},
+        {"id": "s1", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p05_yrittajyys",
+          "effects": [
+            {"char": "star_yhteistyo", "stars": 1, "once": "got_yhteistyo"},
+            {"char": "star_digi", "stars": 1, "once": "got_digi"}
+          ],
+          "reaction": [{"id": "r1", "s": "ryhma"}, {"id": "r2", "s": "narrator", "if": {"flag": "got_digi"}}]
+        },
+        {
+          "id": "c_skip",
+          "actor": "ryhma",
+          "next": "p05_yrittajyys",
+          "reaction": [{"id": "r1", "s": "narrator"}]
+        }
+      ]
+    },
+    "p05_yrittajyys": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🧭", "tone": 6}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p06_tyoelama",
+          "effects": [{"char": "star_yrittajyys", "stars": 1, "once": "got_yrittajyys"}],
+          "reaction": [{"id": "r1", "s": "ryhma"}]
+        },
+        {"id": "c_skip", "actor": "ryhma", "next": "p06_tyoelama", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "p06_tyoelama": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "💼", "tone": 1}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0},
+        {"id": "s1", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p07_tamk",
+          "effects": [
+            {"char": "star_rohkeus", "stars": 1, "once": "got_rohkeus"},
+            {"char": "star_tyoelama", "stars": 1, "once": "got_tyoelama"}
+          ],
+          "reaction": [{"id": "r1", "s": "ryhma"}]
+        },
+        {"id": "c_skip", "actor": "ryhma", "next": "p07_tamk", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "p07_tamk": {
+      "prompt": true,
+      "panels": [{"id": "p1", "image": null, "emoji": "🎓", "tone": 2}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "task", "s": "narrator", "p": 0},
+        {"id": "gc", "s": "narrator", "p": 0},
+        {"id": "dc", "s": "narrator", "p": 0},
+        {"id": "s0", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_done",
+          "actor": "ryhma",
+          "next": "p90_end",
+          "effects": [{"char": "star_tulevaisuus", "stars": 1, "once": "got_tulevaisuus"}],
+          "reaction": [{"id": "r1", "s": "ryhma"}]
+        },
+        {"id": "c_skip", "actor": "ryhma", "next": "p90_end", "reaction": [{"id": "r1", "s": "narrator"}]}
+      ]
+    },
+    "p90_end": {
+      "panels": [{"id": "p1", "image": null, "emoji": "🗼", "tone": 6}],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "opettaja", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_end", "actor": "ryhma", "next": "@ending", "reaction": []}]
+    }
+  }
+}

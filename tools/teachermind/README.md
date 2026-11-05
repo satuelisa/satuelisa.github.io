@@ -40,6 +40,33 @@ tools/validate.py
 - `story.json` has `version`; changing it invalidates old saved progress.
 - Balance check: `python3 tools/validate.py --simulate --sample 20000` (random playthroughs; plain `--simulate` is exact but slow).
 
+## Several games (selection screen)
+
+`data/config.json` lists the games under `stories` (`path`, `icon`, `defaultTextLanguage`, `textLanguages`, `teacher`). With more than one game the app opens a selection screen; each card text comes from `menu.<id>.title|audience|desc` in `data/i18n/<lang>.json`. Progress is stored per game.
+
+| id | game | mode |
+|---|---|---|
+| `ojanpenkka` | Entä jos? (three threads) | stars per character, "found a direction" at 4 stars |
+| `minunpolku` | Minun polkuni (15 rastit) | collect mode, one character with up to 15 stars |
+| `pyynikki` | Pyynikin tulevaisuusseikkailu 2030 (7 stations) | collect mode, nine one-star characters |
+| `kaksiunelmaa` | Kaksi unelmaa (hockey and business studies) | collect mode, eight one-star characters |
+
+### Collect mode and new story fields
+- `purposeThreshold: null` switches off "found a direction"; the ending shows "Stars collected n of total". `maxStars` (story level) and `characters.<id>.max` set the maximum.
+- A choice effect may carry `"once": "<flag>"` (the star is given only once, so a checkpoint can be revisited) and `"label": "<key>"` (text shown with the star; text key `<scene>.<choice>.<key>`).
+- `howto: "C"` selects the collect-mode how-to wording; `startRules` (text keys) and `startRulesTitle` show a safety-rules box on the start screen.
+- `scene.selectable: true` marks a checkpoint the teacher can switch off in Settings, or via the URL `?only=r01,r02` (the choice is kept per game in the browser).
+- Panels accept `pos` (CSS `object-position`) to crop photos.
+
+### Teacher guides
+One guide per game: `config.stories.<id>.teacher` is a path template with `{lang}`. The app falls back to English, then Finnish, when a language file is missing. Guides exist in Finnish and English for the three new games; the validator warns about the missing languages.
+
+## Review needed (new games)
+- Cards 12 and 13 of *Kaksi unelmaa*, its closing scenes and the `Kaksi unelmaa` star texts were drafted from the teacher notes: Finnish review needed.
+- *Pyynikki*: the source mentions seven star types in one place and nine in another; nine are used. The Rohkeus and Työelämä criteria were drafted from station 6.
+- Photos in `images/panels/keuda/` come from Keuda; check the rights, especially the wall of word-ending cards.
+- No LLM-free review of the Finnish text has been done; the validator warns about unfilled `[placeholders]`.
+
 ## Teacher guide
 
 The "For teachers" button in the header opens a printable guide. Its content is in `data/teacher/teacher.<lang>.json` (one file per interface language; path set by `teacherPath` in `config.json`). Format: `title`, `intro`, and `sections` of `{h, blocks}` where a block is `{h}` (sub-heading), `{ul: [...]}` or a paragraph string. `tools/validate.py` checks that all languages have the same structure. The guide was drafted with AI help: check the Finnish-education facts against your local system.
