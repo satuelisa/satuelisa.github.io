@@ -62,7 +62,7 @@
   "teacherPrint": "Imprimir",
   "teacherLoadError": "No se pudo cargar la guía para docentes.",
   "menuTitle": "Elige un juego",
-  "menuIntro": "Cuatro juegos breves sobre el futuro, las decisiones y los próximos pasos. Elige el que le sirva a tu grupo.",
+  "menuIntro": "Cinco juegos breves sobre el futuro, las decisiones y los próximos pasos. Elige el que le sirva a tu grupo.",
   "menuAudience": "Para",
   "menuPlay": "Jugar",
   "menuInProgress": "En curso",
@@ -87,5 +87,10 @@
   "menu.pyynikki.desc": "Siete estaciones en Pyynikki. Haz las tareas al aire libre con tu teléfono, confírmalas aquí y enciende nueve estrellas.",
   "menu.kaksiunelmaa.title": "Dos sueños",
   "menu.kaksiunelmaa.audience": "Estudiantes deportistas y sus docentes",
-  "menu.kaksiunelmaa.desc": "Un joven jugador de hockey también estudia administración. Dos situaciones preguntan: ¿quién soy cuando no juego?"
+  "menu.kaksiunelmaa.desc": "Un joven jugador de hockey también estudia administración. Dos situaciones preguntan: ¿quién soy cuando no juego?",
+  "nameLabel": "Nombre de la persona joven (opcional)",
+  "nameHint": "Inventa un nombre, no uno real. Solo se usa durante esta sesión y no se guarda.",
+  "menu.jatkaa.title": "¿Todavía vale la pena seguir? (Relato 1)",
+  "menu.jatkaa.audience": "Estudiantes de educación básica de adultos, 16 a 20 años",
+  "menu.jatkaa.desc": "Los estudios no enganchan y se acumulan las faltas. Cinco situaciones del día escolar: ir a clase, una tarea que no se abre, a quién incluir, un examen devuelto y una tarde en que las tareas se quedan sin hacer."
 }

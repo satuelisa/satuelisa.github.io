@@ -62,7 +62,7 @@
   "teacherPrint": "Tulosta",
   "teacherLoadError": "Opettajan opasta ei voitu ladata.",
   "menuTitle": "Valitse peli",
-  "menuIntro": "Neljä lyhyttä peliä tulevaisuudesta, valinnoista ja seuraavista askelista. Valitse ryhmällesi sopiva.",
+  "menuIntro": "Viisi lyhyttä peliä tulevaisuudesta, valinnoista ja seuraavista askelista. Valitse ryhmällesi sopiva.",
   "menuAudience": "Kohderyhmä",
   "menuPlay": "Pelaa",
   "menuInProgress": "Kesken",
@@ -87,5 +87,10 @@
   "menu.pyynikki.desc": "Seitsemän asemaa Pyynikillä. Tee tehtävät ulkona puhelimella, vahvista ne täällä ja sytytä yhdeksän tähteä.",
   "menu.kaksiunelmaa.title": "Kaksi unelmaa",
   "menu.kaksiunelmaa.audience": "Urheilijaopiskelijat ja heidän opettajansa",
-  "menu.kaksiunelmaa.desc": "Nuori jääkiekkoilija opiskelee myös merkonomiksi. Kaksi tilannetta kysyy: kuka olen silloin, kun en pelaa?"
+  "menu.kaksiunelmaa.desc": "Nuori jääkiekkoilija opiskelee myös merkonomiksi. Kaksi tilannetta kysyy: kuka olen silloin, kun en pelaa?",
+  "nameLabel": "Nuoren nimi (valinnainen)",
+  "nameHint": "Keksi nimi, älä käytä oikeaa nimeä. Nimi on käytössä vain tämän istunnon ajan eikä sitä tallenneta.",
+  "menu.jatkaa.title": "Vieläkö tässä kannattaa jatkaa? (Tarina 1)",
+  "menu.jatkaa.audience": "Aikuisten perusopetuksen opiskelijat, 16–20-vuotiaat",
+  "menu.jatkaa.desc": "Opinnot eivät oikein nappaa ja poissaoloja on kertynyt. Viisi tilannetta koulupäivästä: tunnille meno, tehtävä joka ei aukea, kuka otetaan mukaan, palautettu koe ja ilta jolloin läksyt jäävät."
 }

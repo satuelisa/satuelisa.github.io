@@ -477,3 +477,12 @@ footer.appfoot { text-align: center; color: var(--muted); font-size: 12px; paddi
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.name-field { margin-top: 18px; }
+.name-field label { font-weight: 800; }
+.name-field input {
+  font: inherit; padding: 8px 12px; border: 2px solid var(--line); border-radius: 10px;
+  background: var(--panel); color: var(--ink); max-width: 18em; width: 100%;
+}
+.name-field input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.name-field[hidden] { display: none; }

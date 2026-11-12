@@ -62,7 +62,7 @@
   "teacherPrint": "Skriv ut",
   "teacherLoadError": "Lärarhandledningen kunde inte laddas.",
   "menuTitle": "Välj ett spel",
-  "menuIntro": "Fyra korta spel om framtiden, val och nästa steg. Välj det som passar din grupp.",
+  "menuIntro": "Fem korta spel om framtiden, val och nästa steg. Välj det som passar din grupp.",
   "menuAudience": "För",
   "menuPlay": "Spela",
   "menuInProgress": "Pågår",
@@ -87,5 +87,10 @@
   "menu.pyynikki.desc": "Sju stationer vid Pyynikki. Gör uppgifterna utomhus med mobilen, bekräfta dem här och tänd nio stjärnor.",
   "menu.kaksiunelmaa.title": "Två drömmar",
   "menu.kaksiunelmaa.audience": "Idrottande studerande och deras lärare",
-  "menu.kaksiunelmaa.desc": "En ung ishockeyspelare studerar också ekonomi. Två situationer frågar: vem är jag när jag inte spelar?"
+  "menu.kaksiunelmaa.desc": "En ung ishockeyspelare studerar också ekonomi. Två situationer frågar: vem är jag när jag inte spelar?",
+  "nameLabel": "Namn på den unga (frivilligt)",
+  "nameHint": "Hitta på ett namn, inte ett riktigt. Det används bara under den här sessionen och sparas inte.",
+  "menu.jatkaa.title": "Lönar det sig att fortsätta? (Berättelse 1)",
+  "menu.jatkaa.audience": "Elever i grundläggande utbildning för vuxna, 16–20 år",
+  "menu.jatkaa.desc": "Studierna känns inte intressanta och frånvaron ökar. Fem situationer under skoldagen: gå på lektionen, en uppgift som inte öppnar sig, vem som tas med, ett återlämnat prov och en kväll då läxorna blir liggande."
 }

@@ -10,7 +10,7 @@
   "startRules": ["story.rules.1", "story.rules.2", "story.rules.3", "story.rules.4", "story.rules.5", "story.rules.6"],
   "characters": {
     "narrator": {"type": "npc", "color": "#475569", "initial": "K", "portrait": null},
-    "nuori": {"type": "protagonist", "color": "#0F766E", "initial": "N", "portrait": null, "max": 15}
+    "nuori": {"type": "protagonist", "color": "#0F766E", "initial": "N", "portrait": null, "max": 15, "nameable": true}
   },
   "scenes": {
     "m00_start": {

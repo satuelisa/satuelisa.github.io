@@ -80,6 +80,18 @@
         }
       ],
       "teacher": "data/teacher/kaksiunelmaa.{lang}.json"
+    },
+    "jatkaa": {
+      "path": "data/stories/jatkaa",
+      "icon": "📚",
+      "defaultTextLanguage": "fi",
+      "textLanguages": [
+        {
+          "code": "fi",
+          "label": "Suomi"
+        }
+      ],
+      "teacher": "data/teacher/jatkaa.{lang}.json"
     }
   }
 }

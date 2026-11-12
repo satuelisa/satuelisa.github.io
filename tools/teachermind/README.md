@@ -50,18 +50,21 @@ tools/validate.py
 | `minunpolku` | Minun polkuni (15 rastit) | collect mode, one character with up to 15 stars |
 | `pyynikki` | Pyynikin tulevaisuusseikkailu 2030 (7 stations) | collect mode, nine one-star characters |
 | `kaksiunelmaa` | Kaksi unelmaa (hockey and business studies) | collect mode, eight one-star characters |
+| `jatkaa` | Vieläkö tässä kannattaa jatkaa? (Tarina 1, adult basic education) | collect mode, one character with up to 8 stars, five selectable situations |
 
 ### Collect mode and new story fields
 - `purposeThreshold: null` switches off "found a direction"; the ending shows "Stars collected n of total". `maxStars` (story level) and `characters.<id>.max` set the maximum.
 - A choice effect may carry `"once": "<flag>"` (the star is given only once, so a checkpoint can be revisited) and `"label": "<key>"` (text shown with the star; text key `<scene>.<choice>.<key>`).
 - `howto: "C"` selects the collect-mode how-to wording; `startRules` (text keys) and `startRulesTitle` show a safety-rules box on the start screen.
 - `scene.selectable: true` marks a checkpoint the teacher can switch off in Settings, or via the URL `?only=r01,r02` (the choice is kept per game in the browser).
+- A character with `"nameable": true` lets the player type an invented name on the start screen. The name is kept in memory only (never saved) and replaces that character’s name label.
 - Panels accept `pos` (CSS `object-position`) to crop photos.
 
 ### Teacher guides
 One guide per game: `config.stories.<id>.teacher` is a path template with `{lang}`. The app falls back to English, then Finnish, when a language file is missing. Guides exist in Finnish and English for the three new games; the validator warns about the missing languages.
 
 ## Review needed (new games)
+- *Jatkaa*: option D of situation 4 (complaining to the teacher), the closing message, the intro lines and the hub texts were written by Claude because the manuscript (KESKEN) has none. "Safi" in the manuscript was read as Sami; Mustafa and Shahad were kept as written. The manuscript still lacks further situations.
 - Cards 12 and 13 of *Kaksi unelmaa*, its closing scenes and the `Kaksi unelmaa` star texts were drafted from the teacher notes: Finnish review needed.
 - *Pyynikki*: the source mentions seven star types in one place and nine in another; nine are used. The Rohkeus and Työelämä criteria were drafted from station 6.
 - Photos in `images/panels/keuda/` come from Keuda; check the rights, especially the wall of word-ending cards.

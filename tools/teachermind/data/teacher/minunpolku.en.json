@@ -1,15 +1,17 @@
 {
   "title": "Teacher guide: My path",
-  "intro": "This guide supports using My path with young people (17–20) in adult basic education. The game is a tool for discussion and practice, not a test and not a substitute for a guidance conversation. Timings are suggestions.",
+  "intro": "This guide supports using My path with immigrant young people aged 17–20 in adult basic education. The game is a tool for discussion and practice, not a test and not a substitute for a guidance conversation. It does not measure the student’s worth or predict their future. Timings are suggestions.",
   "sections": [
     {
-      "h": "1. What the game is",
+      "h": "1. What the game is and what it practises",
       "blocks": [
         {
           "ul": [
-            "Fifteen checkpoints on a future map. Each has a situation, three options, an own option and the possibility to ask for another situation.",
-            "After a choice come reflection on consequences and a task. A star is given when the task (or the alternative task) is done. It is not tied to a particular choice and is never lost.",
-            "Every situation is about the story’s young person. Nobody has to tell about their own life."
+            "In this version business is not the main thing. The focus is everyday life, study, relationships, language, safety and future options. The idea remains: the future is not finished, and even a small act can open a new possibility.",
+            "Aims: weighing options and consequences, recognising own skills, asking for help, using Finnish and choosing one workable next step.",
+            "Starting point: in Keuda’s adult basic education curriculum learning builds on prior knowledge, skills and life experience, and the study path is built individually. The game therefore assumes no common starting level or goal.",
+            "Fifteen checkpoints, each with a situation, three options, an own option and the chance to ask for another situation. After reflecting on consequences comes a task. A star comes from the task (or the alternative task), not from a particular choice.",
+            "The player may invent a name for the young person on the start screen. The name is not saved and is used for this session only. Use an invented name, not a real one."
           ]
         }
       ]
@@ -19,95 +21,203 @@
       "blocks": [
         {
           "ul": [
-            "Play it yourself. One checkpoint takes about 5–10 minutes; the whole game is too much for one lesson.",
-            "Choose the checkpoints for your group: tick them in Settings, or use a link with ?only=r01,r02,r03.",
-            "Prepare a support list (teacher, study counsellor, student welfare, support persons) and display it before checkpoint 5.",
-            "Check: texts and information were written with AI help. Have a native Finnish speaker review them and adapt them to your own education system."
+            "Play it yourself. One checkpoint takes about 5–10 minutes. Checkpoints can be spread over several lessons: choose them with the group in Settings or with a link ?only=r01,r02,r03 and always reserve time for shared discussion.",
+            "Say beforehand that the game also deals with racism, substances, threat of violence and family conflict. Offer the neutral replacement situation: “A young person does not dare to ask for advice in a new place. How could they be helped?” Do not ask students to tell traumatic experiences or to act out discrimination.",
+            "Agree with your institution’s support staff how you act if a concern arises. Do not promise absolute confidentiality. Note that the group includes both minors and adults.",
+            "Check individually the conditions for studies, work, applying and moving abroad. The game gives no general legal answer to them.",
+            "Text and information were written with AI help. Have a native Finnish speaker review them."
           ]
         }
       ]
     },
     {
-      "h": "3. Start and safety rules",
+      "h": "3. Fill in before the game",
+      "blocks": [
+        {
+          "ul": [
+            "Responsible teacher: [name and way to contact]",
+            "Study counsellor: [name and way to contact]",
+            "Other agreed support person: [role, name and way to contact]",
+            "Quiet place for conversation: [place]",
+            "Keuda’s student guide advises asking the responsible teacher and the study counsellor for help. Practise how to reach them. Check the details before use and display the list before checkpoint 5."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Safety and emergencies",
       "blocks": [
         {
           "ul": [
             "Go through the safety rules on the start screen together before playing.",
-            "Emergency (life or health at risk): call 112. In the game an emergency call is only practised verbally; nobody dials.",
-            "The game asks for no names and stores no free text. Do not ask students to write private matters anywhere."
+            "Emergency: when life or health is at risk and urgent help from the authorities is needed, call 112. Listen and answer the questions. In the game an emergency call is only practised verbally; nobody dials.",
+            "The game stores no free text. Do not ask students to write private matters anywhere."
           ]
         }
       ]
     },
     {
-      "h": "4. Lesson flow (example 45–60 min)",
+      "h": "5. Checkpoint flow and language support",
       "blocks": [
         {
           "ul": [
-            "5 min: safety rules and explanation.",
-            "25–35 min: in pairs, 2–3 checkpoints. Read the situation, choose an option, discuss consequences and do the task.",
-            "10–15 min: shared debrief and the personal future map (final screen)."
+            "Flow: read the situation, choose A, B or C or propose an own safe option, justify briefly, discuss the feedback for the choice and name a small next step. Feedback is a conversation opener, not a prediction.",
+            "Read the text aloud if needed and explain key words. The answer can first be practised in the student’s strongest language. Finally practise one Finnish sentence. Answers can be short, oral or in pairs. Do not score grammar errors.",
+            "Offer comparing two choices as an alternative. Differentiation: stronger readers read in roles, others use the word help and larger text size."
           ]
         }
       ]
     },
     {
-      "h": "5. Language support",
+      "h": "6. Stars and feedback",
       "blocks": [
         {
           "ul": [
-            "Every task has language support: a key word and a ready sentence. Words can be tapped.",
-            "Do not correct language errors while playing. Note useful expressions and return to them at the end.",
-            "Differentiation: stronger readers read in roles, others use the word help and larger text size."
+            "A star means a practised skill, not the young person’s worth or “real life”. A star can come from justifying an option, practising asking for help, listening to another or changing a plan.",
+            "A star is not lost through a mistake, slowness or swapping the task. The alternative task gives the same chance of a star. Do not use a public ranking.",
+            "Study, work, family and country of residence do not form the same right path for everyone. Dangerous acts are, however, not presented as equally safe options. Any checkpoint can be revisited to think of a new solution."
           ]
         }
       ]
     },
     {
-      "h": "6. Sensitive checkpoints",
+      "h": "7. Sensitive checkpoints",
       "blocks": [
         {
           "ul": [
-            "Checkpoints 4 (family conflict), 5 (difficulties), 6 (pressure, substances, violence), 10 (prejudice), 12 (scam), 13 (responsibility at home) carry a content note. Nobody is forced.",
-            "Do not act out substance use or violence. Practise refusing, leaving and asking for help. Do not repeat racist expressions.",
-            "Checkpoint 15 (moving abroad): the game does not settle permit or residence matters. Those are checked individually.",
-            "Checkpoint 12: use no real account details. If credentials may have been compromised, contact the bank and report to the police.",
-            "If a student shares something worrying, follow your institution’s procedures and offer a private conversation."
+            "Checkpoint 4 (family conflict): do not assume a family’s wishes from their culture. Checkpoints 5 (difficulties), 6 (pressure, substances, violence), 10 (prejudice), 12 (scam) and 13 (responsibility at home) carry a content note. Nobody is forced.",
+            "Checkpoint 6, extra situations: a friend offers a substance or asks you to join a fight. Practise a safe refusal sentence, a plan to leave and asking for help. Do not act out use or violence. Do not step into a dangerous situation.",
+            "Checkpoint 12: use no real account details. If you suspect your credentials have fallen into the wrong hands, contact your bank at once and report to the police.",
+            "Checkpoint 15: conditions for moving are checked individually; the game does not settle them."
           ]
         }
       ]
     },
     {
-      "h": "7. Stars and the alternative task",
+      "h": "8. Problem situations and checkpoints",
       "blocks": [
         {
           "ul": [
-            "A star = a practised skill. It is not a grade or a means of comparison.",
-            "A student may skip a situation or task or ask for another. The alternative task gives the same chance of a star.",
-            "A checkpoint can be revisited to try another option."
+            "All problem situations named in the design are included in the checkpoints. They are imagined conversation situations, not assumptions about students’ lives. The table helps choose the topics of a lesson."
+          ]
+        },
+        {
+          "table": {
+            "head": [
+              "Problem situation",
+              "Checkpoint",
+              "Practised action"
+            ],
+            "rows": [
+              [
+                "Bad company",
+                "6",
+                "Own limits and safe company"
+              ],
+              [
+                "Loneliness and feeling left out",
+                "6 and 11",
+                "Reaching out and getting to know people"
+              ],
+              [
+                "Quick money is tempting",
+                "12",
+                "Pausing and checking the offer"
+              ],
+              [
+                "Failing at school",
+                "3 and 14",
+                "Feedback and a new way to practise"
+              ],
+              [
+                "Disappointment or shame",
+                "3 and 7",
+                "Naming the feeling and trying again"
+              ],
+              [
+                "Trying substances",
+                "6, extra situation",
+                "Refusing and asking for support"
+              ],
+              [
+                "Being drawn into violence",
+                "6, extra situation",
+                "Moving to safety and seeking help"
+              ],
+              [
+                "Social media pressure",
+                "9 and 12",
+                "Stopping comparison and reflecting"
+              ],
+              [
+                "Conflict at home",
+                "4",
+                "Safe conversation and a support person"
+              ],
+              [
+                "Trusting the wrong person",
+                "12",
+                "Protecting your own credentials"
+              ],
+              [
+                "Feeling unseen and unheard",
+                "2 and 5",
+                "Telling your wish and need for help"
+              ],
+              [
+                "Too much responsibility too young",
+                "13",
+                "Recognising the load and seeking support"
+              ],
+              [
+                "Low self-esteem",
+                "8 and 14",
+                "Noticing strengths and your own progress"
+              ],
+              [
+                "Racism or discrimination",
+                "10",
+                "Support and safe intervention"
+              ],
+              [
+                "Not knowing where to get help",
+                "5 and the support list",
+                "Practising the right way to make contact"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "h": "9. Shared debrief and observation",
+      "blocks": [
+        {
+          "ul": [
+            "Discuss the chosen checkpoints from the story character’s point of view. Everyone has the right not to answer personally.",
+            "1. How did the young person feel? What was difficult in the situation?",
+            "2. What could the choice open? What could it make harder?",
+            "3. Can the choice be changed? What further information is needed?",
+            "4. Who could help? How do you ask them for help?",
+            "5. What should change in the environment or in other people’s actions so that responsibility does not fall on the young person alone?",
+            "6. What would be a small enough next step?",
+            "Observe: can the student name an option and a possible consequence, practise asking for help, recognise a safe course of action and use one Finnish support sentence? Give descriptive feedback: “I noticed that you compared two options and suggested whom to ask for help.”",
+            "Do not draw conclusions from answers about a student’s health, family situation or future success. Do not read the choice of a risky option as a confession of the right act. If a student tells of a real concern, move the conversation away from the shared game and act according to your institution’s agreed procedure."
           ]
         }
       ]
     },
     {
-      "h": "8. Debrief questions",
+      "h": "10. Before taking into use",
       "blocks": [
         {
           "ul": [
-            "Which choice was hardest? What did the consequence teach?",
-            "Who could help the story’s young person? How is help asked for?",
-            "What is one small next step? (final screen; answers are written on paper or said aloud)"
-          ]
-        }
-      ]
-    },
-    {
-      "h": "9. Practical notes",
-      "blocks": [
-        {
-          "ul": [
-            "The photos show Keuda premises. Check image rights before publishing.",
-            "Progress is stored in the browser. On a shared device use “Delete saved progress” in Settings."
+            "Fill in the contacts in section 3 and make sure support is available.",
+            "Check the text’s comprehensibility with the group and explain difficult words.",
+            "Choose the checkpoints and make sure an alternative task is possible.",
+            "Make sure the tasks do not ask for sensitive personal data.",
+            "Reserve a calm ending and the chance for a one-to-one conversation.",
+            "The photos show Keuda premises. Check image rights before publishing. Progress is stored in the browser: on a shared device use “Delete saved progress” in Settings."
           ]
         }
       ]

@@ -1,15 +1,17 @@
 {
   "title": "Opettajan opas: Minun polkuni",
-  "intro": "Tämä opas tukee Minun polkuni -pelin käyttöä aikuisten perusopetuksen nuorten (17–20 v.) kanssa. Peli on keskustelun ja harjoittelun apuväline, ei koe eikä ohjauskeskustelun korvike. Ajat ovat ehdotuksia.",
+  "intro": "Tämä opas tukee Minun polkuni -pelin käyttöä aikuisten perusopetuksen 17–20-vuotiaiden maahanmuuttajanuorten kanssa. Peli on keskustelun ja harjoittelun apuväline, ei koe eikä ohjauskeskustelun korvike. Peli ei mittaa opiskelijan arvoa eikä ennusta hänen tulevaisuuttaan. Ajat ovat ehdotuksia.",
   "sections": [
     {
-      "h": "1. Mikä peli on",
+      "h": "1. Mikä peli on ja mitä se harjoittelee",
       "blocks": [
         {
           "ul": [
-            "Viisitoista rastia tulevaisuuskartalla. Jokaisella rastilla on tilanne, kolme valittavaa vaihtoehtoa, oma vaihtoehto ja mahdollisuus pyytää toinen tilanne.",
-            "Valinnan jälkeen tulee seurausten pohdinta ja tehtävä. Tähti tulee, kun tehtävä (tai vaihtoehtoinen tehtävä) on tehty. Tähteä ei anneta tietystä valinnasta eikä sitä menetä.",
-            "Kaikki tilanteet koskevat tarinan nuorta. Kenenkään ei tarvitse kertoa omasta elämästään."
+            "Tässä versiossa liiketoiminta ei ole pääasia. Keskiössä ovat arki, opiskelu, ihmissuhteet, kielitaito, turvallisuus ja tulevaisuuden vaihtoehdot. Ajatus säilyy: tulevaisuus ei ole valmis, ja pienikin teko voi avata uuden mahdollisuuden.",
+            "Tavoitteet: vaihtoehtojen ja seurausten pohtiminen, oman osaamisen tunnistaminen, avun pyytäminen, suomen käyttäminen ja yhden toteuttamiskelpoisen seuraavan askeleen valinta.",
+            "Lähtökohta: Keudan aikuisten perusopetuksen opetussuunnitelmassa oppiminen rakentuu aiemmille tiedoille, taidoille ja elämänkokemukselle, ja opintopolku rakennetaan yksilöllisesti. Siksi pelissä ei oleteta kaikille samaa lähtötasoa tai tavoitetta.",
+            "Viisitoista rastia, jokaisella tilanne, kolme vaihtoehtoa, oma vaihtoehto ja mahdollisuus pyytää toinen tilanne. Seurausten pohdinnan jälkeen tulee tehtävä. Tähti tulee tehtävästä (tai vaihtoehtoisesta tehtävästä), ei tietystä valinnasta.",
+            "Pelaaja voi halutessaan keksiä nuorelle nimen aloitusnäytössä. Nimi ei tallennu, ja se on vain tämän istunnon ajan käytössä. Käytä keksittyä nimeä, ei oikeaa."
           ]
         }
       ]
@@ -19,95 +21,203 @@
       "blocks": [
         {
           "ul": [
-            "Pelaa peli itse läpi. Yksi rasti vie noin 5–10 minuuttia; koko peli on liikaa yhdelle tunnille.",
-            "Valitse ryhmälle sopivat rastit: Asetuksissa voit rastittaa ne, tai käytä linkkiä ?only=r01,r02,r03.",
-            "Valmistele tukilista (opettaja, opinto-ohjaaja, opiskelijahuolto, tukihenkilöt) ja anna se näkyville ennen rastia 5.",
-            "Tarkista: tekstit ja tiedot on laadittu tekoälyn avulla. Anna suomea äidinkielenään puhuvan tarkistaa ne ja mukauta ne oman koulutusjärjestelmäsi mukaan."
+            "Pelaa peli itse läpi. Yksi rasti vie noin 5–10 minuuttia. Rastit voi jakaa usealle opetuskerralle: valitse ryhmän kanssa käsiteltävät rastit Asetuksista tai linkillä ?only=r01,r02,r03 ja varaa aina aikaa yhteiselle keskustelulle.",
+            "Kerro etukäteen, että pelissä käsitellään myös rasismia, päihteitä, väkivallan uhkaa ja perheen ristiriitoja. Tarjoa neutraali korvaava tilanne: ”Nuori ei uskalla kysyä neuvoa uudessa paikassa. Miten häntä voisi auttaa?” Älä pyydä opiskelijoita kertomaan traumaattisista kokemuksista tai esittämään syrjintää.",
+            "Sovi oppilaitoksen tukihenkilöiden kanssa, miten toimit, jos huoli herää. Älä lupaa ehdotonta salassapitoa. Huomioi, että ryhmässä on sekä alaikäisiä että täysi-ikäisiä.",
+            "Selvitä opiskelijakohtaisesti opintoihin, työhön, hakemiseen ja ulkomaille muuttamiseen liittyvät ehdot. Peli ei anna niihin yleispätevää oikeudellista vastausta.",
+            "Teksti ja tiedot on laadittu tekoälyn avulla. Anna suomea äidinkielenään puhuvan tarkistaa ne."
           ]
         }
       ]
     },
     {
-      "h": "3. Aloitus ja turvasäännöt",
+      "h": "3. Täydennä ennen peliä",
+      "blocks": [
+        {
+          "ul": [
+            "Vastuuopettaja: [nimi ja yhteydenottotapa]",
+            "Opinto-ohjaaja: [nimi ja yhteydenottotapa]",
+            "Muu sovittu tukihenkilö: [tehtävä, nimi ja yhteydenottotapa]",
+            "Rauhallinen keskustelupaikka: [paikka]",
+            "Keudan opiskelijan opinto-oppaassa neuvotaan kysymään apua omalta vastuuopettajalta ja opinto-ohjaajalta. Harjoitelkaa, miten heidät tavoittaa. Tarkista tiedot ennen käyttöä ja anna lista näkyviin ennen rastia 5."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Turvallisuus ja hätätilanne",
       "blocks": [
         {
           "ul": [
             "Käy aloitusnäytön turvasäännöt yhdessä läpi ennen pelaamista.",
-            "Hätätilanne (henki tai terveys vaarassa): soita 112. Pelissä hätäpuhelua harjoitellaan vain sanallisesti, numeroon ei soiteta.",
-            "Peli ei kysy nimiä eikä tallenna vapaata tekstiä. Älä pyydä opiskelijoita kirjoittamaan yksityisiä asioita mihinkään."
+            "Kiireellinen hätätilanne: kun henki tai terveys on vaarassa ja tarvitaan kiireellistä viranomaisapua, soita 112. Kuuntele ja vastaa kysymyksiin. Pelissä hätäpuhelua vain harjoitellaan sanallisesti, numeroon ei soiteta.",
+            "Peli ei tallenna vapaata tekstiä. Älä pyydä opiskelijoita kirjoittamaan yksityisiä asioita mihinkään."
           ]
         }
       ]
     },
     {
-      "h": "4. Tunnin kulku (esimerkki 45–60 min)",
+      "h": "5. Rastin kulku ja kielituki",
       "blocks": [
         {
           "ul": [
-            "5 min: turvasäännöt ja tehtävän selitys.",
-            "25–35 min: pareittain 2–3 rastia. Lukekaa tilanne, valitkaa vaihtoehto, keskustelkaa seurauksista ja tehkää tehtävä.",
-            "10–15 min: yhteinen purku ja oma tulevaisuuskartta (viimeinen näyttö)."
+            "Kulku: lue tilanne, valitse A, B tai C tai ehdota oma turvallinen vaihtoehto, perustele lyhyesti, käsittele valintaa vastaava palaute ja nimeä pieni seuraava teko. Palautteet ovat keskustelun avauksia, eivät ennusteita.",
+            "Opettaja lukee tekstin tarvittaessa ääneen ja selittää avainsanat. Vastauksen voi harjoitella ensin omalla vahvalla kielellä. Lopuksi harjoitellaan yhtä suomenkielistä lausetta. Vastata voi lyhyesti, suullisesti tai parin kanssa. Älä pisteytä kielioppivirheitä.",
+            "Tarjoa vaihtoehtona kahden valinnan vertailu. Eriyttäminen: vahvemmat lukijat lukevat roolein, muut käyttävät sanoja ja suurempaa tekstikokoa."
           ]
         }
       ]
     },
     {
-      "h": "5. Kielituki",
+      "h": "6. Tähdet ja palaute",
       "blocks": [
         {
           "ul": [
-            "Jokaisessa tehtävässä on kielituki: avainsana ja valmis lause. Sanat voi napauttaa.",
-            "Älä korjaa kielivirheitä peliä pelatessa. Kirjaa hyödylliset ilmaisut ja palaa niihin lopuksi.",
-            "Eriyttäminen: vahvemmat lukijat lukevat roolein, muut käyttävät sanoja ja suurempaa tekstikokoa."
+            "Tähti tarkoittaa harjoiteltua taitoa, ei nuoren arvoa tai ”oikeaa elämää”. Tähden saa esimerkiksi vaihtoehdon perustelemisesta, avun pyytämisen harjoittelusta, toisen kuuntelemisesta tai suunnitelman muuttamisesta.",
+            "Tähteä ei menetä virheestä, hitaudesta tai tehtävän vaihtamisesta. Vaihtoehtoisesta tehtävästä saa saman mahdollisuuden tähteen. Älä käytä julkista paremmuusjärjestystä.",
+            "Opiskelu, työ, perhe ja asuinmaa eivät muodosta kaikille samaa oikeaa polkua. Vaarallisia tekoja ei kuitenkaan esitetä yhtä turvallisina vaihtoehtoina. Jokaisesta rastista voi palata pohtimaan uutta ratkaisua."
           ]
         }
       ]
     },
     {
-      "h": "6. Herkät rastit",
+      "h": "7. Herkät rastit",
       "blocks": [
         {
           "ul": [
-            "Rasti 4 (perheriita), 5 (vaikeudet), 6 (painostus, päihteet, väkivalta), 10 (ennakkoluulot), 12 (huijaus), 13 (vastuu kotona): rastilla on sisältöhuomautus. Ketään ei pakoteta.",
-            "Älä näytä päihteiden käyttöä tai väkivaltaa. Harjoitellaan kieltäytymistä, poistumista ja avun pyytämistä. Älä toista rasistisia ilmauksia.",
-            "Rasti 15 (muutto): peli ei ratkaise lupa- tai oleskeluasioita. Ne selvitetään henkilökohtaisesti.",
-            "Rasti 12: älä käytä oikeita tilitietoja. Jos epäilet tunnusten joutuneen vääriin käsiin, ota yhteys pankkiin ja tee rikosilmoitus.",
-            "Jos opiskelija kertoo jotain huolestuttavaa, toimi oppilaitoksen ohjeiden mukaan ja tarjoa kahdenkeskinen keskustelu."
+            "Rasti 4 (perheriita): älä oleta perheen toiveita kulttuurin perusteella. Rasti 5 (vaikeudet), 6 (painostus, päihteet, väkivalta), 10 (ennakkoluulot), 12 (huijaus) ja 13 (vastuu kotona) sisältävät sisältöhuomautuksen. Ketään ei pakoteta.",
+            "Rasti 6, lisätilanteet: kaveri tarjoaa päihdettä tai pyytää mukaan tappeluun. Harjoitelkaa turvallinen kieltäytymislause, paikalta poistumisen suunnitelma ja avun pyytäminen. Älä näyttele käyttöä tai väkivaltaa. Älä mene väliin vaaralliseen tilanteeseen.",
+            "Rasti 12: älä käytä oikeita tilitietoja. Jos epäilet tunnusten joutuneen vääriin käsiin, ota heti yhteys pankkiin ja tee rikosilmoitus poliisille.",
+            "Rasti 15: muuttoon liittyvät ehdot tarkistetaan henkilökohtaisesti, eikä peli ratkaise niitä."
           ]
         }
       ]
     },
     {
-      "h": "7. Tähdet ja vaihtoehtoinen tehtävä",
+      "h": "8. Ongelmatilanteet ja rastit",
       "blocks": [
         {
           "ul": [
-            "Tähti = harjoiteltu taito. Se ei ole arvosana eikä vertailun väline.",
-            "Opiskelija saa jättää tilanteen tai tehtävän väliin tai pyytää toisen. Vaihtoehtoisesta tehtävästä saa saman mahdollisuuden tähteen.",
-            "Rastille voi palata ja kokeilla toista vaihtoehtoa."
+            "Kaikki suunnittelussa nimetyt ongelmatilanteet sisältyvät rasteihin. Ne ovat kuvitteellisia keskustelutilanteita, eivät oletuksia opiskelijoiden elämästä. Taulukko auttaa valitsemaan opetuskerran aiheet."
+          ]
+        },
+        {
+          "table": {
+            "head": [
+              "Ongelmatilanne",
+              "Rasti",
+              "Harjoiteltava teko"
+            ],
+            "rows": [
+              [
+                "1. Huono kaveriporukka",
+                "6",
+                "Omat rajat ja turvallinen seura"
+              ],
+              [
+                "2. Yksinäisyys ja ulkopuolisuuden tunne",
+                "6 ja 11",
+                "Yhteyden ottaminen ja tutustuminen"
+              ],
+              [
+                "3. Nopea raha houkuttelee",
+                "12",
+                "Pysähtyminen ja tarjouksen tarkistaminen"
+              ],
+              [
+                "4. Koulussa epäonnistuminen",
+                "3 ja 14",
+                "Palaute ja uusi harjoittelutapa"
+              ],
+              [
+                "5. Pettymys tai häpeä",
+                "3 ja 7",
+                "Tunteen sanoittaminen ja uusi yritys"
+              ],
+              [
+                "6. Päihteiden kokeilu",
+                "6, lisätilanne",
+                "Kieltäytyminen ja tuen pyytäminen"
+              ],
+              [
+                "7. Väkivaltaan mukaan joutuminen",
+                "6, lisätilanne",
+                "Turvaan siirtyminen ja avun hakeminen"
+              ],
+              [
+                "8. Sosiaalisen median paine",
+                "9 ja 12",
+                "Vertailun pysäyttäminen ja harkinta"
+              ],
+              [
+                "9. Riidat kotona",
+                "4",
+                "Turvallinen keskustelu ja tukihenkilö"
+              ],
+              [
+                "10. Luottamus väärään ihmiseen",
+                "12",
+                "Omien tunnusten suojaaminen"
+              ],
+              [
+                "11. Tunne, ettei tule nähdyksi eikä kuulluksi",
+                "2 ja 5",
+                "Oman toiveen ja avuntarpeen kertominen"
+              ],
+              [
+                "12. Liian suuri vastuu liian nuorena",
+                "13",
+                "Kuorman tunnistaminen ja tuen hakeminen"
+              ],
+              [
+                "13. Huono itsetunto",
+                "8 ja 14",
+                "Vahvuuksien ja oman edistymisen huomaaminen"
+              ],
+              [
+                "14. Rasismi tai syrjintä",
+                "10",
+                "Tuki ja turvallinen puuttuminen"
+              ],
+              [
+                "15. Ei tiedä, mistä saa apua",
+                "5 ja luvun 2 tukilista",
+                "Oikean yhteydenottotavan harjoittelu"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "h": "9. Yhteinen purku ja havainnointi",
+      "blocks": [
+        {
+          "ul": [
+            "Keskustelkaa valituista rasteista tarinan hahmon näkökulmasta. Jokaisella on oikeus olla vastaamatta henkilökohtaisesti.",
+            "1. Miltä nuoresta tuntui? Mikä tilanteessa oli vaikeaa?",
+            "2. Mitä valinta voisi avata? Mitä se voisi vaikeuttaa?",
+            "3. Voiko valintaa muuttaa? Mitä tietoa vielä tarvitaan?",
+            "4. Kuka voisi auttaa? Miten häneltä pyydetään apua?",
+            "5. Mitä pitäisi muuttaa ympäristössä tai muiden ihmisten toiminnassa, ettei vastuu jää vain nuorelle?",
+            "6. Mikä olisi riittävän pieni seuraava teko?",
+            "Havainnoi: pystyykö opiskelija nimeämään vaihtoehdon ja mahdollisen seurauksen, harjoittelemaan avun pyytämistä, tunnistamaan turvallisen toimintatavan ja käyttämään yhtä suomenkielistä tukilausetta? Anna kuvaileva palaute: ”Huomasin, että vertailit kahta vaihtoehtoa ja ehdotit, keneltä voisi kysyä apua.”",
+            "Älä tee vastauksista päätelmiä opiskelijan terveydestä, perhetilanteesta tai tulevasta menestymisestä. Älä tulkitse riskivaihtoehdon valintaa tunnustukseksi oikeasta teosta. Jos opiskelija kertoo todellisesta huolesta, siirrä keskustelu pois yhteisestä pelistä ja toimi oppilaitoksen sovitun toimintatavan mukaisesti."
           ]
         }
       ]
     },
     {
-      "h": "8. Purkukysymykset",
+      "h": "10. Ennen käyttöönottoa",
       "blocks": [
         {
           "ul": [
-            "Mikä valinta oli vaikein? Mitä seuraus opetti?",
-            "Kuka voisi auttaa tarinan nuorta? Miten apua pyydetään?",
-            "Mikä on yksi pieni seuraava teko? (viimeinen näyttö; vastaukset kirjataan paperille tai sanotaan ääneen)"
-          ]
-        }
-      ]
-    },
-    {
-      "h": "9. Käytännön huomioita",
-      "blocks": [
-        {
-          "ul": [
-            "Kuvat ovat Keudan tiloista. Tarkista kuvien käyttöoikeudet ennen julkaisua.",
-            "Eteneminen tallentuu selaimeen. Jaetulla laitteella käytä Asetuksista kohtaa ”Poista tallennettu eteneminen”."
+            "Täydennä kohdan 3 yhteystiedot ja varmista tuen saatavuus.",
+            "Tarkista tekstin ymmärrettävyys ryhmän kanssa ja selitä vaikeat sanat.",
+            "Valitse rastit ja varmista mahdollisuus vaihtoehtoiseen tehtävään.",
+            "Varmista, ettei tehtävissä pyydetä arkaluonteisia henkilötietoja.",
+            "Varaa rauhallinen lopetus ja mahdollisuus kahdenkeskiseen keskusteluun.",
+            "Kuvat ovat Keudan tiloista. Tarkista kuvien käyttöoikeudet ennen julkaisua. Eteneminen tallentuu selaimeen: jaetulla laitteella käytä Asetuksista kohtaa ”Poista tallennettu eteneminen”."
           ]
         }
       ]

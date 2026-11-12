@@ -1,0 +1,92 @@
+{
+  "title": "Opettajan opas: Vieläkö tässä kannattaa jatkaa? (Tarina 1)",
+  "intro": "Tämä opas tukee Tulevaisuuden tähdet -pelin Tarina 1:tä aikuisten perusopetuksen oppivelvollisten opiskelijoiden (noin 16–20 v.) kanssa. Peli on keskustelun apuväline, ei koe. Opiskelija ei saa tähteä oikeasta vastauksesta: tähti syntyy siitä, että joku hahmo alkaa nähdä itselleen uuden mahdollisuuden.",
+  "sections": [
+    {
+      "h": "1. Kohderyhmä ja tavoite",
+      "blocks": [
+        {
+          "ul": [
+            "Opinnot eivät oikein nappaa, poissaoloja on kertynyt ja opiskelijat haluaisivat ammattikouluun, mutta taidot eivät vielä riitä eikä heillä ole peruskoulun päättötodistusta.",
+            "Viisi tilannetta: taukotilassa, tehtävä ei aukea, kuka ottaa mukaan, palautettu koe ja opiskelu etenee hitaasti. Tilanteet voi tehdä missä järjestyksessä tahansa, ja ne voi rajata Asetuksista tai linkillä ?only=j1,j2.",
+            "Puhe on lyhyttä arkisuomea. Tilanteissa 4 ja 5 hahmot ovat nuoria maahanmuuttajataustaisia opiskelijoita."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "2. Tähdet",
+      "blocks": [
+        {
+          "ul": [
+            "Kahdeksan tähteä: Menin tunnille; En jää yksin, vaan kerron omasta tilanteestani aikuiselle; Löysin keinon päästä alkuun; Tein tilaa toiselle; Etsin uuden tavan yrittää; sekä kolme tilanteen 5 tähteä (läksyt yhdessä, kotona auttaminen, ulos kavereiden kanssa).",
+            "Tähti tulee tehdystä valinnasta mutta ei yhdestä oikeasta: esimerkiksi ”Etsin uuden tavan yrittää” avautuu, kun Sami etsii apua ja sopii uuden tavan harjoitella. Se ei edellytä, että seuraava koe menee läpi.",
+            "Tähteä ei menetä. Tilanteisiin voi palata kokeilemaan toista polkua."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "3. Ennen tuntia",
+      "blocks": [
+        {
+          "ul": [
+            "Pelaa peli itse läpi. Yksi tilanne vie noin 10 minuuttia.",
+            "Pelaaja voi keksiä hahmolle nimen aloitusnäytössä. Nimi ei tallennu. Käytä keksittyä nimeä.",
+            "Täydennä tukihenkilöiden yhteystiedot (vastuuopettaja, opinto-ohjaaja) ja anna ne näkyviin ennen pelaamista.",
+            "Tekstit on laadittu käsikirjoituksen pohjalta. Tilanteen 4 vaihtoehto D (valittaa opettajalle) ja loppuviesti on laadittu käsikirjoitukseen jääneiden aukkojen täyttämiseksi: tarkista ne."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Tunnin kulku",
+      "blocks": [
+        {
+          "ul": [
+            "5 min: turvasäännöt ja johdanto. 30 min: pareittain 2–3 tilannetta. 15 min: yhteinen pohdinta.",
+            "Pysähdy valinnan kohdalla ja kysy ”Miksi tämä?” ennen kuin ryhmä klikkaa."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "5. Yhteinen pohdinta tilanteittain",
+      "blocks": [
+        {
+          "ul": [
+            "Tilanne 1: Kuka voisi auttaa, kun opiskelu ei kiinnosta? Miten hänelle kerrotaan?",
+            "Tilanne 2: Mistä muut voivat huomata, että tarvitset apua, jos et sano mitään?",
+            "Tilanne 3: Miten voi pyytää mukaan niin, ettei toinen tunne olevansa vaivaksi?",
+            "Tilanne 4: Kenelle voi laittaa viestin, kun kokeen jälkeen harmittaa? Mitä viestiin voi kirjoittaa?",
+            "Tilanne 5: Miten ”myöhemmin” muuttuu sovituksi hetkeksi ja yhdeksi tehtäväksi?"
+          ]
+        }
+      ]
+    },
+    {
+      "h": "6. Herkät kohdat",
+      "blocks": [
+        {
+          "ul": [
+            "Tilanne 1: vaihtoehto A mainitsee tupakoinnin (”röökille”). Pelissä ei näytetä käyttöä.",
+            "Tilanne 4: koe ei mene läpi ja Samia hävettää. Älä pyydä opiskelijoita näyttämään omia kokeitaan. Sinun ei tarvitse näyttää koetta muille.",
+            "Tilanne 5: kotona auttaminen. Älä pyydä opiskelijoita luettelemaan omia kotivastuitaan.",
+            "Jos opiskelija kertoo jotain huolestuttavaa, toimi oppilaitoksen ohjeiden mukaan ja tarjoa kahdenkeskinen keskustelu. Hätätilanteessa soita 112."
+          ]
+        }
+      ]
+    },
+    {
+      "h": "7. Käytännön huomioita",
+      "blocks": [
+        {
+          "ul": [
+            "Kuvat ovat Keudan tiloista. Tarkista käyttöoikeudet ennen julkaisua.",
+            "Eteneminen tallentuu selaimeen. Jaetulla laitteella käytä Asetuksista kohtaa ”Poista tallennettu eteneminen”."
+          ]
+        }
+      ]
+    }
+  ]
+}

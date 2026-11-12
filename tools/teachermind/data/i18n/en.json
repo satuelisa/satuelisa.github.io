@@ -62,7 +62,7 @@
   "teacherPrint": "Print",
   "teacherLoadError": "Teacher guide could not be loaded.",
   "menuTitle": "Choose a game",
-  "menuIntro": "Four short games about futures, choices and next steps. Pick the one that fits your group.",
+  "menuIntro": "Five short games about futures, choices and next steps. Pick the one that fits your group.",
   "menuAudience": "For",
   "menuPlay": "Play",
   "menuInProgress": "In progress",
@@ -87,5 +87,10 @@
   "menu.pyynikki.desc": "Seven stations at Pyynikki. Do the tasks outdoors with your phone, confirm them here and light nine stars.",
   "menu.kaksiunelmaa.title": "Two Dreams",
   "menu.kaksiunelmaa.audience": "Student athletes and their teachers",
-  "menu.kaksiunelmaa.desc": "A young ice hockey player is also studying business. Two situations ask: who am I when I do not play?"
+  "menu.kaksiunelmaa.desc": "A young ice hockey player is also studying business. Two situations ask: who am I when I do not play?",
+  "nameLabel": "Name for the young person (optional)",
+  "nameHint": "Invent a name, not a real one. It is only used during this session and is not saved.",
+  "menu.jatkaa.title": "Is it still worth continuing? (Story 1)",
+  "menu.jatkaa.audience": "Students in adult basic education, 16–20 years",
+  "menu.jatkaa.desc": "Study is not clicking and absences are piling up. Five school-day situations: going to class, a task that will not open, who gets included, a returned exam, and an evening when homework slips."
 }

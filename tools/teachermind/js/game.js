@@ -63,7 +63,11 @@
   }
 
   // Story text: a missing key stays visible so authors notice it.
+  // Optional player-invented name for the protagonist (character flag "nameable"). Kept in memory only, never saved.
+  let playerName = "";
   function txt(key) {
+    const nm = /^char\.([^.]+)\.name$/.exec(key);
+    if (nm && playerName && story && story.characters[nm[1]] && story.characters[nm[1]].nameable) return playerName;
     if (key in textMap) return textMap[key];
     if (key in textFallback) return textFallback[key];
     return `⟦${key}⟧`;
@@ -292,6 +296,7 @@
   }
 
   function showMenu() {
+    playerName = "";
     story = null;
     state = null;
     currentId = null;
@@ -847,6 +852,9 @@
       ul.replaceChildren();
       rules.forEach((k) => { const li = el("li"); li.appendChild(richText(txt(k))); ul.appendChild(li); });
     }
+    const nameable = Object.keys(story.characters).some((c) => story.characters[c].nameable);
+    $("#nameField").hidden = !nameable || state.started;
+    $("#playerName").value = playerName;
     $("#btnStartLabel").textContent = state.started ? t("continueGame") : t("startGame");
   }
 
@@ -1050,6 +1058,7 @@
     $("#btnClearSettings").addEventListener("click", () => { $("#dlgSettings").close(); askClear(); });
     $("#btnClearEnding").addEventListener("click", askClear);
     $("#btnTryAgain").addEventListener("click", restartStory);
+    $("#playerName").addEventListener("input", (ev) => { playerName = ev.target.value.trim().slice(0, 20); });
     $("#btnStart").addEventListener("click", () => {
       if (state.started) { renderAll(true); return; }
       startStory();

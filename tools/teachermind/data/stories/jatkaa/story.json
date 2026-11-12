@@ -1,0 +1,747 @@
+{
+  "id": "jatkaa",
+  "version": 1,
+  "start": "j00_start",
+  "howto": "C",
+  "maxStars": 8,
+  "purposeThreshold": null,
+  "hideResults": true,
+  "startRulesTitle": "story.rules.title",
+  "startRules": ["story.rules.1", "story.rules.2", "story.rules.3", "story.rules.4", "story.rules.5", "story.rules.6"],
+  "characters": {
+    "narrator": {"type": "npc", "color": "#475569", "initial": "K", "portrait": null},
+    "sina": {"type": "protagonist", "color": "#0F766E", "initial": "P", "portrait": null, "max": 8, "nameable": true},
+    "kaveri": {"type": "npc", "color": "#1D4ED8", "initial": "K", "portrait": null},
+    "toinen": {"type": "npc", "color": "#BE185D", "initial": "T", "portrait": null},
+    "opettaja": {"type": "npc", "color": "#7C2D12", "initial": "O", "portrait": null},
+    "sami": {"type": "npc", "color": "#B45309", "initial": "S", "portrait": null},
+    "amina": {"type": "npc", "color": "#7E22CE", "initial": "A", "portrait": null},
+    "dani": {"type": "npc", "color": "#047857", "initial": "D", "portrait": null},
+    "shahad": {"type": "npc", "color": "#0369A1", "initial": "S", "portrait": null},
+    "mustafa": {"type": "npc", "color": "#4D7C0F", "initial": "M", "portrait": null},
+    "zozan": {"type": "npc", "color": "#9333EA", "initial": "Z", "portrait": null},
+    "lotengo": {"type": "npc", "color": "#C2410C", "initial": "L", "portrait": null}
+  },
+  "scenes": {
+    "j00_start": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        },
+        {
+          "id": "p2",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🚪",
+          "tone": 3,
+          "pos": "center 60%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "narrator", "p": 1}],
+      "next": "j10_hub"
+    },
+    "j10_hub": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/hall-windows.jpg",
+          "emoji": "🏫",
+          "tone": 4,
+          "pos": "center 40%"
+        }
+      ],
+      "lines": [
+        {"id": "h1", "s": "narrator", "p": 0, "if": {"not": {"flag": "done_e1"}}},
+        {"id": "h2", "s": "narrator", "p": 0, "if": {"flag": "done_e1"}}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_e1", "actor": "sina", "next": "j1", "requires": {"not": {"flag": "done_e1"}}, "reaction": []},
+        {"id": "c_e1d", "actor": "sina", "next": "j1", "requires": {"flag": "done_e1"}, "reaction": []},
+        {"id": "c_e2", "actor": "sina", "next": "j2", "requires": {"not": {"flag": "done_e2"}}, "reaction": []},
+        {"id": "c_e2d", "actor": "sina", "next": "j2", "requires": {"flag": "done_e2"}, "reaction": []},
+        {"id": "c_e3", "actor": "sina", "next": "j3", "requires": {"not": {"flag": "done_e3"}}, "reaction": []},
+        {"id": "c_e3d", "actor": "sina", "next": "j3", "requires": {"flag": "done_e3"}, "reaction": []},
+        {"id": "c_e4", "actor": "sina", "next": "j4", "requires": {"not": {"flag": "done_e4"}}, "reaction": []},
+        {"id": "c_e4d", "actor": "sina", "next": "j4", "requires": {"flag": "done_e4"}, "reaction": []},
+        {"id": "c_e5", "actor": "sina", "next": "j5", "requires": {"not": {"flag": "done_e5"}}, "reaction": []},
+        {"id": "c_e5d", "actor": "sina", "next": "j5", "requires": {"flag": "done_e5"}, "reaction": []},
+        {
+          "id": "c_finish",
+          "actor": "sina",
+          "next": "j90_end",
+          "requires": {"count": {"flags": ["done_e1", "done_e2", "done_e3", "done_e4", "done_e5"], "gte": 1}},
+          "reaction": []
+        }
+      ]
+    },
+    "j1": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "kaveri", "p": 0},
+        {"id": "l3", "s": "toinen", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "sina", "next": "j1_t", "reaction": [{"id": "r1", "s": "kaveri"}]},
+        {
+          "id": "c_b",
+          "actor": "sina",
+          "next": "j1_t",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_tunnille", "label": "star"}],
+          "reaction": [{"id": "r1", "s": "kaveri"}]
+        },
+        {"id": "c_c", "actor": "sina", "next": "j1_t", "reaction": [{"id": "r1", "s": "kaveri"}]}
+      ]
+    },
+    "j1_t": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 2},
+      "next": "j1_end",
+      "choices": [
+        {
+          "id": "c_class",
+          "actor": "sina",
+          "requires": {"not": {"flag": "s_tunnille"}},
+          "effects": [{"char": "sina", "stars": 1, "once": "s_tunnille", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_tell",
+          "actor": "sina",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_aikuinen", "label": "star"}],
+          "reaction": [{"id": "r1", "s": "opettaja"}]
+        },
+        {"id": "c_go", "actor": "sina", "reaction": []}
+      ]
+    },
+    "j1_end": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_done", "actor": "sina", "next": "j10_hub", "flags": ["done_e1"], "reaction": []}]
+    },
+    "j2": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "sina", "p": 0},
+        {"id": "l3", "s": "kaveri", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "sina", "next": "j2_a", "reaction": []},
+        {"id": "c_b", "actor": "sina", "next": "j2_b", "reaction": []},
+        {"id": "c_c", "actor": "sina", "next": "j2_c", "reaction": []}
+      ]
+    },
+    "j2_a": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}, {"id": "l2", "s": "opettaja", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_diff",
+          "actor": "sina",
+          "next": "j2_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_alku", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_break",
+          "actor": "sina",
+          "next": "j2_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_alku", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j2_b": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "kaveri", "p": 0}, {"id": "l2", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_try",
+          "actor": "sina",
+          "next": "j2_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_alku", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_more",
+          "actor": "sina",
+          "next": "j2_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_alku", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j2_c": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "opettaja", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_try",
+          "actor": "sina",
+          "next": "j2_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_alku", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j2_end": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_done", "actor": "sina", "next": "j10_hub", "flags": ["done_e2"], "reaction": []}]
+    },
+    "j3": {
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "narrator", "p": 0},
+        {"id": "l3", "s": "kaveri", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "sina", "next": "j3_a", "reaction": []},
+        {"id": "c_b", "actor": "sina", "next": "j3_b", "reaction": []},
+        {"id": "c_c", "actor": "sina", "next": "j3_c", "reaction": []}
+      ]
+    },
+    "j3_a": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_ask",
+          "actor": "sina",
+          "next": "j3_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_tilaa", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_teacher",
+          "actor": "sina",
+          "next": "j3_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_tilaa", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j3_b": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "toinen", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_next",
+          "actor": "sina",
+          "next": "j3_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_tilaa", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j3_c": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "sina", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_next",
+          "actor": "sina",
+          "next": "j3_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_tilaa", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j3_end": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/foosball-lobby.jpg",
+          "emoji": "🧭",
+          "tone": 6,
+          "pos": "center 55%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_done", "actor": "sina", "next": "j10_hub", "flags": ["done_e3"], "reaction": []}]
+    },
+    "j4": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "amina", "p": 0},
+        {"id": "l3", "s": "sami", "p": 0},
+        {"id": "l4", "s": "dani", "p": 0},
+        {"id": "l5", "s": "sami", "p": 0},
+        {"id": "l6", "s": "amina", "p": 0},
+        {"id": "l7", "s": "sami", "p": 0},
+        {"id": "l8", "s": "dani", "p": 0},
+        {"id": "l9", "s": "amina", "p": 0},
+        {"id": "l10", "s": "sami", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "sami", "next": "j4_a", "reaction": []},
+        {"id": "c_b", "actor": "sami", "next": "j4_b", "reaction": []},
+        {"id": "c_c", "actor": "sami", "next": "j4_c", "reaction": []},
+        {"id": "c_d", "actor": "sami", "next": "j4_d", "reaction": []}
+      ]
+    },
+    "j4_a": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "dani", "p": 0},
+        {"id": "l3", "s": "sami", "p": 0},
+        {"id": "l4", "s": "dani", "p": 0},
+        {"id": "l5", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_in", "actor": "sami", "next": "j4_c", "reaction": []},
+        {"id": "c_msg", "actor": "sami", "next": "j4_c", "reaction": []}
+      ]
+    },
+    "j4_b": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "mustafa", "p": 0},
+        {"id": "l3", "s": "sami", "p": 0},
+        {"id": "l4", "s": "shahad", "p": 0},
+        {"id": "l5", "s": "sami", "p": 0},
+        {"id": "l6", "s": "shahad", "p": 0},
+        {"id": "l7", "s": "sami", "p": 0},
+        {"id": "l8", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_mark", "actor": "sami", "next": "j4_c", "reaction": []},
+        {"id": "c_msg", "actor": "sami", "next": "j4_c", "reaction": []}
+      ]
+    },
+    "j4_d": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "opettaja", "p": 0},
+        {"id": "l3", "s": "sami", "p": 0},
+        {"id": "l4", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_look", "actor": "sami", "next": "j4_c", "reaction": []}]
+    },
+    "j4_c": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "sami", "p": 0},
+        {"id": "l3", "s": "narrator", "p": 0},
+        {"id": "l4", "s": "narrator", "p": 0},
+        {"id": "l5", "s": "shahad", "p": 0},
+        {"id": "l6", "s": "sami", "p": 0},
+        {"id": "l7", "s": "shahad", "p": 0},
+        {"id": "l8", "s": "sami", "p": 0},
+        {"id": "l9", "s": "narrator", "p": 0},
+        {"id": "l10", "s": "shahad", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_plan",
+          "actor": "sami",
+          "next": "j4_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_uusi_tapa", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j4_end": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/student-office.jpg",
+          "emoji": "📝",
+          "tone": 5,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_done", "actor": "sina", "next": "j10_hub", "flags": ["done_e4"], "reaction": []}]
+    },
+    "j5": {
+      "note": true,
+      "prompt": true,
+      "selectable": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "shahad", "p": 0},
+        {"id": "l3", "s": "lotengo", "p": 0},
+        {"id": "l4", "s": "zozan", "p": 0},
+        {"id": "l5", "s": "sami", "p": 0},
+        {"id": "l6", "s": "dani", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {"id": "c_a", "actor": "sina", "next": "j5_a", "reaction": []},
+        {"id": "c_b", "actor": "sina", "next": "j5_b", "reaction": []},
+        {"id": "c_c", "actor": "sina", "next": "j5_c", "reaction": []}
+      ]
+    },
+    "j5_a": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "zozan", "p": 0},
+        {"id": "l3", "s": "sina", "p": 0},
+        {"id": "l4", "s": "zozan", "p": 0},
+        {"id": "l5", "s": "sina", "p": 0},
+        {"id": "l6", "s": "zozan", "p": 0},
+        {"id": "l7", "s": "sina", "p": 0},
+        {"id": "l8", "s": "narrator", "p": 0},
+        {"id": "l9", "s": "sina", "p": 0},
+        {"id": "l10", "s": "zozan", "p": 0},
+        {"id": "l11", "s": "sina", "p": 0},
+        {"id": "l12", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_self",
+          "actor": "sina",
+          "next": "j5_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_hw_a", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_msg",
+          "actor": "sina",
+          "next": "j5_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_hw_a", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j5_b": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "sina", "p": 0},
+        {"id": "l3", "s": "lotengo", "p": 0},
+        {"id": "l4", "s": "shahad", "p": 0},
+        {"id": "l5", "s": "sina", "p": 0},
+        {"id": "l6", "s": "lotengo", "p": 0},
+        {"id": "l7", "s": "sina", "p": 0},
+        {"id": "l8", "s": "shahad", "p": 0},
+        {"id": "l9", "s": "sina", "p": 0},
+        {"id": "l10", "s": "lotengo", "p": 0},
+        {"id": "l11", "s": "sina", "p": 0},
+        {"id": "l12", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_home",
+          "actor": "sina",
+          "next": "j5_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_hw_b", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_talk",
+          "actor": "sina",
+          "next": "j5_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_hw_b", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j5_c": {
+      "prompt": true,
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [
+        {"id": "l1", "s": "narrator", "p": 0},
+        {"id": "l2", "s": "dani", "p": 0},
+        {"id": "l3", "s": "sami", "p": 0},
+        {"id": "l4", "s": "sina", "p": 0},
+        {"id": "l5", "s": "sami", "p": 0},
+        {"id": "l6", "s": "dani", "p": 0},
+        {"id": "l7", "s": "sina", "p": 0},
+        {"id": "l8", "s": "dani", "p": 0},
+        {"id": "l9", "s": "sina", "p": 0},
+        {"id": "l10", "s": "sami", "p": 0},
+        {"id": "l11", "s": "sina", "p": 0},
+        {"id": "l12", "s": "narrator", "p": 0},
+        {"id": "l13", "s": "sina", "p": 0},
+        {"id": "l14", "s": "dani", "p": 0},
+        {"id": "l15", "s": "sina", "p": 0},
+        {"id": "l16", "s": "narrator", "p": 0}
+      ],
+      "pick": {"min": 1, "max": 1},
+      "choices": [
+        {
+          "id": "c_try",
+          "actor": "sina",
+          "next": "j5_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_hw_c", "label": "star"}],
+          "reaction": []
+        },
+        {
+          "id": "c_plan",
+          "actor": "sina",
+          "next": "j5_end",
+          "effects": [{"char": "sina", "stars": 1, "once": "s_hw_c", "label": "star"}],
+          "reaction": []
+        }
+      ]
+    },
+    "j5_end": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/cafe-tables.jpg",
+          "emoji": "☕",
+          "tone": 2,
+          "pos": "center 50%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_done", "actor": "sina", "next": "j10_hub", "flags": ["done_e5"], "reaction": []}]
+    },
+    "j90_end": {
+      "panels": [
+        {
+          "id": "p1",
+          "image": "images/panels/keuda/corridor-bench.jpg",
+          "emoji": "🚪",
+          "tone": 3,
+          "pos": "center 60%"
+        }
+      ],
+      "lines": [{"id": "l1", "s": "narrator", "p": 0}],
+      "pick": {"min": 1, "max": 1},
+      "choices": [{"id": "c_end", "actor": "sina", "next": "@ending", "reaction": []}]
+    }
+  },
+  "endings": [{"id": "end", "when": {}}]
+}

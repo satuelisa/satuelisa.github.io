@@ -62,7 +62,7 @@
   "teacherPrint": "Imprimer",
   "teacherLoadError": "Le guide de l’enseignant·e n’a pas pu être chargé.",
   "menuTitle": "Choisis un jeu",
-  "menuIntro": "Quatre courts jeux sur l’avenir, les choix et les prochaines étapes. Choisis celui qui convient à ton groupe.",
+  "menuIntro": "Cinq courts jeux sur l’avenir, les choix et les prochaines étapes. Choisis celui qui convient à ton groupe.",
   "menuAudience": "Pour",
   "menuPlay": "Jouer",
   "menuInProgress": "En cours",
@@ -87,5 +87,10 @@
   "menu.pyynikki.desc": "Sept stations à Pyynikki. Fais les tâches dehors avec ton téléphone, confirme-les ici et allume neuf étoiles.",
   "menu.kaksiunelmaa.title": "Deux rêves",
   "menu.kaksiunelmaa.audience": "Étudiants-athlètes et leurs enseignants",
-  "menu.kaksiunelmaa.desc": "Un jeune joueur de hockey étudie aussi en affaires. Deux situations demandent : qui suis-je quand je ne joue pas ?"
+  "menu.kaksiunelmaa.desc": "Un jeune joueur de hockey étudie aussi en affaires. Deux situations demandent : qui suis-je quand je ne joue pas ?",
+  "nameLabel": "Prénom du jeune (facultatif)",
+  "nameHint": "Invente un prénom, pas un vrai. Il sert seulement pendant cette session et n’est pas sauvegardé.",
+  "menu.jatkaa.title": "Est-ce que ça vaut encore la peine de continuer ? (Récit 1)",
+  "menu.jatkaa.audience": "Élèves de l’éducation de base des adultes, 16 à 20 ans",
+  "menu.jatkaa.desc": "Les études n’accrochent pas et les absences s’accumulent. Cinq situations de la journée : aller en cours, une tâche qui ne s’ouvre pas, qui inclure, un examen rendu et une soirée où les devoirs passent à la trappe."
 }
