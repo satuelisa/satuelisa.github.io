@@ -44,54 +44,139 @@ footer.appfoot{ text-align:center; color:var(--muted); font-size:12px; padding:3
 </head>
 <body>
 <header>
-  <h1>Presentation schedule</h1>
+  <h1>Schedule</h1>
   <div class="controls"><button id="btnThemeToggle"></button></div>
 </header>
 
 <main>
   <p class="intro">Each team has up to 90 seconds of stage time and up to 90 seconds of jury interaction. A 30-second gap is scheduled between teams.</p>
   <table>
-    <thead><tr><th>#</th><th>Time</th><th>Item</th></tr></thead>
+    <thead><tr><th>#</th><th>Time</th><th>Team</th><th>Content</th></tr></thead>
     <tbody id="rows">
-    <tr class="block" data-from="55200" data-to="55500"><td class="num"></td><td class="time">15:20:00</td><td>Jury introduction</td></tr>
+    <tr class="block" data-from="55200" data-to="55500"><td class="num"></td><td class="time">15:20:00</td><td>Jury introduction</td><td></td></tr>
 
-    <tr class="divider"><td colspan="3">Online, with slides</td></tr>
+    <tr class="divider"><td colspan="4">Online, with slides</td></tr>
 
-    <tr data-from="55800" data-to="55980"><td class="num">1</td><td class="time">15:30:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/nasajobapplicants1/" >NasaJobApplicants#1</a></td></tr>
+    <tr data-from="55800"
+	data-to="55980"><td class="num">1</td><td class="time">15:30:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/nasajobapplicants1/">NasaJobApplicants#1</a></td>
+      <td><a href="https://docs.google.com/presentation/d/1d4u8qLFZNErf5z9IZmXRKYxczWHb9YtFTuOLkDXd9qY/edit?slide=id.h322096c1ec9485e9_1_478#slide=id.h322096c1ec9485e9_1_478">Slides</a></td>
+    </tr>
 
-    <tr class="divider"><td colspan="3">Online, video</td></tr>
+    <tr class="divider"><td colspan="4">Online, video</td></tr>
 
-    <tr data-from="56010" data-to="56190"><td class="num">2</td><td class="time">15:33:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/relaisecho/" >RelaisEcho</a></td></tr>    
-    <tr data-from="56220" data-to="56400"><td class="num">3</td><td class="time">15:37:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/cislunar/" >Cislunar</a></td></tr>
-    <tr data-from="56430" data-to="56610"><td class="num">4</td><td class="time">15:40:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/godzimappers/" >Godzinauts</a></td></tr>
-    <tr data-from="56640" data-to="56820"><td class="num">5</td><td class="time">15:44:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/trend-detectives-mtl/" >Trend Detectives MTL</a></td></tr>
+    <tr data-from="56010" data-to="56190">
+      <td class="num">2</td><td class="time">15:33:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/relaisecho/" >RelaisEcho</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>      
+    </tr>    
 
+    <tr data-from="56220" data-to="56400">
+      <td class="num">3</td><td class="time">15:37:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/cislunar/" >Cislunar</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
 
-    <tr class="divider"><td colspan="3">On site, video</td></tr>
+    <tr data-from="56430" data-to="56610">
+      <td class="num">4</td><td class="time">15:40:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/godzimappers/" >Godzinauts</a></td>
+      <td><a href="https://youtu.be/xlFHnAbUm48">Video</a></td>
+    </tr>
 
-    <tr data-from="56850" data-to="57030"><td class="num">6</td><td class="time">15:47:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/cosmic-crusaders3/" >Cosmic Consultants</a></td></tr>
-    <tr data-from="57060" data-to="57240"><td class="num">7</td><td class="time">15:51:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/levsq/" >levsq</a></td></tr>
-    <tr data-from="57270" data-to="57450"><td class="num">8</td><td class="time">15:54:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/halov2/" >Halo.V2</a></td></tr>
-    <tr data-from="57480" data-to="57660"><td class="num">9</td><td class="time">15:58:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/odos/" >Odos</a></td></tr>
-    <tr data-from="57690" data-to="57870"><td class="num">10</td><td class="time">16:01:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/starteam/" >StarTeam</a></td></tr>
-    <tr data-from="57900" data-to="58080"><td class="num">11</td><td class="time">16:05:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/3-nuns-and-a-penguin1/" >3 Nuns and a Penguin</a></td></tr>
-    <tr data-from="58110" data-to="58290"><td class="num">12</td><td class="time">16:08:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/itss/" >ITSS</a></td></tr>
-    <tr data-from="58320" data-to="58500"><td class="num">13</td><td class="time">16:12:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/udem-ai/" >UdeM AI</a></td></tr>
+    <tr data-from="56640" data-to="56820"><td class="num">5</td><td class="time">15:44:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/trend-detectives-mtl/" >Trend Detectives MTL</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
 
+    <tr class="divider"><td colspan="4">On site, video</td></tr>
 
-    <tr class="divider"><td colspan="3">On site, with slides</td></tr>
+    <tr data-from="56850" data-to="57030"><td class="num">6</td><td class="time">15:47:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/cosmic-crusaders3/" >Cosmic Consultants</a></td>
+      <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
 
-    <tr data-from="58530" data-to="58710"><td class="num">14</td><td class="time">16:15:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/lsp26/" >LSP&apos;26</a></td></tr>
-    <tr data-from="58740" data-to="58920"><td class="num">15</td><td class="time">16:19:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/100-phys-info-udem/" >100% Phys-Info UdeM</a></td></tr>
-    <tr data-from="58950" data-to="59130"><td class="num">16</td><td class="time">16:22:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/cyberspace-montreal/" >Cyber&amp;Space Montr&eacute;al</a></td></tr>
-    <tr data-from="59160" data-to="59340"><td class="num">17</td><td class="time">16:26:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/the-a-team2/" >The A-team</a></td></tr>
-    <tr data-from="59370" data-to="59550"><td class="num">18</td><td class="time">16:29:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/de-buh-buh-bugging/" >de-buh-buh-bugging</a></td></tr>
-    <tr data-from="59580" data-to="59760"><td class="num">19</td><td class="time">16:33:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/houston-were-alive/" >Houston, we&apos;re alive</a></td></tr>
-    <tr data-from="59790" data-to="59970"><td class="num">20</td><td class="time">16:36:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/latteam/" >LatTeam</a></td></tr>
-    <tr data-from="60000" data-to="60180"><td class="num">21</td><td class="time">16:40:00</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/sine-qua-sar-non/" >Sine Qua-SAR non</a></td></tr>
-    <tr data-from="60210" data-to="60390"><td class="num">22</td><td class="time">16:43:30</td><td><a href="https://www.spaceappschallenge.org/2026/find-a-team/da-bricks/" >Da Bricks</a></td></tr>
-    <tr class="block" data-from="60300" data-to="60720"><td class="num"></td><td class="time">16:45:00</td><td>Jury deliberation</td></tr>
-    <tr class="block" data-from="60720" data-to="61020"><td class="num"></td><td class="time">16:52:00</td><td>Announcements</td></tr>
+    <tr data-from="57060" data-to="57240"><td class="num">7</td><td class="time">15:51:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/levsq/" >levsq</a></td>
+      <td><a href="https://youtu.be/sb91xbafZno">Video</a></td>
+    </tr>
+
+    <tr data-from="57270" data-to="57450"><td class="num">8</td><td class="time">15:54:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/halov2/" >Halo.V2</a></td>
+      <td><a href="https://youtu.be/QqyBLxaGIQA">Video</a></td>
+    </tr>
+
+    <tr data-from="57480" data-to="57660"><td class="num">9</td><td class="time">15:58:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/odos/" >Odos</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+
+    <tr data-from="57690" data-to="57870"><td class="num">10</td><td class="time">16:01:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/starteam/" >StarTeam</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+
+    <tr data-from="57900" data-to="58080"><td class="num">11</td><td class="time">16:05:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/3-nuns-and-a-penguin1/" >3 Nuns and a Penguin</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+    
+    <tr data-from="58110" data-to="58290"><td class="num">12</td><td class="time">16:08:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/itss/" >ITSS</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+    
+    <tr data-from="58320" data-to="58500"><td class="num">13</td><td class="time">16:12:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/udem-ai/" >UdeM AI</a></td>
+      <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+
+    <tr class="divider"><td colspan="4">On site, with slides</td></tr>
+
+    <tr data-from="58530" data-to="58710"><td class="num">14</td><td class="time">16:15:30</td>
+<td><a href="https://www.spaceappschallenge.org/2026/find-a-team/lsp26/" >LSP&apos;26</a></td>      
+          <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>  
+    </tr>
+
+    <tr data-from="58740" data-to="58920"><td class="num">15</td><td class="time">16:19:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/100-phys-info-udem/" >100% Phys-Info UdeM</a></td>
+      <td><a href="https://udemontreal-my.sharepoint.com/:p:/g/personal/brianna_masas_balcazar_umontreal_ca/IQDcNd2MWingQqrXhd-oPVCVAaH2V-Hlq4o9HJ3KYEecFKg?rtime=Ox-EC01D30g">Slides</a></td>
+    </tr>
+
+    <tr data-from="58950" data-to="59130"><td class="num">16</td><td class="time">16:22:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/cyberspace-montreal/" >Cyber&amp;Space Montr&eacute;al</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+
+    <tr data-from="59160" data-to="59340"><td class="num">17</td><td class="time">16:26:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/the-a-team2/" >The A-team</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+    
+    <tr data-from="59370" data-to="59550"><td class="num">18</td><td class="time">16:29:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/de-buh-buh-bugging/" >de-buh-buh-bugging</a></td>
+      <td><a href="https://docs.google.com/presentation/d/146mnAXtSY1wYfu9fPygI5aVAKfGf_M6K/edit?slide=id.p1#slide=id.p1">Slides</a></td>
+    </tr>
+    
+    <tr data-from="59580" data-to="59760"><td class="num">19</td><td class="time">16:33:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/houston-were-alive/" >Houston, we&apos;re alive</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+    
+    <tr data-from="59790" data-to="59970"><td class="num">20</td><td class="time">16:36:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/latteam/" >LatTeam</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+    
+    <tr data-from="60000" data-to="60180"><td class="num">21</td><td class="time">16:40:00</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/sine-qua-sar-non/" >Sine Qua-SAR non</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+
+    <tr data-from="60210" data-to="60390"><td class="num">22</td><td class="time">16:43:30</td>
+      <td><a href="https://www.spaceappschallenge.org/2026/find-a-team/da-bricks/" >Da Bricks</a></td>
+            <td><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE1MndyZ25uN3c1dzVxbTRlMHRxY3ZjM2pyMXBubHZiMGhvOGViNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bi1k80j7xfGxYrnClD/giphy.gif">PENDING</a></td>
+    </tr>
+
+    <tr class="block" data-from="60300" data-to="60720"><td class="num"></td><td class="time">16:45:00</td><td>Jury deliberation</td><td></td></tr>
+
+    <tr class="block" data-from="60720" data-to="61020"><td class="num"></td><td class="time">16:52:00</td><td>Announcements</td><td></td></tr>
     </tbody>
   </table>
 </main>
